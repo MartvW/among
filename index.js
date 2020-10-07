@@ -44,12 +44,26 @@ const embedLetOp = {
     }
 }
 
-bot.on("guildCreate", guild => {
+bot.on("guildCreate", async guild => {
+    const servers = await bot.guilds.cache.size;
     console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers!`);
+    bot.user.setPresence({
+        status: 'online',
+        activity: {
+            name: `${prefix}help | Op ${servers} servers`,
+        }
+    })
 });
 
-bot.on("guildDelete", guild => {
+bot.on("guildDelete", async guild => {
+    const servers = await bot.guilds.cache.size;
     console.log(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
+    bot.user.setPresence({
+        status: 'online',
+        activity: {
+            name: `${prefix}help | Op ${servers} servers`,
+        }
+    })
 });
 
 bot.on('ready', async () => {
