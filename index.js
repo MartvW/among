@@ -4,7 +4,6 @@ const bot = new Discord.Client();
 var prefix = process.env.PREFIX;
 var amongususer = "";
 var amonguschannel = "";
-var amongusnaam = "";
 var amongusbericht = "";
 
 const embedHelp = {
@@ -94,7 +93,6 @@ bot.on('message', msg => {
             amongusnaam = msg.member.voice.channel;
             msg.member.voice.channel.edit({
                 userLimit: 10,
-                name: "Among Us",
             });
             amongusbericht.react('✅');
             amongusbericht.react('❌');
@@ -113,7 +111,6 @@ bot.on('message', msg => {
                 amongususer = "";
                 amonguschannel.edit({
                     userLimit: 0,
-                    name: amongusnaam,
                 });
             });
 
