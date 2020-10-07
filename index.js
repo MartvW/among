@@ -87,8 +87,8 @@ bot.on('message', msg => {
             return;
         }
 
-        for (let potje of amongus) {
-            if (potje.user === msg.author || potje.kanaal === msg.member.voice.channel) {
+        for (let i = 0; i < amongus.length; i++) {
+            if (amongus[i].user === msg.author || amongus[i].kanaal === msg.member.voice.channel) {
                 msg.channel.send("You are already hosting a game. You can't host more than one game!");
                 return;
             }
@@ -124,8 +124,6 @@ bot.on('message', msg => {
                     .setFooter(`The host was: ${amongus[i].user.username}\nThe channel was: ${amongus[i].channel.name}`)
                     .setColor(16426522)
                 msg.channel.send({ embed: embed }).then(embedMesage => {
-                    amongus[i].bericht = "";
-                    amongus[i].user = "";
                     msg.member.voice.channel.edit({
                         userLimit: 0,
                     });
@@ -135,6 +133,9 @@ bot.on('message', msg => {
                     member[1].edit({ mute: false });
                 }
                 amongus[i].channel = "";
+                amongus.splice(amongus.indexOf({
+                    "channel": msg.member.voice.channel,
+                }), 1);
             } else {
                 msg.channel.send("You're not allowed to finish a game. Do **${prefix}amongus** to start your own game.");
             }
