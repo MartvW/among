@@ -126,7 +126,7 @@ bot.on('message', msg => {
                 msg.channel.send({ embed: embed }).then(embedMesage => {
                     amongus[i].bericht = "";
                     amongus[i].user = "";
-                    amongus[i].channel.edit({
+                    msg.member.voice.channel.edit({
                         userLimit: 0,
                     });
                 });
