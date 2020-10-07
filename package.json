@@ -1,31 +1,13 @@
 {
   "name": "Among Us",
-  "version": "1.0.0",
   "description": "Among Us Discord Bot",
+  "version": "0.0.0",
   "main": "index.js",
-  "engines": {
-    "node": "12.x",
-    "npm": "*"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/synicalsyntax/discord.js-heroku.git"
-  },
-  "keywords": [
-    "heroku",
-    "discord.js"
-  ],
-  "author": "Mart",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/synicalsyntax/discord.js-heroku/issues"
-  },
-  "homepage": "https://github.com/synicalsyntax/discord.js-heroku#readme",
   "dependencies": {
-    "discord.js": "^11.3.0"
+    "discord.js": "12.3.0",
+    "request": "2.81.0"
   }
 }
