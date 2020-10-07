@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-var prefix = ".";
-var token = "NDY5ODU3OTA2Mzg1MzU0NzY0.W1HjRg.lRnd0paHq1oD63NqYM_IJl8uC1M";
+var prefix = process.env.PREFIX;
+var token = process.env.BOT_TOKEN;
 var amongus = [];
 var amongususer = [];
 var amonguschannel = [];
