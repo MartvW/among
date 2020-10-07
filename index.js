@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+const servers = bot.guilds.cache.size;
 
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
@@ -54,13 +55,13 @@ bot.on("guildDelete", guild => {
 
 bot.on('ready', () => {
     console.log("");
-    console.log(`Succesvol ingelogd als ${bot.user.tag}`);
+    console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers`);
     console.log("");
 
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}help`,
+            name: `${prefix}help | Op ${servers} servers`,
         }
     })
 });
