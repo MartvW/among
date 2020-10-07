@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 
 var prefix = process.env.PREFIX;
+var token = process.env.BOT_TOKEN;
 var amongususer = "";
 var amonguschannel = "";
 var amongusbericht = "";
@@ -35,7 +36,7 @@ const embedLetOp = {
     "embed": {
         "title": "Among Us - Help",
         "color": 15746887,
-        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten:\n\n- **${prefix}amongus** \n- **${prefix}amongusstop.`,
+        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten:\n\n- **${prefix}amongus** \n- **${prefix}amongusstop**`,
         "fields": [
             {
                 "name": ".....................",
@@ -104,7 +105,7 @@ bot.on('message', msg => {
             var embed = new Discord.MessageEmbed()
                 .setTitle(`Among Us`)
                 .setDescription(`De game is gestopt, doe **${prefix}amongus** om weer een nieuwe game te starten.`)
-                .setFooter(`De host was: ${amongususer}\nHet kanaal waarin de game werd gehouden is: ${amonguschannel}`)
+                .setFooter(`De host was: ${amongususer.username}\nHet kanaal waarin de game werd gehouden is: ${amonguschannel.name}`)
                 .setColor(16426522)
             msg.channel.send({ embed: embed }).then(embedMesage => {
                 amongusbericht = "";
@@ -154,4 +155,4 @@ bot.on('messageReactionAdd', (reaction, user) => {
 
 });
 
-bot.login(process.env.BOT_TOKEN);
+bot.login(token);
