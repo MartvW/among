@@ -2,6 +2,45 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 
 var prefix = process.env.PREFIX;
+var amongususer = "";
+var amonguschannel = "";
+var amongusnaam = "";
+var amongusbericht = "";
+
+const embedHelp = {
+    "embed": {
+        "title": "Among Us - Help",
+        "color": 16426522,
+        "fields": [
+            {
+                "name": `${prefix}help`,
+                "value": "Om dit bericht te laten zien."
+            },
+            {
+                "name": `${prefix}amongus`,
+                "value": "Om een game te starten."
+            },
+            {
+                "name": `${prefix}amongusstop`,
+                "value": "Om een game te laten stoppen."
+            }
+        ]
+    }
+}
+
+const embedLetOp = {
+    "embed": {
+        "title": "Among Us - Help",
+        "color": 15746887,
+        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten:\n\n- **${prefix}amongus** \n- **${prefix}amongusstop.`,
+        "fields": [
+            {
+                "name": ".....................",
+                "value": "Als er iets onduidelijk is kan je de helpserver joinen: https://discord.gg/sjw7ZAb"
+            }
+        ]
+    }
+}
 
 bot.on('ready', () => {
     console.log("");
@@ -11,7 +50,7 @@ bot.on('ready', () => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}info`,
+            name: `${prefix}help`,
         }
     })
 });
@@ -23,8 +62,9 @@ bot.on('message', msg => {
     const args = msg.content.slice(prefix.length).trim().split(/ + /);
     const command = args.shift().toLowerCase();
 
-    if (command === "ping") {
-        msg.channel.send("Pong");
+    if (command === "help") {
+        msg.channel.send(embedHelp);
+        msg.channel.send(embedLetOp);
     }
 
     if (command === "amongus") {
@@ -40,10 +80,71 @@ bot.on('message', msg => {
             .setColor(16426522)
 
         msg.channel.send({ embed: embed }).then(embedMesage => {
+            amongususer = msg.author;
+            amongusbericht = embedMesage;
+            amonguschannel = msg.member.voice.channel;
+            amongusnaam = msg.member.voice.channel;
             msg.member.voice.channel.edit({
                 userLimit: 10,
+                name: "Among Us",
             });
+            amongusbericht.react('✅');
+            amongusbericht.react('❌');
         });
+    }
+
+    if (command === "amongusstop") {
+        if (amongususer.id === msg.author.id) {
+            var embed = new Discord.MessageEmbed()
+                .setTitle(`Among Us`)
+                .setDescription(`De game is gestopt, doe **${prefix}amongus** om weer een nieuwe game te starten.`)
+                .setFooter(`De host was: ${amongususer}\nHet kanaal waarin de game werd gehouden is: ${amonguschannel}`)
+                .setColor(16426522)
+            msg.channel.send({ embed: embed }).then(embedMesage => {
+                amongusbericht = "";
+                amongususer = "";
+                amonguschannel.edit({
+                    userLimit: 0,
+                    name: amongusnaam,
+                });
+            });
+
+            let channel = amonguschannel;
+            for (let member of channel.members) {
+                member[1].edit({ mute: false});
+            }
+        } else {
+            msg.channel.send("Je bent niet bevoegd om de game te stoppen!");
+        }
+    }
+});
+
+bot.on('messageReactionAdd', (reaction, user) => {
+    if (user.bot) return;
+    if (user.id != amongususer.id) {
+        reaction.remove();
+        amongususer.react(reaction._emoji.name);
+        return;
+    }
+
+    if (reaction.message.id === amongusbericht.id) {
+        if (reaction._emoji.name === "✅") {
+            //unmute iedereen
+            reaction.remove();
+            amongusbericht.react(reaction._emoji.name);
+            let channel = amonguschannel;
+            for (let member of channel.members) {
+                member[1].edit({ mute: false });
+            }
+        } else if (reaction._emoji.name === "❌") {
+            //mute iedereen
+            reaction.remove();
+            amongusbericht.react(reaction._emoji.name);
+            let channel = amonguschannel;
+            for (let member of channel.members) {
+                member[1].edit({ mute: true });
+            }
+        }
     }
 
 });
