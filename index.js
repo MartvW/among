@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const servers = bot.guilds.cache.size;
 
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
@@ -53,9 +52,11 @@ bot.on("guildDelete", guild => {
     console.log(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
 });
 
-bot.on('ready', () => {
+bot.on('ready', async () => {
+    const servers = await bot.guilds.cache.size;
+    const users = await bot.users.cache.size;
     console.log("");
-    console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers`);
+    console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
     console.log("");
 
     bot.user.setPresence({
