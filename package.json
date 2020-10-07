@@ -1,0 +1,13 @@
+{
+  "name": "Among Us",
+  "description": "Among Us Discord Bot",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "12.3.0",
+    "request": "2.81.0"
+  }
+}
