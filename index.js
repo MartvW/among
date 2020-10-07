@@ -1,8 +1,5 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-
-var prefix = "-";
-
 bot.on('ready', () => {
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag}`);
@@ -11,16 +8,16 @@ bot.on('ready', () => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}info`,
+            name: `${process.env.PREFIX}info`,
         }
     })
 });
 
 bot.on('message', msg => {
-    if (!msg.content.startsWith(prefix)) return;
+    if (!msg.content.startsWith(process.env.PREFIX)) return;
     if (msg.author.bot) return;
 
-    const args = msg.content.slice(prefix.length).trim().split(/ + /);
+    const args = msg.content.slice(process.env.PREFIX.length).trim().split(/ + /);
     const command = args.shift().toLowerCase();
 
     if (command === "ping") {
