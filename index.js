@@ -4,9 +4,6 @@ const bot = new Discord.Client();
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
 var amongus = [];
-var amongususer = [];
-var amonguschannel = [];
-var amongusbericht = "";
 
 const embedHelp = {
     "embed": {
@@ -15,19 +12,19 @@ const embedHelp = {
         "fields": [
             {
                 "name": `${prefix}help`,
-                "value": "Om dit bericht te laten zien."
+                "value": "To show this message."
             },
             {
                 "name": `${prefix}link`,
-                "value": "Hiermee kan je de invite link mee krijgen van de bot."
+                "value": "You can get the invite-link for this bot."
             },
             {
                 "name": `${prefix}amongus`,
-                "value": "Om een game te starten."
+                "value": "When you want to start a game."
             },
             {
                 "name": `${prefix}amongusstop`,
-                "value": "Om een game te laten stoppen."
+                "value": "When you are leaving or when the game is over."
             }
         ]
     }
@@ -37,11 +34,11 @@ const embedLetOp = {
     "embed": {
         "title": "Among Us - Help",
         "color": 15746887,
-        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten:\n\n- **${prefix}amongus** \n- **${prefix}amongusstop**`,
+        "description": `To run some commands you have to be in a voice-channel. When you run this commands you have to be in a voice-channel:\n\n- **${prefix}amongus** \n- **${prefix}amongusstop**`,
         "fields": [
             {
                 "name": ".....................",
-                "value": "Als er iets onduidelijk is kan je de helpserver joinen: https://discord.gg/sjw7ZAb"
+                "value": "You can join the help-server: https://discord.gg/sjw7ZAb"
             }
         ]
     }
@@ -86,21 +83,21 @@ bot.on('message', msg => {
 
     if (command === "amongus") {
         if (!msg.member.voice.channel) {
-            msg.channel.send("Je moet in een voice-channel zitten!");
+            msg.channel.send("You have to join a voice-channel to run this command!");
             return;
         }
 
         for (let potje of amongus) {
             if (potje.user === msg.author || potje.kanaal === msg.member.voice.channel) {
-                msg.channel.send("Je host al een game!");
+                msg.channel.send("You are already hosting a game. You can't host more than one game!");
                 return;
             }
         }
 
         var embed = new Discord.MessageEmbed()
             .setTitle(`Among Us`)
-            .setDescription(`Reageer met een :white_check_mark: als er een meeting is en met een :x: als er geen meeting is`)
-            .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin de game wordt gehouden is: ${msg.member.voice.channel.name}`)
+            .setDescription(`React with an :white_check_mark: when there is a meeting, react with an :x: when the meeting is finished.\nDo **${prefix}amongusstop** when the game is done, and you are leaving.`)
+            .setFooter(`The host is: ${msg.author.username}\nThe channel where the game is currently playing: ${msg.member.voice.channel.name}`)
             .setColor(16426522)
 
         msg.channel.send({ embed: embed }).then(embedMesage => {
@@ -123,8 +120,8 @@ bot.on('message', msg => {
             if (amongus[i].user.id === msg.author.id) {
                 var embed = new Discord.MessageEmbed()
                     .setTitle(`Among Us`)
-                    .setDescription(`De game is gestopt, doe **${prefix}amongus** om weer een nieuwe game te starten.`)
-                    .setFooter(`De host was: ${amongus[i].user.username}\nHet kanaal waarin de game werd gehouden is: ${amongus[i].channel.name}`)
+                    .setDescription(`The game has finished, do **${prefix}amongus** to start a new game.`)
+                    .setFooter(`The host was: ${amongus[i].user.username}\nThe channel was: ${amongus[i].channel.name}`)
                     .setColor(16426522)
                 msg.channel.send({ embed: embed }).then(embedMesage => {
                     amongus[i].bericht = "";
@@ -139,7 +136,7 @@ bot.on('message', msg => {
                 }
                 amongus[i].channel = "";
             } else {
-                msg.channel.send("Je bent niet bevoegd om de game te stoppen!");
+                msg.channel.send("You're not allowed to finish a game. Do **${prefix}amongus** to start your own game.");
             }
         }
     }
