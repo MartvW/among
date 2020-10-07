@@ -50,7 +50,7 @@ bot.on("guildCreate", async guild => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}help | Op ${servers} servers`,
+            name: `${prefix}help | On ${servers} servers`,
         }
     })
 });
@@ -61,7 +61,7 @@ bot.on("guildDelete", async guild => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}help | Op ${servers} servers`,
+            name: `${prefix}help | On ${servers} servers`,
         }
     })
 });
@@ -76,7 +76,7 @@ bot.on('ready', async () => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}help | Op ${servers} servers`,
+            name: `${prefix}help | On ${servers} servers`,
         }
     })
 });
