@@ -81,7 +81,7 @@ bot.on('message', msg => {
     }
 
     if (command === "link") {
-        msg.channel.send('https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=4197392');
+        msg.channel.send('https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=0');
     }
 
     if (command === "amongus") {
@@ -133,11 +133,11 @@ bot.on('message', msg => {
                         userLimit: 0,
                     });
                 });
-
                 let channel = amongus[i].channel;
                 for (let member of channel.members) {
                     member[1].edit({ mute: false });
                 }
+                amongus[i].channel = "";
             } else {
                 msg.channel.send("Je bent niet bevoegd om de game te stoppen!");
             }
