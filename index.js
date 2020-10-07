@@ -17,6 +17,10 @@ const embedHelp = {
                 "value": "Om dit bericht te laten zien."
             },
             {
+                "name": `${prefix}link`,
+                "value": "Hiermee kan je de invite link mee krijgen van de bot."
+            },
+            {
                 "name": `${prefix}amongus`,
                 "value": "Om een game te starten."
             },
@@ -67,6 +71,10 @@ bot.on('message', msg => {
         msg.channel.send(embedLetOp);
     }
 
+    if (command === "link") {
+        msg.channel.send('https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=0');
+    }
+
     if (command === "amongus") {
         if (!msg.member.voice.channel) {
             msg.channel.send("Je moet in een voice-channel zitten!");
@@ -111,7 +119,7 @@ bot.on('message', msg => {
 
             let channel = amonguschannel;
             for (let member of channel.members) {
-                member[1].edit({ mute: false});
+                member[1].edit({ mute: false });
             }
         } else {
             msg.channel.send("Je bent niet bevoegd om de game te stoppen!");
