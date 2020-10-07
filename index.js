@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const { token } = require('./config.json');
 const bot = new Discord.Client();
 
 var prefix = "-";
@@ -49,4 +48,4 @@ bot.on('message', msg => {
 
 });
 
-bot.login(token);
+bot.login(process.env.TOKEN);
