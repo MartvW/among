@@ -96,7 +96,7 @@ bot.on('message', msg => {
 
         var embed = new Discord.MessageEmbed()
             .setTitle(`Among Us`)
-            .setDescription(`React with an :white_check_mark: when there is a meeting, react with an :x: when the meeting is finished.\nDo **${prefix}amongusstop** when the game is done, and you are leaving.`)
+            .setDescription(`React with an :white_check_mark: when there is a meeting, react with an :x: when the meeting is finished.\nDo **${prefix}amongusstop** when the game is done or you are leaving.`)
             .setFooter(`The host is: ${msg.author.username}\nThe channel where the game is currently playing: ${msg.member.voice.channel.name}`)
             .setColor(16426522)
 
