@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+
 bot.on('ready', () => {
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag}`);
@@ -12,6 +13,8 @@ bot.on('ready', () => {
         }
     })
 });
+
+
 
 bot.on('message', msg => {
     if (!msg.content.startsWith(process.env.PREFIX)) return;
@@ -45,4 +48,4 @@ bot.on('message', msg => {
 
 });
 
-bot.login(process.env.TOKEN);
+bot.login(process.env.BOT_TOKEN);
