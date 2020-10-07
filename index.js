@@ -46,6 +46,14 @@ const embedLetOp = {
     }
 }
 
+bot.on("guildCreate", guild => {
+    console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers!`);
+});
+
+bot.on("guildDelete", guild => {
+    console.log(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
+});
+
 bot.on('ready', () => {
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag}`);
