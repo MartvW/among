@@ -81,7 +81,7 @@ bot.on('message', msg => {
     }
 
     if (command === "link") {
-        msg.channel.send('https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=0');
+        msg.channel.send('https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=4197392');
     }
 
     if (command === "amongus") {
