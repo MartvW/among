@@ -150,7 +150,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         }
         if (user.id != amongus[i].user.id) {
             reaction.remove();
-            amongus.bericht.react(reaction._emoji.name);
+            amongus[i].bericht.react(reaction._emoji.name);
             return;
         }
 
