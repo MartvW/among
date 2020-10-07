@@ -95,7 +95,7 @@ bot.on('message', msg => {
         }
 
         var embed = new Discord.MessageEmbed()
-            .setTitle(`Among Us - ${msg.autor}`)
+            .setTitle(`Among Us - ${msg.autor.tag}`)
             .setDescription(`React with an :white_check_mark: when there is a meeting, react with an :x: when the meeting is finished.\nDo **${prefix}amongusstop** when the game is done or you are leaving.`)
             .setFooter(`The host is: ${msg.author.username}\nThe channel where the game is currently playing: ${msg.member.voice.channel.name}`)
             .setColor(16426522)
@@ -119,7 +119,7 @@ bot.on('message', msg => {
         for (let i = 0; i < amongus.length; i++) {
             if (amongus[i].user.id === msg.author.id) {
                 var embed = new Discord.MessageEmbed()
-                    .setTitle(`Among Us - ${msg.autor}`)
+                    .setTitle(`Among Us - ${msg.autor.tag}`)
                     .setDescription(`The game has finished, do **${prefix}amongus** to start a new game.`)
                     .setFooter(`The host was: ${amongus[i].user.username}\nThe channel was: ${amongus[i].channel.name}`)
                     .setColor(16426522)
