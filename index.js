@@ -47,7 +47,6 @@ const embedLetOp = {
 
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
-    owner.send(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers!`);
     console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers!`);
     bot.user.setPresence({
         status: 'online',
@@ -59,7 +58,6 @@ bot.on("guildCreate", async guild => {
 
 bot.on("guildDelete", async guild => {
     const servers = await bot.guilds.cache.size;
-    owner.send(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
     console.log(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
     bot.user.setPresence({
         status: 'online',
@@ -72,7 +70,6 @@ bot.on("guildDelete", async guild => {
 bot.on('ready', async () => {
     const servers = await bot.guilds.cache.size;
     const users = await bot.users.cache.size;
-    owner.send(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
     console.log("");
