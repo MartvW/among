@@ -3,6 +3,7 @@ const bot = new Discord.Client();
 
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
+var owner = process.env.OWNER;
 var amongus = [];
 
 const embedHelp = {
