@@ -152,7 +152,6 @@ bot.on('message', msg => {
                 for (let member of channel.members) {
                     member[1].edit({ mute: false });
                 }
-                amongus[i].channel = "";
                 amongus.splice(amongus.indexOf({
                     "channel": msg.member.voice.channel,
                 }), 1);
