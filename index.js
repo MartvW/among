@@ -47,7 +47,7 @@ const embedLetOp = {
 
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
-    console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers!`);
+    console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`);
     bot.user.setPresence({
         status: 'online',
         activity: {
