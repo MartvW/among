@@ -156,7 +156,7 @@ bot.on('message', msg => {
                     "channel": msg.member.voice.channel,
                 }), 1);
             } else {
-                msg.channel.send("You're not allowed to finish a game. Do **${prefix}amongus** to start your own game.");
+                msg.channel.send(`You're not allowed to finish a game. Do **${prefix}amongus** to start your own game.`);
             }
         }
     }
