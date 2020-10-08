@@ -85,7 +85,7 @@ bot.on('ready', async () => {
 bot.on('message', msg => {
     if (!msg.content.startsWith(prefix)) return;
     if (msg.author.bot) return;
-    if (msg.guild === null) {
+    if (msg.guild === null && msg.author.id != owner) {
         msg.reply("You can try it but it does not work in DM, trust me...");
         return;
     }
