@@ -132,6 +132,10 @@ bot.on('message', msg => {
     }
 
     if (command === "amongusstop") {
+        if (!msg.member.voice.channel) {
+            msg.channel.send("You have to join the voice-channel where you were to run this command!");
+            return;
+        }
         for (let i = 0; i < amongus.length; i++) {
             if (amongus[i].user.id === msg.author.id) {
                 var embed = new Discord.MessageEmbed()
