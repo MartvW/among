@@ -163,6 +163,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
     for (let i = 0; i < amongus.length; i++) {
         if (amongus[i].user != user) {
+            console.log(amongus[i].user, user);
             return;
         }
         if (user.id != amongus[i].user.id) {
