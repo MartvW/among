@@ -84,6 +84,10 @@ bot.on('ready', async () => {
 bot.on('message', msg => {
     if (!msg.content.startsWith(prefix)) return;
     if (msg.author.bot) return;
+    if (msg.guild === null) {
+        msg.reply("You can't message my by DM");
+        return;
+    }
 
     const args = msg.content.slice(prefix.length).trim().split(/ + /);
     const command = args.shift().toLowerCase();
