@@ -26,6 +26,10 @@ const embedHelp = {
             {
                 "name": `${prefix}amongusstop`,
                 "value": "When you are leaving or when the game is over."
+            },
+            {
+                "name": `${prefix}ping`,
+                "value": "You can see your ping with this command."
             }
         ]
     }
@@ -96,6 +100,20 @@ bot.on('message', msg => {
     if (command === "help") {
         msg.channel.send(embedHelp);
         msg.channel.send(embedLetOp);
+    }
+    
+    if (command === "ping") {
+        msg.channel.send("Pinging...").then(m => {
+            var ping = m.createdTimestamp - msg.createdTimestamp;
+
+            // Basic embed
+            var embed = new Discord.MessageEmbed()
+                .setAuthor(`Your ping is: ${ping}ms`)
+                .setColor(15746887)
+
+            // Then It Edits the message with the ping variable embed that you created
+            m.edit(embed);
+        });
     }
 
     if (command === "link") {
