@@ -216,14 +216,15 @@ bot.on('message', msg => {
                     msg.member.voice.channel.edit({
                         userLimit: userlimiet,
                     });
+                    
+                    let channel = amongus[i].channel;
+                    for (let member of channel.members) {
+                        member[1].edit({ mute: false });
+                    }
+                    amongus.splice(amongus.indexOf({
+                        "channel": msg.member.voice.channel,
+                    }), 1);
                 });
-                let channel = amongus[i].channel;
-                for (let member of channel.members) {
-                    member[1].edit({ mute: false });
-                }
-                amongus.splice(amongus.indexOf({
-                    "channel": msg.member.voice.channel,
-                }), 1);
             } else {
                 var embed = new Discord.MessageEmbed()
                     .setTitle(`Among Us - @${msg.author.username}`)
