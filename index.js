@@ -102,6 +102,21 @@ bot.on('message', msg => {
         msg.channel.send(embedLetOp);
     }
     
+    if (command === "uptime") {
+        let totalSeconds = (bot.uptime / 1000);
+        let days = Math.floor(totalSeconds / 86400);
+        totalSeconds %= 86400;
+        let hours = Math.floor(totalSeconds / 3600);
+        totalSeconds %= 3600;
+        let minutes = Math.floor(totalSeconds / 60);
+        let seconds = Math.floor(totalSeconds % 60);
+        var embed = new Discord.MessageEmbed()
+            .setTitle(`Among Us - @${msg.author.username}`)
+            .setDescription(`Uptime: ${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds.`)
+            .setColor(16426522)
+        msg.channel.send(embed);
+    }
+    
     if (command === "ping") {
         msg.channel.send("Pinging...").then(m => {
             var ping = m.createdTimestamp - msg.createdTimestamp;
