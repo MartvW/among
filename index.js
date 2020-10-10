@@ -53,6 +53,9 @@ const embedLetOp = {
     }
 }
 
+//ROOD: 15746887
+//ORANJE: 16426522
+
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
     console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`);
