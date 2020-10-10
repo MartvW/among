@@ -184,8 +184,6 @@ bot.on('message', msg => {
                 "bericht": embedMesage,
             });
             
-            console.log(amongus);
-
             msg.member.voice.channel.edit({
                 userLimit: 10,
             });
@@ -204,8 +202,6 @@ bot.on('message', msg => {
             return;
         }
         for (let i = 0; i < amongus.length; i++) {
-            var userlimiet = amongus[i].channel.userLimit;
-            console.log(userlimiet);
             if (amongus[i].user.id === msg.author.id) {
                 var embed = new Discord.MessageEmbed()
                     .setTitle(`Among Us - @${msg.author.username}`)
@@ -214,7 +210,7 @@ bot.on('message', msg => {
                     .setColor(16426522)
                 msg.channel.send({ embed: embed }).then(embedMesage => {
                     msg.member.voice.channel.edit({
-                        userLimit: userlimiet,
+                        userLimit: 0,
                     });
                     
                     let channel = amongus[i].channel;
