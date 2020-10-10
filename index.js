@@ -94,7 +94,11 @@ bot.on('message', msg => {
     if (!msg.content.startsWith(prefix)) return;
     if (msg.author.bot) return;
     if (msg.guild === null && msg.author.id != owner) {
-        msg.reply("You can try it but it does not work in DM, trust me...");
+        var embed = new Discord.MessageEmbed()
+            .setTitle(`Among Us - @${msg.author.username}`)
+            .setDescription("You can try it but it does not work in DM, trust me...")
+            .setColor(16426522)
+        msg.reply(embed);
         return;
     }
 
@@ -136,18 +140,30 @@ bot.on('message', msg => {
     }
 
     if (command === "link") {
-        msg.channel.send('https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8');
+        var embed = new Discord.MessageEmbed()
+            .setTitle(`Among Us - @${msg.author.username}`)
+            .setDescription('https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8')
+            .setColor(16426522)
+        msg.channel.send(embed);
     }
 
     if (command === "amongus") {
         if (!msg.member.voice.channel) {
-            msg.channel.send("You have to join a voice-channel to run this command!");
+            var embed = new Discord.MessageEmbed()
+                .setTitle(`Among Us - @${msg.author.username}`)
+                .setDescription("You have to join a voice-channel to run this command!")
+                .setColor(16426522)
+            msg.channel.send(embed);
             return;
         }
 
         for (let i = 0; i < amongus.length; i++) {
             if (amongus[i].user === msg.author || amongus[i].kanaal === msg.member.voice.channel) {
-                msg.channel.send("You are already hosting a game. You can't host more than one game!");
+                var embed = new Discord.MessageEmbed()
+                    .setTitle(`Among Us - @${msg.author.username}`)
+                    .setDescription("You are already hosting a game. You can't host more than one game!")
+                    .setColor(16426522)
+                msg.channel.send(embed);
                 return;
             }
         }
@@ -175,7 +191,11 @@ bot.on('message', msg => {
 
     if (command === "amongusstop") {
         if (!msg.member.voice.channel) {
-            msg.channel.send("You have to join the voice-channel where you were to run this command!");
+            var embed = new Discord.MessageEmbed()
+                .setTitle(`Among Us - @${msg.author.username}`)
+                .setDescription("You have to join the voice-channel where you were to run this command!")
+                .setColor(16426522)
+            msg.channel.send(embed);
             return;
         }
         for (let i = 0; i < amongus.length; i++) {
@@ -198,7 +218,11 @@ bot.on('message', msg => {
                     "channel": msg.member.voice.channel,
                 }), 1);
             } else {
-                msg.channel.send(`You're not allowed to finish a game. Do **${prefix}amongus** to start your own game.`);
+                var embed = new Discord.MessageEmbed()
+                    .setTitle(`Among Us - @${msg.author.username}`)
+                    .setDescription(`You're not allowed to finish a game. Do **${prefix}amongus** to start your own game.`)
+                    .setColor(16426522)
+                msg.channel.send(embed);
             }
         }
     }
