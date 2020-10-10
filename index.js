@@ -30,6 +30,10 @@ const embedHelp = {
             {
                 "name": `${prefix}ping`,
                 "value": "You can see your ping with this command."
+            },
+            {
+                "name": `${prefix}uptime`,
+                "value": "Get the uptime from the bot."
             }
         ]
     }
