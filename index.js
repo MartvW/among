@@ -182,6 +182,7 @@ bot.on('message', msg => {
                 "user": msg.author,
                 "channel": msg.member.voice.channel,
                 "bericht": embedMesage,
+                "aantal": msg.member.voice.channel.userLimit,
             });
 
             msg.member.voice.channel.edit({
@@ -210,7 +211,7 @@ bot.on('message', msg => {
                     .setColor(16426522)
                 msg.channel.send({ embed: embed }).then(embedMesage => {
                     msg.member.voice.channel.edit({
-                        userLimit: 0,
+                        userLimit: amongus[i].aantal,
                     });
                 });
                 let channel = amongus[i].channel;
