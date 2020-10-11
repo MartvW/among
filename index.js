@@ -115,7 +115,7 @@ bot.on('message', msg => {
     if (msg.guild === null && msg.author.id != owner) {
         var embed = new Discord.MessageEmbed()
             .setTitle(`Among Us - @${msg.author.username}`)
-            .setDescription("You can try it but it does not work in DM, trust me...")
+            .setDescription(`You can't send message to me in DM...`)
             .setColor(16426522)
         msg.reply(embed);
         return;
