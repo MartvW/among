@@ -107,129 +107,137 @@ bot.on('message', msg => {
 
     const args = msg.content.slice(prefix.length).trim().split(/ + /);
     const command = args.shift().toLowerCase();
-
-    if (command === "help") {
-        msg.channel.send(embedHelp);
-        msg.channel.send(embedLetOp);
-    }
     
-    if (command === "uptime") {
-        let totalSeconds = (bot.uptime / 1000);
-        let days = Math.floor(totalSeconds / 86400);
-        totalSeconds %= 86400;
-        let hours = Math.floor(totalSeconds / 3600);
-        totalSeconds %= 3600;
-        let minutes = Math.floor(totalSeconds / 60);
-        let seconds = Math.floor(totalSeconds % 60);
-        var embed = new Discord.MessageEmbed()
-            .setTitle(`Among Us - @${msg.author.username}`)
-            .setDescription(`Uptime: ${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds.`)
-            .setColor(16426522)
-        msg.channel.send(embed);
-    }
-    
-    if (command === "ping") {
-        msg.channel.send("Pinging...").then(m => {
-            var ping = m.createdTimestamp - msg.createdTimestamp;
-
-            // Basic embed
-            var embed = new Discord.MessageEmbed()
-                .setAuthor(`Your ping is: ${ping}ms`)
-                .setColor(15746887)
-
-            // Then It Edits the message with the ping variable embed that you created
-            m.edit(embed);
-        });
-    }
-
-    if (command === "link") {
-        var embed = new Discord.MessageEmbed()
-            .setTitle(`Among Us - @${msg.author.username}`)
-            .setDescription('https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8')
-            .setColor(16426522)
-        msg.channel.send(embed);
-    }
-
-    if (command === "amongus") {
-        if (!msg.member.voice.channel) {
-            var embed = new Discord.MessageEmbed()
-                .setTitle(`Among Us - @${msg.author.username}`)
-                .setDescription("You have to join a voice-channel to run this command!")
-                .setColor(16426522)
-            msg.channel.send(embed);
-            return;
+    try {
+            if (command === "help") {
+            msg.channel.send(embedHelp);
+            msg.channel.send(embedLetOp);
         }
 
-        for (let i = 0; i < amongus.length; i++) {
-            if (amongus[i].user === msg.author || amongus[i].kanaal === msg.member.voice.channel) {
+        if (command === "uptime") {
+            let totalSeconds = (bot.uptime / 1000);
+            let days = Math.floor(totalSeconds / 86400);
+            totalSeconds %= 86400;
+            let hours = Math.floor(totalSeconds / 3600);
+            totalSeconds %= 3600;
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = Math.floor(totalSeconds % 60);
+            var embed = new Discord.MessageEmbed()
+                .setTitle(`Among Us - @${msg.author.username}`)
+                .setDescription(`Uptime: ${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds.`)
+                .setColor(16426522)
+            msg.channel.send(embed);
+        }
+
+        if (command === "ping") {
+            msg.channel.send("Pinging...").then(m => {
+                var ping = m.createdTimestamp - msg.createdTimestamp;
+
+                // Basic embed
+                var embed = new Discord.MessageEmbed()
+                    .setAuthor(`Your ping is: ${ping}ms`)
+                    .setColor(15746887)
+
+                // Then It Edits the message with the ping variable embed that you created
+                m.edit(embed);
+            });
+        }
+
+        if (command === "link") {
+            var embed = new Discord.MessageEmbed()
+                .setTitle(`Among Us - @${msg.author.username}`)
+                .setDescription('https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8')
+                .setColor(16426522)
+            msg.channel.send(embed);
+        }
+
+        if (command === "amongus") {
+            if (!msg.member.voice.channel) {
                 var embed = new Discord.MessageEmbed()
                     .setTitle(`Among Us - @${msg.author.username}`)
-                    .setDescription("You are already hosting a game. You can't host more than one game!")
+                    .setDescription("You have to join a voice-channel to run this command!")
                     .setColor(16426522)
                 msg.channel.send(embed);
                 return;
             }
-        }
 
-        var embed = new Discord.MessageEmbed()
-            .setTitle(`Among Us - @${msg.author.username}`)
-            .setDescription(`React with an :white_check_mark: when there is a meeting, react with an :x: when the meeting is finished.\nDo **${prefix}amongusstop** when the game is done or you are leaving.`)
-            .setFooter(`The host is: ${msg.author.username}\nThe channel where the game is currently playing: ${msg.member.voice.channel.name}`)
-            .setColor(16426522)
+            for (let i = 0; i < amongus.length; i++) {
+                if (amongus[i].user === msg.author || amongus[i].kanaal === msg.member.voice.channel) {
+                    var embed = new Discord.MessageEmbed()
+                        .setTitle(`Among Us - @${msg.author.username}`)
+                        .setDescription("You are already hosting a game. You can't host more than one game!")
+                        .setColor(16426522)
+                    msg.channel.send(embed);
+                    return;
+                }
+            }
 
-        msg.channel.send({ embed: embed }).then(embedMesage => {
-            amongus.push({
-                "user": msg.author,
-                "channel": msg.member.voice.channel,
-                "bericht": embedMesage,
-            });
-            
-            msg.member.voice.channel.edit({
-                userLimit: 10,
-            });
-            embedMesage.react('✅');
-            embedMesage.react('❌');
-        });
-    }
-
-    if (command === "amongusstop") {
-        if (!msg.member.voice.channel) {
             var embed = new Discord.MessageEmbed()
                 .setTitle(`Among Us - @${msg.author.username}`)
-                .setDescription("You have to join the voice-channel where you were to run this command!")
+                .setDescription(`React with an :white_check_mark: when there is a meeting, react with an :x: when the meeting is finished.\nDo **${prefix}amongusstop** when the game is done or you are leaving.`)
+                .setFooter(`The host is: ${msg.author.username}\nThe channel where the game is currently playing: ${msg.member.voice.channel.name}`)
                 .setColor(16426522)
-            msg.channel.send(embed);
-            return;
-        }
-        for (let i = 0; i < amongus.length; i++) {
-            if (amongus[i].user.id === msg.author.id) {
-                var embed = new Discord.MessageEmbed()
-                    .setTitle(`Among Us - @${msg.author.username}`)
-                    .setDescription(`The game has finished, do **${prefix}amongus** to start a new game.`)
-                    .setFooter(`The host was: ${amongus[i].user.username}\nThe channel was: ${amongus[i].channel.name}`)
-                    .setColor(16426522)
-                msg.channel.send({ embed: embed }).then(embedMesage => {
-                    msg.member.voice.channel.edit({
-                        userLimit: 0,
-                    });
-                    
-                    let channel = amongus[i].channel;
-                    for (let member of channel.members) {
-                        member[1].edit({ mute: false });
-                    }
-                    amongus.splice(amongus.indexOf({
-                        "channel": msg.member.voice.channel,
-                    }), 1);
+
+            msg.channel.send({ embed: embed }).then(embedMesage => {
+                amongus.push({
+                    "user": msg.author,
+                    "channel": msg.member.voice.channel,
+                    "bericht": embedMesage,
                 });
-            } else {
+
+                msg.member.voice.channel.edit({
+                    userLimit: 10,
+                });
+                embedMesage.react('✅');
+                embedMesage.react('❌');
+            });
+        }
+
+        if (command === "amongusstop") {
+            if (!msg.member.voice.channel) {
                 var embed = new Discord.MessageEmbed()
                     .setTitle(`Among Us - @${msg.author.username}`)
-                    .setDescription(`You're not allowed to finish a game. Do **${prefix}amongus** to start your own game.`)
+                    .setDescription("You have to join the voice-channel where you were to run this command!")
                     .setColor(16426522)
                 msg.channel.send(embed);
+                return;
+            }
+            for (let i = 0; i < amongus.length; i++) {
+                if (amongus[i].user.id === msg.author.id) {
+                    var embed = new Discord.MessageEmbed()
+                        .setTitle(`Among Us - @${msg.author.username}`)
+                        .setDescription(`The game has finished, do **${prefix}amongus** to start a new game.`)
+                        .setFooter(`The host was: ${amongus[i].user.username}\nThe channel was: ${amongus[i].channel.name}`)
+                        .setColor(16426522)
+                    msg.channel.send({ embed: embed }).then(embedMesage => {
+                        msg.member.voice.channel.edit({
+                            userLimit: 0,
+                        });
+
+                        let channel = amongus[i].channel;
+                        for (let member of channel.members) {
+                            member[1].edit({ mute: false });
+                        }
+                        amongus.splice(amongus.indexOf({
+                            "channel": msg.member.voice.channel,
+                        }), 1);
+                    });
+                } else {
+                    var embed = new Discord.MessageEmbed()
+                        .setTitle(`Among Us - @${msg.author.username}`)
+                        .setDescription(`You're not allowed to finish a game. Do **${prefix}amongus** to start your own game.`)
+                        .setColor(16426522)
+                    msg.channel.send(embed);
+                }
             }
         }
     }
+    catch(err) {
+        console.error(err);
+        msg.reply(`ERROR: De bot heeft een error gekregen, de error is naar de eigenaar van deze bot gestuurd.`);
+    }
+
+
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
