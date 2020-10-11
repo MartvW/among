@@ -99,6 +99,7 @@ bot.on('ready', async () => {
             .setTitle(`Among Us`)
             .setDescription(`De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`)
             .setColor(16426522)
+            .setTimestamp()
     bot.users.cache.get(owner).send(embed);
     
     bot.user.setPresence({
