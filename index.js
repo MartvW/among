@@ -252,12 +252,12 @@ bot.on('message', msg => {
         var embed = new Discord.MessageEmbed()
             .setTitle(`Among Us - ERROR`)
             .setDescription(`Among Us Bot heeft een error gekregen: ${err}`)
-            .setColor(16426522)
+            .setColor(15746887)
         bot.users.cache.get(owner).send(embed);
         var embed = new Discord.MessageEmbed()
             .setTitle(`Among Us - ERROR`)
             .setDescription(`ERROR: The bot has got an error, the error is sended to the owner.`)
-            .setColor(16426522)
+            .setColor(15746887)
         msg.reply(embed);
     }
 });
