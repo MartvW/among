@@ -96,7 +96,7 @@ bot.on('ready', async () => {
     console.log("");
 
     var embed = new Discord.MessageEmbed()
-            .setTitle(`Among Us - @${msg.author.username}`)
+            .setTitle(`Among Us`)
             .setDescription(`De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`)
             .setColor(16426522)
     bot.users.cache.get(owner).send(embed);
