@@ -234,7 +234,11 @@ bot.on('message', msg => {
     }
     catch(err) {
         console.error(err);
-        msg.reply(`ERROR: De bot heeft een error gekregen, de error is naar de eigenaar van deze bot gestuurd.`);
+        var embed = new Discord.MessageEmbed()
+            .setTitle(`Among Us - ERROR`)
+            .setDescription(`ERROR: De bot heeft een error gekregen, de error is naar de eigenaar van deze bot gestuurd.`)
+            .setColor(16426522)
+        msg.reply(embed);
     }
 
 
