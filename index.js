@@ -60,7 +60,7 @@ bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
     console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`);
     var embed = new Discord.MessageEmbed()
-            .setTitle(`Among Us - @${msg.author.username}`)
+            .setTitle(`Among Us`)
             .setDescription(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`)
             .setColor(16426522)
     bot.users.cache.get(owner).send(embed);
@@ -76,7 +76,7 @@ bot.on("guildDelete", async guild => {
     const servers = await bot.guilds.cache.size;
     console.log(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
     var embed = new Discord.MessageEmbed()
-            .setTitle(`Among Us - @${msg.author.username}`)
+            .setTitle(`Among Us`)
             .setDescription(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`)
             .setColor(16426522)
     bot.users.cache.get(owner).send(embed);
@@ -256,12 +256,10 @@ bot.on('message', msg => {
         bot.users.cache.get(owner).send(embed);
         var embed = new Discord.MessageEmbed()
             .setTitle(`Among Us - ERROR`)
-            .setDescription(`ERROR: De bot heeft een error gekregen, de error is naar de eigenaar van deze bot gestuurd.`)
+            .setDescription(`ERROR: The bot has got an error, the error is sended to the owner.`)
             .setColor(16426522)
         msg.reply(embed);
     }
-
-
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
