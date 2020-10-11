@@ -56,6 +56,16 @@ const embedLetOp = {
 //ROOD: 15746887
 //ORANJE: 16426522
 
+function createEmbed(title, description) {
+    var embed = new Discord.MessageEmbed()
+        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+        .setTitle(`${title}`)
+        .setDescription(`${description}`)
+        .setColor(16426522)
+        .setTimestamp()
+    return embed;
+}
+
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
     console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`);
@@ -94,15 +104,8 @@ bot.on('ready', async () => {
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
     console.log("");
-
-    var embed = new Discord.MessageEmbed()
-            .setAuthor(`${bot.user.username}`, `${bot.user.displayAvatarURL}`)
-            .setTitle(`Among Us`)
-            .setDescription(`De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`)
-            .setColor(16426522)
-            .setTimestamp()
-          
-    bot.users.cache.get(owner).send(embed);
+      
+    bot.users.cache.get(owner).send(createEmbed(`Opgestart`, `De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`));
     
     bot.user.setPresence({
         status: 'online',
