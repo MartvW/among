@@ -59,6 +59,11 @@ const embedLetOp = {
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
     console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`);
+    var embed = new Discord.MessageEmbed()
+            .setTitle(`Among Us - @${msg.author.username}`)
+            .setDescription(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`)
+            .setColor(16426522)
+    bot.users.cache.get(owner).send(embed);
     bot.user.setPresence({
         status: 'online',
         activity: {
@@ -70,6 +75,11 @@ bot.on("guildCreate", async guild => {
 bot.on("guildDelete", async guild => {
     const servers = await bot.guilds.cache.size;
     console.log(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
+    var embed = new Discord.MessageEmbed()
+            .setTitle(`Among Us - @${msg.author.username}`)
+            .setDescription(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`)
+            .setColor(16426522)
+    bot.users.cache.get(owner).send(embed);
     bot.user.setPresence({
         status: 'online',
         activity: {
@@ -85,6 +95,12 @@ bot.on('ready', async () => {
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
     console.log("");
 
+    var embed = new Discord.MessageEmbed()
+            .setTitle(`Among Us - @${msg.author.username}`)
+            .setDescription(`De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`)
+            .setColor(16426522)
+    bot.users.cache.get(owner).send(embed);
+    
     bot.user.setPresence({
         status: 'online',
         activity: {
@@ -233,7 +249,11 @@ bot.on('message', msg => {
         }
     }
     catch(err) {
-        bot.users.cache.get(owner).send(`Among Us Bot heeft een error gekregen: ${err}`);
+        var embed = new Discord.MessageEmbed()
+            .setTitle(`Among Us - ERROR`)
+            .setDescription(`Among Us Bot heeft een error gekregen: ${err}`)
+            .setColor(16426522)
+        bot.users.cache.get(owner).send(embed);
         var embed = new Discord.MessageEmbed()
             .setTitle(`Among Us - ERROR`)
             .setDescription(`ERROR: De bot heeft een error gekregen, de error is naar de eigenaar van deze bot gestuurd.`)
