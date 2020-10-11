@@ -233,7 +233,7 @@ bot.on('message', msg => {
         }
     }
     catch(err) {
-        bot.users.get(owner).send(`Among Us Bot heeft een error gekregen: ${err}`);
+        bot.users.cache.get(owner).send(`Among Us Bot heeft een error gekregen: ${err}`);
         var embed = new Discord.MessageEmbed()
             .setTitle(`Among Us - ERROR`)
             .setDescription(`ERROR: De bot heeft een error gekregen, de error is naar de eigenaar van deze bot gestuurd.`)
