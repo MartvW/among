@@ -8,7 +8,12 @@ var amongus = [];
 
 const embedHelp = {
     "embed": {
-        "title": "Among Us - Help",
+        "title": "Help",
+        "author": {
+            "name": `Among Us`,
+            "url": "https://discordapp.com",
+            "icon_url": "https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png"
+            },
         "color": 16426522,
         "fields": [
             {
@@ -41,7 +46,12 @@ const embedHelp = {
 
 const embedLetOp = {
     "embed": {
-        "title": "Among Us - Help",
+        "author": {
+            "name": `Among Us`,
+            "url": "https://discordapp.com",
+            "icon_url": "https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png"
+          },
+        "title": "Help",
         "color": 15746887,
         "description": `To run some commands you have to be in a voice-channel. When you run this commands you have to be in a voice-channel:\n\n- **${prefix}amongus** \n- **${prefix}amongusstop**`,
         "fields": [
