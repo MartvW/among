@@ -63,6 +63,7 @@ function createEmbed(title, description) {
         .setDescription(`${description}`)
         .setColor(16426522)
         .setTimestamp()
+        .setFooter(`${bot.user.tag}`)
     return embed;
 }
 
