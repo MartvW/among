@@ -129,17 +129,6 @@ bot.on('message', msg => {
             msg.channel.send(embedHelp);
             msg.channel.send(embedLetOp);
         }
-        
-        if (command === "reset") {
-            if (msg.author.id !== owner) return false;
-            var embed = new Discord.MessageEmbed()
-                .setTitle(`Among Us - @${msg.author.username}`)
-                .setDescription(`Bezig met resetten...`)
-                .setColor(16426522)
-            msg.reply(embed);
-            bot.destroy();
-            bot.login(token);
-        };
 
         if (command === "uptime") {
             let totalSeconds = (bot.uptime / 1000);
