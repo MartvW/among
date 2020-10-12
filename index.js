@@ -156,7 +156,7 @@ bot.on('message', msg => {
                 .setDescription(`React with an :white_check_mark: when there is a meeting, react with an :x: when the meeting is finished.\nDo **${prefix}amongusstop** when the game is done or you are leaving.`)
                 .setColor(16426522)
                 .setTimestamp()
-                .setFooter(`The host is: **${msg.author.username}**\nThe channel where the game is currently playing: **${msg.member.voice.channel.name}**`)
+                .setFooter(`The host is: ${msg.author.username}\nThe channel where the game is currently playing: ${msg.member.voice.channel.name}`)
 
             msg.channel.send({ embed: embed }).then(embedMesage => {
                 amongus.push({
@@ -186,7 +186,7 @@ bot.on('message', msg => {
                         .setDescription(`The game has finished, do **${prefix}amongus** to start a new game.`)
                         .setColor(16426522)
                         .setTimestamp()
-                        .setFooter(`The host was: **${amongus[i].user.username}**\nThe channel was: **${amongus[i].channel.name}**`)
+                        .setFooter(`The host was: ${amongus[i].user.username}\nThe channel was: ${amongus[i].channel.name}`)
                     msg.channel.send({ embed: embed }).then(embedMesage => {
                         msg.member.voice.channel.edit({
                             userLimit: 0,
