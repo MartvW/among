@@ -20,7 +20,7 @@ var embedHelp = new Discord.MessageEmbed()
         )
         .setColor(16426522)
         .setTimestamp()
-        .setFooter(`Among Us`)
+        .setFooter(`Among Us#9893`)
 
 const embedLetOp = {
     "embed": {
