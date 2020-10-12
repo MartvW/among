@@ -100,7 +100,7 @@ bot.on('message', msg => {
     if (!msg.content.startsWith(prefix)) return;
     if (msg.author.bot) return;
     if (msg.guild === null && msg.author.id != owner) {
-        msg.reply(createEmbed(`${msg.author.username}`, `You can't send message to me in DM...`));
+        msg.reply(createEmbed(`@${msg.author.username}`, `You can't send message to me in DM...`));
         return;
     }
 
@@ -121,7 +121,7 @@ bot.on('message', msg => {
             totalSeconds %= 3600;
             let minutes = Math.floor(totalSeconds / 60);
             let seconds = Math.floor(totalSeconds % 60);
-            msg.channel.send(createEmbed(`${msg.author.username}`, `Uptime: ${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds.`));
+            msg.channel.send(createEmbed(`@${msg.author.username}`, `Uptime: ${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds.`));
         }
 
         if (command === "ping") {
@@ -129,30 +129,30 @@ bot.on('message', msg => {
                 var ping = m.createdTimestamp - msg.createdTimestamp;
 
                 // Then It Edits the message with the ping variable embed that you created
-                m.edit(createEmbed(`${msg.author.username}`, `Your ping is: ${ping}ms`));
+                m.edit(createEmbed(`@${msg.author.username}`, `Your ping is: ${ping}ms`));
             });
         }
 
         if (command === "link") {
-            msg.channel.send(createEmbed(`${msg.author.username}`, 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8'));
+            msg.channel.send(createEmbed(`@${msg.author.username}`, 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8'));
         }
 
         if (command === "amongus") {
             if (!msg.member.voice.channel) {
-                msg.channel.send(createEmbed(`${msg.author.username}`, 'You have to join a voice-channel to run this command!'));
+                msg.channel.send(createEmbed(`@${msg.author.username}`, 'You have to join a voice-channel to run this command!'));
                 return;
             }
 
             for (let i = 0; i < amongus.length; i++) {
                 if (amongus[i].user === msg.author || amongus[i].kanaal === msg.member.voice.channel) {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, "You are already hosting a game. You can't host more than one game!"));
+                    msg.channel.send(createEmbed(`@${msg.author.username}`, "You are already hosting a game. You can't host more than one game!"));
                     return;
                 }
             }
 
             var embed = new Discord.MessageEmbed()
                 .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-                .setTitle(`${msg.author.username}`)
+                .setTitle(`@${msg.author.username}`)
                 .setDescription(`React with an :white_check_mark: when there is a meeting, react with an :x: when the meeting is finished.\nDo **${prefix}amongusstop** when the game is done or you are leaving.`)
                 .setColor(16426522)
                 .setTimestamp()
@@ -175,14 +175,14 @@ bot.on('message', msg => {
 
         if (command === "amongusstop") {
             if (!msg.member.voice.channel) {
-                msg.channel.send(createEmbed(`${msg.author.username}`, "You have to join the voice-channel where you were to run this command!"));
+                msg.channel.send(createEmbed(`@${msg.author.username}`, "You have to join the voice-channel where you were to run this command!"));
                 return;
             }
             for (let i = 0; i < amongus.length; i++) {
                 if (amongus[i].user.id === msg.author.id) {
                     var embed = new Discord.MessageEmbed()
                         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-                        .setTitle(`${msg.author.username}`)
+                        .setTitle(`@${msg.author.username}`)
                         .setDescription(`The game has finished, do **${prefix}amongus** to start a new game.`)
                         .setColor(16426522)
                         .setTimestamp()
@@ -201,7 +201,7 @@ bot.on('message', msg => {
                         }), 1);
                     });
                 } else {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `You're not allowed to finish a game. Do **${prefix}amongus** to start your own game.`));
+                    msg.channel.send(createEmbed(`@${msg.author.username}`, `You're not allowed to finish a game. Do **${prefix}amongus** to start your own game.`));
                 }
             }
         }
@@ -216,7 +216,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
     for (let i = 0; i < amongus.length; i++) {
         if (amongus[i].user != user) {
-            console.log(amongus[i].user, user);
             return;
         }
         if (user.id != amongus[i].user.id) {
