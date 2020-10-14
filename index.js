@@ -9,14 +9,14 @@ var amongus = [];
 var embedHelp = new Discord.MessageEmbed()
     .setAuthor(`Among Us`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
     .setTitle("Help")
-    .setDescription(`Here is a list of commands you can use.`)
+    .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
     .addFields(
-        { name: `${prefix}help`, value: 'To show this message.', inline: false },
-        { name: `${prefix}link`, value: 'You can get the invite-link for this bot.', inline: false },
-        { name: `${prefix}amongus`, value: 'When you want to start a game.', inline: false },
-        { name: `${prefix}amongusstop`, value: 'When you are leaving or when the game is over.', inline: false },
-        { name: `${prefix}ping`, value: 'You can see your ping with this command.', inline: false },
-        { name: `${prefix}uptime`, value: 'Get the uptime from the bot.', inline: false },
+        { name: `${prefix}help`, value: 'Om dit bericht te laten zien.', inline: false },
+        { name: `${prefix}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: false },
+        { name: `${prefix}amongus`, value: 'Wanneer je een game wilt starten.', inline: false },
+        { name: `${prefix}amongusstop`, value: 'Wanneer je de game wilt eindigen.', inline: false },
+        { name: `${prefix}ping`, value: 'Hiermee kan je je ping zien.', inline: false },
+        { name: `${prefix}uptime`, value: 'Hoelang de bot online is.', inline: false },
     )
     .setColor(16426522)
     .setTimestamp()
@@ -70,11 +70,11 @@ const embedLetOp = {
         },
         "title": "Help",
         "color": 15746887,
-        "description": `To run some commands you have to be in a voice-channel. When you run this commands you have to be in a voice-channel:\n\n- **${prefix}amongus** \n- **${prefix}amongusstop**`,
+        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefix}amongus** \n- **${prefix}amongusstop**`,
         "fields": [
             {
                 "name": ".....................",
-                "value": "You can join the help-server: https://discord.gg/sjw7ZAb"
+                "value": "Hiermee kan je de help-server joinen: https://discord.gg/sjw7ZAb"
             }
         ]
     }
@@ -101,7 +101,7 @@ bot.on("guildCreate", async guild => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}help | On ${servers} servers`,
+            name: `${prefix}help | Op ${servers} servers`,
         }
     })
 });
@@ -113,7 +113,7 @@ bot.on("guildDelete", async guild => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}help | On ${servers} servers`,
+            name: `${prefix}help | Op ${servers} servers`,
         }
     })
 });
@@ -130,7 +130,7 @@ bot.on('ready', async () => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}help | On ${servers} servers`,
+            name: `${prefix}help | Op ${servers} servers`,
         }
     })
 });
@@ -139,7 +139,7 @@ bot.on('message', msg => {
     if (!msg.content.startsWith(prefix)) return;
     if (msg.author.bot) return;
     if (msg.guild === null && msg.author.id != owner) {
-        msg.reply(createEmbed(`${msg.author.username}`, `You can't send message to me in DM...`));
+        msg.reply(createEmbed(`${msg.author.username}`, `Je kan geen privéberichten naar mij sturen...`));
         return;
     }
 
@@ -160,7 +160,7 @@ bot.on('message', msg => {
             totalSeconds %= 3600;
             let minutes = Math.floor(totalSeconds / 60);
             let seconds = Math.floor(totalSeconds % 60);
-            msg.channel.send(createEmbed(`${msg.author.username}`, `Uptime: ${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds.`));
+            msg.channel.send(createEmbed(`${msg.author.username}`, `Uptime: ${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden.`));
         }
 
         if (command === "ping") {
@@ -168,7 +168,7 @@ bot.on('message', msg => {
                 var ping = m.createdTimestamp - msg.createdTimestamp;
 
                 // Then It Edits the message with the ping variable embed that you created
-                m.edit(createEmbed(`${msg.author.username}`, `Your ping is: ${ping}ms`));
+                m.edit(createEmbed(`${msg.author.username}`, `Jouw ping is: ${ping}ms`));
             });
         }
 
@@ -178,13 +178,13 @@ bot.on('message', msg => {
 
         if (command === "amongus") {
             if (!msg.member.voice.channel) {
-                msg.channel.send(createEmbed(`${msg.author.username}`, 'You have to join a voice-channel to run this command!'));
+                msg.channel.send(createEmbed(`${msg.author.username}`, 'Je moet een voicechannel joinen om dit command te gebruiken!'));
                 return;
             }
 
             for (let i = 0; i < amongus.length; i++) {
                 if (amongus[i].user === msg.author || amongus[i].kanaal === msg.member.voice.channel) {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, "You are already hosting a game. You can't host more than one game!"));
+                    msg.channel.send(createEmbed(`${msg.author.username}`, "Je bent al een game aan het hosten. Je kan niet meer dan één game hosten!"));
                     return;
                 }
             }
@@ -192,10 +192,10 @@ bot.on('message', msg => {
             var embed = new Discord.MessageEmbed()
                 .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                 .setTitle(`${msg.author.username}`)
-                .setDescription(`React with an :white_check_mark: when there is a meeting, react with an :x: when the meeting is finished.\nDo **${prefix}amongusstop** when the game is done or you are leaving.`)
+                .setDescription(`Reageer met een :white_check_mark: wanneer er een meeting is, reageer met een :x: als de meeting is afgelopen.\nDoe **${prefix}amongusstop** als je gaat stoppen.`)
                 .setColor(16426522)
                 .setTimestamp()
-                .setFooter(`The host is: ${msg.author.username}\nThe channel where the game is currently playing: ${msg.member.voice.channel.name}`)
+                .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin op dit moment een game is gestart: ${msg.member.voice.channel.name}`)
 
             msg.channel.send({ embed: embed }).then(embedMesage => {
                 amongus.push({
@@ -215,7 +215,7 @@ bot.on('message', msg => {
 
         if (command === "amongusstop") {
             if (!msg.member.voice.channel) {
-                msg.channel.send(createEmbed(`${msg.author.username}`, "You have to join the voice-channel where you were to run this command!"));
+                msg.channel.send(createEmbed(`${msg.author.username}`, "Je moet het kanaal joinen waarin je dit command hebt gezegd!"));
                 return;
             }
             for (let i = 0; i < amongus.length; i++) {
@@ -223,10 +223,10 @@ bot.on('message', msg => {
                     var embed = new Discord.MessageEmbed()
                         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                         .setTitle(`${msg.author.username}`)
-                        .setDescription(`The game has finished, do **${prefix}amongus** to start a new game.`)
+                        .setDescription(`De game is over, doe **${prefix}amongus** om een nieuw game te starten.`)
                         .setColor(16426522)
                         .setTimestamp()
-                        .setFooter(`The host was: ${amongus[i].user.username}\nThe channel was: ${amongus[i].channel.name}`)
+                        .setFooter(`De host was: ${amongus[i].user.username}\nHet kanaal was: ${amongus[i].channel.name}`)
                     msg.channel.send({ embed: embed }).then(embedMesage => {
                         msg.member.voice.channel.edit({
                             userLimit: 0,
@@ -241,14 +241,14 @@ bot.on('message', msg => {
                         }), 1);
                     });
                 } else {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `You're not allowed to finish a game. Do **${prefix}amongus** to start your own game.`));
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `Je bent niet bevoegd om een game te stoppen. Doe **${prefix}amongus** om je eigen game te starten.`));
                 }
             }
         }
     }
     catch (err) {
         bot.users.cache.get(owner).send(createEmbed("ERROR", `Among Us Bot heeft een error gekregen: ${err}`));
-        msg.reply(createEmbed("ERROR", `ERROR: The bot has got an error, the error is sended to the owner.`));
+        msg.reply(createEmbed("ERROR", `ERROR: De bot heeft een error, de error is naar de maker gestuurd.`));
     }
 });
 
@@ -292,7 +292,9 @@ bot.on('messageReactionAdd', (reaction, user) => {
 bot.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
     let oldUserChannel = oldMember.channelID;
-
+    if (newUserChannel === oldUserChannel) { 
+        return;
+    }
     for (let i = 0; i < amongus.length; i++) {
         if (newUserChannel === amongus[i].channel.id) {
             //join
