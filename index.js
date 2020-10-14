@@ -22,6 +22,45 @@ var embedHelp = new Discord.MessageEmbed()
     .setTimestamp()
     .setFooter(`Among Us`)
 
+// const embedHelp = {
+//     "embed": {
+//         "title": "Help",
+//         "author": {
+//             "name": `Among Us`,
+//             "url": "https://discordapp.com",
+//             "icon_url": "https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png"
+//             },
+//         "timestamp": "",
+//         "color": 16426522,
+//         "fields": [
+//             {
+//                 "name": `${prefix}help`,
+//                 "value": "To show this message."
+//             },
+//             {
+//                 "name": `${prefix}link`,
+//                 "value": "You can get the invite-link for this bot."
+//             },
+//             {
+//                 "name": `${prefix}amongus`,
+//                 "value": "When you want to start a game."
+//             },
+//             {
+//                 "name": `${prefix}amongusstop`,
+//                 "value": "When you are leaving or when the game is over."
+//             },
+//             {
+//                 "name": `${prefix}ping`,
+//                 "value": "You can see your ping with this command."
+//             },
+//             {
+//                 "name": `${prefix}uptime`,
+//                 "value": "Get the uptime from the bot."
+//             }
+//         ]
+//     }
+// }
+
 const embedLetOp = {
     "embed": {
         "author": {
@@ -251,8 +290,8 @@ bot.on('messageReactionAdd', (reaction, user) => {
 });
 
 bot.on('voiceStateUpdate', (oldMember, newMember) => {
-    let newUserChannel = newMember.channel.id;
-    let oldUserChannel = oldMember.channel.id;
+    let newUserChannel = newMember.channelID;
+    let oldUserChannel = oldMember.channelID;
 
     for (let i = 0; i < amongus.length; i++) {
         if (newUserChannel === amongus[i].channel.id) {
