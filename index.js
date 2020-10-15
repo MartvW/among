@@ -110,7 +110,7 @@ bot.on('message', async msg => {
         return;
     }
 
-    const args = msg.content.slice(prefix.length).trim().split(/ + /);
+    const args = msg.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
 
     try {
@@ -120,12 +120,11 @@ bot.on('message', async msg => {
         }
         
         if (command === "update" && msg.author.id === owner) {
-            if (!args > 0) {
-                return;
-            }
             
-            let aantal = "";
-            msg.channel.send(createEmbed('UPDATE', `${args[0]}`));
+            if (!args > 0) {
+              msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
+            }
+            msg.channel.send(createEmbed('UPDATE - @here', `Er is een update geweest van de bot!\n${args}`));
 //          const channel = bot.channels.cache.find(channel => channel.id === updateID);
 //          channel.send(createEmbed(`UPDATE`, `${args}`));
         }
