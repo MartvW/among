@@ -120,7 +120,8 @@ bot.on('message', async msg => {
         }
         
         if (command === "update" && msg.author.id === owner) {
-            msg.channel.send(createEmbed('UPDATE', `${args}`));
+            let aantal = "";
+            msg.channel.send(createEmbed('UPDATE', `${args[0]}`));
 //          const channel = bot.channels.cache.find(channel => channel.id === updateID);
 //          channel.send(createEmbed(`UPDATE`, `${args}`));
         }
