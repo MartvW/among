@@ -120,7 +120,8 @@ bot.on('message', async msg => {
         }
         
         if (command === "update" && msg.author.id === owner) {
-            bot.channels.get(updateID).send(createEmbed(`UPDATE`, `${args}`));
+            let channel = msg.guild.channels.cache.get(c => c.id === updateID);
+            channel.send(createEmbed(`UPDATE`, `${args}`));
         }
 
         if (command === "uptime") {
