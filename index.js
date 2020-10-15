@@ -245,8 +245,6 @@ bot.on('message', msg => {
                             "channel": msg.member.voice.channel,
                         }), 1);
                     });
-                } else {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `Je bent niet bevoegd om een game te stoppen. Doe **${prefix}amongus** om je eigen game te starten.`));
                 }
             }
         }
