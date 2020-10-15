@@ -195,14 +195,13 @@ bot.on('message', msg => {
                 .setDescription(`Reageer met een :white_check_mark: wanneer er een meeting is, reageer met een :x: als de meeting is afgelopen.\nDoe **${prefix}amongusstop** als je gaat stoppen.`)
                 .setColor(16426522)
                 .setTimestamp()
-                .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin op dit moment een game is gestart: Crew ${amongus.length+1}`)
+                .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin op dit moment een game is gestart: ${msg.member.voice.channel.name}`)
 
             msg.channel.send({ embed: embed }).then(embedMesage => {
                 amongus.push({
                     "id": amongus.length,
                     "user": msg.author,
                     "channel": msg.member.voice.channel,
-                    "channelname": msg.member.voice.channel.name,
                     "bericht": embedMesage,
                     "meetingbezig": true,
                     "userlimit": msg.member.voice.channel.userLimit,
@@ -210,7 +209,6 @@ bot.on('message', msg => {
 
                 msg.member.voice.channel.edit({
                     userLimit: 10,
-                    name: `Crew ${amongus.length}`,
                 });
                 embedMesage.react('✅');
                 embedMesage.react('❌');
@@ -234,7 +232,6 @@ bot.on('message', msg => {
                     msg.channel.send({ embed: embed }).then(embedMesage => {
                         msg.member.voice.channel.edit({
                             userLimit: amongus[i].userlimit,
-                            name: amongus[i].channelname,
                         });
 
                         let channel = amongus[i].channel;
