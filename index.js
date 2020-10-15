@@ -4,6 +4,7 @@ const bot = new Discord.Client();
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
+var updateID = "766310034871025744";
 var amongus = [];
 
 function helpEmbed() { 
@@ -116,6 +117,10 @@ bot.on('message', async msg => {
         if (command === "help") {
             msg.channel.send(helpEmbed());
             msg.channel.send(embedLetOp);
+        }
+        
+        if (command === "update" && msg.author.id === owner) {
+            bot.channels.get(updateID).send(createEmbed(`UPDATE`, `${args}`));
         }
 
         if (command === "uptime") {
