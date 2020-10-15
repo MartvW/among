@@ -199,8 +199,10 @@ bot.on('message', msg => {
 
             msg.channel.send({ embed: embed }).then(embedMesage => {
                 amongus.push({
+                    "id": amongus.length,
                     "user": msg.author,
                     "channel": msg.member.voice.channel,
+                    "channelname": msg.member.voice.channel.name,
                     "bericht": embedMesage,
                     "meetingbezig": true,
                     "userlimit": msg.member.voice.channel.userLimit,
@@ -208,6 +210,7 @@ bot.on('message', msg => {
 
                 msg.member.voice.channel.edit({
                     userLimit: 10,
+                    name: `Crew ${amongus.length}`,
                 });
                 embedMesage.react('✅');
                 embedMesage.react('❌');
@@ -231,6 +234,7 @@ bot.on('message', msg => {
                     msg.channel.send({ embed: embed }).then(embedMesage => {
                         msg.member.voice.channel.edit({
                             userLimit: amongus[i].userlimit,
+                            name: amongus[i].channelname,
                         });
 
                         let channel = amongus[i].channel;
