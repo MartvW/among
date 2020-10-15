@@ -4,8 +4,6 @@ const bot = new Discord.Client();
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
-var aantalservers = "766220370294079488";
-var aantalgebruikers = "766219767446634497";
 var amongus = [];
 
 var embedHelp = new Discord.MessageEmbed()
@@ -110,7 +108,6 @@ bot.on("guildCreate", async guild => {
 
 bot.on("guildDelete", async guild => {
     const servers = await bot.guilds.cache.size;
-
     console.log(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
     bot.users.cache.get(owner).send(createEmbed(`Verwijderd`, `Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`));
     bot.user.setPresence({
@@ -141,20 +138,12 @@ bot.on('ready', async () => {
 });
 
 bot.on('message', async msg => {
+    if (!msg.content.startsWith(prefix)) return;
     if (msg.author.bot) return;
     if (msg.guild === null && msg.author.id != owner) {
         msg.reply(createEmbed(`${msg.author.username}`, `Je kan geen privéberichten naar mij sturen...`));
         return;
     }
-
-    const servers = await bot.guilds.cache.size;
-    const users = await bot.users.cache.size;
-    let aantalserverchannel = msg.guild.channels.cache.get(aantalservers);
-    let aantalgebruikerchannel = msg.guild.channels.cache.get(aantalgebruikers);
-
-    aantalserverchannel.edit({ name: `Aantal servers: ${servers}`});
-    aantalgebruikerchannel.edit({ name: `Aantal gebruikers: ${users}`});
-    if (!msg.content.startsWith(prefix)) return;
 
     const args = msg.content.slice(prefix.length).trim().split(/ + /);
     const command = args.shift().toLowerCase();
