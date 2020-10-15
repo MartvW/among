@@ -178,7 +178,7 @@ bot.on('message', msg => {
 
         if (command === "amongus") {
             if (!msg.member.voice.channel) {
-                msg.channel.send(createEmbed(`${msg.author.username}`, 'Je moet een voice-channel joinen om dit command te gebruiken!'));
+                msg.channel.send(createEmbed(`${msg.author.username}`, 'Je moet een voicechannel joinen om dit command te gebruiken!'));
                 return;
             }
 
@@ -203,6 +203,7 @@ bot.on('message', msg => {
                     "channel": msg.member.voice.channel,
                     "bericht": embedMesage,
                     "meetingbezig": true,
+                    "userlimit": msg.member.voice.channel.userLimit,
                 });
 
                 msg.member.voice.channel.edit({
@@ -229,7 +230,7 @@ bot.on('message', msg => {
                         .setFooter(`De host was: ${amongus[i].user.username}\nHet kanaal was: ${amongus[i].channel.name}`)
                     msg.channel.send({ embed: embed }).then(embedMesage => {
                         msg.member.voice.channel.edit({
-                            userLimit: 0,
+                            userLimit: amongus[i].userlimit,
                         });
 
                         let channel = amongus[i].channel;
