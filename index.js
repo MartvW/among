@@ -178,7 +178,7 @@ bot.on('message', msg => {
 
         if (command === "amongus") {
             if (!msg.member.voice.channel) {
-                msg.channel.send(createEmbed(`${msg.author.username}`, 'Je moet een voicechannel joinen om dit command te gebruiken!'));
+                msg.channel.send(createEmbed(`${msg.author.username}`, 'Je moet een voice-channel joinen om dit command te gebruiken!'));
                 return;
             }
 
