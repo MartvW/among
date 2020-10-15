@@ -6,7 +6,8 @@ var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
 var amongus = [];
 
-var embedHelp = new Discord.MessageEmbed()
+function helpEmbed() { 
+    var embedHelp = new Discord.MessageEmbed()
     .setAuthor(`Among Us`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
     .setTitle("Help")
     .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
@@ -21,45 +22,8 @@ var embedHelp = new Discord.MessageEmbed()
     .setColor(16426522)
     .setTimestamp()
     .setFooter(`Among Us`)
-
-// const embedHelp = {
-//     "embed": {
-//         "title": "Help",
-//         "author": {
-//             "name": `Among Us`,
-//             "url": "https://discordapp.com",
-//             "icon_url": "https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png"
-//             },
-//         "timestamp": "",
-//         "color": 16426522,
-//         "fields": [
-//             {
-//                 "name": `${prefix}help`,
-//                 "value": "To show this message."
-//             },
-//             {
-//                 "name": `${prefix}link`,
-//                 "value": "You can get the invite-link for this bot."
-//             },
-//             {
-//                 "name": `${prefix}amongus`,
-//                 "value": "When you want to start a game."
-//             },
-//             {
-//                 "name": `${prefix}amongusstop`,
-//                 "value": "When you are leaving or when the game is over."
-//             },
-//             {
-//                 "name": `${prefix}ping`,
-//                 "value": "You can see your ping with this command."
-//             },
-//             {
-//                 "name": `${prefix}uptime`,
-//                 "value": "Get the uptime from the bot."
-//             }
-//         ]
-//     }
-// }
+    return embedHelp;
+}
 
 const embedLetOp = {
     "embed": {
@@ -150,7 +114,7 @@ bot.on('message', async msg => {
 
     try {
         if (command === "help") {
-            msg.channel.send(embedHelp);
+            msg.channel.send(helpEmbed());
             msg.channel.send(embedLetOp);
         }
 
