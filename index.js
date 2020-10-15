@@ -119,7 +119,11 @@ bot.on('message', async msg => {
             msg.channel.send(embedLetOp);
         }
         
-        if (command === "update" && args > 0 && msg.author.id === owner) {
+        if (command === "update" && msg.author.id === owner) {
+            if (!args > 0) {
+                return;
+            }
+            
             let aantal = "";
             msg.channel.send(createEmbed('UPDATE', `${args[0]}`));
 //          const channel = bot.channels.cache.find(channel => channel.id === updateID);
