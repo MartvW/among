@@ -122,9 +122,10 @@ bot.on('message', async msg => {
         if (command === "update" && msg.author.id === owner) {
             
             if (!args > 0) {
-              msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
+                msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
+                return;
             }
-            msg.channel.send(createEmbed('UPDATE - @here', `Er is een update geweest van de bot!\n${args}`));
+            msg.channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args}**\n@here`));
 //          const channel = bot.channels.cache.find(channel => channel.id === updateID);
 //          channel.send(createEmbed(`UPDATE`, `${args}`));
         }
