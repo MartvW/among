@@ -4,6 +4,8 @@ const bot = new Discord.Client();
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
+var aantalservers = "766220370294079488";
+var aantalgebruikers = "766219767446634497";
 var amongus = [];
 
 var embedHelp = new Discord.MessageEmbed()
@@ -108,6 +110,7 @@ bot.on("guildCreate", async guild => {
 
 bot.on("guildDelete", async guild => {
     const servers = await bot.guilds.cache.size;
+
     console.log(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
     bot.users.cache.get(owner).send(createEmbed(`Verwijderd`, `Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`));
     bot.user.setPresence({
@@ -118,9 +121,11 @@ bot.on("guildDelete", async guild => {
     })
 });
 
+
 bot.on('ready', async () => {
     const servers = await bot.guilds.cache.size;
     const users = await bot.users.cache.size;
+    
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
     console.log("");
@@ -135,13 +140,21 @@ bot.on('ready', async () => {
     })
 });
 
-bot.on('message', msg => {
-    if (!msg.content.startsWith(prefix)) return;
+bot.on('message', async msg => {
     if (msg.author.bot) return;
     if (msg.guild === null && msg.author.id != owner) {
         msg.reply(createEmbed(`${msg.author.username}`, `Je kan geen privéberichten naar mij sturen...`));
         return;
     }
+
+    const servers = await bot.guilds.cache.size;
+    const users = await bot.users.cache.size;
+    let aantalserverchannel = msg.guild.channels.cache.get(aantalservers);
+    let aantalgebruikerchannel = msg.guild.channels.cache.get(aantalgebruikers);
+
+    aantalserverchannel.edit({ name: `Aantal servers: ${servers}`});
+    aantalgebruikerchannel.edit({ name: `Aantal gebruikers: ${users}`});
+    if (!msg.content.startsWith(prefix)) return;
 
     const args = msg.content.slice(prefix.length).trim().split(/ + /);
     const command = args.shift().toLowerCase();
@@ -195,13 +208,14 @@ bot.on('message', msg => {
                 .setDescription(`Reageer met een :white_check_mark: wanneer er een meeting is, reageer met een :x: als de meeting is afgelopen.\nDoe **${prefix}amongusstop** als je gaat stoppen.`)
                 .setColor(16426522)
                 .setTimestamp()
-                .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin op dit moment een game is gestart: ${msg.member.voice.channel.name}`)
+                .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin op dit moment een game is gestart: Crew ${amongus.length}`)
 
             msg.channel.send({ embed: embed }).then(embedMesage => {
                 amongus.push({
                     "id": amongus.length,
                     "user": msg.author,
                     "channel": msg.member.voice.channel,
+                    "channelname": msg.member.voice.channel.name,
                     "bericht": embedMesage,
                     "meetingbezig": true,
                     "userlimit": msg.member.voice.channel.userLimit,
@@ -209,6 +223,7 @@ bot.on('message', msg => {
 
                 msg.member.voice.channel.edit({
                     userLimit: 10,
+                    name: `Crew ${amongus.length}`,
                 });
                 embedMesage.react('✅');
                 embedMesage.react('❌');
@@ -232,6 +247,7 @@ bot.on('message', msg => {
                     msg.channel.send({ embed: embed }).then(embedMesage => {
                         msg.member.voice.channel.edit({
                             userLimit: amongus[i].userlimit,
+                            name: amongus[i].channelname,
                         });
 
                         let channel = amongus[i].channel;
