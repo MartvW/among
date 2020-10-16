@@ -139,8 +139,9 @@ bot.on('message', async msg => {
                 for (let member of channel.members) {
                     member[1].edit({ mute: false });
                 }
-                msg.reply(createEmbed("RESET", `Je kan de bot nu veilig uitzetten / resetten!`));
-                bot.destroy();
+                msg.reply(createEmbed("RESET", `Je kan de bot nu veilig uitzetten / resetten!`))
+                .then(msg => bot.destroy())
+                .then(() => bot.login(token));
             }
         }
 
