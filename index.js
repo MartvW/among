@@ -217,7 +217,7 @@ bot.on('message', async msg => {
                             member[1].edit({ mute: false });
                         }
                         amongus.splice(amongus.indexOf({
-                            "channel": msg.member.voice.channel,
+                            "user": msg.author,
                         }), 1);
                     });
                 }
