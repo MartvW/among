@@ -146,7 +146,7 @@ bot.on('message', async msg => {
             } else {
                 verificatie = "❌";
             }
-            msg.channel.send(createEmbed('Botinformatie', `Botnaam: **${bot.user.tag}**\nBotverificatie: **${verificatie}**\nBot aangemaakt: **${bot.user.createdTimestamp}**\nBotstatus: **${bot.user.presence.status}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`));
+            msg.channel.send(createEmbed('Botinformatie', `Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBot aangemaakt: **${bot.user.createdTimestamp}**\nBotstatus: **${bot.user.presence.status}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`));
 
         }
         
