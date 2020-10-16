@@ -146,7 +146,18 @@ bot.on('message', async msg => {
             } else {
                 verificatie = "❌";
             }
-            msg.channel.send(createEmbed('Botinformatie', `Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotkanalen: **${bot.channels.length}**\nBotstatus: **${bot.user.presence.status}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`));
+            let status = "";
+            if (bot.user.presence.status === "online") {
+                status = "🟢";
+            } else if (bot.user.presence.status === "offline") {
+                status = "🔴";
+            } else if (bot.user.presence.status === "idle") {
+                status = "🟠";
+            } else if (bot.user.presence.status === "invisible" || bot.user.presence.status === "dnd") {
+                status = "⚫️";
+            }
+
+            msg.channel.send(createEmbed('Botinformatie', `Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`));
 
         }
         
