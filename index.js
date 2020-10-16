@@ -139,7 +139,8 @@ bot.on('message', async msg => {
                 for (let member of channel.members) {
                     member[1].edit({ mute: false });
                 }
-                bot.users.cache.get(owner).send(createEmbed("RESET", `Je kan de bot nu veilig uitzetten / resetten!`));
+                msg.reply(createEmbed("RESET", `Je kan de bot nu veilig uitzetten / resetten!`));
+                bot.destroy();
             }
         }
 
