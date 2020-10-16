@@ -251,7 +251,7 @@ bot.on('message', async msg => {
         }
 
         if (command === "link") {
-            msg.channel.send(createEmbed(`${msg.author.username}`, 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8'));
+            msg.channel.send(createEmbed(`${msg.author.username}`, 'Invite link voor de bot: https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8\nInvite link voor de discord server: https://discord.gg/sjw7ZAb'));
         }
 
         if (command === "amongus") {
