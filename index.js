@@ -6,6 +6,7 @@ var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
 var updateID = "766310034871025744";
 var amongus = [];
+var aantalgames = 0;
 
 function helpEmbed() { 
     var embedHelp = new Discord.MessageEmbed()
@@ -140,7 +141,7 @@ bot.on('message', async msg => {
             let minutes = Math.floor(totalSeconds / 60);
             let seconds = Math.floor(totalSeconds % 60);
 
-            msg.channel.send(createEmbed('Botinformatie', `Aantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`));
+            msg.channel.send(createEmbed('Botinformatie', `Aantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`));
 
         }
         
@@ -214,7 +215,7 @@ bot.on('message', async msg => {
                     "meetingbezig": true,
                     "userlimit": msg.member.voice.channel.userLimit,
                 });
-
+                aantalgames++;
                 msg.member.voice.channel.edit({
                     userLimit: 10,
                 });
