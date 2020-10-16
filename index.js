@@ -140,8 +140,13 @@ bot.on('message', async msg => {
             totalSeconds %= 3600;
             let minutes = Math.floor(totalSeconds / 60);
             let seconds = Math.floor(totalSeconds % 60);
-
-            msg.channel.send(createEmbed('Botinformatie', `Botnaam: **${bot.user.tag}}**\nBotverificatie: **${bot.user.verified}**\nBot aangemaakt: **${bot.user.createdAt}**\nBotpresence: **${bot.user.presence}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`));
+            let verificatie = "";
+            if (bot.user.verified) {
+                verificatie = "✅";
+            } else {
+                verificatie = "❌";
+            }
+            msg.channel.send(createEmbed('Botinformatie', `Botnaam: **${bot.user.tag}**\nBotverificatie: **${verificatie}**\nBot aangemaakt: **${bot.user.createdTimestamp}**\nBotstatus: **${bot.user.presence.status}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`));
 
         }
         
