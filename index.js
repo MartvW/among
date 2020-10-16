@@ -140,7 +140,6 @@ bot.on('message', async msg => {
                     member[1].edit({ mute: false });
                 }
                 msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`))
-                .then(msg => bot.destroy()); 
             }
         }
 
