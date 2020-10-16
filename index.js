@@ -124,9 +124,24 @@ bot.on('message', async msg => {
                 msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
             return;
             }
-            msg.channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
+            msg.channel.send(createEmbed('Botupdate', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
             const channel = bot.channels.cache.find(channel => channel.id === updateID);
-            channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
+            channel.send(createEmbed('Botupdate', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
+        }
+        
+        if (command === "admin" && msg.author.id === owner) {
+            const servers = await bot.guilds.cache.size;
+            const users = await bot.users.cache.size;
+            let totalSeconds = (bot.uptime / 1000);
+            let days = Math.floor(totalSeconds / 86400);
+            totalSeconds %= 86400;
+            let hours = Math.floor(totalSeconds / 3600);
+            totalSeconds %= 3600;
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = Math.floor(totalSeconds % 60);
+
+            msg.channel.send(createEmbed('Botinformatie', `Aantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`));
+
         }
         
         if (command === "reset" && msg.author.id === owner) {
