@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-setInterval(updateAdmin, 1000);
+setInterval(updateAdmin, 10000);
 
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
@@ -227,6 +227,7 @@ bot.on('message', async msg => {
                 }
                 msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`))
             }
+            amongus = [];
         }
 
         if (command === "uptime") {
