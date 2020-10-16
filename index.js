@@ -120,14 +120,27 @@ bot.on('message', async msg => {
         }
         
         if (command === "update" && msg.author.id === owner) {
-            
             if (!args > 0) {
-            msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
+                msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
             return;
             }
             msg.channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
             const channel = bot.channels.cache.find(channel => channel.id === updateID);
             channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
+        }
+        
+        if (command === "reset" && msg.author.id === owner) {
+            for (let i = 0; i < amongus.length; i++) {
+               amongus[i].channel.edit({
+                    userLimit: amongus[i].userlimit,
+                });
+
+                let channel = amongus[i].channel;
+                for (let member of channel.members) {
+                    member[1].edit({ mute: false });
+                }
+                bot.users.cache.get(owner).send(createEmbed("RESET", `Je kan de bot nu veilig uitzetten / resetten!`));
+            }
         }
 
         if (command === "uptime") {
