@@ -154,6 +154,8 @@ bot.on('message', async msg => {
                 for (let member of channel.members) {
                     member[1].edit({ mute: false });
                 }
+                
+                amongus = [];
                 msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`))
             }
         }
