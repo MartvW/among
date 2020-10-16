@@ -208,7 +208,7 @@ bot.on('message', async msg => {
                         .setTimestamp()
                         .setFooter(`De host was: ${amongus[i].user.username}\nHet kanaal was: ${amongus[i].channel.name}`)
                     msg.channel.send({ embed: embed }).then(embedMesage => {
-                        msg.member.voice.channel.edit({
+                        amongus[i].channel.edit({
                             userLimit: amongus[i].userlimit,
                         });
 
