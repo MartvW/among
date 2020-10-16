@@ -97,6 +97,9 @@ async function updateAdmin() {
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
+    let userChannel = bot.channels.cache.find(channel => channel.id === 766708463870410775);
+    userChannel.name = `Aantal gebruikers: ${users}`;
+    
 
     if (adminMessage === "") {
         const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
