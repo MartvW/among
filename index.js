@@ -155,10 +155,10 @@ bot.on('message', async msg => {
         }
 
         if (command === "amongus") {
-            if (!msg.member.voice.channel) {
-                msg.channel.send(createEmbed(`${msg.author.username}`, 'Je moet een voice-channel joinen om dit command te gebruiken!'));
-                return;
-            }
+//             if (!msg.member.voice.channel) {
+//                 msg.channel.send(createEmbed(`${msg.author.username}`, 'Je moet een voice-channel joinen om dit command te gebruiken!'));
+//                 return;
+//             }
 
             for (let i = 0; i < amongus.length; i++) {
                 if (amongus[i].user === msg.author || amongus[i].kanaal === msg.member.voice.channel) {
