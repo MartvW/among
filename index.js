@@ -74,6 +74,28 @@ async function updateAdmin() {
     totalSeconds %= 3600;
     let minutes = Math.floor(totalSeconds / 60);
     let seconds = Math.floor(totalSeconds % 60);
+    
+    let dag = "";
+    if (days === 1) {
+        dag = "dag";   
+    } else {
+        dag = "dagen;   
+    }
+    let uur = "uur";
+    let minuut = "";
+    if (minutes === 1) {
+        minuut = "minuut";   
+    } else {
+        minuut = "minuten;   
+    }
+    let second = "";
+    if (seconds === 1) {
+        second = "seconde";   
+    } else {
+        second = "seconden";   
+    }
+    
+    
     let verificatie = "";
     if (bot.user.verified) {
         verificatie = "✅";
@@ -93,7 +115,7 @@ async function updateAdmin() {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} ${dag}, ${hours} ${uur}, ${minutes} ${minuut} en ${seconds} ${second}**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
@@ -213,6 +235,10 @@ bot.on('message', async msg => {
             msg.channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
             const channel = bot.channels.cache.find(channel => channel.id === updateID);
             channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
+        }
+        
+        if (command === "resetcount" && msg.author.id == owner) {
+            aantalgames = 0;   
         }
         
         if (command === "reset" && msg.author.id === owner) {
