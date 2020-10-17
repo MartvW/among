@@ -216,7 +216,7 @@ bot.on('message', async msg => {
             channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
         }
         
-        if (command === "resetcount" && msg.author.id == owner) {
+        if (command === "resetcount" && msg.author.id === owner) {
             aantalgames = 0;   
         }
         
