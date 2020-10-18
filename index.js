@@ -44,7 +44,7 @@ const embedLetOp = {
         },
         "title": "Help",
         "color": 15746887,
-        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefix}amongus** \n- **${prefix}amongusstop**`,
+        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefix}amongus**`,
         "fields": [
             {
                 "name": ".....................",
