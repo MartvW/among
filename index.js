@@ -24,6 +24,10 @@ function helpEmbed() {
         { name: `${prefix}amongusstop`, value: 'Wanneer je de game wilt eindigen.', inline: false },
         { name: `${prefix}ping`, value: 'Hiermee kan je je ping zien.', inline: false },
         { name: `${prefix}uptime`, value: 'Hoelang de bot online is.', inline: false },
+        { name: `${prefix}map`, value: 'Om het lijstje van alle mappen te zien.', inline: false },
+        { name: `${prefix}polus`, value: 'Om de kaart te zien van Polus.', inline: false },
+        { name: `${prefix}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: false },
+        { name: `${prefix}mora`, value: 'Om de kaart te zien van Mora.', inline: false },
     )
     .setColor(16426522)
     .setTimestamp()
@@ -256,7 +260,7 @@ bot.on('message', async msg => {
              var embed = new Discord.MessageEmbed()
                 .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                 .setTitle(`${msg.author.username}`)
-                .setDescription(`Map: **The Skeld**`)
+                .setDescription(`Map: **Polus**`)
                 .setColor(16426522)
                 .setTimestamp()
                 .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397072235626496/latest.png`)
@@ -268,7 +272,7 @@ bot.on('message', async msg => {
              var embed = new Discord.MessageEmbed()
                 .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                 .setTitle(`${msg.author.username}`)
-                .setDescription(`Map: **The Skeld**`)
+                .setDescription(`Map: **Mora**`)
                 .setColor(16426522)
                 .setTimestamp()
                 .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397010222972938/latest.png`)
