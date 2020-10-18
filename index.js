@@ -248,7 +248,7 @@ bot.on('message', async msg => {
         }
         
         if (command === "map") {
-            msg.channel.send(createEmbed(`${msg.author.username}`, `Map:\nThe Skeld\nMira\nPolus\n\nDoe **${prefix}**<mapnaam> om de kaart van de map te zien!`, `https://cdn.discordapp.com/attachments/763375592921235456/767396348818751498/latest.png`));
+            msg.channel.send(createEmbed(`${msg.author.username}`, `Map:\nThe Skeld\nMira\nPolus\n\nDoe **${prefix}**<mapnaam> om de kaart van de map te zien!`));
         }
         
         if (command === "skeld") {
