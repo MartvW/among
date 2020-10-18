@@ -234,6 +234,47 @@ bot.on('message', async msg => {
             }
             amongus = [];
         }
+        
+        if (command === "map") {
+            msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**\n-**The Skeld**\n-**Polus**\n**Mora**\n\nDoe ${prefix}<mapnaam> om de kaart te zien van die map!`));
+            
+        }
+        
+        if (command === "skeld") {
+             var embed = new Discord.MessageEmbed()
+                .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                .setTitle(`${msg.author.username}`)
+                .setDescription(`Map: **The Skeld**`)
+                .setColor(16426522)
+                .setTimestamp()
+                .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397119211962448/latest.png`)
+                .setFooter(`${bot.user.tag}`)
+            msg.channel.send(embed);
+        }
+        
+        if (command === "polus") {
+             var embed = new Discord.MessageEmbed()
+                .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                .setTitle(`${msg.author.username}`)
+                .setDescription(`Map: **The Skeld**`)
+                .setColor(16426522)
+                .setTimestamp()
+                .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397072235626496/latest.png`)
+                .setFooter(`${bot.user.tag}`)
+            msg.channel.send(embed);
+        }
+        
+        if (command === "mora") {
+             var embed = new Discord.MessageEmbed()
+                .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                .setTitle(`${msg.author.username}`)
+                .setDescription(`Map: **The Skeld**`)
+                .setColor(16426522)
+                .setTimestamp()
+                .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397010222972938/latest.png`)
+                .setFooter(`${bot.user.tag}`)
+            msg.channel.send(embed);
+        }
 
         if (command === "uptime") {
             let totalSeconds = (bot.uptime / 1000);
