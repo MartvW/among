@@ -53,13 +53,14 @@ const embedLetOp = {
 //ROOD: 15746887
 //ORANJE: 16426522
 
-function createEmbed(title, description) {
+function createEmbed(title, description, image) {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle(`${title}`)
         .setDescription(`${description}`)
         .setColor(16426522)
         .setTimestamp()
+        .setImage(`${image}`)
         .setFooter(`${bot.user.tag}`)
     return embed;
 }
@@ -247,7 +248,7 @@ bot.on('message', async msg => {
         }
         
         if (command === "map") {
-            msg.channel.send(createEmbed(`${msg.author.username}`, `Map:\n.https://cdn.discordapp.com/attachments/763375592921235456/767396348818751498/latest.png`));
+            msg.channel.send(createEmbed(`${msg.author.username}`, `Map:\n`, `https://cdn.discordapp.com/attachments/763375592921235456/767396348818751498/latest.png`));
         }
 
         if (command === "ping") {
