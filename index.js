@@ -245,6 +245,10 @@ bot.on('message', async msg => {
             let seconds = Math.floor(totalSeconds % 60);
             msg.channel.send(createEmbed(`${msg.author.username}`, `Uptime: ${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden.`));
         }
+        
+        if (command === "map") {
+            msg.channel.send(createEmbed(`${msg.author.username}`, `Map:\n.https://cdn.discordapp.com/attachments/763375592921235456/767396348818751498/latest.png`));
+        }
 
         if (command === "ping") {
             msg.channel.send("Pinging...").then(m => {
