@@ -236,7 +236,7 @@ bot.on('message', async msg => {
         }
         
         if (command === "map") {
-            msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**\n-**The Skeld**\n-**Polus**\n**Mora**\n\nDoe ${prefix}<mapnaam> om de kaart te zien van die map!`));
+            msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld**\n-**Polus**\n-**Mora**\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
             
         }
         
