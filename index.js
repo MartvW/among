@@ -10,6 +10,7 @@ var updateID = "766310034871025744";
 var botInfokanaal = "767432509980934154";
 var amongus = [];
 var aantalgames = 0;
+var aantalcommands = 0;
 var adminMessage = "";
 
 function helpEmbed() { 
@@ -98,7 +99,7 @@ async function updateAdmin() {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
@@ -177,6 +178,7 @@ bot.on('message', async msg => {
         if (command === "help") {
             msg.channel.send(helpEmbed());
             msg.channel.send(embedLetOp);
+            aantalcommands++;
         }
         
         // if (command === "admin" && msg.author.id === owner) {
@@ -218,10 +220,12 @@ bot.on('message', async msg => {
             msg.channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
             const channel = bot.channels.cache.find(channel => channel.id === updateID);
             channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
+            aantalcommands++;
         }
         
         if (command === "resetcount" && msg.author.id === owner) {
             aantalgames = 0;   
+            aantalcommands++;
         }
         
         if (command === "reset" && msg.author.id === owner) {
@@ -237,10 +241,12 @@ bot.on('message', async msg => {
                 msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`))
             }
             amongus = [];
+            aantalcommands++;
         }
         
         if (command === "map") {
             msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld**\n-**Polus**\n-**Mora**\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
+            aantalcommands++;
             
         }
         
@@ -254,6 +260,7 @@ bot.on('message', async msg => {
                 .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397119211962448/latest.png`)
                 .setFooter(`${bot.user.tag}`)
             msg.channel.send(embed);
+            aantalcommands++;
         }
         
         if (command === "polus") {
@@ -266,6 +273,7 @@ bot.on('message', async msg => {
                 .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397072235626496/latest.png`)
                 .setFooter(`${bot.user.tag}`)
             msg.channel.send(embed);
+            aantalcommands++;
         }
         
         if (command === "mora") {
@@ -278,6 +286,7 @@ bot.on('message', async msg => {
                 .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397010222972938/latest.png`)
                 .setFooter(`${bot.user.tag}`)
             msg.channel.send(embed);
+            aantalcommands++;
         }
 
         if (command === "uptime") {
@@ -289,6 +298,7 @@ bot.on('message', async msg => {
             let minutes = Math.floor(totalSeconds / 60);
             let seconds = Math.floor(totalSeconds % 60);
             msg.channel.send(createEmbed(`${msg.author.username}`, `Uptime: ${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden.`));
+            aantalcommands++;
         }
         
         if (command === "ping") {
@@ -298,10 +308,12 @@ bot.on('message', async msg => {
                 // Then It Edits the message with the ping variable embed that you created
                 m.edit(createEmbed(`${msg.author.username}`, `Jouw ping is: ${ping}ms`));
             });
+            aantalcommands++;
         }
 
         if (command === "link") {
             msg.channel.send(createEmbed(`${msg.author.username}`, 'Invite link voor de bot: https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8\nInvite link voor de discord server: https://discord.gg/sjw7ZAb'));
+            aantalcommands++;
         }
 
         if (command === "amongus") {
@@ -336,6 +348,7 @@ bot.on('message', async msg => {
                 });
 
                 aantalgames++;
+                aantalcommands++;
 
                 msg.member.voice.channel.edit({
                     userLimit: 10,
@@ -376,6 +389,7 @@ bot.on('message', async msg => {
                 }
             }
         }
+        aantalcommands++;
     }
     catch (err) {
         bot.users.cache.get(owner).send(createEmbed("ERROR", `Among Us Bot heeft een error gekregen: ${err}`));
