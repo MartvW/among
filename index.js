@@ -73,6 +73,7 @@ async function updateAdmin() {
     const servers = await bot.guilds.cache.size;
     const users = await bot.users.cache.size;
     let totalSeconds = (bot.uptime / 1000);
+    let botSeconds = totalSeconds;
     let days = Math.floor(totalSeconds / 86400);
     totalSeconds %= 86400;
     let hours = Math.floor(totalSeconds / 3600);
@@ -129,7 +130,7 @@ async function updateAdmin() {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${uptimestring}**\nUptime in seconden: **${totalSeconds}**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds}**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
