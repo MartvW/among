@@ -326,7 +326,7 @@ bot.on('message', async msg => {
         
         if (command === "ping") {
             msg.channel.send("Pinging...").then(m => {
-                var ping = m.createdTimestamp - msg.createdTimestamp;
+                var ping = Date.now() - msg.createdTimestamp;
 
                 // Then It Edits the message with the ping variable embed that you created
                 m.edit(createEmbed(`${msg.author.username}`, `Jouw ping is: ${ping}ms`));
