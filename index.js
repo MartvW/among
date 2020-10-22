@@ -146,6 +146,25 @@ async function updateAdmin() {
 
 }
 
+
+bot.on("error", async msg => {
+    bot.user.setPresence({
+        status: 'offline',
+        activity: {
+            name: ``,
+        }
+    })
+});
+
+bot.on("warn", async msg => {
+    bot.user.setPresence({
+        status: 'idle',
+        activity: {
+            name: ``,
+        }
+    })
+});
+
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
     console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`);
@@ -168,10 +187,6 @@ bot.on("guildDelete", async guild => {
             name: `${prefix}help | Op ${servers} servers!`,
         }
     })
-});
-
-bot.on("rateLimit", async msg => {
-   console.log(msg); 
 });
 
 bot.on('ready', async () => {
@@ -274,7 +289,7 @@ bot.on('message', async msg => {
             }
             amongus = [];
         }
-        
+      
         if (command === "map") {
             msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld**\n-**Polus**\n-**Mora**\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
             
@@ -328,12 +343,9 @@ bot.on('message', async msg => {
         }
         
         if (command === "ping") {
-            msg.channel.send("Pinging...").then(m => {
-                var ping = Date.now() - msg.createdTimestamp;
-
-                // Then It Edits the message with the ping variable embed that you created
-                m.edit(createEmbed(`${msg.author.username}`, `Jouw ping is: **${ping}ms**`));
-            });
+            const m = await msg.channel.send("Ping?");
+            var ping = m.createdTimestamp - msg.createdTimestamp;
+            m.edit(createEmbed(`Pong!`, `Latency is: **${ping}ms**.`));
         }
 
         if (command === "link") {
