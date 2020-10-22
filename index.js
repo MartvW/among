@@ -170,6 +170,9 @@ bot.on("guildDelete", async guild => {
     })
 });
 
+bot.on("rateLimit", async msg => {
+   console.log(msg); 
+)};
 
 bot.on('ready', async () => {
     const servers = await bot.guilds.cache.size;
