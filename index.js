@@ -80,6 +80,34 @@ async function updateAdmin() {
     let minutes = Math.floor(totalSeconds / 60);
     let seconds = Math.floor(totalSeconds % 60);
     
+    let dag = "";
+    if (days === 0) {
+        dag = `${days} dagen`;
+    } else if (days === 1) {
+        dag = `${days} dag`;
+    } else {
+        dag = `${days} dagen`;
+    }
+    let uur = `${hours} uur`;
+    let minuut = "";
+    if (minutes === 0) {
+        minuut = `${minutes} minuten`;   
+    } else if (minutes === 1) {
+        minuut = `${minutes} minuut`;   
+    } else {
+        minuut = `${minutes} minuten`;
+    }
+    let seconden = "";
+    if (seconds === 0) {
+        seconden = `${seconds} seconden`;   
+    } else if (seconds === 1) {
+        seconden = `${seconds} seconde`;   
+    } else {
+        seconden = `${seconds} seconden`;
+    }
+    
+    let uptimestring = `${dag}, ${uur}, ${minuut} en ${seconden}.`;
+    
     let verificatie = "";
     if (bot.user.verified) {
         verificatie = "✅";
@@ -96,10 +124,12 @@ async function updateAdmin() {
     } else if (bot.user.presence.status === "invisible" || bot.user.presence.status === "dnd") {
         status = "⚫️";
     }
+    
+    
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${uptimestring}**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
