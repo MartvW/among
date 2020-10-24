@@ -349,7 +349,17 @@ bot.on('message', async msg => {
         }
 
         if (command === "link") {
-            msg.channel.send(createEmbed(`${msg.author.username}`, 'Invite link voor de bot: https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8\nInvite link voor de discord server: https://discord.gg/sjw7ZAb'));
+            var embedHelp = new Discord.MessageEmbed()
+                .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/icons/748867243382669323/67d3c2d8d048d0d836c0245c93947dad.png`)
+                .setTitle("Usefull links")
+                .addFields(
+                    { name: `Discord server`, value: 'https://discord.gg/sjw7ZAb', inline: false },
+                    { name: `Invite link bot`, value: 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8', inline: false },
+                )
+                .setColor(2123412)
+                .setTimestamp()
+                .setFooter(`${bot.user.tag}`)
+            msg.channel.send(embedHelp);   
         }
 
         if (command === "amongus") {
