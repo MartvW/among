@@ -335,14 +335,45 @@ bot.on('message', async msg => {
         }
 
         if (command === "uptime") {
+            const servers = await bot.guilds.cache.size;
+            const users = await bot.users.cache.size;
             let totalSeconds = (bot.uptime / 1000);
+            let botSeconds = Math.floor(totalSeconds);
             let days = Math.floor(totalSeconds / 86400);
             totalSeconds %= 86400;
             let hours = Math.floor(totalSeconds / 3600);
             totalSeconds %= 3600;
             let minutes = Math.floor(totalSeconds / 60);
             let seconds = Math.floor(totalSeconds % 60);
-            msg.channel.send(createEmbed(`${msg.author.username}`, `Uptime: ${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden.`));
+
+            let dag = "";
+            if (days === 0) {
+                dag = `${days} dagen`;
+            } else if (days === 1) {
+                dag = `${days} dag`;
+            } else {
+                dag = `${days} dagen`;
+            }
+            let uur = `${hours} uur`;
+            let minuut = "";
+            if (minutes === 0) {
+                minuut = `${minutes} minuten`;   
+            } else if (minutes === 1) {
+                minuut = `${minutes} minuut`;   
+            } else {
+                minuut = `${minutes} minuten`;
+            }
+            let seconden = "";
+            if (seconds === 0) {
+                seconden = `${seconds} seconden`;   
+            } else if (seconds === 1) {
+                seconden = `${seconds} seconde`;   
+            } else {
+                seconden = `${seconds} seconden`;
+            }
+
+            let uptimestring = `${dag}, ${uur}, ${minuut} en ${seconden}.`;
+            msg.channel.send(createEmbed(`${msg.author.username}`, `Uptime: **${uptimestring}**`));
         }
         
         if (command === "ping") {
