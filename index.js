@@ -263,7 +263,7 @@ bot.on("message", async msg => {
         // }
 
         if (command === "setcode") {
-            if (!args > 0) {
+            if (args === 0) {
                 msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel een code als argument gebruiken! ***(${prefix}setcode <code>)***`));   
             }
             
@@ -296,7 +296,7 @@ bot.on("message", async msg => {
         }
         
         if (command === "update" && msg.author.id === owner) {
-            if (!args > 0) {
+            if (args === 0) {
                 msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
                 return;
             }
