@@ -71,7 +71,6 @@ function createEmbed(title, description) {
 
 async function updateAdmin() {
     const servers = await bot.guilds.cache.size;
-    let users = "test";
     var totalSeconds = (bot.uptime / 1000);
     var botSeconds = Math.floor(totalSeconds);
     var days = Math.floor(totalSeconds / 86400);
@@ -130,7 +129,7 @@ async function updateAdmin() {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotprefix: **${prefix}**\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal gebruikers: **${bot.users.cache.size}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotprefix: **${prefix}**\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
@@ -192,11 +191,9 @@ bot.on("guildDelete", async guild => {
 
 bot.on("ready", async () => {
     const servers = await bot.guilds.cache.size;
-    const users = await bot.users.cache.size;
-    console.log(bot.users);
     
     console.log("");
-    console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
+    console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers.`);
     console.log("");
 
     const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
