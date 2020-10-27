@@ -9,6 +9,7 @@ var owner = process.env.OWNER;
 var updateID = "766310034871025744";
 var botInfokanaal = "767432509980934154";
 var amongus = [];
+var codes = [];
 var aantalgames = 0;
 var aantalcommands = 0;
 var adminMessage = "";
@@ -30,6 +31,7 @@ function helpEmbed() {
         { name: `${prefix}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: false },
         { name: `${prefix}mora`, value: 'Om de kaart te zien van Mora.', inline: false },
         { name: `${prefix}setcode`, value: 'Om de code te zetten.', inline: false },
+        { name: `${prefix}resetcode`, value: 'Om de code te resetten.', inline: false },
     )
     .setColor(16426522)
     .setTimestamp()
@@ -260,6 +262,39 @@ bot.on("message", async msg => {
 
         // }
 
+        if (command === "setcode") {
+            if (!args > 0) {
+                msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel een code als argument gebruiken! ***(${prefix}setcode <code>)***`));   
+            }
+            
+            for (let i = 0; i < codes.length; i++) {
+                if (codes[i].channel.id !== msg.member.voice.channel.id) {
+                    msg.channel.send(createEmbed(`${msg.member.voice.channel.name}`, `De code van **${msg.member.voice.channel.name}** is gezet naar ${args[0]}`));    
+                    codes.push({
+                       "channel": msg.member.voice.channel,
+                    });
+                    msg.member.voice.channel.edit({ name: `${msg.member.voice.channel.name} - ${args[0]}` });
+                } else {
+                    msg.channel.send(createEmbed(`${msg.member.voice.channel.name}`, `De code van **${msg.member.voice.channel.name}** is gezet naar ${args[0]}`));    
+                    msg.member.voice.channel.edit({ name: `${codes[i].channel.name}` });
+                    codes.push({
+                       "channel": msg.member.voice.channel,
+                    });
+                    msg.member.voice.channel.edit({ name: `${msg.member.voice.channel.name} - ${args[0]}` });
+                }
+            }
+        }
+        
+        if (command === "resetcode") {
+            for (let i = 0; i < codes.length; i++) {
+                if (codes[i].channel.id !== msg.member.voice.channel.id) {
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `Er is geen code op ${msg.member.voice.channel.name} gezet, je moet eerst ***${prefix}setcode <code>*** doen!`));
+                } else {
+                    msg.member.voice.channel.edit({ name: `${codes[i].channel.name}` });    
+                }
+            }
+        }
+        
         if (command === "update" && msg.author.id === owner) {
             if (!args > 0) {
                 msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
@@ -288,6 +323,7 @@ bot.on("message", async msg => {
             }
             amongus = [];
         }
+        
       
         if (command === "map") {
             msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld**\n-**Polus**\n-**Mora**\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
