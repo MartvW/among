@@ -203,7 +203,7 @@ bot.on('ready', async () => {
     let ownerMessage = await bot.users.cache.get(owner);
     ownerMessage.send(createEmbed(`Opgestart`, `De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`));
     
-    const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
+    const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
     
     updateAdmin();
