@@ -473,6 +473,8 @@ bot.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
     for (let i = 0; i < amongus.length; i++) {
         if (amongus[i].user != user) {
+            reaction.remove();
+            amongus[i].bericht.react(reaction._emoji.name);
             return;
         }
         if (user.id != amongus[i].user.id) {
