@@ -491,7 +491,8 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 amongus[i].meetingbezig = true;
                 let channel = amongus[i].channel;
                 for (let member of channel.members) {
-                    member[1].edit({ mute: false });
+                    member.selfMute(false);
+//                     member[1].edit({ mute: false });
                 }
             } else if (reaction._emoji.name === "❌") {
                 //mute iedereen
@@ -500,6 +501,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 amongus[i].meetingbezig = false;
                 let channel = amongus[i].channel;
                 for (let member of channel.members) {
+                    member.selfMute(true);
                     member[1].edit({ mute: true });
                 }
             }
