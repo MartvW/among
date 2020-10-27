@@ -200,8 +200,9 @@ bot.on('ready', async () => {
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
     console.log("");
 
-    bot.users.cache.get(owner).send(createEmbed(`Opgestart`, `De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`));
-
+    let ownerMessage = await bot.users.cache.get(owner);
+    ownerMessage.send(createEmbed(`Opgestart`, `De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`));
+    
     const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
     
