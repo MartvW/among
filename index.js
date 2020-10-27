@@ -72,16 +72,16 @@ function createEmbed(title, description) {
 async function updateAdmin() {
     const servers = await bot.guilds.cache.size;
     const users = await bot.users.cache.size;
-    let totalSeconds = (bot.uptime / 1000);
-    let botSeconds = Math.floor(totalSeconds);
-    let days = Math.floor(totalSeconds / 86400);
+    var totalSeconds = (bot.uptime / 1000);
+    var botSeconds = Math.floor(totalSeconds);
+    var days = Math.floor(totalSeconds / 86400);
     totalSeconds %= 86400;
-    let hours = Math.floor(totalSeconds / 3600);
+    var hours = Math.floor(totalSeconds / 3600);
     totalSeconds %= 3600;
-    let minutes = Math.floor(totalSeconds / 60);
-    let seconds = Math.floor(totalSeconds % 60);
+    var minutes = Math.floor(totalSeconds / 60);
+    var seconds = Math.floor(totalSeconds % 60);
     
-    let dag = "";
+    var dag = "";
     if (days === 0) {
         dag = `${days} dagen`;
     } else if (days === 1) {
@@ -89,8 +89,8 @@ async function updateAdmin() {
     } else {
         dag = `${days} dagen`;
     }
-    let uur = `${hours} uur`;
-    let minuut = "";
+    var uur = `${hours} uur`;
+    var minuut = "";
     if (minutes === 0) {
         minuut = `${minutes} minuten`;   
     } else if (minutes === 1) {
@@ -98,7 +98,7 @@ async function updateAdmin() {
     } else {
         minuut = `${minutes} minuten`;
     }
-    let seconden = "";
+    var seconden = "";
     if (seconds === 0) {
         seconden = `${seconds} seconden`;   
     } else if (seconds === 1) {
@@ -107,15 +107,15 @@ async function updateAdmin() {
         seconden = `${seconds} seconden`;
     }
     
-    let uptimestring = `${dag}, ${uur}, ${minuut} en ${seconden}.`;
+    var uptimestring = `${dag}, ${uur}, ${minuut} en ${seconden}.`;
     
-    let verificatie = "";
+    var verificatie = "";
     if (bot.user.verified) {
         verificatie = "✅";
     } else {
         verificatie = "❌";
     }
-    let status = "";
+    var status = "";
     if (bot.user.presence.status === "online") {
         status = "🟢";
     } else if (bot.user.presence.status === "offline") {
@@ -190,7 +190,7 @@ bot.on("guildDelete", async guild => {
     guild.owner.send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: https://discord.gg/yxHZ8hK\n\nMet vriendelijke groet,\nAmong Us`));
 });
 
-bot.on('ready', async () => {
+bot.on("ready", async () => {
     const servers = await bot.guilds.cache.size;
     const users = await bot.users.cache.size;
     
@@ -208,10 +208,10 @@ bot.on('ready', async () => {
         activity: {
             name: `${prefix}help | Op ${servers} servers!`,
         }
-    })
+    });
 });
 
-bot.on('message', async msg => {
+bot.on("message", async msg => {
     if (!msg.content.startsWith(prefix)) return;
     if (msg.author.bot) return;
     if (msg.guild === null && msg.author.id != owner) {
