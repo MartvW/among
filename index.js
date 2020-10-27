@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+
 setInterval(updateAdmin, 10000);
+
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
@@ -52,6 +54,7 @@ const embedLetOp = {
         ]
     }
 }
+
 //ROOD: 15746887
 //ORANJE: 16426522
 
@@ -131,6 +134,7 @@ async function updateAdmin() {
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
+
     if (adminMessage === "") {
         const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
         channel.send(embed).then(m => {
@@ -139,7 +143,9 @@ async function updateAdmin() {
     } else {
         adminMessage.edit(embed);
     }
+
 }
+
 
 bot.on("error", async msg => {
     bot.user.setPresence({
@@ -193,14 +199,14 @@ bot.on('ready', async () => {
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
     console.log("");
+
     bot.users.cache.get(owner).send(createEmbed(`Opgestart`, `De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`));
-    bot.users.cache.get(owner).send(createEmbed(`Opgestart`, `De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`));
-    
+
     const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
     
     updateAdmin();
-    
+
     bot.user.setPresence({
         status: 'online',
         activity: {
@@ -208,6 +214,7 @@ bot.on('ready', async () => {
         }
     })
 });
+
 bot.on('message', async msg => {
     if (!msg.content.startsWith(prefix)) return;
     if (msg.author.bot) return;
@@ -215,6 +222,7 @@ bot.on('message', async msg => {
         msg.reply(createEmbed(`${msg.author.username}`, `Je kan geen privéberichten naar mij sturen...`));
         return;
     }
+
     const args = msg.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
     
@@ -251,8 +259,11 @@ bot.on('message', async msg => {
         //     } else if (bot.user.presence.status === "invisible" || bot.user.presence.status === "dnd") {
         //         status = "⚫️";
         //     }
+
         //     msg.channel.send(createEmbed('Botinformatie', `Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`));
+
         // }
+
         if (command === "update" && msg.author.id === owner) {
             if (!args > 0) {
                 msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
@@ -272,6 +283,7 @@ bot.on('message', async msg => {
                amongus[i].channel.edit({
                     userLimit: amongus[i].userlimit,
                 });
+
                 let channel = amongus[i].channel;
                 for (let member of channel.members) {
                     member[1].edit({ mute: false });
@@ -320,55 +332,56 @@ bot.on('message', async msg => {
                 .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397010222972938/latest.png`)
                 .setFooter(`${bot.user.tag}`)
             msg.channel.send(embed);
-         }
+        }
 
-         if (command === "uptime") {
-             const servers = await bot.guilds.cache.size;
-             const users = await bot.users.cache.size;
-             let totalSeconds = (bot.uptime / 1000);
-             let botSeconds = Math.floor(totalSeconds);
-             let days = Math.floor(totalSeconds / 86400);
-             totalSeconds %= 86400;
-             let hours = Math.floor(totalSeconds / 3600);
-             totalSeconds %= 3600;
-             let minutes = Math.floor(totalSeconds / 60);
-             let seconds = Math.floor(totalSeconds % 60);
+        if (command === "uptime") {
+            const servers = await bot.guilds.cache.size;
+            const users = await bot.users.cache.size;
+            let totalSeconds = (bot.uptime / 1000);
+            let botSeconds = Math.floor(totalSeconds);
+            let days = Math.floor(totalSeconds / 86400);
+            totalSeconds %= 86400;
+            let hours = Math.floor(totalSeconds / 3600);
+            totalSeconds %= 3600;
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = Math.floor(totalSeconds % 60);
 
-             let dag = "";
-             if (days === 0) {
-                 dag = `${days} dagen`;
-             } else if (days === 1) {
-                 dag = `${days} dag`;
-             } else {
-                 dag = `${days} dagen`;
-             }
-             let uur = `${hours} uur`;
-             let minuut = "";
-             if (minutes === 0) {
-                 minuut = `${minutes} minuten`;   
-             } else if (minutes === 1) {
-                 minuut = `${minutes} minuut`;   
-             } else {
-                 minuut = `${minutes} minuten`;
-             }
-             let seconden = "";
-             if (seconds === 0) {
-                 seconden = `${seconds} seconden`;   
-             } else if (seconds === 1) {
-                 seconden = `${seconds} seconde`;   
-             } else {
-                 seconden = `${seconds} seconden`;
-             }
+            let dag = "";
+            if (days === 0) {
+                dag = `${days} dagen`;
+            } else if (days === 1) {
+                dag = `${days} dag`;
+            } else {
+                dag = `${days} dagen`;
+            }
+            let uur = `${hours} uur`;
+            let minuut = "";
+            if (minutes === 0) {
+                minuut = `${minutes} minuten`;   
+            } else if (minutes === 1) {
+                minuut = `${minutes} minuut`;   
+            } else {
+                minuut = `${minutes} minuten`;
+            }
+            let seconden = "";
+            if (seconds === 0) {
+                seconden = `${seconds} seconden`;   
+            } else if (seconds === 1) {
+                seconden = `${seconds} seconde`;   
+            } else {
+                seconden = `${seconds} seconden`;
+            }
 
-             let uptimestring = `${dag}, ${uur}, ${minuut} en ${seconden}.`;
-             msg.channel.send(createEmbed(`${msg.author.username}`, `Uptime: **${uptimestring}**`));
-         }
-
-         if (command === "ping") {
+            let uptimestring = `${dag}, ${uur}, ${minuut} en ${seconden}.`;
+            msg.channel.send(createEmbed(`${msg.author.username}`, `Uptime: **${uptimestring}**`));
+        }
+        
+        if (command === "ping") {
             const m = await msg.channel.send("Ping?");
             var ping = m.createdTimestamp - msg.createdTimestamp;
             m.edit(createEmbed(`Pong!`, `Latency is: **${ping}ms**.`));
         }
+
         if (command === "link") {
             var embedHelp = new Discord.MessageEmbed()
                 .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
@@ -382,17 +395,20 @@ bot.on('message', async msg => {
                 .setFooter(`${bot.user.tag}`)
             msg.channel.send(embedHelp);   
         }
+
         if (command === "amongus") {
             if (!msg.member.voice.channel) {
                 msg.channel.send(createEmbed(`${msg.author.username}`, 'Je moet een voice-channel joinen om dit command te gebruiken!'));
                 return;
             }
+
             for (let i = 0; i < amongus.length; i++) {
                 if (amongus[i].user === msg.author || amongus[i].kanaal === msg.member.voice.channel) {
                     msg.channel.send(createEmbed(`${msg.author.username}`, "Je bent al een game aan het hosten. Je kan niet meer dan één game hosten!"));
                     return;
                 }
             }
+
             var embed = new Discord.MessageEmbed()
                 .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                 .setTitle(`${msg.author.username}`)
@@ -400,6 +416,7 @@ bot.on('message', async msg => {
                 .setColor(16426522)
                 .setTimestamp()
                 .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin op dit moment een game is gestart: ${msg.member.voice.channel.name}`)
+
             msg.channel.send({ embed: embed }).then(embedMesage => {
                 amongus.push({
                     "id": amongus.length,
@@ -409,7 +426,9 @@ bot.on('message', async msg => {
                     "meetingbezig": true,
                     "userlimit": msg.member.voice.channel.userLimit,
                 });
+
                 aantalgames++;
+
                 msg.member.voice.channel.edit({
                     userLimit: 10,
                 });
@@ -417,6 +436,7 @@ bot.on('message', async msg => {
                 embedMesage.react('❌');
             });
         }
+
         if (command === "amongusstop") {
 //             if (!msg.member.voice.channel) {
 //                 msg.channel.send(createEmbed(`${msg.author.username}`, "Je moet het kanaal joinen waarin je dit command hebt gezegd!"));
@@ -436,6 +456,7 @@ bot.on('message', async msg => {
                         amongus[i].channel.edit({
                             userLimit: amongus[i].userlimit,
                         });
+
                         let channel = amongus[i].channel;
                         for (let member of channel.members) {
                             member[1].edit({ mute: false });
@@ -453,6 +474,7 @@ bot.on('message', async msg => {
         msg.reply(createEmbed("ERROR", `ERROR: De bot heeft een error, de error is naar de maker gestuurd.`));
     }
 });
+
 bot.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
     for (let i = 0; i < amongus.length; i++) {
@@ -464,6 +486,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             amongus[i].bericht.react(reaction._emoji.name);
             return;
         }
+
         if (reaction.message.id === amongus[i].bericht.id) {
             if (reaction._emoji.name === "✅") {
                 //unmute iedereen
@@ -487,6 +510,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         }
     }
 });
+
 bot.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
     let oldUserChannel = oldMember.channelID;
@@ -509,4 +533,5 @@ bot.on('voiceStateUpdate', (oldMember, newMember) => {
         }
     }
 })
+
 bot.login(token);
