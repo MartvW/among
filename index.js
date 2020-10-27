@@ -29,6 +29,7 @@ function helpEmbed() {
         { name: `${prefix}polus`, value: 'Om de kaart te zien van Polus.', inline: false },
         { name: `${prefix}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: false },
         { name: `${prefix}mora`, value: 'Om de kaart te zien van Mora.', inline: false },
+        { name: `${prefix}setcode`, value: 'Om de code te zetten.', inline: false },
     )
     .setColor(16426522)
     .setTimestamp()
@@ -147,6 +148,7 @@ async function updateAdmin() {
 
 
 bot.on("error", async msg => {
+    console.error(msg);
     bot.user.setPresence({
         status: 'offline',
         activity: {
@@ -261,7 +263,7 @@ bot.on("message", async msg => {
         if (command === "update" && msg.author.id === owner) {
             if (!args > 0) {
                 msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
-            return;
+                return;
             }
             msg.channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
             const channel = bot.channels.cache.find(channel => channel.id === updateID);
