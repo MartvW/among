@@ -168,7 +168,6 @@ bot.on("warn", async msg => {
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
     console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`);
-    bot.users.cache.get(owner).send(createEmbed(`Toegevoegd`, `Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`));
     bot.user.setPresence({
         status: 'online',
         activity: {
@@ -182,7 +181,6 @@ bot.on("guildCreate", async guild => {
 bot.on("guildDelete", async guild => {
     const servers = await bot.guilds.cache.size;
     console.log(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
-    bot.users.cache.get(owner).send(createEmbed(`Verwijderd`, `Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`));
     bot.user.setPresence({
         status: 'online',
         activity: {
@@ -200,9 +198,6 @@ bot.on('ready', async () => {
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
     console.log("");
 
-    let ownerMessage = await bot.users.cache.get(owner);
-    ownerMessage.send(createEmbed(`Opgestart`, `De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`));
-    
     const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
     
@@ -471,7 +466,7 @@ bot.on('message', async msg => {
         }
     }
     catch (err) {
-        bot.users.cache.get(owner).send(createEmbed("ERROR", `Among Us Bot heeft een error gekregen: ${err}`));
+        console.error(err);
         msg.reply(createEmbed("ERROR", `ERROR: De bot heeft een error, de error is naar de maker gestuurd.`));
     }
 });
