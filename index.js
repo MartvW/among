@@ -10,6 +10,7 @@ var amongus = [];
 var aantalgames = 0;
 var aantalcommands = 0;
 var adminMessage = "";
+
 function helpEmbed() { 
     var embedHelp = new Discord.MessageEmbed()
     .setAuthor(`Among Us`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
@@ -32,6 +33,7 @@ function helpEmbed() {
     .setFooter(`Among Us`)
     return embedHelp;
 }
+
 const embedLetOp = {
     "embed": {
         "author": {
@@ -52,6 +54,7 @@ const embedLetOp = {
 }
 //ROOD: 15746887
 //ORANJE: 16426522
+
 function createEmbed(title, description) {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
@@ -62,6 +65,7 @@ function createEmbed(title, description) {
         .setFooter(`${bot.user.tag}`)
     return embed;
 }
+
 async function updateAdmin() {
     const servers = await bot.guilds.cache.size;
     const users = await bot.users.cache.size;
@@ -136,6 +140,7 @@ async function updateAdmin() {
         adminMessage.edit(embed);
     }
 }
+
 bot.on("error", async msg => {
     bot.user.setPresence({
         status: 'offline',
@@ -144,6 +149,7 @@ bot.on("error", async msg => {
         }
     })
 });
+
 bot.on("warn", async msg => {
     bot.user.setPresence({
         status: 'idle',
@@ -152,6 +158,7 @@ bot.on("warn", async msg => {
         }
     })
 });
+
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
     console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`);
@@ -165,6 +172,7 @@ bot.on("guildCreate", async guild => {
     guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: https://discord.gg/yxHZ8hK\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
     guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan deze server!\nAl mijn commands kan je zien via **${prefix}help**\nAls je vragen hebt kan je mijn help-server joinen: https://discord.gg/yxHZ8hK\n\nVoor de mensen die mij willen inviten doe **${prefix}link** om de invite-link te krijgen!`));
 });
+
 bot.on("guildDelete", async guild => {
     const servers = await bot.guilds.cache.size;
     console.log(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
@@ -177,6 +185,7 @@ bot.on("guildDelete", async guild => {
     })
     guild.owner.send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: https://discord.gg/yxHZ8hK\n\nMet vriendelijke groet,\nAmong Us`));
 });
+
 bot.on('ready', async () => {
     const servers = await bot.guilds.cache.size;
     const users = await bot.users.cache.size;
@@ -185,10 +194,13 @@ bot.on('ready', async () => {
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
     console.log("");
     bot.users.cache.get(owner).send(createEmbed(`Opgestart`, `De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`));
+    bot.users.cache.get(owner).send(createEmbed(`Opgestart`, `De bot is succesvol opgestart als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`));
+    
     const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
     
     updateAdmin();
+    
     bot.user.setPresence({
         status: 'online',
         activity: {
