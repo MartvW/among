@@ -72,6 +72,7 @@ function createEmbed(title, description) {
 async function updateAdmin() {
     const servers = await bot.guilds.cache.size;
     const users = await bot.users.cache.size;
+    console.log(bot.users);
     var totalSeconds = (bot.uptime / 1000);
     var botSeconds = Math.floor(totalSeconds);
     var days = Math.floor(totalSeconds / 86400);
