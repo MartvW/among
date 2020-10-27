@@ -193,9 +193,7 @@ bot.on("guildDelete", async guild => {
 bot.on("ready", async () => {
     const servers = await bot.guilds.cache.size;
     const users = await bot.users.cache.size;
-    for (let i = 0; i < bot.guilds.cache.size; i++) {
-        console.log(bot.guilds.cache[i].memberCount);
-    }
+    console.log(bot.users);
     
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
