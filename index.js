@@ -73,7 +73,7 @@ async function updateAdmin() {
     const servers = await bot.guilds.cache.size;
     let users = 0;
     for (let i = 0; i < servers; i++) {
-        console.log(servers[i]);
+        console.log(servers);
     }
     var totalSeconds = (bot.uptime / 1000);
     var botSeconds = Math.floor(totalSeconds);
