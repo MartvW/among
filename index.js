@@ -60,7 +60,7 @@ const embedLetOp = {
 
 function createEmbed(title, description) {
     var embed = new Discord.MessageEmbed()
-        .setAuthor(`${bot.user.username}`, `${bot.user.avatarURL()}`)
+        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle(`${title}`)
         .setDescription(`${description}`)
         .setColor(16426522)
@@ -128,7 +128,7 @@ async function updateAdmin() {
     
     
     var embed = new Discord.MessageEmbed()
-        .setAuthor(`${bot.user.username}`, `${bot.user.avatarURL()}`)
+        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
         .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotprefix: **${prefix}**\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
         .setColor(16426522)
@@ -300,7 +300,7 @@ bot.on('message', async msg => {
         
         if (command === "skeld") {
              var embed = new Discord.MessageEmbed()
-                .setAuthor(`${bot.user.username}`, `${bot.user.avatarURL()}`)
+                .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                 .setTitle(`${msg.author.username}`)
                 .setDescription(`Map: **The Skeld**`)
                 .setColor(16426522)
@@ -312,7 +312,7 @@ bot.on('message', async msg => {
         
         if (command === "polus") {
              var embed = new Discord.MessageEmbed()
-                .setAuthor(`${bot.user.username}`, `${bot.user.avatarURL()}`)
+                .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                 .setTitle(`${msg.author.username}`)
                 .setDescription(`Map: **Polus**`)
                 .setColor(16426522)
@@ -324,7 +324,7 @@ bot.on('message', async msg => {
         
         if (command === "mora") {
              var embed = new Discord.MessageEmbed()
-                .setAuthor(`${bot.user.username}`, `${bot.user.avatarURL()}`)
+                .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                 .setTitle(`${msg.author.username}`)
                 .setDescription(`Map: **Mora**`)
                 .setColor(16426522)
@@ -384,7 +384,7 @@ bot.on('message', async msg => {
 
         if (command === "link") {
             var embedHelp = new Discord.MessageEmbed()
-                .setAuthor(`${bot.user.username}`, `${bot.user.avatarURL()}`)
+                .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                 .setTitle("Handige links")
                 .addFields(
                     { name: `Discord server`, value: 'https://discord.gg/sjw7ZAb', inline: false },
@@ -410,7 +410,7 @@ bot.on('message', async msg => {
             }
 
             var embed = new Discord.MessageEmbed()
-                .setAuthor(`${bot.user.username}`, `${bot.user.avatarURL()}`)
+                .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                 .setTitle(`${msg.author.username}`)
                 .setDescription(`Reageer met een :white_check_mark: wanneer er een meeting is, reageer met een :x: als de meeting is afgelopen.\nDoe **${prefix}amongusstop** als je gaat stoppen.`)
                 .setColor(16426522)
@@ -446,7 +446,7 @@ bot.on('message', async msg => {
             for (let i = 0; i < amongus.length; i++) {
                 if (amongus[i].user.id === msg.author.id) {
                     var embed = new Discord.MessageEmbed()
-                        .setAuthor(`${bot.user.username}`, `${bot.user.avatarURL()}`)
+                        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                         .setTitle(`${msg.author.username}`)
                         .setDescription(`De game is over, doe **${prefix}amongus** om een nieuw game te starten.`)
                         .setColor(16426522)
