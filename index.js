@@ -71,10 +71,7 @@ function createEmbed(title, description) {
 
 async function updateAdmin() {
     const servers = await bot.guilds.cache.size;
-    let users = 0;
-    for (let i = 0; i < bot.guilds.cache.size; i++) {
-        console.log(bot.guilds.cache[i].memberCount);
-    }
+    let users = "test";
     var totalSeconds = (bot.uptime / 1000);
     var botSeconds = Math.floor(totalSeconds);
     var days = Math.floor(totalSeconds / 86400);
@@ -196,6 +193,9 @@ bot.on("guildDelete", async guild => {
 bot.on("ready", async () => {
     const servers = await bot.guilds.cache.size;
     const users = await bot.users.cache.size;
+    for (let i = 0; i < bot.guilds.cache.size; i++) {
+        console.log(bot.guilds.cache[i].memberCount);
+    }
     
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en ${users} gebruikers`);
