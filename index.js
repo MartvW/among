@@ -280,6 +280,7 @@ bot.on("message", async msg => {
                 const c = msg.member.voice.channel;
                 await c.edit({ name: `${c.name} | ${code} - ${server}` });
                 msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                return;
             }
             
             for (let i = 0; i < codes.length; i++) {
