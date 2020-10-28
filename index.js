@@ -275,7 +275,7 @@ bot.on("message", async msg => {
             
             if (codes.length === 0) {
                 codes.push({
-                    "channel": msg.member.voice.channel,
+                    "channel": `${msg.member.voice.channel}`,
                 });
                 const c = msg.member.voice.channel;
                 await c.edit({ name: `${msg.member.voice.channel.name} | ${args[0]} - ${args[1]}` });
@@ -284,7 +284,7 @@ bot.on("message", async msg => {
                 for (let i = 0; i < codes.length; i++) {
                     if (codes[i].channel.id != msg.member.voice.channel.id) {
                         codes.push({
-                            "channel": msg.member.voice.channel,
+                            "channel": `${msg.member.voice.channel}`,
                         });
                         const c = msg.member.voice.channel;
                         await c.edit({ name: `${msg.member.voice.channel.name} | ${args[0]} - ${args[1]}` });
@@ -318,7 +318,7 @@ bot.on("message", async msg => {
                     await c.edit({ name: `${codes[i].channel.name}` });  
                     msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${msg.member.voice.channel.name}*** heeft geen code meer! Doe ***${prefix}setcode <code>*** om de kanaal een code te geven!`));
                     codes.splice(codes.indexOf({
-                        "channel": msg.member.voice.channel,
+                        "channel": `${msg.member.voice.channel}`,
                     }), 1);
                 }
             }
