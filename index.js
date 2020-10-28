@@ -273,13 +273,16 @@ bot.on("message", async msg => {
                 return;
             }
             
+            const code = args[0].toUpperCase();
+            const server = args[1].toUpperCase();
+            
             if (codes.length === 0) {
                 const c = msg.member.voice.channel;
                 codes.push({
                     "channel": c,
                 });
-                await c.edit({ name: `${msg.member.voice.channel.name} | ${args[0]} - ${args[1]}` });
-                msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[0].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
+                await msg.member.voice.channel.edit({ name: `${codes[i].channel.name} | ${args[0]} - ${args[1]}` });
+                msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
             } else {
                 for (let i = 0; i < codes.length; i++) {
                     if (codes[i].channel.id != msg.member.voice.channel.id) {
@@ -287,7 +290,7 @@ bot.on("message", async msg => {
                         codes.push({
                             "channel": c,
                         });
-                        await c.edit({ name: `${msg.member.voice.channel.name} | ${args[0]} - ${args[1]}` });
+                        await msg.member.voice.channel.edit({ name: `${codes[i].channel.name} | ${args[0]} - ${args[1]}` });
                         msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
                     } else {
                         const c = msg.member.voice.channel;
