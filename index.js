@@ -291,7 +291,8 @@ bot.on("message", async msg => {
                        "name": msg.member.voice.channel.name, 
                     });
                     const c = msg.member.voice.channel;
-                    await c.edit({ name: `${c.name} | ${code} - ${server}` });
+                    await c.setName(`${c.name} | ${code} - ${server}`);
+//                     await c.edit({ name: `${c.name} | ${code} - ${server}` });
                     msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
                 } else {
                     for (let i = 0; i < codes.length; i++) {
@@ -301,11 +302,13 @@ bot.on("message", async msg => {
                                "name": msg.member.voice.channel.name, 
                             });
                             const c = msg.member.voice.channel;
-                            await c.edit({ name: `${c.name} | ${code} - ${server}` });
+                            await c.setName(`${c.name} | ${code} - ${server}`);
+//                             await c.edit({ name: `${c.name} | ${code} - ${server}` });
                             msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
                         } else {
                             const c = msg.member.voice.channel;
-                            await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
+                            await c.setName(`${codes[i].name} | ${code} - ${server}`);
+//                             await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
                             msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
                         }
                     }
@@ -333,7 +336,8 @@ bot.on("message", async msg => {
                 }
                 
                 const c = msg.member.voice.channel;
-                await c.edit({ name: codes[i].name });
+                await c.setName(`${codes[i].name}`);
+//                 await c.edit({ name: codes[i].name });
                 codes.splice(codes.indexOf({
                     "channel": msg.member.voice.channel,
                 }), 1);
