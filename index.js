@@ -266,33 +266,40 @@ bot.on("message", async msg => {
             if (args === 0) {
                 msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel een code als argument gebruiken! ***(${prefix}setcode <code>)***`));   
                 return;
+            } else if (!msg.member.voice.channel) {
+                msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel in een voice-channel zitten!`));  
+               return;
             }
-            
+                
             for (let i = 0; i < codes.length; i++) {
                 if (codes[i].channel.id !== msg.member.voice.channel.id) {
                     msg.channel.send(createEmbed(`${msg.member.voice.channel.name}`, `De code van **${msg.member.voice.channel.name}** is gezet naar ${args[0]}`));    
                     codes.push({
                        "channel": msg.member.voice.channel,
                     });
-                    msg.member.voice.channel.edit({ name: `${msg.member.voice.channel.name} - ${args[0]}` });
+                    msg.member.voice.channel.setName(`${msg.member.voice.channel.name} - ${args[0]}`);
                 } else {
                     msg.channel.send(createEmbed(`${msg.member.voice.channel.name}`, `De code van **${msg.member.voice.channel.name}** is gezet naar ${args[0]}`));    
-                    msg.member.voice.channel.edit({ name: `${codes[i].channel.name}` });
+                    msg.member.voice.channel.setName(`${codes[i].channel.name}`);
                     codes.push({
                        "channel": msg.member.voice.channel,
                     });
-                    msg.member.voice.channel.edit({ name: `${msg.member.voice.channel.name} - ${args[0]}` });
+                    msg.member.voice.channel.setName(`${msg.member.voice.channel.name} - ${args[0]}`);
                 }
             }
         }
         
         if (command === "resetcode") {
-            for (let i = 0; i < codes.length; i++) {
-                if (codes[i].channel.id !== msg.member.voice.channel.id) {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `Er is geen code op ${msg.member.voice.channel.name} gezet, je moet eerst ***${prefix}setcode <code>*** doen!`));
-                } else {
-                    msg.member.voice.channel.edit({ name: `${codes[i].channel.name}` });    
+            if (msg.member.voice.channel) {
+                for (let i = 0; i < codes.length; i++) {
+                    if (codes[i].channel.id !== msg.member.voice.channel.id) {
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `Er is geen code op ${msg.member.voice.channel.name} gezet, je moet eerst ***${prefix}setcode <code>*** doen!`));
+                    } else {
+                        msg.member.voice.channel.setName(`${codes[i].channel.name}`);
+                    }
                 }
+            } else {
+                msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel in een voice-channel zitten!`));  
             }
         }
         
