@@ -30,6 +30,8 @@ function helpEmbed() {
         { name: `${prefix}polus`, value: 'Om de kaart te zien van Polus.', inline: false },
         { name: `${prefix}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: false },
         { name: `${prefix}mora`, value: 'Om de kaart te zien van Mora.', inline: false },
+        { name: `${prefix}setcode`, value: 'Om de code in te stellen.', inline: false },
+        { name: `${prefix}resetcode`, value: 'Om de code te resetten.', inline: false },
     )
     .setColor(16426522)
     .setTimestamp()
@@ -130,7 +132,7 @@ async function updateAdmin() {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotprefix: **${prefix}**\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotprefix: **${prefix}**\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${codes.length}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
@@ -164,6 +166,10 @@ bot.on("warn", async msg => {
             name: ``,
         }
     })
+});
+
+bot.on("rateLimit", async msg => {
+   console.log(msg); 
 });
 
 bot.on("guildCreate", async guild => {
