@@ -259,7 +259,7 @@ bot.on("message", async msg => {
         }
         
         if (command === "setcode") {
-            if (args.length === 1) {
+            if (args.length < 2) {
                 msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel een code en de server toevoegen! ***${prefix}setcode <code> <server>***`));
                 return;
             }
