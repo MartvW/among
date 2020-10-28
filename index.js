@@ -272,6 +272,16 @@ bot.on("message", async msg => {
             const code = args[0].toUpperCase();
             const server = args[1].toUpperCase();
             
+            if (code.length != 6) {
+                msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige code in!`));
+                return;
+            }
+            
+            if (server != "NA" || server != "EU" || server != "AS") {
+                msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige server in! **NA** of **EU** of **AS**!`));
+                return;
+            }
+            
             if (codes.length === 0) {
                 codes.push({
                    "channel": msg.member.voice.channel, 
