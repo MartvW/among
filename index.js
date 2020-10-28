@@ -265,6 +265,7 @@ bot.on("message", async msg => {
         if (command === "setcode") {
             if (args === 0) {
                 msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel een code als argument gebruiken! ***(${prefix}setcode <code>)***`));   
+                return;
             }
             
             for (let i = 0; i < codes.length; i++) {
