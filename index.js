@@ -277,7 +277,6 @@ bot.on("message", async msg => {
             
             const code = args[0].toUpperCase();
             const server = args[1].toUpperCase();
-            console.log(server);
             
             if (code.length != 6) {
                 msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige code in!`));
@@ -467,7 +466,7 @@ bot.on("message", async msg => {
                 .setDescription(`Reageer met een :white_check_mark: wanneer er een meeting is, reageer met een :x: als de meeting is afgelopen.\nDoe **${prefix}amongusstop** als je gaat stoppen.`)
                 .setColor(16426522)
                 .setTimestamp()
-                .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin op dit moment een game is gestart: Crew ${amongus.length + 1}`)
+                .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin op dit moment een game is gestart: ${msg.member.voice.channel.name}`)
 
             msg.channel.send({ embed: embed }).then(embedMesage => {
                 amongus.push({
