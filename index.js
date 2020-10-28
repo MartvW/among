@@ -276,7 +276,6 @@ bot.on("message", async msg => {
                 "channel": msg.member.voice.channel,
             });
             const c = msg.member.voice.channel;
-            await c.setName(`${msg.member.voice.channel.name} - ${args[0]}`);
             await c.edit({ name: `${msg.member.voice.channel.name} - ${args[0]}` });;
             msg.channel.send(createEmbed(`${msg.author.username}`,`${args[0]}\n${msg.member.voice.channel.name}`));
         }
