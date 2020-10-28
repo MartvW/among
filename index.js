@@ -242,10 +242,10 @@ bot.on("message", async msg => {
             }
             msg.channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
             const channel = bot.channels.cache.find(channel => channel.id === updateID);
-            channel.send(`@here`).then(m => {
+            channel.send(`t`).then(m => {
                m.delete();
                channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`)).then(message => {
-                    message.crosspost();  
+                    message.crosspost(true);  
                });
             });
         }
