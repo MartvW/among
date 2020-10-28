@@ -9,6 +9,7 @@ var owner = process.env.OWNER;
 var updateID = "766310034871025744";
 var botInfokanaal = "767432509980934154";
 var amongus = [];
+var codes = [];
 var aantalgames = 0;
 var aantalcommands = 0;
 var adminMessage = "";
@@ -257,7 +258,47 @@ bot.on("message", async msg => {
             amongus = [];
         }
         
-      
+        if (command === "setcode") {
+            if (args.length === 0) {
+                msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel een code en de server toevoegen! ***${prefix}setcode <code> <server>***`));
+                return;
+            }
+            
+            if (!msg.member.voice.channel) {
+                msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`));
+                return;
+            }
+            
+            const code = args[0].toUpperCase();
+            const server = args[1].toUpperCase();
+            
+            if (codes.length === 0) {
+                codes.push({
+                   "channel": msg.member.voice.channel, 
+                   "name": msg.member.voice.channel.name, 
+                });
+                const c = msg.member.voice.channel;
+                await c.edit({ name: `${c.name} | ${code} - ${server}` });
+                msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+            }
+            
+            for (let i = 0; i < codes.length; i++) {
+                if (codes[i].channel.id != msg.member.voice.channel.id) {
+                   codes.push({
+                       "channel": msg.member.voice.channel, 
+                       "name": msg.member.voice.channel.name, 
+                    });
+                    const c = msg.member.voice.channel;
+                    await c.edit({ name: `${c.name} | ${code} - ${server}` });
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                } else {
+                    const c = msg.member.voice.channel;
+                    await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                }
+            }
+        }
+        
         if (command === "map") {
             msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld**\n-**Polus**\n-**Mora**\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
         }
@@ -386,7 +427,6 @@ bot.on("message", async msg => {
                     "id": amongus.length,
                     "user": msg.author,
                     "channel": msg.member.voice.channel,
-                    "name": msg.member.voice.channel.name,
                     "bericht": embedMesage,
                     "meetingbezig": true,
                     "userlimit": msg.member.voice.channel.userLimit,
@@ -396,7 +436,6 @@ bot.on("message", async msg => {
 
                 msg.member.voice.channel.edit({
                     userLimit: 10,
-                    name: `Crew ${amongus.length}`
                 });
                 embedMesage.react('✅');
                 embedMesage.react('❌');
@@ -421,7 +460,6 @@ bot.on("message", async msg => {
                     msg.channel.send({ embed: embed }).then(embedMesage => {
                         amongus[i].channel.edit({
                             userLimit: amongus[i].userlimit,
-                            name: amongus[i].name,
                         });
 
                         let channel = amongus[i].channel;
