@@ -277,7 +277,17 @@ bot.on("message", async msg => {
                 return;
             }
             
-            if (server === "NA" || server === "EU" || server === "AS") {
+            if (server !== "NA") {
+                msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige server in! **NA** of **EU** of **AS**!`));
+                return;
+            }
+            
+            if (server !== "EU") {
+                msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige server in! **NA** of **EU** of **AS**!`));
+                return;
+            }
+            
+            if (server !== "AS") {
                 msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige server in! **NA** of **EU** of **AS**!`));
                 return;
             }
