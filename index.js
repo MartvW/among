@@ -245,7 +245,7 @@ bot.on("message", async msg => {
             channel.send(`t`).then(m => {
                m.delete();
                channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`)).then(message => {
-                    console.log(message);
+                    message.crosspost.post();
                });
             });
         }
