@@ -290,7 +290,7 @@ bot.on("message", async msg => {
                         codes.push({
                             "channel": c,
                         });
-                        await msg.member.voice.channel.edit({ name: `${codes[i].channel.name} | ${args[0]} - ${args[1]}` });
+                        await msg.member.voice.channel.edit({ name: `${c.name} | ${args[0]} - ${args[1]}` });
                         msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
                     } else {
                         const c = msg.member.voice.channel;
