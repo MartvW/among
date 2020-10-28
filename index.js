@@ -6,7 +6,7 @@ setInterval(updateAdmin, 10000);
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
-var updateID = "766216592711221248";
+var updateID = "766310034871025744";
 var botInfokanaal = "767432509980934154";
 var amongus = [];
 var codes = [];
