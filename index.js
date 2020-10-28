@@ -9,7 +9,6 @@ var owner = process.env.OWNER;
 var updateID = "766310034871025744";
 var botInfokanaal = "767432509980934154";
 var amongus = [];
-var codes = [];
 var aantalgames = 0;
 var aantalcommands = 0;
 var adminMessage = "";
@@ -30,8 +29,6 @@ function helpEmbed() {
         { name: `${prefix}polus`, value: 'Om de kaart te zien van Polus.', inline: false },
         { name: `${prefix}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: false },
         { name: `${prefix}mora`, value: 'Om de kaart te zien van Mora.', inline: false },
-        { name: `${prefix}setcode`, value: 'Om de code te zetten.', inline: false },
-        { name: `${prefix}resetcode`, value: 'Om de code te resetten.', inline: false },
     )
     .setColor(16426522)
     .setTimestamp()
@@ -231,102 +228,6 @@ bot.on("message", async msg => {
             msg.channel.send(embedLetOp);
         }
         
-        // if (command === "admin" && msg.author.id === owner) {
-        //     const servers = await bot.guilds.cache.size;
-        //     const users = await bot.users.cache.size;
-        //     let totalSeconds = (bot.uptime / 1000);
-        //     let days = Math.floor(totalSeconds / 86400);
-        //     totalSeconds %= 86400;
-        //     let hours = Math.floor(totalSeconds / 3600);
-        //     totalSeconds %= 3600;
-        //     let minutes = Math.floor(totalSeconds / 60);
-        //     let seconds = Math.floor(totalSeconds % 60);
-        //     let verificatie = "";
-        //     if (bot.user.verified) {
-        //         verificatie = "✅";
-        //     } else {
-        //         verificatie = "❌";
-        //     }
-        //     let status = "";
-        //     if (bot.user.presence.status === "online") {
-        //         status = "🟢";
-        //     } else if (bot.user.presence.status === "offline") {
-        //         status = "🔴";
-        //     } else if (bot.user.presence.status === "idle") {
-        //         status = "🟠";
-        //     } else if (bot.user.presence.status === "invisible" || bot.user.presence.status === "dnd") {
-        //         status = "⚫️";
-        //     }
-
-        //     msg.channel.send(createEmbed('Botinformatie', `Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nUptime: **${days} dagen, ${hours} uur, ${minutes} minuten en ${seconds} seconden**`));
-
-        // }
-
-        if (command === "setcode") {
-            if (!msg.member.voice.channel) {
-                msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel in een voice-channel zitten!`));
-                return;
-            }
-            
-            if (args === 0) {
-                msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel een code toevoegen! Doe ***${prefix}setcode <code>***!`));
-                return;
-            }
-            
-            const code = args[0].toUpperCase();
-            const server = args[1].toUpperCase();
-            
-            if (codes.length === 0) {
-                const c = msg.member.voice.channel;
-                codes.push({
-                    "channel": c,
-                });
-                await msg.member.voice.channel.edit({ name: `${codes[i].channel.name} | ${args[0]} - ${args[1]}` });
-                msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
-            } else {
-                for (let i = 0; i < codes.length; i++) {
-                    if (codes[i].channel.id != msg.member.voice.channel.id) {
-                        const c = msg.member.voice.channel;
-                        codes.push({
-                            "channel": c,
-                        });
-                        await msg.member.voice.channel.edit({ name: `${c.name} | ${args[0]} - ${args[1]}` });
-                        msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
-                    } else {
-                        const c = msg.member.voice.channel;
-                        await c.edit({ name: `${codes[i].channel.name} | ${args[0]} - ${args[1]}` });
-                        msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
-                    }
-                }
-            }
-            
-        }
-        
-        if (command === "resetcode") {
-            if (!msg.member.voice.channel) {
-                msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel in een voice-channel zitten!`));
-                return;
-            }
-            
-            if (codes.length === 0) {
-                msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${msg.member.voice.channel.name}*** heeft geen code! Doe ***${prefix}setcode <code>*** om de kanaal een code te geven!`));
-                return;
-            }
-            
-            for (let i = 0; i < codes.length; i++) {
-                if (codes[i].channel.id != msg.member.voice.channel.id) {
-                    msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${msg.member.voice.channel.name}*** heeft geen code! Doe ***${prefix}setcode <code>*** om de kanaal een code te geven!`));
-                } else {
-                    const c = msg.member.voice.channel;
-                    await c.edit({ name: `${codes[i].channel.name}` });  
-                    msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${msg.member.voice.channel.name}*** heeft geen code meer! Doe ***${prefix}setcode <code>*** om de kanaal een code te geven!`));
-                    codes.splice(codes.indexOf({
-                        "channel": c,
-                    }), 1);
-                }
-            }
-        }
-        
         if (command === "update" && msg.author.id === owner) {
             if (args === 0) {
                 msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
@@ -359,7 +260,6 @@ bot.on("message", async msg => {
       
         if (command === "map") {
             msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld**\n-**Polus**\n-**Mora**\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
-            
         }
         
         if (command === "skeld") {
@@ -495,6 +395,7 @@ bot.on("message", async msg => {
 
                 msg.member.voice.channel.edit({
                     userLimit: 10,
+                    name: `Crew ${amongus.length}`
                 });
                 embedMesage.react('✅');
                 embedMesage.react('❌');
@@ -519,6 +420,7 @@ bot.on("message", async msg => {
                     msg.channel.send({ embed: embed }).then(embedMesage => {
                         amongus[i].channel.edit({
                             userLimit: amongus[i].userlimit,
+                            name: amongus[i].channel.name,
                         });
 
                         let channel = amongus[i].channel;
