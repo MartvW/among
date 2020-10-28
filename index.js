@@ -6,7 +6,7 @@ setInterval(updateAdmin, 10000);
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
-var updateID = "766310034871025744";
+var updateID = "766216592711221248";
 var botInfokanaal = "767432509980934154";
 var amongus = [];
 var codes = [];
@@ -242,9 +242,8 @@ bot.on("message", async msg => {
             }
             msg.channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
             const channel = bot.channels.cache.find(channel => channel.id === updateID);
-            channel.send(`@here`);
-            channel.bulkDelete(1).then(m => {
-               channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
+            channel.send(`@here`).then(m => {
+               m.edit(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
             });
         }
         
