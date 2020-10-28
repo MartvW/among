@@ -272,16 +272,46 @@ bot.on("message", async msg => {
                 msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel een code toevoegen! Doe ***${prefix}setcode <code>***!`));
                 return;
             }
-            codes.push({
-                "channel": msg.member.voice.channel,
-            });
-            const c = msg.member.voice.channel;
-            await c.edit({ name: `${msg.member.voice.channel.name} - ${args[0]}` });;
-            msg.channel.send(createEmbed(`${msg.author.username}`,`${args[0]}\n${msg.member.voice.channel.name}`));
+            for (let i = 0; i < codes.length; i++) {
+                if (codes[i].channel.id != msg.member.voice.channel.id) {
+                    codes.push({
+                        "channel": msg.member.voice.channel,
+                    });
+                    const c = msg.member.voice.channel;
+                    await c.edit({ name: `${msg.member.voice.channel.name} - ${args[0]}` });
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
+                } else {
+                    const c = msg.member.voice.channel;
+                    await c.edit({ name: `${codes[i].channel.name} - ${args[0]}` });
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
+                }
+            }
+            
         }
         
         if (command === "resetcode") {
-           
+            if (!msg.member.voice.channel) {
+                msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel in een voice-channel zitten!`));
+                return;
+            }
+            
+            if (codes.length === 0) {
+                msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${msg.member.voice.channel.name}*** heeft geen code! Doe ***${prefix}setcode <code>*** om de kanaal een code te geven!`));
+                return;
+            }
+            
+            for (let i = 0; i < codes.length; i++) {
+                if (codes[i].channel.id != msg.member.voice.channel.id) {
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${msg.member.voice.channel.name}*** heeft geen code! Doe ***${prefix}setcode <code>*** om de kanaal een code te geven!`));
+                } else {
+                    const c = msg.member.voice.channel;
+                    await c.edit({ name: `${codes[i].channel.name}` });  
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${msg.member.voice.channel.name}*** heeft geen code meer! Doe ***${prefix}setcode <code>*** om de kanaal een code te geven!`));
+                    codes.splice(codes.indexOf({
+                        "channel": msg.member.voice.channel,
+                    }), 1);
+                }
+            }
         }
         
         if (command === "update" && msg.author.id === owner) {
