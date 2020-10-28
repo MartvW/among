@@ -271,6 +271,7 @@ bot.on("message", async msg => {
             
             const code = args[0].toUpperCase();
             const server = args[1].toUpperCase();
+            console.log(server);
             
             if (code.length != 6) {
                 msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige code in!`));
