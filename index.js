@@ -280,22 +280,21 @@ bot.on("message", async msg => {
                 const c = msg.member.voice.channel;
                 await c.edit({ name: `${c.name} | ${code} - ${server}` });
                 msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
-                return;
-            }
-            
-            for (let i = 0; i < codes.length; i++) {
-                if (codes[i].channel.id != msg.member.voice.channel.id) {
-                   codes.push({
-                       "channel": msg.member.voice.channel, 
-                       "name": msg.member.voice.channel.name, 
-                    });
-                    const c = msg.member.voice.channel;
-                    await c.edit({ name: `${c.name} | ${code} - ${server}` });
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
-                } else {
-                    const c = msg.member.voice.channel;
-                    await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+            } else {
+                for (let i = 0; i < codes.length; i++) {
+                    if (codes[i].channel.id != msg.member.voice.channel.id) {
+                       codes.push({
+                           "channel": msg.member.voice.channel, 
+                           "name": msg.member.voice.channel.name, 
+                        });
+                        const c = msg.member.voice.channel;
+                        await c.edit({ name: `${c.name} | ${code} - ${server}` });
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                    } else {
+                        const c = msg.member.voice.channel;
+                        await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                    }
                 }
             }
         }
