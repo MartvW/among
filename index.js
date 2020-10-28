@@ -379,7 +379,7 @@ bot.on("message", async msg => {
                 .setDescription(`Reageer met een :white_check_mark: wanneer er een meeting is, reageer met een :x: als de meeting is afgelopen.\nDoe **${prefix}amongusstop** als je gaat stoppen.`)
                 .setColor(16426522)
                 .setTimestamp()
-                .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin op dit moment een game is gestart: ${msg.member.voice.channel.name}`)
+                .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin op dit moment een game is gestart: Crew ${amongus.length + 1}`)
 
             msg.channel.send({ embed: embed }).then(embedMesage => {
                 amongus.push({
@@ -417,7 +417,7 @@ bot.on("message", async msg => {
                         .setDescription(`De game is over, doe **${prefix}amongus** om een nieuw game te starten.`)
                         .setColor(16426522)
                         .setTimestamp()
-                        .setFooter(`De host was: ${amongus[i].user.username}\nHet kanaal was: ${amongus[i].channel.name}`)
+                        .setFooter(`De host was: ${amongus[i].user.username}\nHet kanaal was: ${amongus[i].name}`)
                     msg.channel.send({ embed: embed }).then(embedMesage => {
                         amongus[i].channel.edit({
                             userLimit: amongus[i].userlimit,
