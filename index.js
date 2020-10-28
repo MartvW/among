@@ -274,19 +274,19 @@ bot.on("message", async msg => {
             }
             
             if (codes.length === 0) {
-                codes.push({
-                    "channel": `${msg.member.voice.channel}`,
-                });
                 const c = msg.member.voice.channel;
+                codes.push({
+                    "channel": c,
+                });
                 await c.edit({ name: `${msg.member.voice.channel.name} | ${args[0]} - ${args[1]}` });
                 msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[0].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
             } else {
                 for (let i = 0; i < codes.length; i++) {
                     if (codes[i].channel.id != msg.member.voice.channel.id) {
-                        codes.push({
-                            "channel": `${msg.member.voice.channel}`,
-                        });
                         const c = msg.member.voice.channel;
+                        codes.push({
+                            "channel": c,
+                        });
                         await c.edit({ name: `${msg.member.voice.channel.name} | ${args[0]} - ${args[1]}` });
                         msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
                     } else {
@@ -318,7 +318,7 @@ bot.on("message", async msg => {
                     await c.edit({ name: `${codes[i].channel.name}` });  
                     msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${msg.member.voice.channel.name}*** heeft geen code meer! Doe ***${prefix}setcode <code>*** om de kanaal een code te geven!`));
                     codes.splice(codes.indexOf({
-                        "channel": `${msg.member.voice.channel}`,
+                        "channel": c,
                     }), 1);
                 }
             }
