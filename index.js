@@ -243,8 +243,9 @@ bot.on("message", async msg => {
             msg.channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
             const channel = bot.channels.cache.find(channel => channel.id === updateID);
             channel.send(`@here`);
-            channel.bulkDelete(1);
-            channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
+            channel.bulkDelete(1).then(m => {
+               channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
+            });
         }
         
         if (command === "resetcount" && msg.author.id === owner) {
