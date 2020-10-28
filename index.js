@@ -272,6 +272,17 @@ bot.on("message", async msg => {
                 msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel een code toevoegen! Doe ***${prefix}setcode <code>***!`));
                 return;
             }
+            
+            if (codes.length === 0) {
+                codes.push({
+                    "channel": msg.member.voice.channel,
+                });
+                const c = msg.member.voice.channel;
+                await c.edit({ name: `${msg.member.voice.channel.name} - ${args[0]}` });
+                msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
+                return;
+            }
+            
             for (let i = 0; i < codes.length; i++) {
                 if (codes[i].channel.id != msg.member.voice.channel.id) {
                     codes.push({
