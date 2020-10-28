@@ -279,7 +279,7 @@ bot.on("message", async msg => {
                 });
                 const c = msg.member.voice.channel;
                 await c.edit({ name: `${msg.member.voice.channel.name} - ${args[0]}` });
-                msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
+                msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[0].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
                 return;
             }
             
