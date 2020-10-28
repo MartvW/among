@@ -46,7 +46,7 @@ const embedLetOp = {
         },
         "title": "Help",
         "color": 15746887,
-        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefix}amongus**`,
+        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefix}amongus**\n- **${prefix}setcode**\n- **${prefix}resetcode**\n`,
         "fields": [
             {
                 "name": ".....................",
@@ -306,6 +306,32 @@ bot.on("message", async msg => {
                 }
             } else {
                 msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige server in! **NA** of **EU** of **AS**`));
+                return;
+            }
+        }
+        
+        if (command === "resetcode") {
+            if (!msg.member.voice.channel) {
+                msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten om dit command te gebruiken!`));
+                return;
+            }
+            if (codes.length === 0) {
+                msg.channel.send(createEmbed(`${msg.author.username}`,`Dit kanaal (${msg.member.voice.channel.name}) heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));   
+                return;
+            }
+            
+            for (let i = 0; i < codes.length; i++) {
+                if (codes[i].channel.id != msg.member.voice.channel.id) {
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`Dit kanaal (${msg.member.voice.channel.name}) heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));   
+                    return;
+                }
+                
+                const c = msg.member.voice.channel;
+                await c.edit({ name: codes[i].name });
+                codes.splice(codes.indexOf({
+                    "channel": msg.member.voice.channel,
+                }), 1);
+                msg.channel.send(createEmbed(`${msg.author.username}`,`Code succesvol verwijderd van **${msg.member.voice.channel.name}**!`));
                 return;
             }
         }
