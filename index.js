@@ -386,6 +386,7 @@ bot.on("message", async msg => {
                     "id": amongus.length,
                     "user": msg.author,
                     "channel": msg.member.voice.channel,
+                    "name": msg.member.voice.channel.name,
                     "bericht": embedMesage,
                     "meetingbezig": true,
                     "userlimit": msg.member.voice.channel.userLimit,
@@ -420,7 +421,7 @@ bot.on("message", async msg => {
                     msg.channel.send({ embed: embed }).then(embedMesage => {
                         amongus[i].channel.edit({
                             userLimit: amongus[i].userlimit,
-                            name: amongus[i].channel.name,
+                            name: amongus[i].name,
                         });
 
                         let channel = amongus[i].channel;
