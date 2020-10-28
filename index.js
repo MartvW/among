@@ -278,23 +278,22 @@ bot.on("message", async msg => {
                     "channel": msg.member.voice.channel,
                 });
                 const c = msg.member.voice.channel;
-                await c.edit({ name: `${msg.member.voice.channel.name} - ${args[0]}` });
+                await c.edit({ name: `${msg.member.voice.channel.name} | ${args[0]} - ${args[1]}` });
                 msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[0].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
-                return;
-            }
-            
-            for (let i = 0; i < codes.length; i++) {
-                if (codes[i].channel.id != msg.member.voice.channel.id) {
-                    codes.push({
-                        "channel": msg.member.voice.channel,
-                    });
-                    const c = msg.member.voice.channel;
-                    await c.edit({ name: `${msg.member.voice.channel.name} - ${args[0]}` });
-                    msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
-                } else {
-                    const c = msg.member.voice.channel;
-                    await c.edit({ name: `${codes[i].channel.name} - ${args[0]}` });
-                    msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
+            } else {
+                for (let i = 0; i < codes.length; i++) {
+                    if (codes[i].channel.id != msg.member.voice.channel.id) {
+                        codes.push({
+                            "channel": msg.member.voice.channel,
+                        });
+                        const c = msg.member.voice.channel;
+                        await c.edit({ name: `${msg.member.voice.channel.name} | ${args[0]} - ${args[1]}` });
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
+                    } else {
+                        const c = msg.member.voice.channel;
+                        await c.edit({ name: `${codes[i].channel.name} | ${args[0]} - ${args[1]}` });
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`Kanaal ***${codes[i].channel.name}*** is aangepast naar ***${msg.member.voice.channel.name}*** en de code is ***${args[0]}***`));
+                    }
                 }
             }
             
