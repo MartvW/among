@@ -73,6 +73,15 @@ function createEmbed(title, description) {
 }
 
 async function updateAdmin() {
+    const vandaag = Date.now();
+    const uur = vandaag.getHours();
+    const minuta = vandaag.getMinutes();
+    const seconda = vandaag.getSeconds();
+    
+    if (uur === 22) {
+        bot.destroy();   
+    }
+    
     const servers = await bot.guilds.cache.size;
     var totalSeconds = (bot.uptime / 1000);
     var botSeconds = Math.floor(totalSeconds);
@@ -166,10 +175,6 @@ bot.on("warn", async msg => {
             name: ``,
         }
     })
-});
-
-bot.on("rateLimit", async msg => {
-   console.log(msg); 
 });
 
 bot.on("guildCreate", async guild => {
