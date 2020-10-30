@@ -74,11 +74,11 @@ function createEmbed(title, description) {
 
 async function updateAdmin() {
     const vandaag = Date.now();
-    const uur = vandaag.getHours();
+    const uura = vandaag.getHours();
     const minuta = vandaag.getMinutes();
     const seconda = vandaag.getSeconds();
     
-    if (uur === 22) {
+    if (uura === 22) {
         bot.destroy();   
     }
     
