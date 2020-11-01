@@ -73,7 +73,7 @@ function createEmbed(title, description) {
 }
 
 async function updateAdmin() {
-    const vandaag = Date.now();
+    const vandaag = new Date();
     const uura = vandaag.getHours();
     const minuta = vandaag.getMinutes();
     const seconda = vandaag.getSeconds();
