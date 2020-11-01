@@ -211,7 +211,7 @@ bot.on("ready", async () => {
     console.log("");
 
     const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
-    console.log(channel.messages.size);
+    console.log(channel.messages);
     channel.bulkDelete(1);
     
     updateAdmin();
