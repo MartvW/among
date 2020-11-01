@@ -11,6 +11,7 @@ var botInfokanaal = "767432509980934154";
 var amongus = [];
 var codes = [];
 var aantalgames = 0;
+var aantalcodes = 0;
 var aantalcommands = 0;
 var adminMessage = "";
 
@@ -141,7 +142,7 @@ async function updateAdmin() {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotprefix: **${prefix}**\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${codes.length}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotprefix: **${prefix}**\nAantal commands: **${aantalcommands}**\nAantal servers: **${servers}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nAantal codes: **${codes.length}**\nTotaal aantal codes: **${aantalcodes}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
@@ -255,6 +256,7 @@ bot.on("message", async msg => {
         
         if (command === "resetcount" && msg.author.id === owner) {
             aantalgames = 0;   
+            aantalcodes = 0;
         }
         
         if (command === "reset" && msg.author.id === owner) {
@@ -301,6 +303,7 @@ bot.on("message", async msg => {
                     await c.setName(`${c.name} | ${code} - ${server}`);
 //                     await c.edit({ name: `${c.name} | ${code} - ${server}` });
                     msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                    aantalcodes += 1;
                 } else {
                     for (let i = 0; i < codes.length; i++) {
                         if (codes[i].channel.id != msg.member.voice.channel.id) {
@@ -317,6 +320,7 @@ bot.on("message", async msg => {
                             await c.setName(`${codes[i].name} | ${code} - ${server}`);
 //                             await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
                             msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                            aantalcodes += 1;
                         }
                     }
                 }
