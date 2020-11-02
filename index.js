@@ -78,6 +78,8 @@ async function updateAdmin(botbio) {
     const minuta = vandaag.getMinutes();
     const seconda = vandaag.getSeconds();
     
+
+    
     if (uura < 10) {
         uura = "0" + uura;   
     }
@@ -148,7 +150,7 @@ async function updateAdmin(botbio) {
     
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-        .setTitle(`Botinformatie - ${uura}:${minuta}:${seconda}`)
+        .setTitle(`Botinformatie - 10:04:04`)
         .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal servers: **${servers}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
         .setColor(16426522)
         .setTimestamp()
