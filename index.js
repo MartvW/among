@@ -247,6 +247,10 @@ bot.on("ready", async () => {
     
     resetBot();
     
+    var vandaag = new Date();
+    var uur = vandaag.getHours();
+    var minuten = vandaag.getMinutes();
+    
     bot.user.setPresence({
         status: 'online',
         activity: {
@@ -255,7 +259,26 @@ bot.on("ready", async () => {
     });
     
     setInterval(() => {
-        updateAdmin(activities_list[index]);
+        var status = [
+            `${prefix}help | Op ${servers} servers!`,
+            `${prefix}help | ${checkTime(uur)}:${checkTime(minuten)} uur`,
+            `${prefix}help | Gemaakt door Mart!`,
+        ];
+        var index = 0;
+        index += 1;
+        
+        if (index > status) {
+            index = 0;    
+        }
+        
+        bot.user.setPresence({
+            status: 'online',
+            activity: {
+                name: `${status[index]}`,
+            }
+        });
+        
+        updateAdmin(status[index]);
         // sets bot's activities to one of the phrases in the arraylist.
     }, 10000); // Runs this every 10 seconds.
 });
