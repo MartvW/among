@@ -88,7 +88,12 @@ async function resetBot() {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Reset Panel")
-        .setDescription(`Botstatus: ${status}\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\n\n⛔️ HARD RESET\n1️⃣ CODE RESET\n2️⃣ GAME RESET`)
+        .setDescription(`Botstatus: ${status}\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**`)
+        .addFields(
+            { name: `⛔️`, value: 'Hard reset.', inline: false },
+            { name: `1️⃣`, value: 'Code reset.', inline: false },
+            { name: `2️⃣`, value: 'Game reset.', inline: false },
+        )    
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
