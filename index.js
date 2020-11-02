@@ -95,7 +95,7 @@ async function resetBot() {
     
     const channel = bot.channels.cache.find(channel => channel.id === resetID);
     channel.send({ embed: embed }).then(embedMesage => {
-        channel.send("⛔️ HARD RESET, 1️⃣ GAME RESET, 2️⃣ CODE RESET");
+        channel.send("⛔️ HARD RESET, 1️⃣ CODE RESET, 2️⃣ GAME RESET");
         embedMesage.react('✅');
         resetMessage = embedMesage;
     });
