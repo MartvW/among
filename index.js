@@ -175,7 +175,7 @@ async function updateAdmin(botbio) {
     var resetEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Reset Panel")
-        .setDescription(`Aantal games: **${amongus.length}**\nAantal codes: **${codes.length}**\n\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\n\nHard reset: ⚙️\nCode reset: ⛏\nGame reset: 🛠`)
+        .setDescription(`Aantal games: **${amongus.length}**\nAantal codes: **${codes.length}**\n\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\n\nHard reset: ⚙️\nCode reset: ⛏\nGame reset: 🛠\nNOODSTOP: ⛔️`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
@@ -664,8 +664,27 @@ bot.on('messageReactionAdd', (reaction, user) => {
             }
             amongus = [];
             return;
-        } else {
+        } else if (reaction._emoji.name === "⛔️") {
             reaction.remove();
+            resetMessage.react(reaction._emoji.name);
+            for (let i = 0; i < amongus.length; i++) {
+               amongus[i].channel.edit({
+                    userLimit: amongus[i].userlimit,
+                });
+
+                let channel = amongus[i].channel;
+                for (let member of channel.members) {
+                    member[1].edit({ mute: false });
+                }
+            }
+            for (let i = 0; i < codes.length; i++) {
+                codes[i].channel.edit({
+                    name: codes[i].name,
+                });
+            }
+            codes = [];
+            amongus = [];
+            process.exit(0);
             return;
         }
     }
