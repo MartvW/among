@@ -262,7 +262,7 @@ bot.on("ready", async () => {
     setInterval(() => {
         var status = [
             `${prefix}help | Op ${servers} servers!`,
-            `${prefix}help | ${checkTime(uur)}:${checkTime(minuten)} uur`,
+            `${prefix}help | ${checkTime(uur+1)}:${checkTime(minuten)} uur`,
             `${prefix}help | Gemaakt door Mart!`,
         ];
         
