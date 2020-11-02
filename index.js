@@ -272,10 +272,6 @@ bot.on("message", async msg => {
                 }
             }
 
-            for (let i = 0; i < codes.length; i++) {
-                const c = codes[i].channel;
-                await c.setName(`${c[i].name}`);
-            }
             msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`))
             amongus = [];
         }
@@ -319,16 +315,16 @@ bot.on("message", async msg => {
                             });
                             const c = msg.member.voice.channel;
                             await c.setName(`${c.name} | ${code} - ${server}`);
+                            aantalcodes += 1;
 //                             await c.edit({ name: `${c.name} | ${code} - ${server}` });
-                            msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
                         } else {
                             const c = msg.member.voice.channel;
                             await c.setName(`${codes[i].name} | ${code} - ${server}`);
 //                             await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
-                            msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
                             aantalcodes += 1;
                         }
                     }
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
                 }
             } else {
                 msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige server in! **NA** of **EU** of **AS**`));
