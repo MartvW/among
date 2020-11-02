@@ -274,9 +274,10 @@ bot.on("ready", async () => {
             `${prefix}help | ${checkTime(uur+1)}:${checkTime(minuten)} uur`,
             `${prefix}help | Gemaakt door Mart!`,
             `${prefix}help | ${discordserver}`,
-            `${prefix}help | Among Us...`,
+            `${prefix}amongus | Start command!`,
             `${prefix}help | ${bot.user.tag}`,
             `${prefix}invite | Invite link!`,
+            `${prefix}map | Map commands!`,
         ];
         
         statusIndex += 1;
