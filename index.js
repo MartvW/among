@@ -274,6 +274,8 @@ bot.on("ready", async () => {
             index = 0;    
         }
         
+        console.log(index);
+        
         bot.user.setPresence({
             status: 'online',
             activity: {
