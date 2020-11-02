@@ -592,13 +592,13 @@ bot.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
     
     if (reaction.message.id === resetMessage.id) {
-        if (reaction._emoji.name === "⛔️") {
+        if (reaction._emoji.name === "⚙️") {
             reaction.remove();
             resetMessage.react(reaction._emoji.name);
             //hardreset
             
             return;
-        } else if (reaction._emoji.name === "1️⃣") {
+        } else if (reaction._emoji.name === "⛏") {
             reaction.remove();
             resetMessage.react(reaction._emoji.name);
             //code reset
@@ -609,7 +609,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             }
             codes = [];
             return;
-        } else if (reaction._emoji.name === "2️⃣") {
+        } else if (reaction._emoji.name === "🛠") {
             reaction.remove();
             resetMessage.react(reaction._emoji.name);
             //game reset
