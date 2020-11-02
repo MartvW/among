@@ -682,7 +682,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             }
             codes = [];
             amongus = [];
-            process.exit(0);
+            process.exit(1);
             return;
         }
     }
