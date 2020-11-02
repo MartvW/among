@@ -629,7 +629,6 @@ bot.on("message", async msg => {
 
 bot.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
-    console.log(reaction.message.id, resetMessage.id);
     if (reaction.message.id === resetMessage.id) {
         console.log(reaction._emoji.name);
         if (reaction._emoji.name === "⚙️") {
@@ -684,25 +683,25 @@ bot.on('messageReactionAdd', (reaction, user) => {
         } else if (reaction._emoji.name === "🔴") {
             reaction.remove();
             resetMessage.react(reaction._emoji.name);
-//             for (let i = 0; i < amongus.length; i++) {
-//                amongus[i].channel.edit({
-//                     userLimit: amongus[i].userlimit,
-//                 });
+            for (let i = 0; i < amongus.length; i++) {
+               amongus[i].channel.edit({
+                    userLimit: amongus[i].userlimit,
+                });
 
-//                 let channel = amongus[i].channel;
-//                 for (let member of channel.members) {
-//                     member[1].edit({ mute: false });
-//                 }
-//             }
-//             for (let i = 0; i < codes.length; i++) {
-//                 codes[i].channel.edit({
-//                     name: codes[i].name,
-//                 });
-//             }
-//             codes = [];
-//             amongus = [];
-//             slot = !slot;
-//             return;
+                let channel = amongus[i].channel;
+                for (let member of channel.members) {
+                    member[1].edit({ mute: false });
+                }
+            }
+            for (let i = 0; i < codes.length; i++) {
+                codes[i].channel.edit({
+                    name: codes[i].name,
+                });
+            }
+            codes = [];
+            amongus = [];
+            slot = !slot;
+            return;
         } else {
             reaction.remove();
             return;
