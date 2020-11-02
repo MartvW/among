@@ -241,17 +241,13 @@ bot.on("ready", async () => {
     const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
     
-    updateAdmin("-");
+    updateAdmin(`${prefix}help | Op ${servers} servers!`);
  
     const channel2 = await bot.channels.cache.find(channel => channel.id === resetID);
     channel2.bulkDelete(1);
     
     resetBot();
-    
-    var vandaag = new Date();
-    var uur = vandaag.getHours();
-    var minuten = vandaag.getMinutes();
-    
+
     bot.user.setPresence({
         status: 'online',
         activity: {
@@ -260,6 +256,10 @@ bot.on("ready", async () => {
     });
     
     setInterval(() => {
+        var vandaag = new Date();
+        var uur = vandaag.getHours();
+        var minuten = vandaag.getMinutes();
+
         var status = [
             `${prefix}help | Op ${servers} servers!`,
             `${prefix}help | ${checkTime(uur+1)}:${checkTime(minuten)} uur`,
