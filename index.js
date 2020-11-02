@@ -595,7 +595,26 @@ bot.on('messageReactionAdd', (reaction, user) => {
             reaction.remove();
             resetMessage.react(reaction._emoji.name);
             //hardreset
-            
+            for (let i = 0; i < amongus.length; i++) {
+               amongus[i].channel.edit({
+                    userLimit: amongus[i].userlimit,
+                });
+
+                let channel = amongus[i].channel;
+                for (let member of channel.members) {
+                    member[1].edit({ mute: false });
+                }
+            }
+            amongus = [];
+            for (let i = 0; i < codes.length; i++) {
+                codes[i].channel.edit({
+                    name: codes[i].name,
+                });
+            }
+            codes = [];
+            bot.destroy().then(() => {
+                bot.login(token);
+            });
             return;
         } else if (reaction._emoji.name === "⛏") {
             reaction.remove();
