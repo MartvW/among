@@ -187,7 +187,7 @@ bot.on("guildCreate", async guild => {
             name: `${prefix}help | Op ${servers} servers!`,
         }
     })
-//     guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: https://discord.gg/yxHZ8hK\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
+    guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: https://discord.gg/yxHZ8hK\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
     guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan deze server!\nAl mijn commands kan je zien via **${prefix}help**\nAls je vragen hebt kan je mijn help-server joinen: https://discord.gg/yxHZ8hK\n\nVoor de mensen die mij willen inviten doe **${prefix}link** om de invite-link te krijgen!`));
 });
 
@@ -200,7 +200,7 @@ bot.on("guildDelete", async guild => {
             name: `${prefix}help | Op ${servers} servers!`,
         }
     })
-//     guild.owner.send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: https://discord.gg/yxHZ8hK\n\nMet vriendelijke groet,\nAmong Us`));
+    guild.owner.send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: https://discord.gg/yxHZ8hK\n\nMet vriendelijke groet,\nAmong Us`));
 });
 
 bot.on("ready", async () => {
@@ -211,6 +211,7 @@ bot.on("ready", async () => {
     console.log("");
 
     const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
+    console.log(channel.messages.cache.size);
     channel.bulkDelete(1);
     
     updateAdmin();
@@ -272,13 +273,11 @@ bot.on("message", async msg => {
             }
 
             for (let i = 0; i < codes.length; i++) {
-                codes[i].channel.edit({
-                    name: codes[i].name,
-                });
+                const c = codes[i].channel;
+                await c.setName(`${c[i].name}`);
             }
             msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`))
             amongus = [];
-            codes = [];
         }
         
         if (command === "setcode") {
@@ -321,15 +320,15 @@ bot.on("message", async msg => {
                             const c = msg.member.voice.channel;
                             await c.setName(`${c.name} | ${code} - ${server}`);
 //                             await c.edit({ name: `${c.name} | ${code} - ${server}` });
-                            aantalcodes += 1
+                            msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
                         } else {
                             const c = msg.member.voice.channel;
                             await c.setName(`${codes[i].name} | ${code} - ${server}`);
 //                             await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
+                            msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
                             aantalcodes += 1;
                         }
                     }
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
                 }
             } else {
                 msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige server in! **NA** of **EU** of **AS**`));
