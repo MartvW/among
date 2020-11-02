@@ -324,13 +324,13 @@ bot.on("message", async msg => {
         }
         
         if (command === "setcode") {
-            if (args.length !== 2) {
-                msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel een code en de server toevoegen! ***${prefix}setcode <code> <server>***`));
+            if (!msg.member.voice.channel) {
+                msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`));
                 return;
             }
             
-            if (!msg.member.voice.channel) {
-                msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`));
+            if (args.length !== 2) {
+                msg.channel.send(createEmbed(`${msg.author.username}`,`Je moet wel een code en de server toevoegen! ***${prefix}setcode <code> <server>***`));
                 return;
             }
             
