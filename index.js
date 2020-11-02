@@ -251,15 +251,19 @@ bot.on("ready", async () => {
         var vandaag = new Date();
     
         const activities_list = [
-            `${prefix}help`,
             `${prefix}help | Op ${servers} servers!`,
             `${prefix}help | Voor de commands!`, 
             `${prefix}help | Gemaakt door Mart!`, 
-            `${prefix}help | ${checkTime(vandaag.getHours()+1)}:${checkTime(vandaag.getMinutes())}`, 
+            `${prefix}help | ${checkTime(vandaag.getHours()+1)}:${checkTime(vandaag.getMinutes())} uur`, 
             `${prefix}help | ${discordserver}`, 
         ];
         
-        const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
+        var index = 0;
+        index += 1;
+        if (index > activities_list.length) {
+           index = 0;
+        }
+        // generates a random number between 1 and the length of the activities array list (in this case 5).
         bot.user.setActivity(activities_list[index]);
         updateAdmin(activities_list[index]);
         // sets bot's activities to one of the phrases in the arraylist.
