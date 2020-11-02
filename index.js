@@ -693,13 +693,13 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     member[1].edit({ mute: false });
                 }
             }
+            amongus = [];
             for (let i = 0; i < codes.length; i++) {
                 codes[i].channel.edit({
                     name: codes[i].name,
                 });
             }
             codes = [];
-            amongus = [];
             slot = !slot;
             return;
         } else {
