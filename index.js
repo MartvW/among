@@ -264,7 +264,12 @@ bot.on("ready", async () => {
            index = 0;
         }
         // generates a random number between 1 and the length of the activities array list (in this case 5).
-        bot.user.setActivity(activities_list[index]);
+        bot.user.setPresence({
+            status: 'online',
+            activity: {
+                name: `${activities_list[index]}`,
+            }
+        });
         updateAdmin(activities_list[index]);
         // sets bot's activities to one of the phrases in the arraylist.
     }, 10000); // Runs this every 10 seconds.
