@@ -707,40 +707,40 @@ bot.on('messageReactionAdd', (reaction, user) => {
             reaction.remove();
             return;
         }
-    }
-    
-    for (let i = 0; i < amongus.length; i++) {
-        if (amongus[i].user != user) {
-            reaction.remove();
-            amongus[i].bericht.react(reaction._emoji.name);
-            return;
-        }
-        if (user.id != amongus[i].user.id) {
-            reaction.remove();
-            amongus[i].bericht.react(reaction._emoji.name);
-            return;
-        }
+    } else {
+        for (let i = 0; i < amongus.length; i++) {
+            if (amongus[i].user != user) {
+                reaction.remove();
+                amongus[i].bericht.react(reaction._emoji.name);
+                return;
+            }
+            if (user.id != amongus[i].user.id) {
+                reaction.remove();
+                amongus[i].bericht.react(reaction._emoji.name);
+                return;
+            }
 
-        if (reaction.message.id === amongus[i].bericht.id) {
-            if (reaction._emoji.name === "✅") {
-                //unmute iedereen
-                reaction.remove();
-                amongus[i].bericht.react(reaction._emoji.name);
-                amongus[i].meetingbezig = true;
-                let channel = amongus[i].channel;
-                for (let member of channel.members) {
-                    member[1].voice.setSelfMute(false);
-//                     member[1].edit({ mute: false });
-                }
-            } else if (reaction._emoji.name === "❌") {
-                //mute iedereen
-                reaction.remove();
-                amongus[i].bericht.react(reaction._emoji.name);
-                amongus[i].meetingbezig = false;
-                let channel = amongus[i].channel;
-                for (let member of channel.members) {
-                    member[1].voice.setSelfMute(true);
-//                     member[1].edit({ mute: true });
+            if (reaction.message.id === amongus[i].bericht.id) {
+                if (reaction._emoji.name === "✅") {
+                    //unmute iedereen
+                    reaction.remove();
+                    amongus[i].bericht.react(reaction._emoji.name);
+                    amongus[i].meetingbezig = true;
+                    let channel = amongus[i].channel;
+                    for (let member of channel.members) {
+    //                     member[1].voice.setSelfMute(false);
+                        member[1].edit({ mute: false });
+                    }
+                } else if (reaction._emoji.name === "❌") {
+                    //mute iedereen
+                    reaction.remove();
+                    amongus[i].bericht.react(reaction._emoji.name);
+                    amongus[i].meetingbezig = false;
+                    let channel = amongus[i].channel;
+                    for (let member of channel.members) {
+    //                     member[1].voice.setSelfMute(true);
+                        member[1].edit({ mute: true });
+                    }
                 }
             }
         }
