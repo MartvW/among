@@ -211,7 +211,6 @@ bot.on("ready", async () => {
     console.log("");
 
     const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
-    console.log(channel.messages.cache.size);
     channel.bulkDelete(1);
     
     updateAdmin();
@@ -308,6 +307,7 @@ bot.on("message", async msg => {
                     });
                     const c = msg.member.voice.channel;
                     await c.setName(`${c.name} | ${code} - ${server}`);
+                    console.log("test");
 //                     await c.edit({ name: `${c.name} | ${code} - ${server}` });
                     msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
                     aantalcodes += 1;
