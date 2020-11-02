@@ -313,9 +313,9 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async msg => {
+    if (msg.author.bot) return;
     laatstebericht = `${msg.guild.name} > ${msg.channel.name} - @${msg.author.tag}: ${msg.content}`;
     if (!msg.content.startsWith(prefix)) return;
-    if (msg.author.bot) return;
     if (msg.guild === null) {
         msg.reply(createEmbed(`${msg.author.username}`, `Je kan geen privéberichten naar mij sturen...`));
         return;
