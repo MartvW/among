@@ -248,7 +248,7 @@ bot.on("ready", async () => {
     updateAdmin("-");
  
     const channel2 = await bot.channels.cache.find(channel => channel.id === resetID);
-    channel2.bulkDelete(2);
+    channel2.bulkDelete(1);
     
     resetBot();
     
