@@ -629,7 +629,7 @@ bot.on("message", async msg => {
 
 bot.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
-    
+    console.log(reaction.message.id, resetMessage.id);
     if (reaction.message.id === resetMessage.id) {
         console.log(reaction._emoji.name);
         if (reaction._emoji.name === "⚙️") {
