@@ -612,7 +612,8 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 });
             }
             codes = [];
-            process.exit(0);
+            bot.destroy();
+            bot.login(token);
             return;
         } else if (reaction._emoji.name === "⛏") {
             reaction.remove();
