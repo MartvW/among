@@ -204,17 +204,25 @@ bot.on("guildDelete", async guild => {
     guild.owner.send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: ${discordserver}\n\nMet vriendelijke groet,\nAmong Us`));
 });
 
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+
+function checkTimeH(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
 
 bot.on("ready", async () => {
     const servers = await bot.guilds.cache.size;
     var vandaag = new Date();
     
-    
     const activities_list = [
         `${prefix}help | Op ${servers} servers!`,
         `${prefix}help | Voor de commands!`, 
         `${prefix}help | Gemaakt door Mart!`, 
-        `${prefix}help | ${vandaag.getHours()}:${vandaag.getMinutes}`, 
+        `${prefix}help | ${checkTimeH(vandaag.getHours())}:${checkTime(vandaag.getMinutes())}`, 
         `${prefix}help | ${discordserver}`, 
     ];
     
@@ -231,7 +239,7 @@ bot.on("ready", async () => {
     setInterval(() => {
         const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
         bot.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
-    }, 10000); // Runs this every 10 seconds.
+    }, 5000); // Runs this every 5 seconds.
 });
 
 bot.on("message", async msg => {
