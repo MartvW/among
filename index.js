@@ -88,18 +88,17 @@ async function resetBot() {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Reset Panel")
-        .setDescription(`Botstatus: ${status}\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**`)
+        .setDescription(`Botstatus: ${status}\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\n\n⛔️ HARD RESET\n1️⃣ CODE RESET\n2️⃣ GAME RESET`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
     
     const channel = bot.channels.cache.find(channel => channel.id === resetID);
-    channel.send(embed).then(m => {
-        channel.send("- ⛔️ voor een hardreset!\n- 1️⃣ voor codes reset!\n- 2️⃣ voor games reset!");
-        m.react('⛔️');
-        m.react('1️⃣');
-        m.react('2️⃣');
-        resetMessage = m;
+    channel.send(embed).then(message => {
+        message.react('⛔️');
+        message.react('1️⃣');
+        message.react('2️⃣');
+        resetMessage = message;
     });
 }
 
