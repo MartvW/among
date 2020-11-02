@@ -1,8 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-setInterval(updateAdmin, 10000);
-
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
@@ -74,7 +72,7 @@ function createEmbed(title, description) {
     return embed;
 }
 
-async function updateAdmin() {
+async function updateAdmin(botbio) {
     const vandaag = new Date();
     const uura = vandaag.getHours();
     const minuta = vandaag.getMinutes();
@@ -143,7 +141,7 @@ async function updateAdmin() {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotprefix: **${prefix}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal servers: **${servers}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal servers: **${servers}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
@@ -221,8 +219,6 @@ bot.on("ready", async () => {
     console.log(channel.messages.cache.size);
     channel.bulkDelete(1);
     
-    updateAdmin();
-
     setInterval(() => {
         var vandaag = new Date();
     
@@ -235,8 +231,11 @@ bot.on("ready", async () => {
             `${prefix}help | ${discordserver}`, 
         ];
         const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
-        bot.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
-    }, 5000); // Runs this every 5 seconds.
+        bot.user.setActivity(activities_list[index]);
+        updateAdmin(activities_list[index]);
+        // sets bot's activities to one of the phrases in the arraylist.
+    }, 10000); // Runs this every 10 seconds.
+    
 });
 
 bot.on("message", async msg => {
