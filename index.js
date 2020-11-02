@@ -182,7 +182,7 @@ async function updateAdmin(botbio) {
     var adminEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nLaatste command: **${laatstecommand}**\nLaatste bericht: **${laatstebericht}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal servers: **${servers}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nLaatste command: **${laatstecommand}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal servers: **${servers}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
@@ -324,7 +324,7 @@ bot.on("message", async msg => {
     const args = msg.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
     
-    laatstecommand = `${msg.guild.name} > ${msg.channel.name} - @${msg.author.tag}: ${msg.content}`;
+    laatstecommand = `@${msg.author.username}: ${msg.content}`;
     
     if (!slot) {
         aantalcommands++;
