@@ -702,6 +702,9 @@ bot.on('messageReactionAdd', (reaction, user) => {
             amongus = [];
             slot = !slot;
             return;
+        } else {
+            reaction.remove();
+            return;
         }
     }
     
