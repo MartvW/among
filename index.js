@@ -311,7 +311,6 @@ bot.on("message", async msg => {
 //                     await c.edit({ name: `${c.name} | ${code} - ${server}` });
                     msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
                     aantalcodes += 1;
-                    return;
                 } else {
                     for (let i = 0; i < codes.length; i++) {
                         if (codes[i].channel.id != msg.member.voice.channel.id) {
