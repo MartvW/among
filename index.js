@@ -163,8 +163,6 @@ async function updateAdmin(botbio) {
         status = "⚫️";
     }
     
-    
-    
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
@@ -181,9 +179,7 @@ async function updateAdmin(botbio) {
     } else {
         adminMessage.edit(embed);
     }
-
 }
-
 
 bot.on("error", async msg => {
     console.error(msg);
@@ -237,7 +233,6 @@ function checkTime(i) {
 bot.on("ready", async () => {
     const servers = await bot.guilds.cache.size;
     
-    
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers.`);
     console.log("");
@@ -263,12 +258,12 @@ bot.on("ready", async () => {
             `${prefix}help | ${checkTime(vandaag.getHours()+1)}:${checkTime(vandaag.getMinutes())}`, 
             `${prefix}help | ${discordserver}`, 
         ];
+        
         const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
         bot.user.setActivity(activities_list[index]);
         updateAdmin(activities_list[index]);
         // sets bot's activities to one of the phrases in the arraylist.
     }, 10000); // Runs this every 10 seconds.
-    
 });
 
 bot.on("message", async msg => {
@@ -550,11 +545,6 @@ bot.on("message", async msg => {
         }
 
         if (command === "amongusstop") {
-//             if (!msg.member.voice.channel) {
-//                 msg.channel.send(createEmbed(`${msg.author.username}`, "Je moet het kanaal joinen waarin je dit command hebt gezegd!"));
-//                 return;
-//             }
-            
             for (let i = 0; i < amongus.length; i++) {
                 if (amongus[i].user.id === msg.author.id) {
                     var embed = new Discord.MessageEmbed()
@@ -645,6 +635,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             return;
         }
     }
+    
     for (let i = 0; i < amongus.length; i++) {
         if (amongus[i].user != user) {
             reaction.remove();
@@ -686,9 +677,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
 bot.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.channelID;
     let oldUserChannel = oldMember.channelID;
+    
     if (newUserChannel === oldUserChannel) { 
         return;
     }
+    
     for (let i = 0; i < amongus.length; i++) {
         if (newUserChannel === amongus[i].channel.id) {
             //join
@@ -704,6 +697,6 @@ bot.on('voiceStateUpdate', (oldMember, newMember) => {
             }
         }
     }
-})
+});
 
 bot.login(token);
