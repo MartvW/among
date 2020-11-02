@@ -165,6 +165,7 @@ async function updateAdmin(botbio) {
     }
     
     
+    
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
@@ -246,6 +247,8 @@ bot.on("ready", async () => {
     channel.bulkDelete(1);
     
     updateAdmin("-");
+ 
+    resetBot();
     
     setInterval(() => {
         var vandaag = new Date();
