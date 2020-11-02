@@ -99,11 +99,11 @@ async function resetBot() {
         .setFooter(`${bot.user.tag}`)
     
     const channel = bot.channels.cache.find(channel => channel.id === resetID);
-    channel.send(embed).then(message => {
-        message.react('⛔️');
-        message.react('1️⃣');
-        message.react('2️⃣');
-        resetMessage = message;
+    channel.send({ embed: embed }).then(embedMesage => {
+        embedMesage.react('⛔️');
+        embedMesage.react('1️⃣');
+        embedMesage.react('2️⃣');
+        resetMessage = embedMesage;
     });
 }
 
