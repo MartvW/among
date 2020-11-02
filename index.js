@@ -12,6 +12,7 @@ var amongus = [];
 var codes = [];
 var aantalgames = 0;
 var aantalcodes = 0;
+var statusIndex = 0;
 var aantalcommands = 0;
 var adminMessage = "";
 var resetMessage = "";
@@ -265,25 +266,20 @@ bot.on("ready", async () => {
             `${prefix}help | Gemaakt door Mart!`,
         ];
         
-        console.log(status.length);
+        statusIndex += 1;
         
-        var index = 0;
-        index += 1;
-        
-        if (index > status.length) {
-            index = 0;    
+        if (statusIndex > status.length) {
+            statusIndex = 0;    
         }
-        
-        console.log(index);
         
         bot.user.setPresence({
             status: 'online',
             activity: {
-                name: `${status[index]}`,
+                name: `${status[statusIndex]}`,
             }
         });
         
-        updateAdmin(status[index]);
+        updateAdmin(status[statusIndex]);
         // sets bot's activities to one of the phrases in the arraylist.
     }, 10000); // Runs this every 10 seconds.
 });
