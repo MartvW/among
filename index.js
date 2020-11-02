@@ -272,8 +272,7 @@ bot.on("message", async msg => {
             }
 
             for (let i = 0; i < codes.length; i++) {
-                const c = codes[i].channel;
-                await c.setName(`${c.name}`);
+                codes[i].channel.setName(`${codes[i].name}`);
             }
             msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`))
             amongus = [];
