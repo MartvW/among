@@ -324,7 +324,7 @@ bot.on("message", async msg => {
     const args = msg.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
     
-    laatstecommand = `${msg.content} ($msg.author.username})`;
+    laatstecommand = `${msg.guild.name} > ${msg.channel.name} - @${msg.author.tag}: ${msg.content}`;
     
     if (!slot) {
         aantalcommands++;
