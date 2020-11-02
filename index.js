@@ -62,9 +62,6 @@ const embedLetOp = {
     }
 }
 
-//ROOD: 15746887
-//ORANJE: 16426522
-
 function createEmbed(title, description) {
     var embed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
