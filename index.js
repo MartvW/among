@@ -211,15 +211,7 @@ function checkTime(i) {
 
 bot.on("ready", async () => {
     const servers = await bot.guilds.cache.size;
-    var vandaag = new Date();
     
-    const activities_list = [
-        `${prefix}help | Op ${servers} servers!`,
-        `${prefix}help | Voor de commands!`, 
-        `${prefix}help | Gemaakt door Mart!`, 
-        `${prefix}help | ${checkTime(vandaag.getHours()+1)}:${checkTime(vandaag.getMinutes())}`, 
-        `${prefix}help | ${discordserver}`, 
-    ];
     
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers.`);
@@ -232,6 +224,16 @@ bot.on("ready", async () => {
     updateAdmin();
 
     setInterval(() => {
+        var vandaag = new Date();
+    
+        const activities_list = [
+            `${prefix}help`,
+            `${prefix}help | Op ${servers} servers!`,
+            `${prefix}help | Voor de commands!`, 
+            `${prefix}help | Gemaakt door Mart!`, 
+            `${prefix}help | ${checkTime(vandaag.getHours()+1)}:${checkTime(vandaag.getMinutes())}`, 
+            `${prefix}help | ${discordserver}`, 
+        ];
         const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
         bot.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
     }, 5000); // Runs this every 5 seconds.
