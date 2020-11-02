@@ -209,11 +209,6 @@ function checkTime(i) {
   return i;
 }
 
-function checkTimeH(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-  return i;
-}
-
 bot.on("ready", async () => {
     const servers = await bot.guilds.cache.size;
     var vandaag = new Date();
@@ -222,7 +217,7 @@ bot.on("ready", async () => {
         `${prefix}help | Op ${servers} servers!`,
         `${prefix}help | Voor de commands!`, 
         `${prefix}help | Gemaakt door Mart!`, 
-        `${prefix}help | ${checkTimeH(vandaag.getHours())}:${checkTime(vandaag.getMinutes())}`, 
+        `${prefix}help | ${checkTime(vandaag.getHours()+1)}:${checkTime(vandaag.getMinutes())}`, 
         `${prefix}help | ${discordserver}`, 
     ];
     
