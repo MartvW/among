@@ -218,6 +218,8 @@ bot.on("ready", async () => {
     const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
     
+    updateAdmin("-");
+    
     setInterval(() => {
         var vandaag = new Date();
     
