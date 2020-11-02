@@ -268,18 +268,18 @@ bot.on("ready", async () => {
         
         statusIndex += 1;
         
-        if (statusIndex > status.length) {
+        if (statusIndex > status.length-1) {
             statusIndex = 0;    
         }
         
         bot.user.setPresence({
             status: 'online',
             activity: {
-                name: `${status[statusIndex-1]}`,
+                name: `${status[statusIndex]}`,
             }
         });
         
-        updateAdmin(status[statusIndex-1]);
+        updateAdmin(status[statusIndex]);
         // sets bot's activities to one of the phrases in the arraylist.
     }, 10000); // Runs this every 10 seconds.
 });
