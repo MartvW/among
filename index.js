@@ -264,6 +264,7 @@ bot.on("ready", async () => {
             `${prefix}help | Op ${servers} servers!`,
             `${prefix}help | ${checkTime(uur+1)}:${checkTime(minuten)} uur`,
             `${prefix}help | Gemaakt door Mart!`,
+            `${prefix}help | ${discordserver}`,
         ];
         
         statusIndex += 1;
