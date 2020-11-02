@@ -5,6 +5,7 @@ var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
 var updateID = "766310034871025744";
+var resetID = "772715139563782154";
 var botInfokanaal = "767432509980934154";
 var discordserver = "https://discord.gg/yxHZ8hK";
 var amongus = [];
@@ -13,6 +14,7 @@ var aantalgames = 0;
 var aantalcodes = 0;
 var aantalcommands = 0;
 var adminMessage = "";
+var resetMessage = "";
 
 function helpEmbed() { 
     var embedHelp = new Discord.MessageEmbed()
@@ -70,6 +72,35 @@ function createEmbed(title, description) {
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
     return embed;
+}
+
+async function resetBot() {
+    var status = "";
+    if (bot.user.presence.status === "online") {
+        status = "🟢";
+    } else if (bot.user.presence.status === "offline") {
+        status = "🔴";
+    } else if (bot.user.presence.status === "idle") {
+        status = "🟠";
+    } else if (bot.user.presence.status === "invisible" || bot.user.presence.status === "dnd") {
+        status = "⚫️";
+    }
+    var embed = new Discord.MessageEmbed()
+        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+        .setTitle("Reset Panel")
+        .setDescription(`Botstatus: ${status}\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**`)
+        .setColor(16426522)
+        .setTimestamp()
+        .setFooter(`${bot.user.tag}`)
+    
+    const channel = bot.channels.cache.find(channel => channel.id === resetID);
+    channel.send(embed).then(m => {
+        channel.send("- ⛔️ voor een hardreset!\n- 1️⃣ voor codes reset!\n- 2️⃣ voor games reset!");
+        m.react('⛔️');
+        m.react('1️⃣');
+        m.react('2️⃣');
+        resetMessage = m;
+    });
 }
 
 async function updateAdmin(botbio) {
@@ -553,6 +584,46 @@ bot.on("message", async msg => {
 
 bot.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
+    
+    if (reaction.message.id === resetMessage.id) {
+        if (reaction._emoji.name === "⛔️") {
+            reaction.remove();
+            resetMessage.react(reaction._emoji.name);
+            //hardreset
+            
+            return;
+        } else if (reaction._emoji.name === "1️⃣") {
+            reaction.remove();
+            resetMessage.react(reaction._emoji.name);
+            //code reset
+            for (let i = 0; i < codes.length; i++) {
+                codes[i].channel.edit({
+                    name: codes[i].name,
+                });
+            }
+            codes = [];
+            return;
+        } else if (reaction._emoji.name === "2️⃣") {
+            reaction.remove();
+            resetMessage.react(reaction._emoji.name);
+            //game reset
+            for (let i = 0; i < amongus.length; i++) {
+               amongus[i].channel.edit({
+                    userLimit: amongus[i].userlimit,
+                });
+
+                let channel = amongus[i].channel;
+                for (let member of channel.members) {
+                    member[1].edit({ mute: false });
+                }
+            }
+            amongus = [];
+            return;
+        } else {
+            reaction.remove();
+            return;
+        }
+    }
     for (let i = 0; i < amongus.length; i++) {
         if (amongus[i].user != user) {
             reaction.remove();
