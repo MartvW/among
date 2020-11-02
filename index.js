@@ -270,8 +270,13 @@ bot.on("message", async msg => {
                 for (let member of channel.members) {
                     member[1].edit({ mute: false });
                 }
-                msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`))
             }
+
+            for (let i = 0; i < codes.length; i++) {
+                const c = codes[i].channel;
+                await c.setName(`${c[i].name}`);
+            }
+            msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`))
             amongus = [];
         }
         
@@ -347,7 +352,7 @@ bot.on("message", async msg => {
                     return;
                 }
                 
-                const c = msg.member.voice.channel;
+                const c = codes[i].channel;
                 await c.setName(`${codes[i].name}`);
 //                 await c.edit({ name: codes[i].name });
                 codes.splice(codes.indexOf({
