@@ -275,11 +275,11 @@ bot.on("ready", async () => {
         bot.user.setPresence({
             status: 'online',
             activity: {
-                name: `${status[statusIndex]}`,
+                name: `${status[statusIndex-1]}`,
             }
         });
         
-        updateAdmin(status[statusIndex]);
+        updateAdmin(status[statusIndex-1]);
         // sets bot's activities to one of the phrases in the arraylist.
     }, 10000); // Runs this every 10 seconds.
 });
