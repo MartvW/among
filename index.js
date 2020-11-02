@@ -30,7 +30,7 @@ function helpEmbed() {
         { name: `${prefix}map`, value: 'Om het lijstje van alle mappen te zien.', inline: false },
         { name: `${prefix}polus`, value: 'Om de kaart te zien van Polus.', inline: false },
         { name: `${prefix}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: false },
-        { name: `${prefix}mora`, value: 'Om de kaart te zien van Mora.', inline: false },
+        { name: `${prefix}mira`, value: 'Om de kaart te zien van Mora.', inline: false },
         { name: `${prefix}setcode`, value: 'Om de code in te stellen.', inline: false },
         { name: `${prefix}resetcode`, value: 'Om de code te resetten.', inline: false },
     )
@@ -360,7 +360,7 @@ bot.on("message", async msg => {
         }
         
         if (command === "map") {
-            msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld**\n-**Polus**\n-**Mora**\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
+            msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus**(${prefix}polus)\n-**Mira**(${prefix}mira)\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
         }
         
         if (command === "skeld") {
@@ -387,11 +387,11 @@ bot.on("message", async msg => {
             msg.channel.send(embed);
         }
         
-        if (command === "mora") {
+        if (command === "mira") {
              var embed = new Discord.MessageEmbed()
                 .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                 .setTitle(`${msg.author.username}`)
-                .setDescription(`Map: **Mora**`)
+                .setDescription(`Map: **Mira**`)
                 .setColor(16426522)
                 .setTimestamp()
                 .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397010222972938/latest.png`)
