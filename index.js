@@ -174,7 +174,7 @@ async function updateAdmin(botbio) {
     var resetEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Reset Panel")
-        .setDescription(`Aantal games: **${amongus.length}**\nAantal codes: **${codes.length}**\n\nHard reset: ⚙️\nCode reset: ⛏\nGame reset: 🛠`)
+        .setDescription(`Aantal games: **${amongus.length}**\nAantal codes: **${codes.length}**\n\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\n\nHard reset: ⚙️\nCode reset: ⛏\nGame reset: 🛠`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
