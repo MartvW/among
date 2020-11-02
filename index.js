@@ -264,10 +264,13 @@ bot.on("ready", async () => {
             `${prefix}help | ${checkTime(uur)}:${checkTime(minuten)} uur`,
             `${prefix}help | Gemaakt door Mart!`,
         ];
+        
+        console.log(status.length);
+        
         var index = 0;
         index += 1;
         
-        if (index > status) {
+        if (index > status.length) {
             index = 0;    
         }
         
