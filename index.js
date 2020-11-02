@@ -164,21 +164,29 @@ async function updateAdmin(botbio) {
         status = "⚫️";
     }
     
-    var embed = new Discord.MessageEmbed()
+    var adminEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
         .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal servers: **${servers}**\nAantal games: **${amongus.length}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
+    var resetEmbed = new Discord.MessageEmbed()
+        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+        .setTitle("Reset Panel")
+        .setDescription(`Aantal games: **${amongus.length}**\nAantal codes: **${codes.length}**\nHard reset: ⚙️\nCode reset: ⛏\nGame reset: 🛠`)
+        .setColor(16426522)
+        .setTimestamp()
+        .setFooter(`${bot.user.tag}`)
 
     if (adminMessage === "") {
         const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
-        channel.send(embed).then(m => {
+        channel.send(adminEmbed).then(m => {
             adminMessage = m;
         });
     } else {
-        adminMessage.edit(embed);
+        adminMessage.edit(adminEmbed);
+        resetMessage.edit(resetEmbed);
     }
 }
 
