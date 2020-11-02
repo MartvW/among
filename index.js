@@ -8,6 +8,7 @@ var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
 var updateID = "766310034871025744";
 var botInfokanaal = "767432509980934154";
+var discordserver = "https://discord.gg/yxHZ8hK";
 var amongus = [];
 var codes = [];
 var aantalgames = 0;
@@ -53,7 +54,7 @@ const embedLetOp = {
         "fields": [
             {
                 "name": ".....................",
-                "value": "Hiermee kan je de help-server joinen: https://discord.gg/sjw7ZAb"
+                "value": `Hiermee kan je de help-server joinen: ${discordserver}`
             }
         ]
     }
@@ -187,8 +188,8 @@ bot.on("guildCreate", async guild => {
             name: `${prefix}help | Op ${servers} servers!`,
         }
     })
-    guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: https://discord.gg/yxHZ8hK\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
-    guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan deze server!\nAl mijn commands kan je zien via **${prefix}help**\nAls je vragen hebt kan je mijn help-server joinen: https://discord.gg/yxHZ8hK\n\nVoor de mensen die mij willen inviten doe **${prefix}link** om de invite-link te krijgen!`));
+    guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: ${discordserver}\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
+    guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan deze server!\nAl mijn commands kan je zien via **${prefix}help**\nAls je vragen hebt kan je mijn help-server joinen: ${discordserver}\n\nVoor de mensen die mij willen inviten doe **${prefix}link** om de invite-link te krijgen!`));
 });
 
 bot.on("guildDelete", async guild => {
@@ -200,11 +201,22 @@ bot.on("guildDelete", async guild => {
             name: `${prefix}help | Op ${servers} servers!`,
         }
     })
-    guild.owner.send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: https://discord.gg/yxHZ8hK\n\nMet vriendelijke groet,\nAmong Us`));
+    guild.owner.send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: ${discordserver}\n\nMet vriendelijke groet,\nAmong Us`));
 });
+
 
 bot.on("ready", async () => {
     const servers = await bot.guilds.cache.size;
+    var vandaag = new Date();
+    
+    
+    const activities_list = [
+        `${prefix}help | Op ${servers} servers!`,
+        `${prefix}help | Voor de commands!`, 
+        `${prefix}help | Gemaakt door Mart!`, 
+        `${prefix}help | ${vandaag.getHours()}:${vandaag.getMinutes}`, 
+        `${prefix}help | ${discordserver}`, 
+    ];
     
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers.`);
@@ -216,12 +228,10 @@ bot.on("ready", async () => {
     
     updateAdmin();
 
-    bot.user.setPresence({
-        status: 'online',
-        activity: {
-            name: `${prefix}help | Op ${servers} servers!`,
-        }
-    });
+    setInterval(() => {
+        const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
+        bot.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
+    }, 10000); // Runs this every 10 seconds.
 });
 
 bot.on("message", async msg => {
@@ -452,7 +462,7 @@ bot.on("message", async msg => {
                 .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                 .setTitle("Handige links")
                 .addFields(
-                    { name: `Discord server`, value: 'https://discord.gg/sjw7ZAb', inline: false },
+                    { name: `Discord server`, value: `${discordserver}`, inline: false },
                     { name: `Invite link bot`, value: 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8', inline: false },
                 )
                 .setColor(16426522)
