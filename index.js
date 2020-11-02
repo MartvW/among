@@ -250,13 +250,13 @@ bot.on("ready", async () => {
     setInterval(() => {
         var vandaag = new Date();
     
-        const activities_list = [
+        const activities_list = {
             [`${prefix}help | Op ${servers} servers!`],
             [`${prefix}help | Voor de commands!`], 
             [`${prefix}help | Gemaakt door Mart!`], 
             [`${prefix}help | ${checkTime(vandaag.getHours()+1)}:${checkTime(vandaag.getMinutes())} uur`], 
-            [`${prefix}help | ${discordserver}`],
-        ];
+            [`${prefix}help | ${discordserver}`]
+        };
         
         var index = 0;
         index += 1;
