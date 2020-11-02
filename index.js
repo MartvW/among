@@ -92,6 +92,7 @@ async function resetBot() {
     } else {
         slotnaam = "uit";
     }
+    
     var resetEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Reset Panel")
