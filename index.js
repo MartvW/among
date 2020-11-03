@@ -335,7 +335,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "update" && msg.author.id === owner) {
-                if (args.length === 0) {
+                if (args.length < 1) {
                     msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
                     return;
                 }
