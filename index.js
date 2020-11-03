@@ -468,7 +468,7 @@ bot.on("message", async msg => {
                 }
                 
                 if (locks.length === 0) {
-                    msg.channel.send(createEmbed(`${msg.author.username}`,`Op dit moment is dit kanaal (${msg.member.voice.channel.name}) niet gelocked!\nDoe **${prefix}lock** om dit kanaal te locken!`));   
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is op dit moment niet gelocked!\nDoe **${prefix}lock** om dit kanaal te locken!`));   
                     return;
                 }
                 
@@ -483,7 +483,7 @@ bot.on("message", async msg => {
                         
                         msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is geunlocked!\nDoe **${prefix}lock** om de kanaal weer te locken!`));
                     } else {
-                        msg.channel.send(createEmbed(`${msg.author.username}`,`Op dit moment is dit kanaal (${msg.member.voice.channel.name}) niet gelocked!\nDoe **${prefix}lock** om dit kanaal te locken!`));   
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is op dit moment niet gelocked!\nDoe **${prefix}lock** om dit kanaal te locken!`));   
                     }
                 }
             }
@@ -550,13 +550,13 @@ bot.on("message", async msg => {
                     return;
                 }
                 if (codes.length === 0) {
-                    msg.channel.send(createEmbed(`${msg.author.username}`,`Dit kanaal (${msg.member.voice.channel.name}) heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));   
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));   
                     return;
                 }
 
                 for (let i = 0; i < codes.length; i++) {
                     if (codes[i].channel.id != msg.member.voice.channel.id) {
-                        msg.channel.send(createEmbed(`${msg.author.username}`,`Dit kanaal (${msg.member.voice.channel.name}) heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));   
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));   
                         return;
                     }
 
