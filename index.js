@@ -274,7 +274,7 @@ bot.on("ready", async () => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}help | Op ${servers} servers!`,
+            name: `Opstarten...`,
         }
     });
     
