@@ -650,8 +650,8 @@ bot.on("message", async msg => {
 
 bot.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
+    console.log(reaction._emoji.name, reaction.message.id, resetMessage.id);
     if (reaction.message.id === resetMessage.id) {
-        console.log(reaction._emoji.name);
         if (reaction._emoji.name === "⚙️") {
             reaction.remove();
             resetMessage.react(reaction._emoji.name);
