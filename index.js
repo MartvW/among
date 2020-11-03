@@ -110,6 +110,7 @@ async function resetBot() {
         embedMesage.react('⚙️');
         embedMesage.react('⛏');
         embedMesage.react('🛠');
+        embedMesage.react('🔐');
         embedMesage.react('🔴');
         resetMessage = embedMesage;
     });
