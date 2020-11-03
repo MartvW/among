@@ -480,7 +480,7 @@ bot.on("message", async msg => {
                     .setDescription(`Map: **The Skeld**`)
                     .setColor(16426522)
                     .setTimestamp()
-                    .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397119211962448/latest.png`)
+                    .setImage(`https://staticg.sportskeeda.com/editor/2020/09/70659-16010616511614-800.jpg`)
                     .setFooter(`${bot.user.tag}`)
                 msg.channel.send(embed);
             }
