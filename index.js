@@ -492,7 +492,7 @@ bot.on("message", async msg => {
                     .setDescription(`Map: **Polus**`)
                     .setColor(16426522)
                     .setTimestamp()
-                    .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397072235626496/latest.png`)
+                    .setImage(`https://static.wikia.nocookie.net/among-us-wiki/images/4/4c/Polus.png/revision/latest/scale-to-width-down/1000?cb=20200907133344`)
                     .setFooter(`${bot.user.tag}`)
                 msg.channel.send(embed);
             }
