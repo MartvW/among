@@ -100,7 +100,7 @@ async function resetBot() {
     var resetEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Reset Panel")
-        .setDescription(`Slot: **${slotnaam}**\nAantal games: **${amongus.length}**\nAantal codes: **${codes.length}**\n\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\n\nHard reset: ⚙️\nCode reset: ⛏\nGame reset: 🛠\nNOODSTOP: 🔴`)
+        .setDescription(`Slot: **${slotnaam}**\nAantal games: **${amongus.length}**\nAantal codes: **${codes.length}**\n\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\n\nHard reset: ⚙️\nCode reset: ⛏\nGame reset: 🛠\nLocks reset: 🔐\nNOODSTOP: 🔴`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
@@ -193,7 +193,7 @@ async function updateAdmin(botbio) {
     var resetEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Reset Panel")
-        .setDescription(`Slot: **${slotnaam}**\nAantal games: **${amongus.length}**\nAantal codes: **${codes.length}**\n\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\n\nHard reset: ⚙️\nCode reset: ⛏\nGame reset: 🛠\nNOODSTOP: 🔴`)
+        .setDescription(`Slot: **${slotnaam}**\nAantal games: **${amongus.length}**\nAantal codes: **${codes.length}**\n\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\n\nHard reset: ⚙️\nCode reset: ⛏\nGame reset: 🛠\nLocks reset: 🔐\nNOODSTOP: 🔴`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
@@ -227,6 +227,12 @@ bot.on("error", async msg => {
         });
     }
     codes = [];
+    for (let i = 0; i < locks.length; i++) {
+        locks[i].channel.edit({
+            userLimit: locks[i].userLimit, 
+        });
+    }
+    locks = [];
     console.error(msg);
     bot.user.setPresence({
         status: 'offline',
@@ -235,6 +241,32 @@ bot.on("error", async msg => {
         }
     });
     bot.login(token);
+});
+
+bot.on("shardDisconnect", async msg => {
+    for (let i = 0; i < amongus.length; i++) {
+       amongus[i].channel.edit({
+            userLimit: amongus[i].userlimit,
+        });
+
+        let channel = amongus[i].channel;
+        for (let member of channel.members) {
+            member[1].edit({ mute: false });
+        }
+    }
+    amongus = [];
+    for (let i = 0; i < codes.length; i++) {
+        codes[i].channel.edit({
+            name: codes[i].name,
+        });
+    }
+    codes = [];
+    for (let i = 0; i < locks.length; i++) {
+        locks[i].channel.edit({
+            userLimit: locks[i].userLimit, 
+        });
+    }
+    locks = [];
 });
 
 bot.on("warn", async msg => {
@@ -720,7 +752,6 @@ bot.on("message", async msg => {
 
 bot.on('messageReactionAdd', (reaction, user) => {
     if (user.bot) return;
-    console.log(reaction._emoji.name, reaction.message.id, resetMessage.id);
     if (reaction.message.id === resetMessage.id) {
         if (reaction._emoji.name === "⚙️") {
             reaction.remove();
@@ -743,6 +774,12 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 });
             }
             codes = [];
+            for (let i = 0; i < locks.length; i++) {
+                locks[i].channel.edit({
+                    userLimit: locks[i].userLimit, 
+                });
+            }
+            locks = [];
             return;
         } else if (reaction._emoji.name === "⛏") {
             reaction.remove();
@@ -791,7 +828,23 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 });
             }
             codes = [];
+            for (let i = 0; i < locks.length; i++) {
+                locks[i].channel.edit({
+                    userLimit: locks[i].userLimit, 
+                });
+            }
+            locks = [];
             slot = !slot;
+            return;
+        } else if (reaction._emoji.name === "🔐") {
+            reaction.remove();
+            resetMessage.react(reaction._emoji.name);
+            for (let i = 0; i < locks.length; i++) {
+                locks[i].channel.edit({
+                    userLimit: locks[i].userLimit, 
+                });
+            }
+            locks = [];
             return;
         } else {
             reaction.remove();
