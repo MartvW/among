@@ -410,11 +410,11 @@ bot.on("message", async msg => {
                         userLimit: 1,
                     });
                     
-                    msg.reply(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is gelocked!\nDoe **${prefix}unlock** om de kanaal weer te unlocken!`));
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is gelocked!\nDoe **${prefix}unlock** om de kanaal weer te unlocken!`));
                 }
             }
             
-            if (command === "unlock) {
+            if (command === "unlock") {
                 if (!msg.member.voice.channel) {
                     msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`));
                     return;
@@ -434,7 +434,9 @@ bot.on("message", async msg => {
                             "channel": msg.member.voice.channel,
                         }), 1);
                         
-                        msg.reply(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is geunlocked!\nDoe **${prefix}lock** om de kanaal weer te locken!`));
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is geunlocked!\nDoe **${prefix}lock** om de kanaal weer te locken!`));
+                    } else {
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`Op dit moment is dit kanaal (${msg.member.voice.channel.name}) niet gelocked!\nDoe **${prefix}lock** om dit kanaal te locken!`));   
                     }
                 }
             }
