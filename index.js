@@ -10,6 +10,7 @@ var botInfokanaal = "767432509980934154";
 var discordserver = "https://discord.gg/sjw7ZAb";
 var amongus = [];
 var codes = [];
+var locks = [];
 var aantalgames = 0;
 var aantalcodes = 0;
 var statusIndex = 0;
@@ -39,6 +40,8 @@ function helpEmbed() {
         { name: `${prefix}mira`, value: 'Om de kaart te zien van MIRA HQ.', inline: false },
         { name: `${prefix}setcode`, value: 'Om de code in te stellen.', inline: false },
         { name: `${prefix}resetcode`, value: 'Om de code te resetten.', inline: false },
+        { name: `${prefix}lock`, value: 'Om de code te resetten.', inline: false },
+        { name: `${prefix}unlock`, value: 'Om de code te resetten.', inline: false },
     )
     .setColor(16426522)
     .setTimestamp()
@@ -55,7 +58,7 @@ const embedLetOp = {
         },
         "title": "Help",
         "color": 15746887,
-        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefix}amongus**\n- **${prefix}setcode**\n- **${prefix}resetcode**\n`,
+        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefix}amongus**\n- **${prefix}setcode**\n- **${prefix}resetcode**\n- **${prefix}lock**\n**${prefix}unlock**`,
         "fields": [
             {
                 "name": ".....................",
@@ -384,6 +387,56 @@ bot.on("message", async msg => {
 
                 msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`))
                 amongus = [];
+            }
+            
+            if (command === "lock") {
+                if (!msg.member.voice.channel) {
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`));
+                    return;
+                }
+                
+                for (let i = 0; i < locks.length; i++) {
+                    if (locks[i].channel === msg.member.voice.channel) {
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `Dit kanaal is al gelocked!`));
+                        return;
+                    }
+                    
+                    locks.push({
+                        "channel": msg.member.voice.channel,
+                        "userLimit": msg.member.voice.channel.userLimit,
+                    });
+                    
+                    msg.member.voice.channel.edit({
+                        userLimit: 1,
+                    });
+                    
+                    msg.reply(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is gelocked!\nDoe **${prefix}unlock** om de kanaal weer te unlocken!`));
+                }
+            }
+            
+            if (command === "unlock) {
+                if (!msg.member.voice.channel) {
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`));
+                    return;
+                }
+                
+                if (locks.length === 0) {
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`Op dit moment is dit kanaal (${msg.member.voice.channel.name}) niet gelocked!\nDoe **${prefix}lock** om dit kanaal te locken!`));   
+                    return;
+                }
+                
+                for (let i = 0; i < locks.length; i++) {
+                    if (locks[i].channnel === msg.member.voice.chanel) {
+                        locks[i].channel.edit({
+                            userLimit: locks[i].userLimit, 
+                        });
+                        locks.splice(locks.indexOf({
+                            "channel": msg.member.voice.channel,
+                        }), 1);
+                        
+                        msg.reply(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is geunlocked!\nDoe **${prefix}lock** om de kanaal weer te locken!`));
+                    }
+                }
             }
 
             if (command === "setcode") {
