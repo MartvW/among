@@ -206,11 +206,28 @@ async function updateAdmin(botbio) {
 }
 
 bot.on("error", async msg => {
+    for (let i = 0; i < amongus.length; i++) {
+       amongus[i].channel.edit({
+            userLimit: amongus[i].userlimit,
+        });
+
+        let channel = amongus[i].channel;
+        for (let member of channel.members) {
+            member[1].edit({ mute: false });
+        }
+    }
+    amongus = [];
+    for (let i = 0; i < codes.length; i++) {
+        codes[i].channel.edit({
+            name: codes[i].name,
+        });
+    }
+    codes = [];
     console.error(msg);
     bot.user.setPresence({
         status: 'offline',
         activity: {
-            name: ``,
+            name: `ERROR`,
         }
     });
     bot.login(token);
