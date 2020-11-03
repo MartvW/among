@@ -504,7 +504,7 @@ bot.on("message", async msg => {
                     .setDescription(`Map: **MIRA HQ**`)
                     .setColor(16426522)
                     .setTimestamp()
-                    .setImage(`https://cdn.discordapp.com/attachments/756396844459884674/756397010222972938/latest.png`)
+                    .setImage(`https://static.wikia.nocookie.net/among-us-wiki/images/0/0a/Mirahq.png/revision/latest/scale-to-width-down/1000?cb=20200907132939`)
                     .setFooter(`${bot.user.tag}`)
                 msg.channel.send(embed);
             }
