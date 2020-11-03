@@ -324,7 +324,7 @@ bot.on("message", async msg => {
     const args = msg.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
     
-    laatstecommand = `@${msg.author.username}: ${msg.content}`;
+    laatstecommand = `${msg.content}`;
     
     if (!slot) {
         aantalcommands++;
