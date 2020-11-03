@@ -212,7 +212,8 @@ bot.on("error", async msg => {
         activity: {
             name: ``,
         }
-    })
+    });
+    bot.login(token);
 });
 
 bot.on("warn", async msg => {
