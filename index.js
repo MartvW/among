@@ -597,6 +597,7 @@ bot.on("message", async msg => {
                         "id": amongus.length,
                         "user": msg.author,
                         "channel": msg.member.voice.channel,
+                        "name": msg.member.voice.channel.name,
                         "bericht": embedMesage,
                         "meetingbezig": true,
                         "userlimit": msg.member.voice.channel.userLimit,
