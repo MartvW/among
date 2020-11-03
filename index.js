@@ -395,22 +395,35 @@ bot.on("message", async msg => {
                     return;
                 }
                 
-                for (let i = 0; i < locks.length; i++) {
-                    if (locks[i].channel === msg.member.voice.channel) {
-                        msg.channel.send(createEmbed(`${msg.author.username}`, `Dit kanaal is al gelocked!`));
-                        return;
-                    }
-                    
+                if (locks.length === 0) {
                     locks.push({
                         "channel": msg.member.voice.channel,
                         "userLimit": msg.member.voice.channel.userLimit,
                     });
                     
                     msg.member.voice.channel.edit({
-                        userLimit: 1,
-                    });
+                         userLimit: 1,
+                     });
                     
-                    msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is gelocked!\nDoe **${prefix}unlock** om de kanaal weer te unlocken!`));
+                     msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is gelocked!\nDoe **${prefix}unlock** om de kanaal weer te unlocken!`));
+                } else {
+                    for (let i = 0; i < locks.length; i++) {
+                        if (locks[i].channel === msg.member.voice.channel) {
+                            msg.channel.send(createEmbed(`${msg.author.username}`, `Dit kanaal is al gelocked!`));
+                            return;
+                        }
+
+                        locks.push({
+                            "channel": msg.member.voice.channel,
+                            "userLimit": msg.member.voice.channel.userLimit,
+                        });
+
+                        msg.member.voice.channel.edit({
+                            userLimit: 1,
+                        });
+
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** is gelocked!\nDoe **${prefix}unlock** om de kanaal weer te unlocken!`));
+                    }
                 }
             }
             
