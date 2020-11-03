@@ -326,7 +326,7 @@ bot.on("message", async msg => {
     
     laatstecommand = `${msg.content}`;
     
-    if (!slot) {
+    if (slot === false) {
         aantalcommands++;
         try {
             if (command === "help") {
