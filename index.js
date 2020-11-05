@@ -244,7 +244,7 @@ bot.on("error", async msg => {
     bot.login(token);
 });
 
-bot.on("shardDisconnect", async msg => {
+bot.on("disconnect", async msg => {
     for (let i = 0; i < amongus.length; i++) {
        amongus[i].channel.edit({
             userLimit: amongus[i].userlimit,
