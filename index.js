@@ -379,12 +379,16 @@ bot.on("ready", async () => {
     
     setInterval(() => {
         var vandaag = new Date();
+        var dag = vandaag.getDate();
+        var maand = vandaag.getMonth();
         var uur = vandaag.getHours();
+        var jaar = vandaag.getFullYear();
         var minuten = vandaag.getMinutes();
 
         var status = [
             `${prefix}help | Op ${servers} servers!`,
             `${prefix}help | ${checkTime(uur+1)}:${checkTime(minuten)} uur`,
+            `${prefix}help | ${checkTime(dag+1)}-${checkTime(maand)}-${jaar}`,
             `${prefix}help | Gemaakt door Mart!`,
             `${prefix}help | ${discordserver}`,
             `${prefix}amongus | Start command!`,
