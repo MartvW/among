@@ -388,7 +388,7 @@ bot.on("ready", async () => {
         var status = [
             `${prefix}help | Op ${servers} servers!`,
             `${prefix}help | ${checkTime(uur+1)}:${checkTime(minuten)} uur`,
-            `${prefix}help | ${checkTime(dag)}-${checkTime(maand)}-${jaar}`,
+            `${prefix}help | ${checkTime(dag)}-${checkTime(maand+1)}-${jaar}`,
             `${prefix}help | Gemaakt door Mart!`,
             `${prefix}help | ${discordserver}`,
             `${prefix}amongus | Start command!`,
