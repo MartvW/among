@@ -535,6 +535,27 @@ bot.on("message", async msg => {
                     }
                 }
             }
+            
+            if (command === "code") {
+                if (!msg.member.voice.channel) {
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`));
+                    return;
+                }  
+                
+                if (codes.length === 0) {
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));   
+                    return;
+                }
+
+                for (let i = 0; i < codes.length; i++) {
+                    if (codes[i].channel.id != msg.member.voice.channel.id) {
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));   
+                        return;
+                    }
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`${codes[i].code} - ${codes[i].server}`));
+                    return;
+                }
+            }
 
             if (command === "setcode") {
                 if (!msg.member.voice.channel) {
@@ -557,34 +578,49 @@ bot.on("message", async msg => {
 
                 if (server === "NA" || server === "EU" || server === "AS") {
                     if (codes.length === 0) {
-                        codes.push({
-                           "channel": msg.member.voice.channel, 
-                           "name": msg.member.voice.channel.name, 
-                        });
-                        const c = msg.member.voice.channel;
-                        await c.setName(`${c.name} | ${code} - ${server}`);
-    //                     await c.edit({ name: `${c.name} | ${code} - ${server}` });
-                        msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
-                        aantalcodes += 1;
-                    } else {
-                        for (let i = 0; i < codes.length; i++) {
-                            if (codes[i].channel.id != msg.member.voice.channel.id) {
-                               codes.push({
-                                   "channel": msg.member.voice.channel, 
-                                   "name": msg.member.voice.channel.name, 
-                                });
-                                const c = msg.member.voice.channel;
-                                await c.setName(`${c.name} | ${code} - ${server}`);
-                                aantalcodes += 1;
-    //                             await c.edit({ name: `${c.name} | ${code} - ${server}` });
-                            } else {
-                                const c = msg.member.voice.channel;
-                                await c.setName(`${codes[i].name} | ${code} - ${server}`);
-    //                             await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
-                                aantalcodes += 1;
-                            }
+                        try {
+                            codes.push({
+                               "channel": msg.member.voice.channel, 
+                               "code": code,
+                               "server": server,
+                               "name": msg.member.voice.channel.name, 
+                            });
+
+                            const c = msg.member.voice.channel;
+                            await c.setName(`${c.name} | ${code} - ${server}`);
+        //                     await c.edit({ name: `${c.name} | ${code} - ${server}` });
+                            msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                            aantalcodes += 1;
+                        } catch (err) {
+                            console.error(err);
+                            msg.reply(createEmbed("ERROR", `ERROR: De bot heeft een error, de error is naar de maker gestuurd.`));
                         }
-                        msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                    } else {
+                        try {
+                            for (let i = 0; i < codes.length; i++) {
+                                if (codes[i].channel.id != msg.member.voice.channel.id) {
+                                   codes.push({
+                                       "channel": msg.member.voice.channel, 
+                                       "code": code,
+                                       "server": server,
+                                       "name": msg.member.voice.channel.name, 
+                                    });
+                                    const c = msg.member.voice.channel;
+                                    await c.setName(`${c.name} | ${code} - ${server}`);
+                                    aantalcodes += 1;
+        //                             await c.edit({ name: `${c.name} | ${code} - ${server}` });
+                                } else {
+                                    const c = msg.member.voice.channel;
+                                    await c.setName(`${codes[i].name} | ${code} - ${server}`);
+        //                             await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
+                                    aantalcodes += 1;
+                                }
+                            }
+                            msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                        } catch (err) {
+                            console.error(err);
+                            msg.reply(createEmbed("ERROR", `ERROR: De bot heeft een error, de error is naar de maker gestuurd.`));
+                        }
                     }
                 } else {
                     msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige server in! **NA** of **EU** of **AS**`));
@@ -603,19 +639,24 @@ bot.on("message", async msg => {
                 }
 
                 for (let i = 0; i < codes.length; i++) {
-                    if (codes[i].channel.id != msg.member.voice.channel.id) {
-                        msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));   
-                        return;
-                    }
+                    try {
+                        if (codes[i].channel.id != msg.member.voice.channel.id) {
+                            msg.channel.send(createEmbed(`${msg.author.username}`,`**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));   
+                            return;
+                        }
 
-                    const c = codes[i].channel;
-                    await c.setName(`${codes[i].name}`);
-    //                 await c.edit({ name: codes[i].name });
-                    codes.splice(codes.indexOf({
-                        "channel": msg.member.voice.channel,
-                    }), 1);
-                    msg.channel.send(createEmbed(`${msg.author.username}`,`Code succesvol verwijderd van **${msg.member.voice.channel.name}**!`));
-                    return;
+                        const c = codes[i].channel;
+                        await c.setName(`${codes[i].name}`);
+        //                 await c.edit({ name: codes[i].name });
+                        codes.splice(codes.indexOf({
+                            "channel": msg.member.voice.channel,
+                        }), 1);
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`Code succesvol verwijderd van **${msg.member.voice.channel.name}**!`));
+                        return;
+                    } catch (err) {
+                        console.error(err);
+                        msg.reply(createEmbed("ERROR", `ERROR: De bot heeft een error, de error is naar de maker gestuurd.`));   
+                    }
                 }
             }
 
