@@ -268,6 +268,15 @@ bot.on("shardDisconnect", async msg => {
         });
     }
     locks = [];
+    
+    updateAdmin(`Afsluiten...`);
+    
+    bot.user.setPresence({
+        status: 'online',
+        activity: {
+            name: `Afsluiten...`,
+        }
+    });
 });
 
 bot.on("warn", async msg => {
