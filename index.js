@@ -279,6 +279,41 @@ bot.on("disconnect", async msg => {
     });
 });
 
+bot.on("reconnecting", async msg => {
+    for (let i = 0; i < amongus.length; i++) {
+       amongus[i].channel.edit({
+            userLimit: amongus[i].userlimit,
+        });
+
+        let channel = amongus[i].channel;
+        for (let member of channel.members) {
+            member[1].edit({ mute: false });
+        }
+    }
+    amongus = [];
+    for (let i = 0; i < codes.length; i++) {
+        codes[i].channel.edit({
+            name: codes[i].name,
+        });
+    }
+    codes = [];
+    for (let i = 0; i < locks.length; i++) {
+        locks[i].channel.edit({
+            userLimit: locks[i].userLimit, 
+        });
+    }
+    locks = [];
+    
+    updateAdmin(`Opnieuw opstarten...`);
+    
+    bot.user.setPresence({
+        status: 'online',
+        activity: {
+            name: `Opnieuw opstarten...`,
+        }
+    });
+});
+
 bot.on("warn", async msg => {
     bot.user.setPresence({
         status: 'idle',
