@@ -6,6 +6,7 @@ var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
 var updateID = "766310034871025744";
 var resetID = "772715139563782154";
+var logID = "774302388903084042";
 var botInfokanaal = "767432509980934154";
 var discordserver = "https://discord.gg/sjw7ZAb";
 var amongus = [];
@@ -210,6 +211,18 @@ async function updateAdmin(botbio) {
     }
 }
 
+function errorMessage(err) {
+   var errEmbed = new Discord.MessageEmbed()
+        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+        .setTitle("Error")
+        .setDescription(`${err}`)
+        .setColor(16426522)
+        .setTimestamp()
+        .setFooter(`${bot.user.tag}`)
+    const channel = bot.channels.cache.find(channel => channel.id === logID);
+    channel.send(errEmbed);
+}
+
 bot.on("error", async msg => {
     for (let i = 0; i < amongus.length; i++) {
        amongus[i].channel.edit({
@@ -242,6 +255,8 @@ bot.on("error", async msg => {
         }
     });
     bot.login(token);
+    
+    errorMessage(msg);
 });
 
 bot.on("disconnect", async msg => {
@@ -833,6 +848,7 @@ bot.on("message", async msg => {
         }
         catch (err) {
             console.error(err);
+            errorMessage(err);
             msg.reply(createEmbed("ERROR", `ERROR: De bot heeft een error, de error is naar de maker gestuurd.`));
         }
     } else {
