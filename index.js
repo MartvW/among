@@ -408,7 +408,7 @@ bot.on("ready", async () => {
             `${prefix}help | ${discordserver}`,
             `${prefix}amongus | Start command!`,
             `${prefix}help | ${bot.user.tag}`,
-            `${prefix}invite | Invite link!`,
+            `${prefix}link | Invite link!`,
             `${prefix}map | Map commands!`,
         ];
         
