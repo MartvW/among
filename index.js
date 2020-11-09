@@ -60,7 +60,7 @@ const embedLetOp = {
         },
         "title": "Help",
         "color": 15746887,
-        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefix}amongus**\n- **${prefix}setcode**\n- **${prefix}resetcode**\n- **${prefix}lock**\n- **${prefix}unlock**`,
+        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefix}amongus**\n- **${prefix}lock**\n- **${prefix}unlock**`,
         "fields": [
             {
                 "name": ".....................",
