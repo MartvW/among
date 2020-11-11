@@ -393,7 +393,7 @@ bot.on("ready", async () => {
     });
     
     setInterval(() => {
-        servers = await bot.guilds.cache.size;
+        servers = bot.guilds.cache.size;
         
         var vandaag = new Date();
         var dag = vandaag.getDate();
