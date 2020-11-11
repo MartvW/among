@@ -449,9 +449,6 @@ bot.on("message", async msg => {
     if (slot === false) {
         aantalcommands++;
         try {
-            if (command === "race") {
-                msg.channel.send(createEmbed(`Race`, `Mart W. wins the race!`));   
-            }
             if (command === "help") {
                 msg.channel.send(helpEmbed());
                 msg.channel.send(embedLetOp);
