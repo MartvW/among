@@ -254,9 +254,8 @@ bot.on("error", async msg => {
             name: `ERROR`,
         }
     });
-    bot.login(token);
-    
     errorMessage(msg);
+    bot.login(token);
 });
 
 bot.on("disconnect", async msg => {
@@ -335,7 +334,8 @@ bot.on("warn", async msg => {
         activity: {
             name: ``,
         }
-    })
+    });
+    errorMessage(msg);
 });
 
 bot.on("guildCreate", async guild => {
