@@ -369,7 +369,7 @@ function checkTime(i) {
 }
 
 bot.on("ready", async () => {
-    const servers = await bot.guilds.cache.size;
+    var servers = await bot.guilds.cache.size;
     
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers.`);
@@ -393,6 +393,8 @@ bot.on("ready", async () => {
     });
     
     setInterval(() => {
+        servers = await bot.guilds.cache.size;
+        
         var vandaag = new Date();
         var dag = vandaag.getDate();
         var maand = vandaag.getMonth();
