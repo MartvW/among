@@ -26,7 +26,7 @@ var resetMessage = "";
 
 function helpEmbed() { 
     var embedHelp = new Discord.MessageEmbed()
-    .setAuthor(`Among Us`, `../Logo.png`)
+    .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
     .setTitle("Help")
     .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
     .addFields(
@@ -688,7 +688,7 @@ bot.on("message", async msg => {
                     .setDescription(`Map: **The Skeld**`)
                     .setColor(16426522)
                     .setTimestamp()
-                    .setImage(`https://staticg.sportskeeda.com/editor/2020/09/70659-16010616511614-800.jpg`)
+                    .setImage(`https://raw.githubusercontent.com/MartvW/among/master/the%20skeld.png`)
                     .setFooter(`${bot.user.tag}`)
                 msg.channel.send(embed);
             }
@@ -700,7 +700,7 @@ bot.on("message", async msg => {
                     .setDescription(`Map: **Polus**`)
                     .setColor(16426522)
                     .setTimestamp()
-                    .setImage(`https://static.wikia.nocookie.net/among-us-wiki/images/4/4c/Polus.png/revision/latest/scale-to-width-down/1000?cb=20200907133344`)
+                    .setImage(`https://raw.githubusercontent.com/MartvW/among/master/latest.png`)
                     .setFooter(`${bot.user.tag}`)
                 msg.channel.send(embed);
             }
@@ -712,7 +712,7 @@ bot.on("message", async msg => {
                     .setDescription(`Map: **MIRA HQ**`)
                     .setColor(16426522)
                     .setTimestamp()
-                    .setImage(`https://static.wikia.nocookie.net/among-us-wiki/images/0/0a/Mirahq.png/revision/latest/scale-to-width-down/1000?cb=20200907132939`)
+                    .setImage(`https://raw.githubusercontent.com/MartvW/among/master/Mirahq.png`)
                     .setFooter(`${bot.user.tag}`)
                 msg.channel.send(embed);
             }
