@@ -26,7 +26,7 @@ var resetMessage = "";
 
 function helpEmbed() { 
     var embedHelp = new Discord.MessageEmbed()
-    .setAuthor(`Among Us`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+    .setAuthor(`Among Us`, `Logo.png`)
     .setTitle("Help")
     .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
     .addFields(
