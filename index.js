@@ -347,9 +347,10 @@ bot.on("guildDelete", async guild => {
         }
     })
     console.log(guild.owner);
-//     guild.client.users.fetch(guild.owner).then(u =>{
+    guild.client.users.fetch(guild.owner).then(u =>{
+        console.log(u);
 //         u.send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: ${discordserver}\n\nMet vriendelijke groet,\nAmong Us`))
-//     });
+    });
 });
 
 function checkTime(i) {
