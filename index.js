@@ -236,11 +236,6 @@ bot.on("error", async msg => {
         }
     }
     amongus = [];
-    for (let i = 0; i < codes.length; i++) {
-        codes[i].channel.edit({
-            name: codes[i].name,
-        });
-    }
     codes = [];
     for (let i = 0; i < locks.length; i++) {
         locks[i].channel.edit({
@@ -271,11 +266,6 @@ bot.on("disconnect", async msg => {
         }
     }
     amongus = [];
-    for (let i = 0; i < codes.length; i++) {
-        codes[i].channel.edit({
-            name: codes[i].name,
-        });
-    }
     codes = [];
     for (let i = 0; i < locks.length; i++) {
         locks[i].channel.edit({
@@ -306,11 +296,6 @@ bot.on("reconnecting", async msg => {
         }
     }
     amongus = [];
-    for (let i = 0; i < codes.length; i++) {
-        codes[i].channel.edit({
-            name: codes[i].name,
-        });
-    }
     codes = [];
     for (let i = 0; i < locks.length; i++) {
         locks[i].channel.edit({
@@ -877,11 +862,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 }
             }
             amongus = [];
-            for (let i = 0; i < codes.length; i++) {
-                codes[i].channel.edit({
-                    name: codes[i].name,
-                });
-            }
             codes = [];
             for (let i = 0; i < locks.length; i++) {
                 locks[i].channel.edit({
@@ -894,11 +874,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
             reaction.remove();
             resetMessage.react(reaction._emoji.name);
             //code reset
-            for (let i = 0; i < codes.length; i++) {
-                codes[i].channel.edit({
-                    name: codes[i].name,
-                });
-            }
             codes = [];
             return;
         } else if (reaction._emoji.name === "🛠") {
@@ -931,11 +906,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 }
             }
             amongus = [];
-            for (let i = 0; i < codes.length; i++) {
-                codes[i].channel.edit({
-                    name: codes[i].name,
-                });
-            }
             codes = [];
             for (let i = 0; i < locks.length; i++) {
                 locks[i].channel.edit({
