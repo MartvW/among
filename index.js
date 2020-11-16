@@ -42,6 +42,7 @@ function helpEmbed() {
         { name: `${prefix}mira`, value: 'Om de kaart te zien van MIRA HQ.', inline: false },
         { name: `${prefix}setcode`, value: 'Om de code in te stellen.', inline: false },
         { name: `${prefix}resetcode`, value: 'Om de code te resetten.', inline: false },
+        { name: `${prefix}code`, value: 'Om de code te zien van het kanaal.', inline: false },
         { name: `${prefix}lock`, value: 'Het kanaal te locken waar je inzit.', inline: false },
         { name: `${prefix}unlock`, value: 'Het kanaal te unlocken waar je inzit.', inline: false },
     )
