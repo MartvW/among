@@ -389,12 +389,12 @@ bot.on("ready", async () => {
         var minuten = vandaag.getMinutes();
 
         var status = [
-            `${prefix}help | Op ${servers} servers!`,
-            `${prefix}help | ${checkTime(uur+1)}:${checkTime(minuten)} uur`,
-            `${prefix}help | Gemaakt door Mart!`,
-            `${prefix}help | ${discordserver}`,
-            `${prefix}amongus | Start command!`,
+            `Op ${servers} servers!`,
             `${prefix}help | ${bot.user.tag}`,
+            `${checkTime(uur+1)}:${checkTime(minuten)} uur`,
+            `${prefix}help | ${discordserver}`,
+            `Gemaakt door Mart!`,
+            `${prefix}amongus | Start command!`,
             `${prefix}link | Invite link!`,
             `${prefix}map | Map commands!`,
         ];
