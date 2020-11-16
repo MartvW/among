@@ -612,6 +612,8 @@ bot.on("message", async msg => {
                                     aantalcodes += 1;
         //                             await c.edit({ name: `${c.name} | ${code} - ${server}` });
                                 } else {
+                                    codes[i].code = code;
+                                    codes[i].server = server;
 //                                     const c = msg.member.voice.channel;
 //                                     await c.setName(`${codes[i].name} | ${code} - ${server}`);
         //                             await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
