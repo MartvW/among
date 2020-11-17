@@ -496,7 +496,7 @@ bot.on("message", async msg => {
                 for (let i = 0; i < aantals.rows.length; i++) {
                     bericht += `GuildId: **${aantals.rows[i].guildId}**, Prefix: **${aantals.rows[i].prefix}**\n`;
                 }
-                msg.channel.send(createEmbed(`Database Values`, `${bericht}`));
+                msg.channel.send(createEmbed(`Database Values`, `Aantal servers in de Database: **${aantals.rows.length}**\n\n${bericht}`));
             }
 
             if (command === "setprefix") {
