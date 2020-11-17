@@ -469,7 +469,7 @@ bot.on("message", async msg => {
         });
     };
 
-    let obj = JSON.parse(fs.readFileSync(prefix.rows, 'utf8'));
+    let obj = JSON.parse(fs.readFileSync(`${prefix.rows}`, 'utf8'));
     console.log(obj.prefix);
     // console.log(prefix.rows);
 
