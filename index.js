@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const { create } = require('domain');
 const fs = require('fs');
 const bot = new Discord.Client();
 const { Client } = require('pg');
@@ -462,6 +463,7 @@ bot.on("message", async msg => {
                 console.log(err);
             }
         });
+        msg.channel.send(createEmbed(`${msg.author.username}`,`Probeer opnieuw!`))
         return;
     };
 
