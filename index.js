@@ -494,7 +494,7 @@ bot.on("message", async msg => {
                 let aantals = await client.query(`SELECT * FROM prefixes;`);
                 let bericht = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
-                    bericht += `GuildId: **${aantals.rows[i].guildId}**, Prefix: **${aantals.rows[i].prefix}**\n`;
+                    bericht += `Guild: **${aantals.rows[i].guildId}**, Prefix: **${aantals.rows[i].prefix}**\n`;
                 }
                 msg.channel.send(createEmbed(`Database Values`, `Aantal servers in de Database: **${aantals.rows.length}**\n\n${bericht}`));
             }
