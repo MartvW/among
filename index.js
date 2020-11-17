@@ -344,7 +344,7 @@ bot.on("guildCreate", async guild => {
         }
     });
     client.connect();
-    client.query(`INSERT INTO prefixes VALUES (${guild.id}, .);`, (err, res) => {
+    client.query(`INSERT INTO prefixes VALUES (${guild.id}, '.');`, (err, res) => {
         if (!err) {
             if (res) {
                 console.log(`${guild.id} is succesvol in de database gezet!`);
@@ -371,7 +371,7 @@ bot.on("guildDelete", async guild => {
     });
     
     client.connect();
-    client.query(`DELETE FROM prefix WHERE guildId === ${guild.id};`, (err, res) => {
+    client.query(`DELETE FROM prefixes WHERE guildId === ${guild.id};`, (err, res) => {
         if (!err) {
             if (res) {
                 console.log(`${guild.id} is succesvol verwijderd uit de database!`);
