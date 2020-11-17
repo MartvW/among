@@ -456,15 +456,8 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async msg => {
-    var prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf-8"));
-
-    if (!prefixes[msg.guild.id]) {
-        prefixes[msg.guild.id] = {
-            prefixes: process.env.PREFIX
-        };
-    }
-
-    let prefix = prefixes[msg.guild.id].prefixes;
+    let prefix = client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
+    if (!prefix) return console.log("Prefix niet gevonden");
 
     if (msg.author.bot) return;
     laatstebericht = `${msg.guild.name} > ${msg.channel.name} - @${msg.author.tag}: ${msg.content}`;
@@ -498,19 +491,29 @@ bot.on("message", async msg => {
                     return;
                 }
 
-                let prefixes = JSON.parse(fs.readFileSync("./prefixes.json","utf-8"));
-
-                prefixes[msg.guild.id] = {
-                    prefixes: args[0]
-                };
-
-                fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) => {
-                    if (err) {
-                        console.err(err);
+                client.query(`UPDATE prefixes SET prefix='${args[0]}' WHERE guildId='${msg.guild.id}';`, (err, res) => {
+                    if (!err) {
+                        if (res) {
+                            console.log(`Prefix van ${msg.guild.name} is veranderd!`);
+                        }
+                    } else {
+                        console.log(err);
                     }
                 });
 
-                msg.channel.send(createEmbed(`Prefix`, `De prefix van ${msg.guild.name} is gezet naar ***${args[0]}***!`));
+                // let prefixes = JSON.parse(fs.readFileSync("./prefixes.json","utf-8"));
+
+                // prefixes[msg.guild.id] = {
+                //     prefixes: args[0]
+                // };
+
+                // fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) => {
+                //     if (err) {
+                //         console.err(err);
+                //     }
+                // });
+
+                msg.channel.send(createEmbed(`Prefix`, `De prefix van **${msg.guild.name}** is gezet naar ***${args[0]}***!`));
             }
 
             if (command === "update" && msg.author.id === owner) {
