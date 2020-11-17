@@ -457,7 +457,7 @@ bot.on("ready", async () => {
 
 bot.on("message", async msg => {
     let prefix = await client.query(`SELECT DISTINCT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
-    console.log(prefix.rows);
+    console.log(prefix);
     if (!prefix) return console.log("Prefix niet gevonden");
 
     // client.query(`INSERT INTO prefixes VALUES (${guild.id}, '.');`, (err, res) => {
