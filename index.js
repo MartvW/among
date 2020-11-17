@@ -1057,3 +1057,5 @@ bot.on('voiceStateUpdate', (oldMember, newMember) => {
 });
 
 bot.login(token);
+
+client.end();
