@@ -469,8 +469,8 @@ bot.on("message", async msg => {
         });
     };
 
-    var obj = JSON.parse(prefix.rows);
-    console.log(obj[0].prefix);
+    var obj = JSON.parse(prefix).rows;
+    console.log(typeof obj);
     // let obj = JSON.parse(fs.readFileSync(`${prefix.rows}`, 'utf8'));
     // console.log(obj.prefix);
     // console.log(prefix.rows);
