@@ -346,7 +346,7 @@ bot.on("warn", async msg => {
 
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
-    console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner} (id: ${guild.ownerID})`);
+    console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${guild.owner.user.username} (id: ${guild.ownerID})`);
     bot.user.setPresence({
         status: 'online',
         activity: {
@@ -356,9 +356,12 @@ bot.on("guildCreate", async guild => {
     client.connect();
 
     client.query('INSERT INTO prefixes VALUES (${guild.id}, .);', (err, res) => {
-        if (err) throw err;
-        if (res) {
-            console.log(`${guild.id} is succesvol in de database gezet!`);
+        if (!err) {
+            if (res) {
+                console.log(`${guild.id} is succesvol in de database gezet!`);
+            }
+        } else {
+            console.err(err);
         }
         client.end();
     });
