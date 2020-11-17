@@ -456,8 +456,8 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async msg => {
-    let prefix = await client.query(`SELECT VALUE prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
-    console.log(prefix);
+    let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
+    console.log(prefix.rows);
     if (!prefix) return console.log("Prefix niet gevonden");
 
     prefix = process.env.PREFIX;
