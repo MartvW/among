@@ -468,7 +468,7 @@ bot.on("message", async msg => {
             }
         });
     };
-    console.log(prefix.rows);
+    console.log(prefix);
 
 
     // prefix = process.env.PREFIX;
