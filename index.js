@@ -12,14 +12,6 @@ const client = new Client({
 
 client.connect();
 
-client.query('SELECT * FROM prefixes;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
-
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
 var owner = process.env.OWNER;
@@ -353,8 +345,6 @@ bot.on("guildCreate", async guild => {
             name: `${prefix}help | Op ${servers} servers!`,
         }
     });
-    client.connect();
-
     client.query('INSERT INTO prefixes VALUES (${guild.id}, .);', (err, res) => {
         if (!err) {
             if (res) {
@@ -363,7 +353,6 @@ bot.on("guildCreate", async guild => {
         } else {
             console.log(err);
         }
-        client.end();
     });
 //     guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: ${discordserver}\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
     guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan deze server!\nAl mijn commands kan je zien via **${prefix}help**\nAls je vragen hebt kan je mijn help-server joinen: ${discordserver}\n\nVoor de mensen die mij willen inviten doe **${prefix}link** om de invite-link te krijgen!`));
