@@ -462,6 +462,7 @@ bot.on("message", async msg => {
                 console.log(err);
             }
         });
+        return;
     };
 
     prefix = prefix.rows[0].prefix;
