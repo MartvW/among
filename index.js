@@ -369,8 +369,8 @@ bot.on("guildDelete", async guild => {
             name: `${prefix}help | Op ${servers} servers!`,
         }
     });
-    if (client.query(`SELECT * FROM prefixes WHERE guildId=${guild.id};`)) {
-        client.query(`DELETE FROM prefixes WHERE guildId=${guild.id};`, (err, res) => {
+    if (client.query(`SELECT * FROM prefixes WHERE guildId='${guild.id}';`)) {
+        client.query(`DELETE FROM prefixes WHERE guildId='${guild.id}';`, (err, res) => {
             if (!err) {
                 if (res) {
                     console.log(`${guild.name} is succesvol verwijderd uit de database!`);
