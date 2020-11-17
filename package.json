@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "discord.js": "12.3.0",
+    "discord.js": "^12.3.0",
     "fs": "0.0.1-security",
     "node": "^15.0.1",
     "request": "2.81.0"
