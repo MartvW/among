@@ -491,10 +491,13 @@ bot.on("message", async msg => {
             }
 
             if (command === "database" && msg.author.id === owner) {
+
                 let aantals = await client.query(`SELECT * FROM prefixes;`);
+                
                 let bericht = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
-                    bericht += `Guild: **${aantals.rows[i].guildid}**, Prefix: **${aantals.rows[i].prefix}**\n`;
+                    const guildname = await bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
+                    bericht += `Guild: **${guildname} ${aantals.rows[i].guildid}** , Prefix: **${aantals.rows[i].prefix}**\n`;
                 }
                 // console.log(aantals);
                 msg.channel.send(createEmbed(`Database Values`, `Aantal servers in de Database: **${aantals.rows.length}**\n\n${bericht}`));
