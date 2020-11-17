@@ -457,20 +457,21 @@ bot.on("ready", async () => {
 
 bot.on("message", async msg => {
     let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
+    if (prefix === "[]") {
+        client.query(`INSERT INTO prefixes VALUES (${msg.guild.id}, '.');`, (err, res) => {
+            if (!err) {
+                if (res) {
+                    console.log(`${msg.guild.name} is succesvol in de database gezet!`);
+                }
+            } else {
+                console.log(err);
+            }
+        });
+    };
     console.log(prefix.rows);
-    if (!prefix) return console.log("Prefix niet gevonden");
 
-    // client.query(`INSERT INTO prefixes VALUES (${guild.id}, '.');`, (err, res) => {
-    //     if (!err) {
-    //         if (res) {
-    //             console.log(`${guild.name} is succesvol in de database gezet!`);
-    //         }
-    //     } else {
-    //         console.log(err);
-    //     }
-    // });
 
-    prefix = process.env.PREFIX;
+    // prefix = process.env.PREFIX;
 
     if (msg.author.bot) return;
     laatstebericht = `${msg.guild.name} > ${msg.channel.name} - @${msg.author.tag}: ${msg.content}`;
