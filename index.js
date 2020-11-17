@@ -35,28 +35,28 @@ var laatstecommand = "-";
 var laatstebericht = "-";
 var resetMessage = "";
 
-function helpEmbed() { 
+function helpEmbed(prefixs) { 
     var embedHelp = new Discord.MessageEmbed()
     .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
     .setTitle("Help")
     .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
     .addFields(
-        { name: `${prefix}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: false },
-        { name: `${prefix}help`, value: 'Om dit bericht te laten zien.', inline: false },
-        { name: `${prefix}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: false },
-        { name: `${prefix}amongus`, value: 'Wanneer je een game wilt starten.', inline: false },
-        { name: `${prefix}amongusstop`, value: 'Wanneer je de game wilt eindigen.', inline: false },
-        { name: `${prefix}ping`, value: 'Hiermee kan je je ping zien.', inline: false },
-        { name: `${prefix}uptime`, value: 'Hoelang de bot online is.', inline: false },
-        { name: `${prefix}map`, value: 'Om het lijstje van alle mappen te zien.', inline: false },
-        { name: `${prefix}polus`, value: 'Om de kaart te zien van Polus.', inline: false },
-        { name: `${prefix}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: false },
-        { name: `${prefix}mira`, value: 'Om de kaart te zien van MIRA HQ.', inline: false },
-        { name: `${prefix}setcode`, value: 'Om de code in te stellen.', inline: false },
-        { name: `${prefix}resetcode`, value: 'Om de code te resetten.', inline: false },
-        { name: `${prefix}code`, value: 'Om de code te zien van het kanaal.', inline: false },
-        { name: `${prefix}lock`, value: 'Het kanaal te locken waar je inzit.', inline: false },
-        { name: `${prefix}unlock`, value: 'Het kanaal te unlocken waar je inzit.', inline: false },
+        { name: `${prefixs}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: false },
+        { name: `${prefixs}help`, value: 'Om dit bericht te laten zien.', inline: false },
+        { name: `${prefixs}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: false },
+        { name: `${prefixs}amongus`, value: 'Wanneer je een game wilt starten.', inline: false },
+        { name: `${prefixs}amongusstop`, value: 'Wanneer je de game wilt eindigen.', inline: false },
+        { name: `${prefixs}ping`, value: 'Hiermee kan je je ping zien.', inline: false },
+        { name: `${prefixs}uptime`, value: 'Hoelang de bot online is.', inline: false },
+        { name: `${prefixs}map`, value: 'Om het lijstje van alle mappen te zien.', inline: false },
+        { name: `${prefixs}polus`, value: 'Om de kaart te zien van Polus.', inline: false },
+        { name: `${prefixs}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: false },
+        { name: `${prefixs}mira`, value: 'Om de kaart te zien van MIRA HQ.', inline: false },
+        { name: `${prefixs}setcode`, value: 'Om de code in te stellen.', inline: false },
+        { name: `${prefixs}resetcode`, value: 'Om de code te resetten.', inline: false },
+        { name: `${prefixs}code`, value: 'Om de code te zien van het kanaal.', inline: false },
+        { name: `${prefixs}lock`, value: 'Het kanaal te locken waar je inzit.', inline: false },
+        { name: `${prefixs}unlock`, value: 'Het kanaal te unlocken waar je inzit.', inline: false },
     )
     .setColor(16426522)
     .setTimestamp()
@@ -64,23 +64,18 @@ function helpEmbed() {
     return embedHelp;
 }
 
-const embedLetOp = {
-    "embed": {
-        "author": {
-            "name": `Among Us`,
-            "url": "https://discordapp.com",
-            "icon_url": "https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png"
-        },
-        "title": "Help",
-        "color": 15746887,
-        "description": `Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefix}amongus**\n- **${prefix}lock**\n- **${prefix}unlock**`,
-        "fields": [
-            {
-                "name": ".....................",
-                "value": `Hiermee kan je de help-server joinen: ${discordserver}`
-            }
-        ]
-    }
+function embedLetOp(prefixs) {
+    var embedHelp = new Discord.MessageEmbed()
+    .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
+    .setTitle("Help")
+    .setDescription(`Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
+    .setColor(15746887)
+    .addFields(
+        { name: `.....................`, value: 'Hiermee kan je de help-server joinen: ${discordserver}', inline: false },
+    )
+    .setTimestamp()
+    .setFooter(`Among Us`)
+    return embedHelp;
 }
 
 function createEmbed(title, description) {
@@ -469,14 +464,7 @@ bot.on("message", async msg => {
         });
     };
 
-    // var obj = JSON.parse(prefix).rows;
-    console.log(prefix.rows[0].prefix);
-    // let obj = JSON.parse(fs.readFileSync(`${prefix.rows}`, 'utf8'));
-    // console.log(obj.prefix);
-    // console.log(prefix.rows);
-
-
-    prefix = process.env.PREFIX;
+    prefix = prefix.rows[0].prefix;
 
     if (msg.author.bot) return;
     laatstebericht = `${msg.guild.name} > ${msg.channel.name} - @${msg.author.tag}: ${msg.content}`;
@@ -495,8 +483,8 @@ bot.on("message", async msg => {
         aantalcommands++;
         try {
             if (command === "help") {
-                msg.channel.send(helpEmbed());
-                msg.channel.send(embedLetOp);
+                msg.channel.send(helpEmbed(prefix));
+                msg.channel.send(embedLetOp(prefix));
             }
 
             if (command === "setprefix") {
