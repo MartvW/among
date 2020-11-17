@@ -1,15 +1,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const bot = new Discord.Client();
-const { Client, Pool } = require('pg');
-
-const pool = new Pool();
-
-pool.on('error', (err, client) => {
-    console.error('Unexpected error on idle client', err)
-    process.exit(-1)
-  });
-
+const { Client } = require('pg');
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -17,6 +9,8 @@ const client = new Client({
     rejectUnauthorized: false
   }
 });
+
+client.connect();
 
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
@@ -351,28 +345,16 @@ bot.on("guildCreate", async guild => {
             name: `${prefix}help | Op ${servers} servers!`,
         }
     });
-    pool.connect((err, client, done) => {
-        if (err) throw err
-        client.query(`INSERT INTO prefixes VALUES (${guild.id}, '.');`, (err, res) => {
-            done();
-            if (err) {
-                console.log(err.stack)
-            } else {
-                console.log(`${guild.name} is succesvol in de database gezet!`)
+    client.query(`INSERT INTO prefixes VALUES (${guild.id}, '.');`, (err, res) => {
+        if (!err) {
+            if (res) {
+                console.log(`${guild.id} is succesvol in de database gezet!`);
             }
-        });
+        } else {
+            console.log(err);
+        }
+        client.release()
     });
-    // client.connect();
-    // client.query(`INSERT INTO prefixes VALUES (${guild.id}, '.');`, (err, res) => {
-    //     if (!err) {
-    //         if (res) {
-    //             console.log(`${guild.id} is succesvol in de database gezet!`);
-    //         }
-    //     } else {
-    //         console.log(err);
-    //     }
-    //     client.release()
-    // });
 //     guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: ${discordserver}\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
     guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan deze server!\nAl mijn commands kan je zien via **${prefix}help**\nAls je vragen hebt kan je mijn help-server joinen: ${discordserver}\n\nVoor de mensen die mij willen inviten doe **${prefix}link** om de invite-link te krijgen!`));
 //     console.log(guild.ownerID, guild.owner);
@@ -389,7 +371,6 @@ bot.on("guildDelete", async guild => {
         }
     });
     
-    client.connect();
     client.query(`DELETE FROM prefixes WHERE guildId === ${guild.id};`, (err, res) => {
         if (!err) {
             if (res) {
