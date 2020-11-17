@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const fs = require('fs');
 const bot = new Discord.Client();
 
 var prefix = process.env.PREFIX;
@@ -30,6 +31,7 @@ function helpEmbed() {
     .setTitle("Help")
     .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
     .addFields(
+        { name: `${prefix}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: false },
         { name: `${prefix}help`, value: 'Om dit bericht te laten zien.', inline: false },
         { name: `${prefix}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: false },
         { name: `${prefix}amongus`, value: 'Wanneer je een game wilt starten.', inline: false },
@@ -422,6 +424,16 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async msg => {
+    var prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf-8"));
+
+    if (!prefixes[msg.guild.id]) {
+        prefixes[msg.guild.id] = {
+            prefixes: process.env.PREFIX
+        };
+    }
+
+    let prefix = prefixes[msg.guild.id].prefixes;
+
     if (msg.author.bot) return;
     laatstebericht = `${msg.guild.name} > ${msg.channel.name} - @${msg.author.tag}: ${msg.content}`;
     if (!msg.content.startsWith(prefix)) return;
@@ -441,6 +453,32 @@ bot.on("message", async msg => {
             if (command === "help") {
                 msg.channel.send(helpEmbed());
                 msg.channel.send(embedLetOp);
+            }
+
+            if (command === "setprefix") {
+                if (!msg.member.hasPermission("MANAGE_GUILD")) {
+                    msg.channel.send(createEmbed(`${msg.author.username}`,"Je hebt geen bevoegdheden om de prefix van deze server aan te passen!"));
+                    return;
+                }
+
+                if (!args[0] || args[0 == help]) {
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}prefix _<prefix>_`));
+                    return;
+                }
+
+                let prefixes = JSON.parse(fs.readFileSync("./prefixes.json","utf-8"));
+
+                prefixes[msg.guild.id] = {
+                    prefixes: args[0]
+                };
+
+                fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) => {
+                    if (err) {
+                        console.err(err);
+                    }
+                });
+
+                msg.channel.send(createEmbed(`Prefix`, `De prefix van ${msg.guild.name} is gezet naar ***${args[0]}***!`));
             }
 
             if (command === "update" && msg.author.id === owner) {
