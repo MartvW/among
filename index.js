@@ -457,7 +457,7 @@ bot.on("ready", async () => {
 
 bot.on("message", async msg => {
     let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
-    if (prefix.rows === "") {
+    if (prefix.rows === "[]") {
         client.query(`INSERT INTO prefixes VALUES (${msg.guild.id}, '.');`, (err, res) => {
             if (!err) {
                 if (res) {
