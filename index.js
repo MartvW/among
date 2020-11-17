@@ -353,7 +353,6 @@ bot.on("guildCreate", async guild => {
         } else {
             console.log(err);
         }
-        client.release()
     });
 //     guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: ${discordserver}\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
     guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan deze server!\nAl mijn commands kan je zien via **${prefix}help**\nAls je vragen hebt kan je mijn help-server joinen: ${discordserver}\n\nVoor de mensen die mij willen inviten doe **${prefix}link** om de invite-link te krijgen!`));
@@ -370,17 +369,19 @@ bot.on("guildDelete", async guild => {
             name: `${prefix}help | Op ${servers} servers!`,
         }
     });
-    
-    client.query(`DELETE FROM prefixes WHERE guildId === ${guild.id};`, (err, res) => {
-        if (!err) {
-            if (res) {
-                console.log(`${guild.id} is succesvol verwijderd uit de database!`);
+    if (client.query(`SELECT * FROM prefixes WHERE guildId === ${guild.id};`)) {
+        client.query(`DELETE FROM prefixes WHERE guildId === ${guild.id};`, (err, res) => {
+            if (!err) {
+                if (res) {
+                    console.log(`${guild.name} is succesvol verwijderd uit de database!`);
+                }
+            } else {
+                console.log(err);
             }
-        } else {
-            console.log(err);
-        }
-    client.release()
-    });
+        });
+    } else {
+        console.log(`${guild.name} is niet verwijderd uit de database aangezien hij niet in de database stond!`);
+    }
 //     console.log(guild.ownerID, guild.owner);
 //     bot.users.cache.get(guild.ownerID).send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: ${discordserver}\n\nMet vriendelijke groet,\nAmong Us`));
 //     u.send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: ${discordserver}\n\nMet vriendelijke groet,\nAmong Us`))
