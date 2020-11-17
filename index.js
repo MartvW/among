@@ -457,8 +457,10 @@ bot.on("ready", async () => {
 
 bot.on("message", async msg => {
     let prefix = await client.query(`SELECT DISTINCT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
-    console.log(prefix.rows.keys(1));
+    console.log(prefix.rows);
     if (!prefix) return console.log("Prefix niet gevonden");
+
+    prefix = process.env.PREFIX;
 
     if (msg.author.bot) return;
     laatstebericht = `${msg.guild.name} > ${msg.channel.name} - @${msg.author.tag}: ${msg.content}`;
