@@ -503,7 +503,7 @@ bot.on("message", async msg => {
                 client.query(`UPDATE prefixes SET prefix='${args[0]}' WHERE guildId='${msg.guild.id}';`, (err, res) => {
                     if (!err) {
                         if (res) {
-                            console.log(`Prefix van ${msg.guild.name} is veranderd!`);
+                            console.log(`Prefix van ${msg.guild.name} is veranderd naar ${args[0]}!`);
                         }
                     } else {
                         console.log(err);
