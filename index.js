@@ -71,7 +71,7 @@ function embedLetOp(prefixs) {
     .setDescription(`Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
     .setColor(15746887)
     .addFields(
-        { name: `.....................`, value: 'Hiermee kan je de help-server joinen: ${discordserver}', inline: false },
+        { name: `.....................`, value: `Hiermee kan je de help-server joinen: ${discordserver}`, inline: false },
     )
     .setTimestamp()
     .setFooter(`Among Us`)
