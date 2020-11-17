@@ -457,7 +457,7 @@ bot.on("ready", async () => {
 
 bot.on("message", async msg => {
     let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
-    console.log(prefix.rows[1]);
+    console.log(prefix.rows.slice(prefix.length).trim().split(' '));
     if (!prefix) return console.log("Prefix niet gevonden");
 
     if (msg.author.bot) return;
