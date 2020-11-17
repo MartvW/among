@@ -390,9 +390,10 @@ function checkTime(i) {
 
 bot.on("ready", async () => {
     var servers = await bot.guilds.cache.size;
-    
+    let aantals = await client.query(`SELECT * FROM prefixes;`);
+
     console.log("");
-    console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers.`);
+    console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers. In database zitten ${aantals.rows.length} servers!`);
     console.log("");
 
     const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
