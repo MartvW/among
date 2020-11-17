@@ -1,6 +1,24 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const bot = new Discord.Client();
+const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+client.connect();
+
+client.query('SELECT * FROM prefixes;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
+});
 
 var prefix = process.env.PREFIX;
 var token = process.env.BOT_TOKEN;
