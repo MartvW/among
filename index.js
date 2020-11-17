@@ -497,7 +497,7 @@ bot.on("message", async msg => {
                 let bericht = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = await bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
-                    bericht += `Guild: **${guildname}**\nPrefix: **${aantals.rows[i].prefix}**\n\n`;
+                    bericht += `Guild: **${guildname}**\nPrefix: **${aantals.rows[i].prefix}**\n`;
                 }
                 // console.log(aantals);
                 msg.channel.send(createEmbed(`Database Values`, `Aantal servers in de Database: **${aantals.rows.length}**\n\n${bericht}`));
