@@ -462,7 +462,7 @@ bot.on("message", async msg => {
                 }
 
                 if (!args[0]) {
-                    msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}prefix _<prefix>_`));
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}setprefix _<prefix>_`));
                     return;
                 }
 
