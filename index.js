@@ -490,6 +490,15 @@ bot.on("message", async msg => {
                 msg.channel.send(embedLetOp(prefix));
             }
 
+            if (command === "database" && msg.author.id === owner) {
+                let aantals = await client.query(`SELECT * FROM prefixes;`);
+                let bericht = "";
+                for (let i = 0; i < aantals.rows.length; i++) {
+                    bericht += `GuildId: **${aantals.rows[i].guildId}**, Prefix: **${aantals.rows[i].prefix}**\n`;
+                }
+                msg.channel.send(createEmbed(`Database Values`, `${bericht}`));
+            }
+
             if (command === "setprefix") {
                 if (!msg.member.hasPermission("MANAGE_GUILD")) {
                     msg.channel.send(createEmbed(`${msg.author.username}`,"Je hebt geen bevoegdheden om de prefix van deze server aan te passen!"));
