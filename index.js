@@ -468,6 +468,9 @@ bot.on("message", async msg => {
             }
         });
     };
+
+    var obj = JSON.parse(prefix.rows);
+    console.log(obj.prefix);
     // console.log(prefix.rows);
 
 
