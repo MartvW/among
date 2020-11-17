@@ -463,7 +463,6 @@ bot.on("message", async msg => {
                 console.log(err);
             }
         });
-        msg.channel.send(createEmbed(`${msg.author.username}`,`Probeer opnieuw!`))
         return;
     };
 
