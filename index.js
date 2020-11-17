@@ -361,7 +361,7 @@ bot.on("guildCreate", async guild => {
                 console.log(`${guild.id} is succesvol in de database gezet!`);
             }
         } else {
-            console.err(err);
+            console.log(err);
         }
         client.end();
     });
