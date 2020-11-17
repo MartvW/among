@@ -348,7 +348,7 @@ bot.on("guildCreate", async guild => {
     client.query(`INSERT INTO prefixes VALUES (${guild.id}, '.');`, (err, res) => {
         if (!err) {
             if (res) {
-                console.log(`${guild.id} is succesvol in de database gezet!`);
+                console.log(`${guild.name} is succesvol in de database gezet!`);
             }
         } else {
             console.log(err);
