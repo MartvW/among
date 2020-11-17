@@ -345,7 +345,7 @@ bot.on("guildCreate", async guild => {
             name: `${prefix}help | Op ${servers} servers!`,
         }
     });
-    client.query('INSERT INTO prefixes VALUES (${guild.id}, .);', (err, res) => {
+    client.query(`INSERT INTO prefixes VALUES (${guild.id}, .);`, (err, res) => {
         if (!err) {
             if (res) {
                 console.log(`${guild.id} is succesvol in de database gezet!`);
@@ -368,7 +368,17 @@ bot.on("guildDelete", async guild => {
         activity: {
             name: `${prefix}help | Op ${servers} servers!`,
         }
-    })
+    });
+
+    client.query(`DELETE FROM prefix WHERE guildId === ${guild.id};`, (err, res) => {
+        if (!err) {
+            if (res) {
+                console.log(`${guild.id} is succesvol verwijderd uit de database!`);
+            }
+        } else {
+            console.log(err);
+        }
+    });
 //     console.log(guild.ownerID, guild.owner);
 //     bot.users.cache.get(guild.ownerID).send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: ${discordserver}\n\nMet vriendelijke groet,\nAmong Us`));
 //     u.send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: ${discordserver}\n\nMet vriendelijke groet,\nAmong Us`))
