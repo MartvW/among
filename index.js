@@ -471,7 +471,7 @@ bot.on("message", async msg => {
     console.log(prefix.rows);
 
 
-    // prefix = process.env.PREFIX;
+    prefix = process.env.PREFIX;
 
     if (msg.author.bot) return;
     laatstebericht = `${msg.guild.name} > ${msg.channel.name} - @${msg.author.tag}: ${msg.content}`;
