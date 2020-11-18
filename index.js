@@ -612,7 +612,7 @@ bot.on("message", async msg => {
                     return;
                 }
 
-                if (args[0] !== "nl" || args[0] !== "en") {
+                if (args[0] !== "nl" && args[0] !== "en") {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}lang _<nl / en>_`));
                     } else {
