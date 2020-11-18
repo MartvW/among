@@ -614,9 +614,9 @@ bot.on("message", async msg => {
 
                 if (args[0] !== "nl" && args[0] !== "en") {
                     if (taal === "nl") {
-                        msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}lang _<nl / en>_`));
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}setlang _<nl / en>_`));
                     } else {
-                        msg.channel.send(createEmbed(`${msg.author.username}`,`Do ${prefix}lang _<nl / en>_`));
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`Do ${prefix}setlang _<nl / en>_`));
                     }
                     return;
                 }
