@@ -44,6 +44,7 @@ function helpEmbed(prefixs, lang) {
         .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
         .addFields(
             { name: `${prefixs}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: false },
+            { name: `${prefixs}setlang`, value: 'Hiermee kan je je eigen taal instellen.', inline: false },
             { name: `resetprefix`, value: 'Om de prefix van de server te resetten.', inline: false },
             { name: `${prefixs}help`, value: 'Om dit bericht te laten zien.', inline: false },
             { name: `${prefixs}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: false },
@@ -72,6 +73,7 @@ function helpEmbed(prefixs, lang) {
         .setDescription(`A list of all the commands I know.`)
         .addFields(
             { name: `${prefixs}setprefix`, value: 'To set your own prefix.', inline: false },
+            { name: `${prefixs}setlang`, value: 'To set your own language.', inline: false },
             { name: `resetprefix`, value: 'To reset your own prefix.', inline: false },
             { name: `${prefixs}help`, value: 'To show this message.', inline: false },
             { name: `${prefixs}link`, value: 'You can get usefull links with this command.', inline: false },
