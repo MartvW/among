@@ -536,7 +536,7 @@ bot.on("message", async msg => {
         client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'nl');`, (err, res) => {
             if (!err) {
                 if (res) {
-                    console.log(`${msg.guild.name} is succesvol in de database "Servers" gezet!`);
+                    console.log(`${msg.guild.name} (${msg.guild.id}) is succesvol in de database "Servers" gezet!`);
                 }
             } else {
                 console.log(err);
@@ -549,7 +549,7 @@ bot.on("message", async msg => {
         client.query(`INSERT INTO prefixes VALUES (${msg.guild.id}, '.');`, (err, res) => {
             if (!err) {
                 if (res) {
-                    console.log(`${msg.guild.name} is succesvol in de database "Prefix" gezet!`);
+                    console.log(`${msg.guild.name} (${msg.guild.id}) is succesvol in de database "Prefix" gezet!`);
                 }
             } else {
                 console.log(err);
