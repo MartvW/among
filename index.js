@@ -652,17 +652,24 @@ bot.on("message", async msg => {
             if (command === "database" && msg.author.id === owner) {
 
                 let aantals = await client.query(`SELECT * FROM prefixes;`);
+                let aantals2 = await client.query(`SELECT * FROM servers;`);
                 
                 let bericht = "";
+                let bericht2 = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = await bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
                     bericht += `Guild: **${guildname}** (${aantals.rows[i].guildid})\nPrefix: **${aantals.rows[i].prefix}**\n`;
                 }
+
+                for (let j = 0; j < aantals2.rows.length; j++) {
+                    const guildname = await bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
+                    bericht2 += `Guild: **${guildname}** (${aantals2.rows[j].guildid})\nTaal: **${aantals2.rows[j].lang}**\n`;
+                }
                 // console.log(aantals);
                 if (taal === "nl") {
-                    msg.channel.send(createEmbed(`Database Values`, `Aantal servers in de Database: **${aantals.rows.length}**\n\n${bericht}`));
+                    msg.channel.send(createEmbed(`Database Values`, `Aantal servers in de Database: **${aantals.rows.length+aantals2.rows.length}**\n\n${bericht}\n\n${bericht2}`));
                 } else {
-                    msg.channel.send(createEmbed(`Database Values`, `Total servers in Database: **${aantals.rows.length}**\n\n${bericht}`));
+                    msg.channel.send(createEmbed(`Database Values`, `Total servers in Database: **${aantals.rows.length+aantals2.rows.length}**\n\n${bericht}\n\n${bericht2}`));
                 }
             }
 
