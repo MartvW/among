@@ -656,7 +656,7 @@ bot.on("message", async msg => {
                 let bericht = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = await bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
-                    bericht += `Guild: **${guildname}** (aantals.rows[i].guildid)\nPrefix: **${aantals.rows[i].prefix}**\n`;
+                    bericht += `Guild: **${guildname}** (${aantals.rows[i].guildid})\nPrefix: **${aantals.rows[i].prefix}**\n`;
                 }
                 // console.log(aantals);
                 if (taal === "nl") {
