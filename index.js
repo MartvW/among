@@ -43,6 +43,7 @@ function helpEmbed(prefixs) {
     .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
     .addFields(
         { name: `${prefixs}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: false },
+        { name: `resetprefix`, value: 'Om de prefix van de server te resetten.', inline: false },
         { name: `${prefixs}help`, value: 'Om dit bericht te laten zien.', inline: false },
         { name: `${prefixs}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: false },
         { name: `${prefixs}amongus`, value: 'Wanneer je een game wilt starten.', inline: false },
@@ -470,6 +471,25 @@ bot.on("message", async msg => {
     prefix = prefix.rows[0].prefix;
 
     if (msg.author.bot) return;
+    if (msg.content === "resetprefix") {
+        if (!msg.member.hasPermission("MANAGE_GUILD")) {
+            msg.channel.send(createEmbed(`${msg.author.username}`,"Je hebt geen bevoegdheden om de prefix van deze server aan te passen!"));
+            return;
+        }
+
+        client.query(`UPDATE prefixes SET prefix='.' WHERE guildId='${msg.guild.id}';`, (err, res) => {
+            if (!err) {
+                if (res) {
+                    console.log(`Prefix van ${msg.guild.name} is gereset!`);
+                }
+            } else {
+                console.log(err);
+            }
+        });
+
+        msg.channel.send(createEmbed(`Prefix`, `De prefix van **${msg.guild.name}** is gereset naar **.**`));
+    }
+
     laatstebericht = `${msg.guild.name} > ${msg.channel.name} - @${msg.author.tag}: ${msg.content}`;
     if (!msg.content.startsWith(prefix)) return;
     if (msg.guild === null) {
@@ -502,6 +522,8 @@ bot.on("message", async msg => {
                 // console.log(aantals);
                 msg.channel.send(createEmbed(`Database Values`, `Aantal servers in de Database: **${aantals.rows.length}**\n\n${bericht}`));
             }
+
+            
 
             if (command === "setprefix") {
                 if (!msg.member.hasPermission("MANAGE_GUILD")) {
