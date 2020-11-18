@@ -694,6 +694,15 @@ bot.on("message", async msg => {
                     return;
                 }
 
+                if (args.length > 10) {
+                    if (taal === "nl") {
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`Prefix mag maximaal 10 characters bevatten!`));
+                    } else {
+                        msg.channel.send(createEmbed(`${msg.author.username}`,`Prefix has a maximum of 10 characters!`));
+                    }
+                    return;
+                } 
+
                 client.query(`UPDATE prefixes SET prefix='${args[0]}' WHERE guildId='${msg.guild.id}';`, (err, res) => {
                     if (!err) {
                         if (res) {
