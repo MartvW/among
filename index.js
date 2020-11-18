@@ -694,7 +694,7 @@ bot.on("message", async msg => {
                     return;
                 }
 
-                if (args.length > 10) {
+                if (args[0].length >= 10) {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`,`Prefix mag maximaal 10 characters bevatten!`));
                     } else {
