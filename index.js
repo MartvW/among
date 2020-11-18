@@ -36,48 +36,92 @@ var laatstecommand = "-";
 var laatstebericht = "-";
 var resetMessage = "";
 
-function helpEmbed(prefixs) { 
-    var embedHelp = new Discord.MessageEmbed()
-    .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
-    .setTitle("Help")
-    .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
-    .addFields(
-        { name: `${prefixs}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: false },
-        { name: `resetprefix`, value: 'Om de prefix van de server te resetten.', inline: false },
-        { name: `${prefixs}help`, value: 'Om dit bericht te laten zien.', inline: false },
-        { name: `${prefixs}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: false },
-        { name: `${prefixs}amongus`, value: 'Wanneer je een game wilt starten.', inline: false },
-        { name: `${prefixs}amongusstop`, value: 'Wanneer je de game wilt eindigen.', inline: false },
-        { name: `${prefixs}ping`, value: 'Hiermee kan je je ping zien.', inline: false },
-        { name: `${prefixs}uptime`, value: 'Hoelang de bot online is.', inline: false },
-        { name: `${prefixs}map`, value: 'Om het lijstje van alle mappen te zien.', inline: false },
-        { name: `${prefixs}polus`, value: 'Om de kaart te zien van Polus.', inline: false },
-        { name: `${prefixs}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: false },
-        { name: `${prefixs}mira`, value: 'Om de kaart te zien van MIRA HQ.', inline: false },
-        { name: `${prefixs}setcode`, value: 'Om de code in te stellen.', inline: false },
-        { name: `${prefixs}resetcode`, value: 'Om de code te resetten.', inline: false },
-        { name: `${prefixs}code`, value: 'Om de code te zien van het kanaal.', inline: false },
-        { name: `${prefixs}lock`, value: 'Het kanaal te locken waar je inzit.', inline: false },
-        { name: `${prefixs}unlock`, value: 'Het kanaal te unlocken waar je inzit.', inline: false },
-    )
-    .setColor(16426522)
-    .setTimestamp()
-    .setFooter(`Among Us`)
-    return embedHelp;
+function helpEmbed(prefixs, lang) { 
+    if (lang === "nl") {
+        var embedHelp = new Discord.MessageEmbed()
+        .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
+        .setTitle("Help")
+        .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
+        .addFields(
+            { name: `${prefixs}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: false },
+            { name: `resetprefix`, value: 'Om de prefix van de server te resetten.', inline: false },
+            { name: `${prefixs}help`, value: 'Om dit bericht te laten zien.', inline: false },
+            { name: `${prefixs}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: false },
+            { name: `${prefixs}amongus`, value: 'Wanneer je een game wilt starten.', inline: false },
+            { name: `${prefixs}amongusstop`, value: 'Wanneer je de game wilt eindigen.', inline: false },
+            { name: `${prefixs}ping`, value: 'Hiermee kan je je ping zien.', inline: false },
+            { name: `${prefixs}uptime`, value: 'Hoelang de bot online is.', inline: false },
+            { name: `${prefixs}map`, value: 'Om het lijstje van alle mappen te zien.', inline: false },
+            { name: `${prefixs}polus`, value: 'Om de kaart te zien van Polus.', inline: false },
+            { name: `${prefixs}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: false },
+            { name: `${prefixs}mira`, value: 'Om de kaart te zien van MIRA HQ.', inline: false },
+            { name: `${prefixs}setcode`, value: 'Om de code in te stellen.', inline: false },
+            { name: `${prefixs}resetcode`, value: 'Om de code te resetten.', inline: false },
+            { name: `${prefixs}code`, value: 'Om de code te zien van het kanaal.', inline: false },
+            { name: `${prefixs}lock`, value: 'Het kanaal te locken waar je inzit.', inline: false },
+            { name: `${prefixs}unlock`, value: 'Het kanaal te unlocken waar je inzit.', inline: false },
+        )
+        .setColor(16426522)
+        .setTimestamp()
+        .setFooter(`Among Us`)
+        return embedHelp;
+    } else if (lang === "en") {
+        var embedHelp = new Discord.MessageEmbed()
+        .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
+        .setTitle("Help")
+        .setDescription(`A list of all the commands I know.`)
+        .addFields(
+            { name: `${prefixs}setprefix`, value: 'To set your own prefix.', inline: false },
+            { name: `resetprefix`, value: 'To reset your own prefix.', inline: false },
+            { name: `${prefixs}help`, value: 'To show this message.', inline: false },
+            { name: `${prefixs}link`, value: 'You can get usefull links with this command.', inline: false },
+            { name: `${prefixs}amongus`, value: 'When you want to start a game.', inline: false },
+            { name: `${prefixs}amongusstop`, value: 'To finish the game.', inline: false },
+            { name: `${prefixs}ping`, value: 'Get your ping.', inline: false },
+            { name: `${prefixs}uptime`, value: 'See the uptime from the bot.', inline: false },
+            { name: `${prefixs}map`, value: 'A list of all the maps.', inline: false },
+            { name: `${prefixs}polus`, value: 'To show the map of Polus.', inline: false },
+            { name: `${prefixs}skeld`, value: 'To show the map of The Skeld.', inline: false },
+            { name: `${prefixs}mira`, value: 'To show the map of MIRA HQ.', inline: false },
+            { name: `${prefixs}setcode`, value: 'To set the game code.', inline: false },
+            { name: `${prefixs}resetcode`, value: 'To reset the game code.', inline: false },
+            { name: `${prefixs}code`, value: 'Show the code of the channel.', inline: false },
+            { name: `${prefixs}lock`, value: 'To lock the channel.', inline: false },
+            { name: `${prefixs}unlock`, value: 'To unlock the channel.', inline: false },
+        )
+        .setColor(16426522)
+        .setTimestamp()
+        .setFooter(`Among Us`)
+        return embedHelp;
+    }
 }
 
-function embedLetOp(prefixs) {
-    var embedHelp = new Discord.MessageEmbed()
-    .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
-    .setTitle("Help")
-    .setDescription(`Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
-    .setColor(15746887)
-    .addFields(
-        { name: `.....................`, value: `Hiermee kan je de help-server joinen: ${discordserver}`, inline: false },
-    )
-    .setTimestamp()
-    .setFooter(`Among Us`)
-    return embedHelp;
+function embedLetOp(prefixs, lang) {
+    if (lang === "nl") {
+        var embedHelp = new Discord.MessageEmbed()
+        .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
+        .setTitle("Help")
+        .setDescription(`Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
+        .setColor(15746887)
+        .addFields(
+            { name: `.....................`, value: `Hiermee kan je de help-server joinen: ${discordserver}`, inline: false },
+        )
+        .setTimestamp()
+        .setFooter(`Among Us`)
+        return embedHelp;
+    } else if (lang === "en") {
+        var embedHelp = new Discord.MessageEmbed()
+        .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
+        .setTitle("Help")
+        .setDescription(`To run some commands you have to be in a voice-channel. These followin commands you must have to be in a voice-channel to run it:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
+        .setColor(15746887)
+        .addFields(
+            { name: `.....................`, value: `The invite link of the help-server: ${discordserver}`, inline: false },
+        )
+        .setTimestamp()
+        .setFooter(`Among Us`)
+        return embedHelp;
+    }
 }
 
 function createEmbed(title, description) {
@@ -345,7 +389,17 @@ bot.on("guildCreate", async guild => {
     client.query(`INSERT INTO prefixes VALUES (${guild.id}, '.');`, (err, res) => {
         if (!err) {
             if (res) {
-                console.log(`${guild.name} is succesvol in de database gezet!`);
+                console.log(`${guild.name} is succesvol in de database "Prefix" gezet!`);
+            }
+        } else {
+            console.log(err);
+        }
+    });
+
+    client.query(`INSERT INTO servers VALUES (${guild.id}, 'nl');`, (err, res) => {
+        if (!err) {
+            if (res) {
+                console.log(`${guild.name} is succesvol in de database "Servers" gezet!`);
             }
         } else {
             console.log(err);
@@ -370,14 +424,28 @@ bot.on("guildDelete", async guild => {
         client.query(`DELETE FROM prefixes WHERE guildId='${guild.id}';`, (err, res) => {
             if (!err) {
                 if (res) {
-                    console.log(`${guild.name} is succesvol verwijderd uit de database!`);
+                    console.log(`${guild.name} is succesvol verwijderd uit de database "Prefix"!`);
                 }
             } else {
                 console.log(err);
             }
         });
     } else {
-        console.log(`${guild.name} is niet verwijderd uit de database aangezien hij niet in de database stond!`);
+        console.log(`${guild.name} is niet verwijderd uit de database "Prefix" aangezien hij niet in de database stond!`);
+    }
+
+    if (client.query(`SELECT * FROM servers WHERE guildId='${guild.id}';`)) {
+        client.query(`DELETE FROM servers WHERE guildId='${guild.id}';`, (err, res) => {
+            if (!err) {
+                if (res) {
+                    console.log(`${guild.name} is succesvol verwijderd uit de database "Server"!`);
+                }
+            } else {
+                console.log(err);
+            }
+        });
+    } else {
+        console.log(`${guild.name} is niet verwijderd uit de database "Server" aangezien hij niet in de database stond!`);
     }
 //     console.log(guild.ownerID, guild.owner);
 //     bot.users.cache.get(guild.ownerID).send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: ${discordserver}\n\nMet vriendelijke groet,\nAmong Us`));
@@ -392,9 +460,10 @@ function checkTime(i) {
 bot.on("ready", async () => {
     var servers = await bot.guilds.cache.size;
     let aantals = await client.query(`SELECT * FROM prefixes;`);
+    let aantals2 = await client.query(`SELECT * FROM servers;`);
 
     console.log("");
-    console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers. In database zitten ${aantals.rows.length} servers!`);
+    console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers. In database "Prefix" zitten ${aantals.rows.length} servers! In database "Servers" zitten ${aantals2.rows.length} servers!`);
     console.log("");
 
     const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
@@ -455,11 +524,25 @@ bot.on("ready", async () => {
 
 bot.on("message", async msg => {
     let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
+    let taal = await client.query(`SELECT lang FROM servers WHERE guildId='${msg.guild.id}';`);
+    if (taal.rowCount === 0) {
+        client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'nl');`, (err, res) => {
+            if (!err) {
+                if (res) {
+                    console.log(`${msg.guild.name} is succesvol in de database "Servers" gezet!`);
+                }
+            } else {
+                console.log(err);
+            }
+        });
+        return;
+    };
+
     if (prefix.rowCount === 0) {
         client.query(`INSERT INTO prefixes VALUES (${msg.guild.id}, '.');`, (err, res) => {
             if (!err) {
                 if (res) {
-                    console.log(`${msg.guild.name} is succesvol in de database gezet!`);
+                    console.log(`${msg.guild.name} is succesvol in de database "Prefix" gezet!`);
                 }
             } else {
                 console.log(err);
@@ -506,8 +589,8 @@ bot.on("message", async msg => {
         aantalcommands++;
         try {
             if (command === "help") {
-                msg.channel.send(helpEmbed(prefix));
-                msg.channel.send(embedLetOp(prefix));
+                msg.channel.send(helpEmbed(prefix, "nl"));
+                msg.channel.send(embedLetOp(prefix, "nl"));
             }
 
             if (command === "database" && msg.author.id === owner) {
