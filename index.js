@@ -497,6 +497,7 @@ bot.on("ready", async () => {
 
         var status = [
             `Op ${servers} servers!`,
+            `${prefix}setprefix`,
             `${prefix}help | ${bot.user.tag}`,
             `${checkTime(uur+1)}:${checkTime(minuten)} uur`,
             `${prefix}help | ${discordserver}`,
