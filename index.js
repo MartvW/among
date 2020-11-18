@@ -660,13 +660,13 @@ bot.on("message", async msg => {
                 let bericht2 = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = await bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
-                    let invite = await guildname.vanityURLCode();
+                    let invite = await guildname.vanityURLCode;
                     bericht += `Guild: **${guildname}** (${aantals.rows[i].guildid})\nPrefix: **${aantals.rows[i].prefix}** Invite: ${invite}`;
                 }
 
                 for (let j = 0; j < aantals2.rows.length; j++) {
                     const guildname = await bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
-                    let invite = await guildname.vanityURLCode();
+                    let invite = await guildname.vanityURLCode;
                     bericht2 += `Guild: **${guildname}** (${aantals2.rows[j].guildid})\nTaal: **${aantals2.rows[j].lang}** Invite: ${invite}`;
                 }
                 // console.log(aantals);
