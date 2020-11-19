@@ -1451,6 +1451,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     console.log(err);
                 }
             });
+            reaction.message.reactions.removeAll();
             reaction.message.edit(createEmbed(`Taalinstellingen`, `De taal van **${reaction.message.guild.name}** is veranderd naar het **Nederlands**!`));
             return;
         }
@@ -1467,6 +1468,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     console.log(err);
                 }
             });
+            reaction.message.reactions.removeAll();
             reaction.message.edit(createEmbed(`Language Settings`, `The language for **${reaction.message.guild.name}** has changed to **English**!`));
             return;
         }
