@@ -46,6 +46,7 @@ function helpEmbed(prefixs, lang) {
             { name: `${prefixs}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: true },
             { name: `${prefixs}setlang`, value: 'Hiermee kan je je eigen taal instellen.', inline: true },
             { name: `resetprefix`, value: 'Om de prefix van de server te resetten.', inline: true },
+            { name: `${prefixs}info`, value: 'Hiermee kan je informatie zien over de server.', inline: true },
             { name: `${prefixs}help`, value: 'Om dit bericht te laten zien.', inline: true },
             { name: `${prefixs}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: true },
             { name: `${prefixs}amongus`, value: 'Wanneer je een game wilt starten.', inline: true },
@@ -75,6 +76,7 @@ function helpEmbed(prefixs, lang) {
             { name: `${prefixs}setprefix`, value: 'To set your own prefix.', inline: true },
             { name: `${prefixs}setlang`, value: 'To set your own language.', inline: true },
             { name: `resetprefix`, value: 'To reset your own prefix.', inline: true },
+            { name: `${prefixs}info`, value: 'You can get information about the server.', inline: true },
             { name: `${prefixs}help`, value: 'To show this message.', inline: true },
             { name: `${prefixs}link`, value: 'You can get usefull links with this command.', inline: true },
             { name: `${prefixs}amongus`, value: 'When you want to start a game.', inline: true },
@@ -621,17 +623,27 @@ bot.on("message", async msg => {
                         .setDescription(`Informatie over de server **${msg.guild.name}**`)
                         .setThumbnail(`${msg.guild.iconURL()}`)
                         .addFields(
-                            { name: `Owner:`, value: `${msg.guild.owner}`, inline: true },
                             { name: `Prefix:`, value: `${prefix}`, inline: true },
                             { name: `Taal:`, value: `Nederlands`, inline: true },
-                            { name: `Splash:`, value: `${msg.guild.splashURL()}`, inline: true },
                         )
                         .setColor(16426522)
                         .setTimestamp()
                         .setFooter(`Among Us`)
                     msg.channel.send(embed);
                 } else {
-
+                    var embed = new Discord.MessageEmbed()
+                        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                        .setTitle(`${msg.guild.name}`)
+                        .setDescription(`Information about the server **${msg.guild.name}**`)
+                        .setThumbnail(`${msg.guild.iconURL()}`)
+                        .addFields(
+                            { name: `Prefix:`, value: `${prefix}`, inline: true },
+                            { name: `Language:`, value: `English`, inline: true },
+                        )
+                        .setColor(16426522)
+                        .setTimestamp()
+                        .setFooter(`Among Us`)
+                    msg.channel.send(embed);
                 }
             }
 
