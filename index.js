@@ -622,11 +622,8 @@ bot.on("message", async msg => {
                         .setThumbnail(`${msg.guild.iconURL()}`)
                         .addFields(
                             { name: `Prefix:`, value: `${prefix}`, inline: true },
-                            { name: `Owner:`, value: `${msg.guild.owner}`, inline: true },
                             { name: `Taal:`, value: `Nederlands`, inline: true },
                             { name: `Aantal gebruikers:`, value: `${msg.guild.memberCount}`, inline: true },
-                            { name: `Beschrijving:`, value: `${msg.guild.description}`, inline: true },
-                            { name: `Aangemaakt op:`, value: `${msg.guild.createdAt}`, inline: true },
                         )
                         .setColor(16426522)
                         .setTimestamp()
