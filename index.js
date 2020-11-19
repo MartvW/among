@@ -470,7 +470,7 @@ bot.on("ready", async () => {
     let aantals2 = await client.query(`SELECT * FROM servers;`);
 
     console.log("");
-    console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers. In database "Prefix" zitten ${aantals.rows.length} servers! In database "Servers" zitten ${aantals2.rows.length} servers!`);
+    console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en op ${users} gebruikers. In database "Prefix" zitten ${aantals.rows.length} servers! In database "Servers" zitten ${aantals2.rows.length} servers!`);
     console.log("");
 
     const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
