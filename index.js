@@ -660,24 +660,6 @@ bot.on("message", async msg => {
                     return;
                 }
 
-                // if (args[0] !== "nl" && args[0] !== "en") {
-                //     if (taal === "nl") {
-                //         msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}setlang _<nl / en>_`));
-                //     } else {
-                //         msg.channel.send(createEmbed(`${msg.author.username}`,`Do ${prefix}setlang _<nl / en>_`));
-                //     }
-                //     return;
-                // }
-
-                // if (!args[0]) {
-                //     if (taal === "nl") {
-                //         msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}setlang _<nl / en>_`));
-                //     } else {
-                //         msg.channel.send(createEmbed(`${msg.author.username}`,`Do ${prefix}setlang _<nl / en>_`));
-                //     }
-                //     return;
-                // }
-
                 if (taal === "nl") {
                     msg.channel.send(createEmbed(`Taalinstellingen`, `Reageer met 🇳🇱 om de taal in het Nederlands te zetten.\nReageer met 🇬🇧 om de taal in het Engels te zetten.`)).then(embedMessage => {
                         taalMessage = embedMessage;
@@ -685,14 +667,14 @@ bot.on("message", async msg => {
                         embedMessage.react('🇳🇱');
                         embedMessage.react('🇬🇧');
                     });
+                } else {
+                    msg.channel.send(createEmbed(`Language Settings`, `React with 🇳🇱 to change the language to Dutch.\nReact with 🇬🇧 to change the language to English.`)).then(embedMessage => {
+                        taalMessage = embedMessage;
+                        taalGebruiker = msg.member;
+                        embedMessage.react('🇳🇱');
+                        embedMessage.react('🇬🇧');
+                    });
                 }
-
-                // if (args[0] === "nl") {
-                //     msg.channel.send(createEmbed(`Taal`, `De taal van **${msg.guild.name}** is veranderd naar ***${args[0]}***!`));
-                // } else if (args[0] === "en") {
-                //     msg.channel.send(createEmbed(`Language`, `Language has changed to ***${args[0]}***!`));
-
-                // }
             }
 
             if (command === "database" && msg.author.id === owner) {
