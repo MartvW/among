@@ -702,9 +702,9 @@ bot.on("message", async msg => {
                 }
                 // console.log(aantals);
                 if (taal === "nl") {
-                    msg.channel.send(createEmbed(`Database Values`, `Aantal servers in de Database: **${aantals.rows.length+aantals2.rows.length}**\n\nAantal servers: **${aantals.rows.length}**\n${bericht}\n\nAantal servers: **${aantals2.rows.length}**\n${bericht2}`));
+                    msg.member.send(createEmbed(`Database Values`, `Aantal servers in de Database: **${aantals.rows.length+aantals2.rows.length}**\n\nAantal servers: **${aantals.rows.length}**\n${bericht}\n\nAantal servers: **${aantals2.rows.length}**\n${bericht2}`));
                 } else {
-                    msg.channel.send(createEmbed(`Database Values`, `Total servers in Database: **${aantals.rows.length+aantals2.rows.length}**\n\nTotal servers: **${aantals.rows.length}**\n${bericht}\n\nTotal servers: **${aantals2.rows.length}**\n${bericht2}`));
+                    msg.member.send(createEmbed(`Database Values`, `Total servers in Database: **${aantals.rows.length+aantals2.rows.length}**\n\nTotal servers: **${aantals.rows.length}**\n${bericht}\n\nTotal servers: **${aantals2.rows.length}**\n${bericht2}`));
                 }
             }
 
