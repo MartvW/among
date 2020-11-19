@@ -960,7 +960,7 @@ bot.on("message", async msg => {
                         }
                         return;
                     }
-                    msg.channel.send(createEmbed(`${msg.author.username}`,`${codes[i].code} - ${codes[i].server}`));
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`**${codes[i].code} - ${codes[i].server}**`));
                     return;
                 }
             }
