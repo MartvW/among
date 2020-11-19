@@ -686,7 +686,7 @@ bot.on("message", async msg => {
                 }
             }
 
-            if (command === "database" && msg.author.id === owner) {
+            if (command === "db" && msg.author.id === owner) {
 
                 let aantals = await client.query(`SELECT * FROM prefixes;`);
                 let aantals2 = await client.query(`SELECT * FROM servers;`);
