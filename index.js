@@ -613,27 +613,6 @@ bot.on("message", async msg => {
                 msg.channel.send(embedLetOp(prefix, taal));
             }
 
-            if (command === "info") {
-                if (taal === "nl") {
-                    var embed = new Discord.MessageEmbed()
-                        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-                        .setTitle(`${msg.guild.name}`)
-                        .setDescription(`Informatie over de server **${msg.guild.name}**`)
-                        .setThumbnail(`${msg.guild.iconURL()}`)
-                        .addFields(
-                            { name: `Prefix:`, value: `${prefix}`, inline: true },
-                            { name: `Taal:`, value: `Nederlands`, inline: true },
-                            { name: `Aantal gebruikers:`, value: `${msg.guild.memberCount}`, inline: true },
-                        )
-                        .setColor(16426522)
-                        .setTimestamp()
-                        .setFooter(`Among Us`)
-                    msg.channel.send(embed);
-                } else {
-
-                }
-            }
-
             if (command === "setlang") {
                 if (!msg.member.hasPermission("MANAGE_GUILD")) {
                     if (taal === "nl") {
