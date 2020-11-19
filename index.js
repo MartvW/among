@@ -624,7 +624,7 @@ bot.on("message", async msg => {
                             { name: `Owner:`, value: `${msg.guild.owner}`, inline: true },
                             { name: `Prefix:`, value: `${prefix}`, inline: true },
                             { name: `Taal:`, value: `Nederlands`, inline: true },
-                            { name: `Splash:`, value: `${msg.guild.splashURL}`, inline: true },
+                            { name: `Splash:`, value: `${msg.guild.splashURL()}`, inline: true },
                         )
                         .setColor(16426522)
                         .setTimestamp()
