@@ -3,6 +3,7 @@ const { create } = require('domain');
 const fs = require('fs');
 const bot = new Discord.Client();
 const { Client } = require('pg');
+const { isError } = require('util');
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -31,6 +32,8 @@ var statusIndex = 0;
 var aantalcommands = 0;
 var slot = false;
 var slotnaam = "";
+var taalMessage = "";
+var taalGebruiker = "";
 var adminMessage = "";
 var laatstecommand = "-";
 var laatstebericht = "-";
@@ -657,39 +660,39 @@ bot.on("message", async msg => {
                     return;
                 }
 
-                if (args[0] !== "nl" && args[0] !== "en") {
-                    if (taal === "nl") {
-                        msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}setlang _<nl / en>_`));
-                    } else {
-                        msg.channel.send(createEmbed(`${msg.author.username}`,`Do ${prefix}setlang _<nl / en>_`));
-                    }
-                    return;
+                // if (args[0] !== "nl" && args[0] !== "en") {
+                //     if (taal === "nl") {
+                //         msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}setlang _<nl / en>_`));
+                //     } else {
+                //         msg.channel.send(createEmbed(`${msg.author.username}`,`Do ${prefix}setlang _<nl / en>_`));
+                //     }
+                //     return;
+                // }
+
+                // if (!args[0]) {
+                //     if (taal === "nl") {
+                //         msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}setlang _<nl / en>_`));
+                //     } else {
+                //         msg.channel.send(createEmbed(`${msg.author.username}`,`Do ${prefix}setlang _<nl / en>_`));
+                //     }
+                //     return;
+                // }
+
+                if (taal === "nl") {
+                    msg.channel.send(createEmbed(`Taalinstellingen`, `Reageer met 🇳🇱 om de taal in het Nederlands te zetten.\nReageer met 🇬🇧 om de taal in het Engels te zetten.`)).then(embedMessage => {
+                        taalMessage = embedMessage;
+                        taalGebruiker = msg.member;
+                        embedMessage.react('🇳🇱');
+                        embedMessage.react('🇬🇧');
+                    });
                 }
 
-                if (!args[0]) {
-                    if (taal === "nl") {
-                        msg.channel.send(createEmbed(`${msg.author.username}`,`Doe ${prefix}setlang _<nl / en>_`));
-                    } else {
-                        msg.channel.send(createEmbed(`${msg.author.username}`,`Do ${prefix}setlang _<nl / en>_`));
-                    }
-                    return;
-                }
+                // if (args[0] === "nl") {
+                //     msg.channel.send(createEmbed(`Taal`, `De taal van **${msg.guild.name}** is veranderd naar ***${args[0]}***!`));
+                // } else if (args[0] === "en") {
+                //     msg.channel.send(createEmbed(`Language`, `Language has changed to ***${args[0]}***!`));
 
-                client.query(`UPDATE servers SET lang='${args[0]}' WHERE guildId='${msg.guild.id}';`, (err, res) => {
-                    if (!err) {
-                        if (res) {
-                            console.log(`Taal van ${msg.guild.name} is veranderd naar ${args[0]}!`);
-                        }
-                    } else {
-                        console.log(err);
-                    }
-                });
-                if (args[0] === "nl") {
-                    msg.channel.send(createEmbed(`Taal`, `De taal van **${msg.guild.name}** is veranderd naar ***${args[0]}***!`));
-                } else if (args[0] === "en") {
-                    msg.channel.send(createEmbed(`Language`, `Language has changed to ***${args[0]}***!`));
-
-                }
+                // }
             }
 
             if (command === "database" && msg.author.id === owner) {
@@ -1447,6 +1450,47 @@ bot.on('messageReactionAdd', (reaction, user) => {
             reaction.remove();
             return;
         }
+    } else if (reaction.message.id === taalMessage.id) {
+        if (taalGebruiker.id != user.id) {
+            reaction.remove();
+            taalMessage.react(reaction._emoji.name);
+            return;
+        }
+
+        if (reaction._emoji.name === "🇳🇱") {
+            taalMessage = "";
+            taalGebruiker = "";
+            client.query(`UPDATE servers SET lang='nl' WHERE guildId='${reaction.message.guild.id}';`, (err, res) => {
+                if (!err) {
+                    if (res) {
+                        console.log(`Taal van ${reaction.message.guild.id} is veranderd naar het Nederlands!`);
+                    }
+                } else {
+                    console.log(err);
+                }
+            });
+            reaction.message.edit(createEmbed(`Taalinstellingen`, `De taal van **${reaction.message.guild.name}** is veranderd naar het **Nederlands**!`));
+            return;
+        }
+
+        if (reaction._emoji.name === "🇬🇧") {
+            taalMessage = "";
+            taalGebruiker = "";
+            client.query(`UPDATE servers SET lang='en' WHERE guildId='${reaction.message.guild.id}';`, (err, res) => {
+                if (!err) {
+                    if (res) {
+                        console.log(`Taal van ${reaction.message.guild.id} is veranderd naar het Engels!`);
+                    }
+                } else {
+                    console.log(err);
+                }
+            });
+            reaction.message.edit(createEmbed(`Language Settings`, `The language for **${reaction.message.guild.name}** has changed to **English**!`));
+            return;
+        }
+
+        reaction.remove();
+
     } else {
         for (let i = 0; i < amongus.length; i++) {
             if (amongus[i].user != user) {
