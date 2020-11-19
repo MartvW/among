@@ -539,6 +539,8 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async msg => {
+    if (msg.author.bot) return;
+
     if (msg.guild === null) {
         msg.reply(createEmbed(`${msg.author.username}`, `Je kan geen privéberichten naar mij sturen...`));
         return;
@@ -575,7 +577,6 @@ bot.on("message", async msg => {
     taal = taal.rows[0].lang;
     prefix = prefix.rows[0].prefix;
 
-    if (msg.author.bot) return;
     if (msg.content === "resetprefix") {
         if (!msg.member.hasPermission("MANAGE_GUILD")) {
             if (taal === "nl") {
