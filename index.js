@@ -181,6 +181,8 @@ async function updateAdmin(botbio) {
     const seconda = vandaag.getSeconds();
 
     const servers = await bot.guilds.cache.size;
+    const users = await bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
+
     var totalSeconds = (bot.uptime / 1000);
     var botSeconds = Math.floor(totalSeconds);
     var days = Math.floor(totalSeconds / 86400);
@@ -244,7 +246,7 @@ async function updateAdmin(botbio) {
     var adminEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nLaatste command: **${laatstecommand}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal locks: **${locks.length}**\nAantal games: **${amongus.length}**\nAantal servers: **${servers}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nTotaal aantal locks: **${aantallocks}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nLaatste command: **${laatstecommand}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal locks: **${locks.length}**\nAantal games: **${amongus.length}**\nAantal servers: **${servers}**\nAantal gebruikers: **${users}**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nTotaal aantal locks: **${aantallocks}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
@@ -462,6 +464,8 @@ function checkTime(i) {
 
 bot.on("ready", async () => {
     var servers = await bot.guilds.cache.size;
+    var users = await bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
+
     let aantals = await client.query(`SELECT * FROM prefixes;`);
     let aantals2 = await client.query(`SELECT * FROM servers;`);
 
@@ -488,6 +492,7 @@ bot.on("ready", async () => {
     
     setInterval(() => {
         servers = bot.guilds.cache.size;
+        users = bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
         
         var vandaag = new Date();
         var dag = vandaag.getDate();
