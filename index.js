@@ -4,6 +4,7 @@ const fs = require('fs');
 const bot = new Discord.Client();
 const { Client } = require('pg');
 const { isError } = require('util');
+const { createBrotliDecompress } = require('zlib');
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -663,6 +664,7 @@ bot.on("message", async msg => {
                 }
 
                 if (taal === "nl") {
+                    msg.channel.send(createEmbed(`Taalinstellingen`, `Bekijk je DM`));
                     msg.member.send(createEmbed(`Taalinstellingen`, `Reageer met 🇳🇱 om de taal in het Nederlands te zetten.\nReageer met 🇬🇧 om de taal in het Engels te zetten.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
@@ -671,6 +673,7 @@ bot.on("message", async msg => {
                         embedMessage.react('🇬🇧');
                     });
                 } else {
+                    msg.channel.send(createEmbed(`Language Settings`, `Check your DM`));
                     msg.member.send(createEmbed(`Language Settings`, `React with 🇳🇱 to change the language to Dutch.\nReact with 🇬🇧 to change the language to English.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
@@ -1453,8 +1456,8 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     console.log(err);
                 }
             });
-            taalMessage.reactions.removeAll();
-            taalMessage.edit(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
+            taalMessage.delete();
+            taalGebruiker.send(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
             taalServer = ""; 
             taalMessage = "";
             taalGebruiker = "";
@@ -1471,12 +1474,12 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     console.log(err);
                 }
             });
-            
-            taalMessage.reactions.removeAll();
-            taalMessage.edit(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
+            taalMessage.delete();
+            taalGebruiker.send(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
+            taalServer = "";
             taalMessage = "";
             taalGebruiker = "";
-            taalServer = "";
+            
             return;
         }
 
