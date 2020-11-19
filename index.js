@@ -1448,11 +1448,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
 
         if (reaction._emoji.name === "🇳🇱") {
             client.query(`UPDATE servers SET lang='nl' WHERE guildId='${taalServer.id}';`, (err, res) => {
-                if (!err) {
-                    if (res) {
-                        console.log(`Taal van ${taalServer.name} is veranderd door ${taalGebruiker.username} naar het Nederlands!`);
-                    }
-                } else {
+                if (err) {
                     console.log(err);
                 }
             });
@@ -1466,11 +1462,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
 
         if (reaction._emoji.name === "🇬🇧") {
             client.query(`UPDATE servers SET lang='en' WHERE guildId='${taalServer.id}';`, (err, res) => {
-                if (!err) {
-                    if (res) {
-                        console.log(`Taal van ${taalServer.name} is veranderd door ${taalGebruiker.username} naar het Engels!`);
-                    }
-                } else {
+                if (err) {
                     console.log(err);
                 }
             });
