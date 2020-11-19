@@ -623,32 +623,62 @@ bot.on("message", async msg => {
 
             if (command === "info") {
                 if (taal === "nl") {
-                    var embed = new Discord.MessageEmbed()
-                        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-                        .setTitle(`${msg.guild.name}`)
-                        .setDescription(`Informatie over de server **${msg.guild.name}**`)
-                        .setThumbnail(`${msg.guild.iconURL()}`)
-                        .addFields(
-                            { name: `Prefix:`, value: `${prefix}`, inline: true },
-                            { name: `Taal:`, value: `Nederlands`, inline: true },
-                        )
-                        .setColor(16426522)
-                        .setTimestamp()
-                        .setFooter(`Among Us`)
+                    if (msg.guild.iconURL()) {
+                        var embed = new Discord.MessageEmbed()
+                            .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                            .setTitle(`${msg.guild.name}`)
+                            .setDescription(`Informatie over de server **${msg.guild.name}**`)
+                            .setThumbnail(`${msg.guild.iconURL()}`)
+                            .addFields(
+                                { name: `Prefix:`, value: `${prefix}`, inline: true },
+                                { name: `Taal:`, value: `Nederlands`, inline: true },
+                            )
+                            .setColor(16426522)
+                            .setTimestamp()
+                            .setFooter(`Among Us`)
+                    } else {
+                        var embed = new Discord.MessageEmbed()
+                            .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                            .setTitle(`${msg.guild.name}`)
+                            .setDescription(`Informatie over de server **${msg.guild.name}**`)
+                            .setThumbnail(`https://raw.githubusercontent.com/MartvW/among/master/discord-server-icon-template-21.jpg`)
+                            .addFields(
+                                { name: `Prefix:`, value: `${prefix}`, inline: true },
+                                { name: `Taal:`, value: `Nederlands`, inline: true },
+                            )
+                            .setColor(16426522)
+                            .setTimestamp()
+                            .setFooter(`Among Us`)
+                    }
                     msg.channel.send(embed);
                 } else {
-                    var embed = new Discord.MessageEmbed()
-                        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-                        .setTitle(`${msg.guild.name}`)
-                        .setDescription(`Information about the server **${msg.guild.name}**`)
-                        .setThumbnail(`${msg.guild.iconURL()}`)
-                        .addFields(
-                            { name: `Prefix:`, value: `${prefix}`, inline: true },
-                            { name: `Language:`, value: `English`, inline: true },
-                        )
-                        .setColor(16426522)
-                        .setTimestamp()
-                        .setFooter(`Among Us`)
+                    if (msg.guild.iconURL()) {
+                        var embed = new Discord.MessageEmbed()
+                            .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                            .setTitle(`${msg.guild.name}`)
+                            .setDescription(`Information about the server **${msg.guild.name}**`)
+                            .setThumbnail(`${msg.guild.iconURL()}`)
+                            .addFields(
+                                { name: `Prefix:`, value: `${prefix}`, inline: true },
+                                { name: `Language:`, value: `English`, inline: true },
+                            )
+                            .setColor(16426522)
+                            .setTimestamp()
+                            .setFooter(`Among Us`)
+                    } else {
+                        var embed = new Discord.MessageEmbed()
+                            .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                            .setTitle(`${msg.guild.name}`)
+                            .setDescription(`Information about the server **${msg.guild.name}**`)
+                            .setThumbnail(`https://raw.githubusercontent.com/MartvW/among/master/discord-server-icon-template-21.jpg`)
+                            .addFields(
+                                { name: `Prefix:`, value: `${prefix}`, inline: true },
+                                { name: `Language:`, value: `English`, inline: true },
+                            )
+                            .setColor(16426522)
+                            .setTimestamp()
+                            .setFooter(`Among Us`)
+                    }
                     msg.channel.send(embed);
                 }
             }
