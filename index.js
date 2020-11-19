@@ -503,7 +503,7 @@ bot.on("ready", async () => {
 
         var status = [
             `Op ${servers} servers!`,
-            `${prefix}setprefix`,
+            `${prefix}setprefix | <prefix>`,
             `${prefix}setlang | NL / EN`,
             `${users} gebruiken deze bot!`,
             `${prefix}help | ${bot.user.tag}`,
