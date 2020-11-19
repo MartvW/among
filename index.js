@@ -505,7 +505,7 @@ bot.on("ready", async () => {
             `Op ${servers} servers!`,
             `${prefix}setprefix | <prefix>`,
             `${prefix}setlang | NL / EN`,
-            `${users} gebruiken deze bot!`,
+            `${users} gebruikers deze bot!`,
             `${prefix}help | ${bot.user.tag}`,
             `${checkTime(uur+1)}:${checkTime(minuten)} uur`,
             `${prefix}help | ${discordserver}`,
