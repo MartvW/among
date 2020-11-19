@@ -696,7 +696,7 @@ bot.on("message", async msg => {
                 if (taal === "nl") {
                     msg.channel.send(createEmbed(`Taalinstellingen`, `Bekijk je privéberichten!`));
                     console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
-                    msg.member.send(createEmbed(`Taalinstellingen`, `Reageer met 🇳🇱 om de taal in het Nederlands te zetten.\nReageer met 🇬🇧 om de taal in het Engels te zetten.`)).then(embedMessage => {
+                    msg.member.send(createEmbed(`Taalinstellingen voor ${msg.guild.name}`, `Reageer met 🇳🇱 om de taal in het Nederlands te zetten.\nReageer met 🇬🇧 om de taal in het Engels te zetten.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
                         taalServer = msg.guild;
@@ -706,7 +706,7 @@ bot.on("message", async msg => {
                 } else {
                     msg.channel.send(createEmbed(`Language Settings`, `Check your private messages!`));
                     console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
-                    msg.member.send(createEmbed(`Language Settings`, `React with 🇳🇱 to change the language to Dutch.\nReact with 🇬🇧 to change the language to English.`)).then(embedMessage => {
+                    msg.member.send(createEmbed(`Language Settings for ${msg.guild.name}`, `React with 🇳🇱 to change the language to Dutch.\nReact with 🇬🇧 to change the language to English.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
                         taalServer = msg.guild;
