@@ -390,8 +390,7 @@ bot.on("warn", async msg => {
 
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
-    var owner = await bot.users.cache.find(m => m.id === guild.ownerID);
-    console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers! De owner is ${owner.username} (id: ${guild.ownerID})`);
+    console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers!`);
     bot.user.setPresence({
         status: 'online',
         activity: {
