@@ -625,7 +625,7 @@ bot.on("message", async msg => {
                         )
                         .setColor(16426522)
                         .setTimestamp()
-                        .setFooter(`De host is: ${msg.author.username}\nHet kanaal waarin op dit moment een game is gestart: ${msg.member.voice.channel.name}`)
+                        .setFooter(`Among Us`)
                     msg.channel.send(embed);
                 }
                 
