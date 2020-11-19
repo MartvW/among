@@ -115,7 +115,7 @@ function embedLetOp(prefixs, lang) {
         var embedHelp = new Discord.MessageEmbed()
         .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
         .setTitle("Help")
-        .setDescription(`To run some commands you have to be in a voice-channel. These followin commands you must have to be in a voice-channel to run it:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
+        .setDescription(`To run some commands you have to be in a voice-channel. These following commands you must have to be in a voice-channel to run it:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
         .setColor(15746887)
         .addFields(
             { name: `.....................`, value: `The invite link of the help-server: ${discordserver}`, inline: false },
