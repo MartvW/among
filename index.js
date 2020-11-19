@@ -1450,7 +1450,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             client.query(`UPDATE servers SET lang='nl' WHERE guildId='${taalServer.id}';`, (err, res) => {
                 if (!err) {
                     if (res) {
-                        console.log(`Taal van ${taalServer.name} is veranderd naar het Nederlands!`);
+                        console.log(`Taal van ${taalServer.name} is veranderd door ${taalGebruiker.username} naar het Nederlands!`);
                     }
                 } else {
                     console.log(err);
@@ -1468,7 +1468,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             client.query(`UPDATE servers SET lang='en' WHERE guildId='${taalServer.id}';`, (err, res) => {
                 if (!err) {
                     if (res) {
-                        console.log(`Taal van ${taalServer.name} is veranderd naar het Engels!`);
+                        console.log(`Taal van ${taalServer.name} is veranderd door ${taalGebruiker.username} naar het Engels!`);
                     }
                 } else {
                     console.log(err);
