@@ -1444,8 +1444,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
         }
 
         if (reaction._emoji.name === "🇳🇱") {
-            taalMessage = "";
-            taalGebruiker = "";
             client.query(`UPDATE servers SET lang='nl' WHERE guildId='${taalServer.id}';`, (err, res) => {
                 if (!err) {
                     if (res) {
@@ -1455,14 +1453,15 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     console.log(err);
                 }
             });
-            reaction.message.reactions.removeAll();
-            reaction.message.edit(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
+            taalMessage.reactions.removeAll();
+            taalMessage.edit(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
+            taalServer = ""; 
+            taalMessage = "";
+            taalGebruiker = "";
             return;
         }
 
         if (reaction._emoji.name === "🇬🇧") {
-            taalMessage = "";
-            taalGebruiker = "";
             client.query(`UPDATE servers SET lang='en' WHERE guildId='${taalServer.id}';`, (err, res) => {
                 if (!err) {
                     if (res) {
@@ -1472,8 +1471,12 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     console.log(err);
                 }
             });
-            reaction.message.reactions.removeAll();
-            reaction.message.edit(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
+            
+            taalMessage.reactions.removeAll();
+            taalMessage.edit(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
+            taalMessage = "";
+            taalGebruiker = "";
+            taalServer = "";
             return;
         }
 
