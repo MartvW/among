@@ -619,16 +619,22 @@ bot.on("message", async msg => {
                         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                         .setTitle(`${msg.guild.name}`)
                         .setDescription(`Informatie over de server **${msg.guild.name}**`)
-                        .setImage(`${msg.guild.iconURL()}`)
+                        .setThumbnail(`${msg.guild.iconURL()}`)
                         .addFields(
-                            { name: `Servernaam`, value: 'Hoelang de bot online is.', inline: true },
+                            { name: `Prefix:`, value: `${prefix}`, inline: true },
+                            { name: `Owner:`, value: `${msg.guild.owner}`, inline: true },
+                            { name: `Taal:`, value: `Nederlands`, inline: true },
+                            { name: `Aantal gebruikers:`, value: `${msg.guild.memberCount}`, inline: true },
+                            { name: `Beschrijving:`, value: `${msg.guild.description}`, inline: true },
+                            { name: `Aangemaakt op:`, value: `${msg.guild.createdAt}`, inline: true },
                         )
                         .setColor(16426522)
                         .setTimestamp()
                         .setFooter(`Among Us`)
                     msg.channel.send(embed);
+                } else {
+
                 }
-                
             }
 
             if (command === "setlang") {
