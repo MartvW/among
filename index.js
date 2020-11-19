@@ -509,7 +509,7 @@ bot.on("ready", async () => {
         var status = [
             `Op ${servers} servers!`,
             `${prefix}setprefix | <prefix>`,
-            `${prefix}setlang | NL / EN`,
+            `${prefix}setlang`,
             `${users} mensen gebruiken deze bot!`,
             `${prefix}help | ${bot.user.tag}`,
             `${checkTime(uur+1)}:${checkTime(minuten)} uur`,
@@ -661,14 +661,14 @@ bot.on("message", async msg => {
                 }
 
                 if (taal === "nl") {
-                    msg.channel.send(createEmbed(`Taalinstellingen`, `Reageer met 🇳🇱 om de taal in het Nederlands te zetten.\nReageer met 🇬🇧 om de taal in het Engels te zetten.`)).then(embedMessage => {
+                    msg.member.send(createEmbed(`Taalinstellingen`, `Reageer met 🇳🇱 om de taal in het Nederlands te zetten.\nReageer met 🇬🇧 om de taal in het Engels te zetten.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
                         embedMessage.react('🇳🇱');
                         embedMessage.react('🇬🇧');
                     });
                 } else {
-                    msg.channel.send(createEmbed(`Language Settings`, `React with 🇳🇱 to change the language to Dutch.\nReact with 🇬🇧 to change the language to English.`)).then(embedMessage => {
+                    msg.member.send(createEmbed(`Language Settings`, `React with 🇳🇱 to change the language to Dutch.\nReact with 🇬🇧 to change the language to English.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
                         embedMessage.react('🇳🇱');
