@@ -746,12 +746,13 @@ bot.on("message", async msg => {
                     channel.createInvite({ unique: true }).then(as => {
                         invites = as;
                     });
+                    console.log(invites);
                     embedNL.addField(`${guildname} (${aantals.rows[i].guildid})`, `Prefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}`);
                     embedEN.addField(`${guildname} (${aantals.rows[i].guildid})`, `Prefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}`);
                 }
 
-                embedNL.addField(`--------------`, `---------------`);
-                embedEN.addField(`--------------`, `---------------`);
+                embedNL.addField(`--------------`, `--------------`);
+                embedEN.addField(`--------------`, `--------------`);
 
                 for (let j = 0; j < aantals2.rows.length; j++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
