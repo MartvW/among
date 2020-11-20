@@ -737,6 +737,9 @@ bot.on("message", async msg => {
                     .setTimestamp()
                     .setFooter(`Among Us`)
                 
+                embedNL.addField(`Aantal servers`, `${aantals.rows.length}`);
+                embedEN.addField(`Total servers`, `${aantals.rows.length}`);
+
                 let bericht = "";
                 let bericht2 = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
@@ -747,12 +750,12 @@ bot.on("message", async msg => {
                         invites = as;
                     });
                     console.log(invites);
-                    embedNL.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}`);
-                    embedEN.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}`);
+                    embedNL.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**\nInvite: https://discord.gg/${invites.code}`);
+                    embedEN.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**\nInvite: https://discord.gg/${invites.code}`);
                 }
 
-                embedNL.addField(`--------------`, `--------------`);
-                embedEN.addField(`--------------`, `--------------`);
+                embedNL.addField(`Aantal servers`, `${aantals2.rows.length}`);
+                embedEN.addField(`Total servers`, `${aantals2.rows.length}`);
 
                 for (let j = 0; j < aantals2.rows.length; j++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
@@ -761,8 +764,8 @@ bot.on("message", async msg => {
                     channel.createInvite({ unique: true }).then(as => {
                         invites = as;
                     });
-                    embedNL.addField(`${guildname}`, `Taal: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${invites.code}`);
-                    embedEN.addField(`${guildname}`, `Language: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${invites.code}`);
+                    embedNL.addField(`${guildname}`, `Taal: **${aantals2.rows[j].lang}**\nInvite: https://discord.gg/${invites.code}`);
+                    embedEN.addField(`${guildname}`, `Language: **${aantals2.rows[j].lang}**\nInvite: https://discord.gg/${invites.code}`);
                 }
                 // console.log(aantals);
                 if (taal === "nl") {
