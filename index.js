@@ -725,14 +725,16 @@ bot.on("message", async msg => {
                 let bericht2 = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = await bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
-                    guildname.systemChannel.createInvite({ unique: true }).then(i => {
+                    const channel = guildname.channels.filter(c => c.type === 'text').find(x => x.position == 0);
+                    channel.createInvite({ unique: true }).then(i => {
                         bericht += `Guild: **${guildname}** (${aantals.rows[i].guildid})\nPrefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${i.code}\n`;
                     });
                 }
 
                 for (let j = 0; j < aantals2.rows.length; j++) {
                     const guildname = await bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
-                    guildname.systemChannel.createInvite({ unique: true }).then(i => {
+                    const channel = guildname.channels.filter(c => c.type === 'text').find(x => x.position == 0);
+                    channel.createInvite({ unique: true }).then(i => {
                         bericht2 += `Guild: **${guildname}** (${aantals2.rows[j].guildid})\nTaal: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${i.code}\n`;
                     });
                 }
