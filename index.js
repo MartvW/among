@@ -738,8 +738,13 @@ bot.on("message", async msg => {
 
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
-                    embedNL.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**`, true);
-                    embedEN.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**`, true);
+                    if (aantals.rows[i].prefix === ".") {
+                        prefixtekst = ". (Standaard)";
+                    } else {
+                        prefixtekst = `${aantals.rows[i].prefix} (Aangepast)`;
+                    }
+                    embedNL.addField(`${guildname}`, `Prefix: **${prefixtekst}**`, true);
+                    embedEN.addField(`${guildname}`, `Prefix: **${prefixtekst}**`, true);
                 }
 
                 embedNL.addField(`Aantal servers`, `${aantals2.rows.length}`);
@@ -748,9 +753,9 @@ bot.on("message", async msg => {
                 for (let j = 0; j < aantals2.rows.length; j++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
                     if (aantals2.rows[j].lang === "nl") {
-                        taaltekst = "NL 🇳🇱";
+                        taaltekst = "NL  🇳🇱";
                     } else {
-                        taaltekst = "EN 🇬🇧";
+                        taaltekst = "EN  🇬🇧";
                     }
                     embedNL.addField(`${guildname}`, `Taal: **${taaltekst}**`, true);
                     embedEN.addField(`${guildname}`, `Language: **${taaltekst}**`, true);
