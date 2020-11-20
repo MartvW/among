@@ -747,8 +747,8 @@ bot.on("message", async msg => {
                         invites = as;
                     });
                     console.log(invites);
-                    embedNL.addField(`${guildname} (${aantals.rows[i].guildid})`, `Prefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}`);
-                    embedEN.addField(`${guildname} (${aantals.rows[i].guildid})`, `Prefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}`);
+                    embedNL.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}`);
+                    embedEN.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}`);
                 }
 
                 embedNL.addField(`--------------`, `--------------`);
@@ -761,8 +761,8 @@ bot.on("message", async msg => {
                     channel.createInvite({ unique: true }).then(as => {
                         invites = as;
                     });
-                    embedNL.addField(`${guildname} (${aantals2.rows[j].guildid})`, `Taal: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${invites.code}`);
-                    embedEN.addField(`${guildname} (${aantals2.rows[j].guildid})`, `Language: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${invites.code}`);
+                    embedNL.addField(`${guildname}`, `Taal: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${invites.code}`);
+                    embedEN.addField(`${guildname}`, `Language: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${invites.code}`);
                 }
                 // console.log(aantals);
                 if (taal === "nl") {
