@@ -746,10 +746,8 @@ bot.on("message", async msg => {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
                     const channel = guildname.channels.cache.filter(c => c.type === 'text').find(x => x.position == 0);
                     let invites = [];
-                    channel.createInvite({ unique: true }).then(as => {
-                        invites.push(as.code);
-                    });
-                    console.log(invites);
+                    let createinvite = channel.createInvite({ unique: true });
+                    console.log((await createinvite).code);
                     embedNL.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**\nInvite: https://discord.gg/${invites.code}`);
                     embedEN.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**\nInvite: https://discord.gg/${invites.code}`);
                 }
