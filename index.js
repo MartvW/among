@@ -739,12 +739,12 @@ bot.on("message", async msg => {
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
                     if (aantals.rows[i].prefix === ".") {
-                        prefixtekst = ". (Standaard)";
+                        prefixtekst = "**.** (Standaard)";
                     } else {
-                        prefixtekst = `${aantals.rows[i].prefix} (Aangepast)`;
+                        prefixtekst = `**${aantals.rows[i].prefix} (Aangepast)**`;
                     }
-                    embedNL.addField(`${guildname}`, `Prefix: **${prefixtekst}**`, true);
-                    embedEN.addField(`${guildname}`, `Prefix: **${prefixtekst}**`, true);
+                    embedNL.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
+                    embedEN.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
                 }
 
                 embedNL.addField(`Aantal servers`, `${aantals2.rows.length}`);
