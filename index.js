@@ -720,6 +720,22 @@ bot.on("message", async msg => {
 
                 let aantals = await client.query(`SELECT * FROM prefixes;`);
                 let aantals2 = await client.query(`SELECT * FROM servers;`);
+
+                var embedNL = new Discord.MessageEmbed()
+                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                    .setTitle(`Database Values`)
+                    .setDescription(`Aantal servers in de Database: **${aantals.rows.length+aantals2.rows.length}**`)
+                    .setColor(16426522)
+                    .setTimestamp()
+                    .setFooter(`Among Us`)
+                
+                var embedEN = new Discord.MessageEmbed()
+                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                    .setTitle(`Database Values`)
+                    .setDescription(`Total servers in Database: **${aantals.rows.length+aantals2.rows.length}**`)
+                    .setColor(16426522)
+                    .setTimestamp()
+                    .setFooter(`Among Us`)
                 
                 let bericht = "";
                 let bericht2 = "";
@@ -730,8 +746,12 @@ bot.on("message", async msg => {
                     channel.createInvite({ unique: true }).then(as => {
                         invites = as;
                     });
-                    bericht += `Guild: **${guildname}** (${aantals.rows[i].guildid})\nPrefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}\n`;
+                    embedNL.addField(`${guildname} (${aantals.rows[i].guildid})`, `Prefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}`);
+                    embedEN.addField(`${guildname} (${aantals.rows[i].guildid})`, `Prefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}`);
                 }
+
+                embedNL.addField(`--------------`, `---------------`);
+                embedEN.addField(`--------------`, `---------------`);
 
                 for (let j = 0; j < aantals2.rows.length; j++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
@@ -740,15 +760,16 @@ bot.on("message", async msg => {
                     channel.createInvite({ unique: true }).then(as => {
                         invites = as;
                     });
-                    bericht2 += `Guild: **${guildname}** (${aantals2.rows[j].guildid})\nTaal: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${invites.code}\n`;
+                    embedNL.addField(`${guildname} (${aantals2.rows[j].guildid})`, `Taal: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${invites.code}`);
+                    embedEN.addField(`${guildname} (${aantals2.rows[j].guildid})`, `Language: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${invites.code}`);
                 }
                 // console.log(aantals);
                 if (taal === "nl") {
                     msg.delete();
-                    msg.member.send(createEmbed(`Database Values`, `Aantal servers in de Database: **${aantals.rows.length+aantals2.rows.length}**\n\nAantal servers: **${aantals.rows.length}**\n${bericht}\n\nAantal servers: **${aantals2.rows.length}**\n${bericht2}`));
+                    msg.member.send(embedNL);
                 } else {
                     msg.delete();
-                    msg.member.send(createEmbed(`Database Values`, `Total servers in Database: **${aantals.rows.length+aantals2.rows.length}**\n\nTotal servers: **${aantals.rows.length}**\n${bericht}\n\nTotal servers: **${aantals2.rows.length}**\n${bericht2}`));
+                    msg.member.send(embedEN);
                 }
             }
 
