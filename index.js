@@ -713,7 +713,6 @@ bot.on("message", async msg => {
             }
 
             if (command === "db" && msg.author.id === owner) {
-
                 let aantals = await client.query(`SELECT * FROM prefixes;`);
                 let aantals2 = await client.query(`SELECT * FROM servers;`);
 
@@ -732,9 +731,6 @@ bot.on("message", async msg => {
                     .setColor(16426522)
                     .setTimestamp()
                     .setFooter(`Among Us`)
-                
-                embedNL.addField(`Aantal servers`, `${aantals.rows.length}`);
-                embedEN.addField(`Total servers`, `${aantals.rows.length}`);
 
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
@@ -753,28 +749,9 @@ bot.on("message", async msg => {
                             embedNL.addField(`${guildname}`, `Prefix: ${prefixtekst}\nTaal: ${taaltekst}`, true);
                             embedEN.addField(`${guildname}`, `Prefix: ${prefixtekst}\nLanguage: ${taaltekst}`, true);
                         }
-                        // } else {
-                        //     embedNL.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
-                        //     embedEN.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
-                        // }
                     }
-                    
                 }
 
-                // embedNL.addField(`Aantal servers`, `${aantals2.rows.length}`);
-                // embedEN.addField(`Total servers`, `${aantals2.rows.length}`);
-
-                // for (let j = 0; j < aantals2.rows.length; j++) {
-                //     const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
-                //     if (aantals2.rows[j].lang === "nl") {
-                //         taaltekst = "NL  🇳🇱";
-                //     } else {
-                //         taaltekst = "EN  🇬🇧";
-                //     }
-                //     embedNL.addField(`${guildname}`, `Taal: **${taaltekst}**`, true);
-                //     embedEN.addField(`${guildname}`, `Language: **${taaltekst}**`, true);
-                // }
-                // console.log(aantals);
                 if (taal === "nl") {
                     msg.delete();
                     msg.member.send(embedNL);
