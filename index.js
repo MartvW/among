@@ -1,10 +1,6 @@
 const Discord = require('discord.js');
-const { create } = require('domain');
-const fs = require('fs');
 const bot = new Discord.Client();
 const { Client } = require('pg');
-const { isError } = require('util');
-const { createBrotliDecompress } = require('zlib');
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -740,8 +736,6 @@ bot.on("message", async msg => {
                 embedNL.addField(`Aantal servers`, `${aantals.rows.length}`);
                 embedEN.addField(`Total servers`, `${aantals.rows.length}`);
 
-                let bericht = "";
-                let bericht2 = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
                     embedNL.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**`, true);
@@ -753,8 +747,13 @@ bot.on("message", async msg => {
 
                 for (let j = 0; j < aantals2.rows.length; j++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
-                    embedNL.addField(`${guildname}`, `Taal: **${aantals2.rows[j].lang}**`, true);
-                    embedEN.addField(`${guildname}`, `Language: **${aantals2.rows[j].lang}**`, true);
+                    if (aantals2.rows[j].lang === "nl") {
+                        taaltekst = "NL 🇳🇱";
+                    } else {
+                        taaltekst = "EN 🇬🇧";
+                    }
+                    embedNL.addField(`${guildname}`, `Taal: **${taaltekst}**`, true);
+                    embedEN.addField(`${guildname}`, `Language: **${taaltekst}**`, true);
                 }
                 // console.log(aantals);
                 if (taal === "nl") {
@@ -1041,8 +1040,9 @@ bot.on("message", async msg => {
                             aantalcodes += 1;
                         } catch (err) {
                             console.error(err);
+                            errorMessage(err);
                             if (taal === "nl") {
-                                msg.reply(createEmbed("ERROR", `ERROR: 1045 De bot heeft een error, de error is naar de maker gestuurd.`));
+                                msg.reply(createEmbed("ERROR", `ERROR: De bot heeft een error, de error is naar de maker gestuurd.`));
                             } else {
                                 msg.reply(createEmbed("ERROR", `ERROR: The bot has an error, the error has sended to the owner.`));
                             }
@@ -1077,8 +1077,9 @@ bot.on("message", async msg => {
                             }
                         } catch (err) {
                             console.error(err);
+                            errorMessage(err);
                             if (taal === "nl") {
-                                msg.reply(createEmbed("ERROR", `ERROR: 1081 De bot heeft een error, de error is naar de maker gestuurd.`));
+                                msg.reply(createEmbed("ERROR", `ERROR: De bot heeft een error, de error is naar de maker gestuurd.`));
                             } else {
                                 msg.reply(createEmbed("ERROR", `ERROR: The bot has an error, the error has sended to the owner.`));
                             }
@@ -1137,8 +1138,9 @@ bot.on("message", async msg => {
                         return;
                     } catch (err) {
                         console.error(err);
+                        errorMessage(err);
                         if (taal === "nl") {
-                            msg.reply(createEmbed("ERROR", `ERROR: 1141 De bot heeft een error, de error is naar de maker gestuurd.`));
+                            msg.reply(createEmbed("ERROR", `ERROR: De bot heeft een error, de error is naar de maker gestuurd.`));
                         } else {
                             msg.reply(createEmbed("ERROR", `ERROR: The bot has an error, the error has sended to the owner.`));
                         }
