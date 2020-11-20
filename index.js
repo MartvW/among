@@ -108,9 +108,6 @@ function embedLetOp(prefixs, lang) {
         .setTitle("Help")
         .setDescription(`Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
         .setColor(15746887)
-        .addFields(
-            { name: `.....................`, value: `Hiermee kan je de help-server joinen: ${discordserver}`, inline: false },
-        )
         .setTimestamp()
         .setFooter(`Among Us`)
         return embedHelp;
@@ -120,9 +117,6 @@ function embedLetOp(prefixs, lang) {
         .setTitle("Help")
         .setDescription(`To run some commands you have to be in a voice-channel. These following commands you must have to be in a voice-channel to run it:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
         .setColor(15746887)
-        .addFields(
-            { name: `.....................`, value: `The invite link of the help-server: ${discordserver}`, inline: false },
-        )
         .setTimestamp()
         .setFooter(`Among Us`)
         return embedHelp;
@@ -390,7 +384,7 @@ bot.on("guildCreate", async guild => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}help | Op ${servers} servers!`,
+            name: `${prefix}help | On ${servers} servers!`,
         }
     });
     client.query(`INSERT INTO prefixes VALUES (${guild.id}, '.');`, (err, res) => {
@@ -414,7 +408,7 @@ bot.on("guildCreate", async guild => {
     });
 //     guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: ${discordserver}\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
     if (guild.systemChannel) {
-        guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help**\nYou can set your own prefix by typing **${prefix}setprefix**\nIf you have any questions, you can join my discord server: ${discordserver}\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!`));
+        guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help**\nYou can set your own prefix by typing **${prefix}setprefix**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!`));
         guild.systemChannel.send(createEmbed(`Language`,`If you want to set the bot in another language, do ***${prefix}setlang***!`));
     }
 
@@ -428,7 +422,7 @@ bot.on("guildDelete", async guild => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `${prefix}help | Op ${servers} servers!`,
+            name: `${prefix}help | On ${servers} servers!`,
         }
     });
     if (client.query(`SELECT * FROM prefixes WHERE guildId='${guild.id}';`)) {
@@ -514,7 +508,6 @@ bot.on("ready", async () => {
             `${users} are using this bot!`,
             `${prefix}help | ${bot.user.tag}`,
             `${checkTime(uur+1)}:${checkTime(minuten)} hour`,
-            `${prefix}help | ${discordserver}`,
             `Made by Mart!`,
             `${prefix}amongus | Start command!`,
             `${prefix}link | Invite link!`,
@@ -1275,7 +1268,6 @@ bot.on("message", async msg => {
                         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                         .setTitle("Handige links")
                         .addFields(
-                            { name: `Discord server`, value: `${discordserver}`, inline: false },
                             { name: `Invite link bot`, value: 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8', inline: false },
                             { name: `Top.gg link`, value: `https://top.gg/bot/469857906385354764`, inline: false},
                         )
