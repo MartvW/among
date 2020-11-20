@@ -739,16 +739,16 @@ bot.on("message", async msg => {
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
                     if (aantals.rows[i].prefix === ".") {
-                        prefixtekst = "**.** (Standaard)";
+                        prefixtekst = "**.**";
                     } else {
-                        prefixtekst = `**${aantals.rows[i].prefix} (Aangepast)**`;
+                        prefixtekst = `**${aantals.rows[i].prefix}**`;
                     }
                     for (let j = 0; j < aantals2.rows.length; j++) {
                         if (aantals.rows[i].guildid === aantals2.rows[j].guildid) {
                             if (aantals2.rows[j].lang === "nl") {
-                                taaltekst = "NL  🇳🇱";
+                                taaltekst = "🇳🇱";
                             } else {
-                                taaltekst = "EN  🇬🇧";
+                                taaltekst = "🇬🇧";
                             }
                             embedNL.addField(`${guildname}`, `Prefix: ${prefixtekst}\nTaal: ${taaltekst}`, true);
                             embedEN.addField(`${guildname}`, `Prefix: ${prefixtekst}\nLanguage: ${taaltekst}`, true);
