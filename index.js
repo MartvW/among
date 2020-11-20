@@ -1398,7 +1398,7 @@ bot.on("message", async msg => {
             console.error(err);
             errorMessage(err);
             if (taal === "nl") {
-                msg.reply(createEmbed("ERROR", `ERROR: De bot heeft een error, de error is naar de maker gestuurd.`));
+                msg.reply(createEmbed("ERROR", `ERROR: ${err} De bofsdafasdfjbnt heeft een error, de error is naar de maker gestuurd.`));
             } else {
                 msg.reply(createEmbed("ERROR", `ERROR: The bot has an error, the error has sended to the owner.`));
             }
