@@ -752,10 +752,11 @@ bot.on("message", async msg => {
                             }
                             embedNL.addField(`${guildname}`, `Prefix: ${prefixtekst}\nTaal: ${taaltekst}`, true);
                             embedEN.addField(`${guildname}`, `Prefix: ${prefixtekst}\nLanguage: ${taaltekst}`, true);
-                        } else {
-                            embedNL.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
-                            embedEN.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
                         }
+                        // } else {
+                        //     embedNL.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
+                        //     embedEN.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
+                        // }
                     }
                     
                 }
