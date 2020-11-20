@@ -508,14 +508,14 @@ bot.on("ready", async () => {
         var minuten = vandaag.getMinutes();
 
         var status = [
-            `Op ${servers} servers!`,
+            `On ${servers} servers!`,
             `${prefix}setprefix | <prefix>`,
             `${prefix}setlang`,
-            `${users} mensen gebruiken deze bot!`,
+            `${users} are using this bot!`,
             `${prefix}help | ${bot.user.tag}`,
-            `${checkTime(uur+1)}:${checkTime(minuten)} uur`,
+            `${checkTime(uur+1)}:${checkTime(minuten)} hour`,
             `${prefix}help | ${discordserver}`,
-            `Gemaakt door Mart!`,
+            `Made by Mart!`,
             `${prefix}amongus | Start command!`,
             `${prefix}link | Invite link!`,
             `${prefix}map | Map commands!`,
