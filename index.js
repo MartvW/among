@@ -1275,6 +1275,7 @@ bot.on("message", async msg => {
                         .addFields(
                             { name: `Discord server`, value: `${discordserver}`, inline: false },
                             { name: `Invite link bot`, value: 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8', inline: false },
+                            { name: `Top.gg link`, value: `https://top.gg/bot/469857906385354764`, inline: false},
                         )
                         .setColor(16426522)
                         .setTimestamp()
@@ -1287,6 +1288,7 @@ bot.on("message", async msg => {
                         .addFields(
                             { name: `Discord server`, value: `${discordserver}`, inline: false },
                             { name: `Invite link bot`, value: 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8', inline: false },
+                            { name: `Top.gg link`, value: `https://top.gg/bot/469857906385354764`, inline: false},
                         )
                         .setColor(16426522)
                         .setTimestamp()
