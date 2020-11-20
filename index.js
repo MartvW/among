@@ -744,10 +744,8 @@ bot.on("message", async msg => {
                 let bericht2 = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
-                    const channel = guildname.channels.cache.filter(c => c.type === 'text').find(x => x.position == 0);
-                    let createinvite = channel.createInvite({ unique: true });
-                    embedNL.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**\nInvite: https://discord.gg/${createinvite.code}`);
-                    embedEN.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**\nInvite: https://discord.gg/${createinvite.code}`);
+                    embedNL.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**`);
+                    embedEN.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**`);
                 }
 
                 embedNL.addField(`Aantal servers`, `${aantals2.rows.length}`);
@@ -755,10 +753,8 @@ bot.on("message", async msg => {
 
                 for (let j = 0; j < aantals2.rows.length; j++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
-                    const channel = guildname.channels.cache.filter(c => c.type === 'text').find(x => x.position == 0);
-                    let createinvite = channel.createInvite({ unique: true });
-                    embedNL.addField(`${guildname}`, `Taal: **${aantals2.rows[j].lang}**\nInvite: https://discord.gg/${createinvite.code}`);
-                    embedEN.addField(`${guildname}`, `Language: **${aantals2.rows[j].lang}**\nInvite: https://discord.gg/${createinvite.code}`);
+                    embedNL.addField(`${guildname}`, `Taal: **${aantals2.rows[j].lang}**`);
+                    embedEN.addField(`${guildname}`, `Language: **${aantals2.rows[j].lang}**`);
                 }
                 // console.log(aantals);
                 if (taal === "nl") {
