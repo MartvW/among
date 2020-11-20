@@ -541,9 +541,8 @@ bot.on("ready", async () => {
 
 bot.on("message", async msg => {
     if (msg.author.bot) return;
-
     if (msg.guild === null) {
-        msg.reply(createEmbed(`${msg.author.username}`, `Je kan geen privéberichten naar mij sturen...`));
+        msg.reply(createEmbed(`${msg.author.username}`, `You can't send me private messages...`));
         return;
     }
 
