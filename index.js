@@ -737,34 +737,29 @@ bot.on("message", async msg => {
                     .setTimestamp()
                     .setFooter(`Among Us`)
                 
-                embedNL.addField(`Aantal servers`, `${aantals.rows.length}`);
-                embedEN.addField(`Total servers`, `${aantals.rows.length}`);
-
-                let bericht = "";
-                let bericht2 = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
-                    const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
-                    const channel = guildname.channels.cache.filter(c => c.type === 'text').find(x => x.position == 0);
-                    let invites = [];
-                    let createinvite = channel.createInvite({ unique: true });
-                    console.log((await createinvite).code);
-                    embedNL.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**\nInvite: https://discord.gg/${invites.code}`);
-                    embedEN.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**\nInvite: https://discord.gg/${invites.code}`);
+                    for (let j = 0; j < aantals2.rows.length; i++) {
+                        const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
+                        const channel = guildname.channels.cache.filter(c => c.type === 'text').find(x => x.position == 0);
+                        let createinvite = channel.createInvite({ unique: true });
+                        embedNL.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**\nTaal: **${aantals2.rows[j].lang}**\nInvite: https://discord.gg/${createinvite.code}`);
+                        embedEN.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**\nLanguage: **${aantals2.rows[j].lang}**\nInvite: https://discord.gg/${createinvite.code}`);
+                    }
                 }
 
-                embedNL.addField(`Aantal servers`, `${aantals2.rows.length}`);
-                embedEN.addField(`Total servers`, `${aantals2.rows.length}`);
+                // embedNL.addField(`Aantal servers`, `${aantals2.rows.length}`);
+                // embedEN.addField(`Total servers`, `${aantals2.rows.length}`);
 
-                for (let j = 0; j < aantals2.rows.length; j++) {
-                    const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
-                    const channel = guildname.channels.cache.filter(c => c.type === 'text').find(x => x.position == 0);
-                    let invites = "";
-                    channel.createInvite({ unique: true }).then(as => {
-                        invites = as;
-                    });
-                    embedNL.addField(`${guildname}`, `Taal: **${aantals2.rows[j].lang}**\nInvite: https://discord.gg/${invites.code}`);
-                    embedEN.addField(`${guildname}`, `Language: **${aantals2.rows[j].lang}**\nInvite: https://discord.gg/${invites.code}`);
-                }
+                // for (let j = 0; j < aantals2.rows.length; j++) {
+                //     const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
+                //     const channel = guildname.channels.cache.filter(c => c.type === 'text').find(x => x.position == 0);
+                //     let invites = "";
+                //     channel.createInvite({ unique: true }).then(as => {
+                //         invites = as;
+                //     });
+                //     embedNL.addField(`${guildname}`, `Taal: **${aantals2.rows[j].lang}**\nInvite: https://discord.gg/${invites.code}`);
+                //     embedEN.addField(`${guildname}`, `Language: **${aantals2.rows[j].lang}**\nInvite: https://discord.gg/${invites.code}`);
+                // }
                 // console.log(aantals);
                 if (taal === "nl") {
                     msg.delete();
