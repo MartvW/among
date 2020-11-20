@@ -748,6 +748,7 @@ bot.on("message", async msg => {
                     let invites = "";
                     channel.createInvite({ unique: true }).then(as => {
                         invites = as;
+                        console.log(as);
                     });
                     console.log(invites);
                     embedNL.addField(`${guildname}`, `Prefix: **${aantals.rows[i].prefix}**\nInvite: https://discord.gg/${invites.code}`);
