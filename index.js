@@ -760,19 +760,19 @@ bot.on("message", async msg => {
                     
                 }
 
-                embedNL.addField(`Aantal servers`, `${aantals2.rows.length}`);
-                embedEN.addField(`Total servers`, `${aantals2.rows.length}`);
+                // embedNL.addField(`Aantal servers`, `${aantals2.rows.length}`);
+                // embedEN.addField(`Total servers`, `${aantals2.rows.length}`);
 
-                for (let j = 0; j < aantals2.rows.length; j++) {
-                    const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
-                    if (aantals2.rows[j].lang === "nl") {
-                        taaltekst = "NL  🇳🇱";
-                    } else {
-                        taaltekst = "EN  🇬🇧";
-                    }
-                    embedNL.addField(`${guildname}`, `Taal: **${taaltekst}**`, true);
-                    embedEN.addField(`${guildname}`, `Language: **${taaltekst}**`, true);
-                }
+                // for (let j = 0; j < aantals2.rows.length; j++) {
+                //     const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
+                //     if (aantals2.rows[j].lang === "nl") {
+                //         taaltekst = "NL  🇳🇱";
+                //     } else {
+                //         taaltekst = "EN  🇬🇧";
+                //     }
+                //     embedNL.addField(`${guildname}`, `Taal: **${taaltekst}**`, true);
+                //     embedEN.addField(`${guildname}`, `Language: **${taaltekst}**`, true);
+                // }
                 // console.log(aantals);
                 if (taal === "nl") {
                     msg.delete();
