@@ -743,8 +743,21 @@ bot.on("message", async msg => {
                     } else {
                         prefixtekst = `**${aantals.rows[i].prefix} (Aangepast)**`;
                     }
-                    embedNL.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
-                    embedEN.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
+                    for (let j = 0; j < aantals2.rows.length; j++) {
+                        if (aantals.rows[i].guildid === aantals2.rows[j].guildid) {
+                            if (aantals2.rows[j].lang === "nl") {
+                                taaltekst = "NL  🇳🇱";
+                            } else {
+                                taaltekst = "EN  🇬🇧";
+                            }
+                            embedNL.addField(`${guildname}`, `Prefix: ${prefixtekst}\nTaal: ${taaltekst}`, true);
+                            embedEN.addField(`${guildname}`, `Prefix: ${prefixtekst}\nLanguage: ${taaltekst}`, true);
+                        } else {
+                            embedNL.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
+                            embedEN.addField(`${guildname}`, `Prefix: ${prefixtekst}`, true);
+                        }
+                    }
+                    
                 }
 
                 embedNL.addField(`Aantal servers`, `${aantals2.rows.length}`);
