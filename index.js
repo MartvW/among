@@ -724,18 +724,18 @@ bot.on("message", async msg => {
                 let bericht = "";
                 let bericht2 = "";
                 for (let i = 0; i < aantals.rows.length; i++) {
-                    const guildname = await bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
-                    const channel = await guildname.channels.cache.filter(c => c.type === 'text').find(x => x.position == 0);
-                    channel.createInvite({ unique: true }).then(i => {
-                        bericht += `Guild: **${guildname}** (${aantals.rows[i].guildid})\nPrefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${i.code}\n`;
+                    const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
+                    const channel = guildname.channels.cache.filter(c => c.type === 'text').find(x => x.position == 0);
+                    channel.createInvite({ unique: true }).then(invites => {
+                        bericht += `Guild: **${guildname}** (${aantals.rows[i].guildid})\nPrefix: **${aantals.rows[i].prefix}** Invite: https://discord.gg/${invites.code}\n`;
                     });
                 }
 
                 for (let j = 0; j < aantals2.rows.length; j++) {
-                    const guildname = await bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
-                    const channel = await guildname.channels.cache.filter(c => c.type === 'text').find(x => x.position == 0);
-                    channel.createInvite({ unique: true }).then(i => {
-                        bericht2 += `Guild: **${guildname}** (${aantals2.rows[j].guildid})\nTaal: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${i.code}\n`;
+                    const guildname = bot.guilds.cache.find(guild => guild.id === aantals2.rows[j].guildid);
+                    const channel = guildname.channels.cache.filter(c => c.type === 'text').find(x => x.position == 0);
+                    channel.createInvite({ unique: true }).then(invites => {
+                        bericht2 += `Guild: **${guildname}** (${aantals2.rows[j].guildid})\nTaal: **${aantals2.rows[j].lang}** Invite: https://discord.gg/${invites.code}\n`;
                     });
                 }
                 // console.log(aantals);
