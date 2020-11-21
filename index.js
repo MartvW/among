@@ -633,6 +633,9 @@ bot.on("message", async msg => {
             amongus.splice(amongus.indexOf({
                 "channel": amongus[i].channel,
             }), 1);
+            amongus[i].channel.edit({
+                userLimit: amongus[i].userlimit,
+            });
         }
     }
 
