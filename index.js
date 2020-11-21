@@ -632,7 +632,26 @@ bot.on("message", async msg => {
             }), 1);
         }
     }
-    
+
+    for (let i = 0; i < locks.length; i++) {
+        if (locks[i].channel.members.size === 0) {
+            locks[i].channel.edit({
+                userLimit: locks[i].userLimit,
+            });
+            locks.splice(locks.indexOf({
+                "channel": locks[i].channel,
+            }), 1);
+        }
+    }
+
+    for (let i = 0; i < codes.length; i++) {
+        if (codes[i].channel.members.size === 0) {
+            codes.splice(codes.indexOf({
+                "channel": codes[i].channel,
+            }), 1);
+        }
+    }
+
     if (!msg.content.startsWith(prefix)) return;
     
     const args = msg.content.slice(prefix.length).trim().split(' ');
