@@ -1256,6 +1256,14 @@ bot.on("message", async msg => {
                 }
             }
 
+            if (command === "donate") {
+                if (taal === "nl") {
+                    msg.channel.send(createEmbed(`Donatie-link`, `http://patreon.com/amongbot`));
+                } else {
+                    msg.channel.send(createEmbed(`Donation-link`, `http://patreon.com/amongbot`));
+                }
+            }
+
             if (command === "ping") {
                 const m = await msg.channel.send("Ping?");
                 var ping = m.createdTimestamp - msg.createdTimestamp;
@@ -1270,6 +1278,7 @@ bot.on("message", async msg => {
                         .addFields(
                             { name: `Invite link bot`, value: 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8', inline: false },
                             { name: `Top.gg link`, value: `https://top.gg/bot/469857906385354764`, inline: false},
+                            { name: `Patreon link`, value: `http://patreon.com/amongbot`, inline: false},
                         )
                         .setColor(16426522)
                         .setTimestamp()
@@ -1280,9 +1289,9 @@ bot.on("message", async msg => {
                         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                         .setTitle("Usefull links")
                         .addFields(
-                            { name: `Discord server`, value: `${discordserver}`, inline: false },
                             { name: `Invite link bot`, value: 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8', inline: false },
                             { name: `Top.gg link`, value: `https://top.gg/bot/469857906385354764`, inline: false},
+                            { name: `Patreon link`, value: `http://patreon.com/amongbot`, inline: false},
                         )
                         .setColor(16426522)
                         .setTimestamp()
