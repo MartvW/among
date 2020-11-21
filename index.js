@@ -630,12 +630,12 @@ bot.on("message", async msg => {
 
     for (let i = 0; i < amongus.length; i++) {
         if (amongus[i].channel.members.size === 0) {
-            amongus.splice(amongus.indexOf({
-                "channel": amongus[i].channel,
-            }), 1);
             amongus[i].channel.edit({
                 userLimit: amongus[i].userlimit,
             });
+            amongus.splice(amongus.indexOf({
+                "channel": amongus[i].channel,
+            }), 1);
         }
     }
 
