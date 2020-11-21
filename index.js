@@ -49,6 +49,7 @@ function helpEmbed(prefixs, lang) {
             { name: `resetprefix`, value: 'Om de prefix van de server te resetten.', inline: true },
             { name: `${prefixs}info`, value: 'Hiermee kan je informatie zien over de server.', inline: true },
             { name: `${prefixs}donate`, value: 'Link van de Patreon Pagina.', inline: true },
+            { name: `${prefixs}patreon`, value: 'Mensen die gedoneerd hebben.', inline: true },
             { name: `${prefixs}help`, value: 'Om dit bericht te laten zien.', inline: true },
             { name: `${prefixs}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: true },
             { name: `${prefixs}amongus`, value: 'Wanneer je een game wilt starten.', inline: true },
@@ -80,6 +81,7 @@ function helpEmbed(prefixs, lang) {
             { name: `resetprefix`, value: 'To reset your own prefix.', inline: true },
             { name: `${prefixs}info`, value: 'You can get information about the server.', inline: true },
             { name: `${prefixs}donate`, value: 'Link for the Patreon Page.', inline: true },
+            { name: `${prefixs}patreon`, value: 'Peoples who has donate.', inline: true },
             { name: `${prefixs}help`, value: 'To show this message.', inline: true },
             { name: `${prefixs}link`, value: 'You can get usefull links with this command.', inline: true },
             { name: `${prefixs}amongus`, value: 'When you want to start a game.', inline: true },
@@ -613,6 +615,34 @@ bot.on("message", async msg => {
             if (command === "help") {
                 msg.channel.send(helpEmbed(prefix, taal));
                 msg.channel.send(embedLetOp(prefix, taal));
+            }
+
+            if (command === "patreon") {
+                var embedNL = new Discord.MessageEmbed()
+                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                    .setTitle(`Patreon`)
+                    .setDescription(`Dit zijn de mensen die hebben gedoneerd op de Patreon pagina!`)
+                    .addFields(
+                        { name: `-:`, value: `-`, inline: true },
+                    )
+                    .setColor(16426522)
+                    .setTimestamp()
+                    .setFooter(`Among Us`)
+                var embedEN = new Discord.MessageEmbed()
+                        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                        .setTitle(`Patreon`)
+                        .setDescription(`These are the people who has donate on the Patreon Page!`)
+                        .addFields(
+                            { name: `-:`, value: `-`, inline: true },
+                        )
+                        .setColor(16426522)
+                        .setTimestamp()
+                        .setFooter(`Among Us`)
+                if (taal === "nl") {
+                    msg.channel.send(embedNL);
+                } else {
+                    msg.channel.send(embedEN);
+                }
             }
 
             if (command === "info") {
