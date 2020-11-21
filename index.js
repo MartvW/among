@@ -510,7 +510,7 @@ bot.on("ready", async () => {
             `${prefix}setprefix | <prefix>`,
             `${prefix}setlang`,
             `${users} are using this bot!`,
-            `http://patreon.com/amongbot`,
+            `https://www.patreon.com/bePatron?u=45897916`,
             `${prefix}help | ${bot.user.tag}`,
             `${checkTime(uur+1)}:${checkTime(minuten)} hour`,
             `Made by Mart!`,
@@ -1291,9 +1291,9 @@ bot.on("message", async msg => {
 
             if (command === "donate") {
                 if (taal === "nl") {
-                    msg.channel.send(createEmbed(`Donatie-link`, `http://patreon.com/amongbot`));
+                    msg.channel.send(createEmbed(`Donatie-link`, `https://www.patreon.com/bePatron?u=45897916`));
                 } else {
-                    msg.channel.send(createEmbed(`Donation-link`, `http://patreon.com/amongbot`));
+                    msg.channel.send(createEmbed(`Donation-link`, `https://www.patreon.com/bePatron?u=45897916`));
                 }
             }
 
@@ -1311,7 +1311,7 @@ bot.on("message", async msg => {
                         .addFields(
                             { name: `Invite link bot`, value: 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8', inline: false },
                             { name: `Top.gg link`, value: `https://top.gg/bot/469857906385354764`, inline: false},
-                            { name: `Patreon link`, value: `http://patreon.com/amongbot`, inline: false},
+                            { name: `Patreon link`, value: `https://www.patreon.com/bePatron?u=45897916`, inline: false},
                         )
                         .setColor(16426522)
                         .setTimestamp()
@@ -1324,7 +1324,7 @@ bot.on("message", async msg => {
                         .addFields(
                             { name: `Invite link bot`, value: 'https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8', inline: false },
                             { name: `Top.gg link`, value: `https://top.gg/bot/469857906385354764`, inline: false},
-                            { name: `Patreon link`, value: `http://patreon.com/amongbot`, inline: false},
+                            { name: `Patreon link`, value: `https://www.patreon.com/bePatron?u=45897916`, inline: false},
                         )
                         .setColor(16426522)
                         .setTimestamp()
