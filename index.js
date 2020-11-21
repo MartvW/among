@@ -412,7 +412,7 @@ bot.on("guildCreate", async guild => {
     });
 //     guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: ${discordserver}\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
     if (guild.systemChannel) {
-        guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help**\nYou can set your own prefix by typing **${prefix}setprefix**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!`));
+        guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help**\nYou can set your own prefix by typing **${prefix}setprefix**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!\n\nI have a Patreon Page where you can donate money: https://www.patreon.com/bePatron?u=45897916`));
         guild.systemChannel.send(createEmbed(`Language`,`If you want to set the bot in another language, do ***${prefix}setlang***!`));
     }
 
