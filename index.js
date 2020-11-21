@@ -621,13 +621,7 @@ bot.on("message", async msg => {
     }
 
     laatstebericht = `${msg.guild.name} > ${msg.channel.name} - @${msg.author.tag}: ${msg.content}`;
-    if (!msg.content.startsWith(prefix)) return;
     
-    const args = msg.content.slice(prefix.length).trim().split(' ');
-    const command = args.shift().toLowerCase();
-    
-    laatstecommand = `${msg.content} (@${msg.author.tag})`;
-
     for (let i = 0; i < amongus.length; i++) {
         if (amongus[i].channel.members.size === 0) {
             amongus[i].channel.edit({
@@ -638,6 +632,14 @@ bot.on("message", async msg => {
             }), 1);
         }
     }
+    
+    if (!msg.content.startsWith(prefix)) return;
+    
+    const args = msg.content.slice(prefix.length).trim().split(' ');
+    const command = args.shift().toLowerCase();
+    
+    laatstecommand = `${msg.content} (@${msg.author.tag})`;
+
 
 
     if (slot === false) {
