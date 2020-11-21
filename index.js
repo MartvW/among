@@ -627,7 +627,16 @@ bot.on("message", async msg => {
     const command = args.shift().toLowerCase();
     
     laatstecommand = `${msg.content} (@${msg.author.tag})`;
-    
+
+    for (let i = 0; i < amongus.length; i++) {
+        if (amongus[i].channel.members.size === 0) {
+            amongus.splice(amongus.indexOf({
+                "channel": amongus[i].channel,
+            }), 1);
+        }
+    }
+
+
     if (slot === false) {
         aantalcommands++;
         try {
