@@ -403,7 +403,6 @@ bot.on("warn", async msg => {
 
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
-    guild.owner.send('test');
     if (!guild.me.hasPermission("ADMINISTRATOR")) {
         if (guild.systemChannel) {
             guild.systemChannel.send(createEmbed(`${bot.user.username}`,`The bot doesn't have the appropriate permissions.\nTo resolve this problem, go to **Server Settings** and then navigate to the **Roles** option. Next, click on **Bots**, and then click on the slider next to **Administrator** to activate it.`));
@@ -542,7 +541,6 @@ bot.on("ready", async () => {
             `${users} are using this bot!`,
             `https://www.patreon.com/bePatron?u=45897916`,
             `${prefix}help | ${bot.user.tag}`,
-            `${checkTime(uur+1)}:${checkTime(minuten)} hour`,
             `Made by Mart!`,
             `${prefix}amongus | Start command!`,
             `${prefix}link | Invite link!`,
@@ -686,7 +684,7 @@ bot.on("message", async msg => {
                     .setTitle(`Patreon`)
                     .setDescription(`Dit zijn de mensen die hebben gedoneerd op de Patreon pagina!`)
                     .addFields(
-                        { name: `-:`, value: `-`, inline: true },
+                        { name: `-`, value: `-`, inline: true },
                     )
                     .setColor(16426522)
                     .setTimestamp()
@@ -696,7 +694,7 @@ bot.on("message", async msg => {
                         .setTitle(`Patreon`)
                         .setDescription(`These are the people who has donate on the Patreon Page!`)
                         .addFields(
-                            { name: `-:`, value: `-`, inline: true },
+                            { name: `-`, value: `-`, inline: true },
                         )
                         .setColor(16426522)
                         .setTimestamp()
