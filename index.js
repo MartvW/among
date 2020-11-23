@@ -403,6 +403,7 @@ bot.on("warn", async msg => {
 
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
+    guild.owner.send('test');
     if (!guild.me.hasPermission("ADMINISTRATOR")) {
         if (guild.systemChannel) {
             guild.systemChannel.send(createEmbed(`${bot.user.username}`,`The bot doesn't have the appropriate permissions.\nTo resolve this problem, go to **Server Settings** and then navigate to the **Roles** option. Next, click on **Bots**, and then click on the slider next to **Administrator** to activate it.`));
