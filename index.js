@@ -509,7 +509,7 @@ bot.on("ready", async () => {
     const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
     
-    updateAdmin(`Opstarten...`);
+    updateAdmin(`Starting up...`);
  
     const channel2 = await bot.channels.cache.find(channel => channel.id === resetID);
     channel2.bulkDelete(1);
@@ -519,7 +519,7 @@ bot.on("ready", async () => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `Opstarten...`,
+            name: `Starting up...`,
         }
     });
     
