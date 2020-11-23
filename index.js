@@ -403,16 +403,9 @@ bot.on("warn", async msg => {
 
 bot.on("guildCreate", async guild => {
     const servers = await bot.guilds.cache.size;
-    const sendmessage = await bot.users.cache.find(users => users.id === guild.ownerID).then(u => {
-        u.send(createEmbed(`${bot.user.username}`,`The bot doesn't have the appropriate permissions.\nTo resolve this problem, go to **Server Settings** and then navigate to the **Roles** option. Next, click on **Bots**, and then click on the slider next to **Administrator** to activate it.`));
-    });
     if (!guild.me.hasPermission("ADMINISTRATOR")) {
         if (guild.systemChannel) {
             guild.systemChannel.send(createEmbed(`${bot.user.username}`,`The bot doesn't have the appropriate permissions.\nTo resolve this problem, go to **Server Settings** and then navigate to the **Roles** option. Next, click on **Bots**, and then click on the slider next to **Administrator** to activate it.`));
-        } else {
-            bot.users.fetch(guild.owner).then(u =>{
-                u.send(createEmbed(`${bot.user.username}`,`The bot doesn't have the appropriate permissions.\nTo resolve this problem, go to **Server Settings** and then navigate to the **Roles** option. Next, click on **Bots**, and then click on the slider next to **Administrator** to activate it.`));
-            });
         }
     }
     console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers!`);
