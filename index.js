@@ -410,25 +410,30 @@ bot.on("guildCreate", async guild => {
             name: `${prefix}help | On ${servers} servers!`,
         }
     });
-    client.query(`INSERT INTO prefixes VALUES (${guild.id}, '.');`, (err, res) => {
-        if (!err) {
-            if (res) {
-                console.log(`${guild.name} is succesvol in de database "Prefix" gezet!`);
+    var prefixesDB = await client.query(`SELECT * FROM prefixes WHERE guildId='${guild.id}'`);
+    var serversDB = await client.query(`SELECT * FROM servers WHERE guildId='${guild.id}'`);
+    if (prefixesDB.rowCount === 0) {
+        client.query(`INSERT INTO prefixes VALUES (${guild.id}, '.');`, (err, res) => {
+            if (!err) {
+                if (res) {
+                    console.log(`${guild.name} is succesvol in de database "Prefix" gezet!`);
+                }
+            } else {
+                console.log(err);
             }
-        } else {
-            console.log(err);
-        }
-    });
-
-    client.query(`INSERT INTO servers VALUES (${guild.id}, 'en');`, (err, res) => {
-        if (!err) {
-            if (res) {
-                console.log(`${guild.name} is succesvol in de database "Servers" gezet!`);
+        });
+    }
+    if (serversDB.rowCount === 0) {
+        client.query(`INSERT INTO servers VALUES (${guild.id}, 'en');`, (err, res) => {
+            if (!err) {
+                if (res) {
+                    console.log(`${guild.name} is succesvol in de database "Servers" gezet!`);
+                }
+            } else {
+                console.log(err);
             }
-        } else {
-            console.log(err);
-        }
-    });
+        });
+    }
 //     guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: ${discordserver}\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
     if (guild.systemChannel) {
         guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help**\nYou can set your own prefix by typing **${prefix}setprefix**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!\n\nI have a Patreon Page where you can donate money: https://www.patreon.com/bePatron?u=45897916`));
