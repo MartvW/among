@@ -911,7 +911,7 @@ bot.on("message", async msg => {
 
             if (command === "update" && msg.author.id === owner) {
                 if (args.length < 1) {
-                    msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update`));
+                    msg.channel.send(createEmbed('Mart W.', `Je moet wel argumenten toevoegen voor de update.`));
                     return;
                 }
                 msg.channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
@@ -1118,9 +1118,9 @@ bot.on("message", async msg => {
 //                             await c.setName(`${c.name} | ${code} - ${server}`);
         //                     await c.edit({ name: `${c.name} | ${code} - ${server}` });
                             if (taal === "nl") {
-                                msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                                msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**!`));
                             } else {
-                                msg.channel.send(createEmbed(`${msg.author.username}`, `The code for ${msg.member.voice.channel.name} is changed to **${code}** and the server is **${server}**`));
+                                msg.channel.send(createEmbed(`${msg.author.username}`, `The code for ${msg.member.voice.channel.name} is changed to **${code}** and the server is **${server}**!`));
                             }
                             aantalcodes += 1;
                         } catch (err) {
@@ -1156,9 +1156,9 @@ bot.on("message", async msg => {
                                 }
                             }
                             if (taal === "nl") {
-                                msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**`));
+                                msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**!`));
                             } else {
-                                msg.channel.send(createEmbed(`${msg.author.username}`, `The code for ${msg.member.voice.channel.name} is changed to **${code}** and the server is **${server}**`));
+                                msg.channel.send(createEmbed(`${msg.author.username}`, `The code for ${msg.member.voice.channel.name} is changed to **${code}** and the server is **${server}**!`));
                             }
                         } catch (err) {
                             console.error(err);
@@ -1172,9 +1172,9 @@ bot.on("message", async msg => {
                     }
                 } else {
                     if (taal === "nl") {
-                        msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige server in! **NA** of **EU** of **AS**`));
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `Voer een geldige server in! (**NA** of **EU** of **AS**)`));
                     } else {
-                        msg.channel.send(createEmbed(`${msg.author.username}`, `Please fill in a real server! **NA** or **EU** or **AS**`));
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `Please fill in a real server! (**NA** or **EU** or **AS**)`));
                     }
                     return;
                 }
