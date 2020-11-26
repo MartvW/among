@@ -773,6 +773,24 @@ bot.on("message", async msg => {
                 let taalen = 0;
 
                 bericht = [];
+                var embed1 = new Discord.MessageEmbed()
+                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                    .setTitle(`Database`)
+                    .setColor(16426522)
+                    .setTimestamp()
+                    .setFooter(`Among Us`)
+                var embed2 = new Discord.MessageEmbed()
+                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                    .setTitle(`Database`)
+                    .setColor(16426522)
+                    .setTimestamp()
+                    .setFooter(`Among Us`)
+                var embed3 = new Discord.MessageEmbed()
+                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                    .setTitle(`Database`)
+                    .setColor(16426522)
+                    .setTimestamp()
+                    .setFooter(`Among Us`)
                 berichts1 = "";
                 berichts2 = "";
                 berichts3 = "";
@@ -797,26 +815,29 @@ bot.on("message", async msg => {
                                 taaltekst = "🇬🇧";
                                 taalen += 1;
                             }
-                            bericht.push(`${bericht.length}\n**${guildname}**\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}\n`); 
+                            bericht.push({ "id": bericht.length, "naam": guildname, "prefix": prefixtext, "taal": taaltekst });
+                            // bericht.push(`${bericht.length}\n**${guildname}**\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}\n`); 
                         }
                     }
                 }
                 msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
                 msg.delete();
                 for (let i = 0; i < bericht.length/3; i++) {
-                    berichts1 += bericht[i];
+                    embed1.addField(bericht[i].naam, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`);
                 }
 
                 for (let i = 0; i < bericht.length/3+bericht.length/3; i++) {
                     berichts2 += bericht[i];
+                    embed2.addField(bericht[i].naam, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`);
                 }
 
                 for (let i = 0; i < bericht.length/3+bericht.length/3+bericht.length/3; i++) {
                     berichts3 += bericht[i];
+                    embed3.addField(bericht[i].naam, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`);
                 }
-                msg.member.send(berichts1);
-                msg.member.send(berichts2);
-                msg.member.send(berichts3);
+                msg.member.send(embed1);
+                msg.member.send(embed2);
+                msg.member.send(embed3);
                 msg.member.send(`**--DONE--**`);
             }
 
