@@ -822,10 +822,10 @@ bot.on("message", async msg => {
                 }
                 msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
                 msg.delete();
-                for (let i = 0; i <= bericht.length/2; i++) {
+                for (let i = 0; i < bericht.length/2; i++) {
                     embed1.addField(`**${i}**. ${bericht[i].naam}`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                 }
-                for (let i = bericht.length/2; i <= bericht.length; i++) {
+                for (let i = bericht.length/2; i < bericht.length; i++) {
                     embed2.addField(`**${i}**. ${bericht[i].naam}`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                 }
                 msg.member.send(embed1);
