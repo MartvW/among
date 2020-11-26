@@ -815,7 +815,7 @@ bot.on("message", async msg => {
                                 taaltekst = "🇬🇧";
                                 taalen += 1;
                             }
-                            bericht.push({ "id": bericht.length, "naam": guildname, "prefix": prefixtext, "taal": taaltekst });
+                            bericht.push({ "id": bericht.length, "naam": guildname, "prefix": prefixtekst, "taal": taaltekst });
                             // bericht.push(`${bericht.length}\n**${guildname}**\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}\n`); 
                         }
                     }
