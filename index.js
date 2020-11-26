@@ -771,6 +771,7 @@ bot.on("message", async msg => {
                 let anders = 0;
 
                 bericht = [];
+                berichts = "";
 
                 msg.member.send(`Aantal servers in de Database: **${aantals.rows.length}**`);
 
