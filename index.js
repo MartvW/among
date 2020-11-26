@@ -1328,9 +1328,10 @@ bot.on("message", async msg => {
             }
 
             if (command === "ping") {
-                const m = await msg.channel.send(createEmbed(`Ping!`, `Pinging....`));
+                const m = await msg.channel.send("Ping?");
                 var ping = Date.now() - m.createdTimestamp;
-                m.edit(createEmbed(`Pong!`, `Latency is: **${ping}ms**.`));
+                m.delete()
+                msg.channel.send(createEmbed(`Pong!`, `Latency is: **${ping}ms**.`));
             }
 
             if (command === "link") {
