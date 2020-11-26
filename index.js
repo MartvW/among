@@ -823,17 +823,17 @@ bot.on("message", async msg => {
                 msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
                 msg.delete();
                 for (let i = 0; i < bericht.length/3; i++) {
-                    embed1.addField(bericht[i].naam, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`);
+                    embed1.addField(bericht[i].naam, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                 }
 
                 for (let i = 0; i < bericht.length/3+bericht.length/3; i++) {
                     berichts2 += bericht[i];
-                    embed2.addField(bericht[i].naam, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`);
+                    embed2.addField(bericht[i].naam, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                 }
 
                 for (let i = 0; i < bericht.length/3+bericht.length/3+bericht.length/3; i++) {
                     berichts3 += bericht[i];
-                    embed3.addField(bericht[i].naam, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`);
+                    embed3.addField(bericht[i].naam, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                 }
                 msg.member.send(embed1);
                 msg.member.send(embed2);
