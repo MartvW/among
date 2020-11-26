@@ -771,7 +771,9 @@ bot.on("message", async msg => {
                 let anders = 0;
 
                 bericht = [];
-                berichts = "";
+                berichts1 = "";
+                berichts2 = "";
+                berichts3 = "";
 
                 msg.member.send(`Aantal servers in de Database: **${aantals.rows.length}**`);
 
@@ -796,10 +798,20 @@ bot.on("message", async msg => {
                 }
                 msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!`));
                 msg.delete();
-                for (let i = 0; i < bericht.length; i++) {
-                    berichts += bericht[i];
+                for (let i = 0; i < bericht.length/3; i++) {
+                    berichts1 += bericht[i];
                 }
-                msg.member.send(berichts);
+
+                for (let i = 0; i < bericht.length/3+berichts.length/3; i++) {
+                    berichts2 += bericht[i];
+                }
+
+                for (let i = 0; i < bericht.length/3+berichts.length/3+berichts.length/3; i++) {
+                    berichts3 += bericht[i];
+                }
+                msg.member.send(berichts1);
+                msg.member.send(berichts2);
+                msg.member.send(berichts3);
                 msg.member.send(`**--DONE--**`);
             }
 
