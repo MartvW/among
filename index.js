@@ -794,9 +794,10 @@ bot.on("message", async msg => {
                         }
                     }
                 }
-                msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt} servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!`));
+                msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!`));
                 msg.delete();
-                msg.member.send(`___________________________________`);
+                msg.member.send(bericht);
+                msg.member.send(`**--DONE--**`);
             }
 
             
