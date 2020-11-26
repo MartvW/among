@@ -784,7 +784,7 @@ bot.on("message", async msg => {
                                 taaltekst = "🇬🇧";
                             }
 
-                            msg.member.send(`**${guildname}**\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}\n\n`);
+                            msg.member.send(createEmbed(`**${guildname}**`,`Prefix: ${prefixtekst}\nTaal: ${taaltekst}`));
                         }
                     }
                 }
