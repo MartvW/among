@@ -46,21 +46,27 @@ function helpEmbed(prefixs, lang) {
             { name: `${prefixs}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: true },
             { name: `${prefixs}setlang`, value: 'Hiermee kan je je eigen taal instellen.', inline: true },
             { name: `resetprefix`, value: 'Om de prefix van de server te resetten.', inline: true },
+
             { name: `${prefixs}info`, value: 'Hiermee kan je informatie zien over de server.', inline: true },
             { name: `${prefixs}donate`, value: 'Link van de Patreon Pagina.', inline: true },
             { name: `${prefixs}patreon`, value: 'Mensen die gedoneerd hebben.', inline: true },
+
             { name: `${prefixs}help`, value: 'Om dit bericht te laten zien.', inline: true },
             { name: `${prefixs}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: true },
             { name: `${prefixs}amongus`, value: 'Wanneer je een game wilt starten.', inline: true },
+
             { name: `${prefixs}amongusstop`, value: 'Wanneer je de game wilt eindigen.', inline: true },
             { name: `${prefixs}ping`, value: 'Hiermee kan je je ping zien.', inline: true },
             { name: `${prefixs}uptime`, value: 'Hoelang de bot online is.', inline: true },
+
             { name: `${prefixs}map`, value: 'Om het lijstje van alle mappen te zien.', inline: true },
             { name: `${prefixs}polus`, value: 'Om de kaart te zien van Polus.', inline: true },
             { name: `${prefixs}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: true },
+
             { name: `${prefixs}mira`, value: 'Om de kaart te zien van MIRA HQ.', inline: true },
             { name: `${prefixs}setcode`, value: 'Om de code in te stellen.', inline: true },
             { name: `${prefixs}resetcode`, value: 'Om de code te resetten.', inline: true },
+
             { name: `${prefixs}code`, value: 'Om de code te zien van het kanaal.', inline: true },
             { name: `${prefixs}lock`, value: 'Het kanaal te locken waar je inzit.', inline: true },
             { name: `${prefixs}unlock`, value: 'Het kanaal te unlocken waar je inzit.', inline: true },
@@ -78,21 +84,27 @@ function helpEmbed(prefixs, lang) {
             { name: `${prefixs}setprefix`, value: 'To set your own prefix.', inline: true },
             { name: `${prefixs}setlang`, value: 'To set your own language.', inline: true },
             { name: `resetprefix`, value: 'To reset your own prefix.', inline: true },
+
             { name: `${prefixs}info`, value: 'You can get information about the server.', inline: true },
             { name: `${prefixs}donate`, value: 'Link for the Patreon Page.', inline: true },
             { name: `${prefixs}patreon`, value: 'Peoples who has donate.', inline: true },
+
             { name: `${prefixs}help`, value: 'To show this message.', inline: true },
             { name: `${prefixs}link`, value: 'You can get usefull links with this command.', inline: true },
             { name: `${prefixs}amongus`, value: 'When you want to start a game.', inline: true },
+
             { name: `${prefixs}amongusstop`, value: 'To finish the game.', inline: true },
             { name: `${prefixs}ping`, value: 'Get your ping.', inline: true },
             { name: `${prefixs}uptime`, value: 'See the uptime from the bot.', inline: true },
+
             { name: `${prefixs}map`, value: 'A list of all the maps.', inline: true },
             { name: `${prefixs}polus`, value: 'To show the map of Polus.', inline: true },
             { name: `${prefixs}skeld`, value: 'To show the map of The Skeld.', inline: true },
+
             { name: `${prefixs}mira`, value: 'To show the map of MIRA HQ.', inline: true },
             { name: `${prefixs}setcode`, value: 'To set the game code.', inline: true },
             { name: `${prefixs}resetcode`, value: 'To reset the game code.', inline: true },
+
             { name: `${prefixs}code`, value: 'Show the code of the channel.', inline: true },
             { name: `${prefixs}lock`, value: 'To lock the channel.', inline: true },
             { name: `${prefixs}unlock`, value: 'To unlock the channel.', inline: true },
@@ -107,21 +119,21 @@ function helpEmbed(prefixs, lang) {
 function embedLetOp(prefixs, lang) {
     if (lang === "nl") {
         var embedHelp = new Discord.MessageEmbed()
-        .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
-        .setTitle("Help")
-        .setDescription(`Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
-        .setColor(15746887)
-        .setTimestamp()
-        .setFooter(`Among Us`)
+            .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
+            .setTitle("Help")
+            .setDescription(`Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
+            .setColor(15746887)
+            .setTimestamp()
+            .setFooter(`Among Us`)
         return embedHelp;
     } else if (lang === "en") {
         var embedHelp = new Discord.MessageEmbed()
-        .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
-        .setTitle("Help")
-        .setDescription(`To run some commands you have to be in a voice-channel. These following commands you must have to be in a voice-channel to run it:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
-        .setColor(15746887)
-        .setTimestamp()
-        .setFooter(`Among Us`)
+            .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
+            .setTitle("Help")
+            .setDescription(`To run some commands you have to be in a voice-channel. These following commands you must have to be in a voice-channel to run it:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
+            .setColor(15746887)
+            .setTimestamp()
+            .setFooter(`Among Us`)
         return embedHelp;
     }
 }
@@ -273,7 +285,7 @@ async function updateAdmin(botbio) {
 }
 
 function errorMessage(err) {
-   var errEmbed = new Discord.MessageEmbed()
+    var errEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Error")
         .setDescription(`${err}`)
@@ -652,15 +664,15 @@ bot.on("message", async msg => {
                     .setTimestamp()
                     .setFooter(`Among Us`)
                 var embedEN = new Discord.MessageEmbed()
-                        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-                        .setTitle(`Patreon`)
-                        .setDescription(`These are the people who has donate on the Patreon Page!`)
-                        .addFields(
-                            { name: `-`, value: `-`, inline: true },
-                        )
-                        .setColor(16426522)
-                        .setTimestamp()
-                        .setFooter(`Among Us`)
+                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                    .setTitle(`Patreon`)
+                    .setDescription(`These are the people who has donate on the Patreon Page!`)
+                    .addFields(
+                        { name: `-`, value: `-`, inline: true },
+                    )
+                    .setColor(16426522)
+                    .setTimestamp()
+                    .setFooter(`Among Us`)
                 if (taal === "nl") {
                     msg.channel.send(embedNL);
                 } else {
@@ -872,18 +884,6 @@ bot.on("message", async msg => {
                         console.log(err);
                     }
                 });
-
-                // let prefixes = JSON.parse(fs.readFileSync("./prefixes.json","utf-8"));
-
-                // prefixes[msg.guild.id] = {
-                //     prefixes: args[0]
-                // };
-
-                // fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) => {
-                //     if (err) {
-                //         console.err(err);
-                //     }
-                // });
 
                 if (taal === "nl") {
                     msg.channel.send(createEmbed(`Prefix`, `De prefix van **${msg.guild.name}** is gezet naar ***${args[0]}***!`));
@@ -1097,9 +1097,6 @@ bot.on("message", async msg => {
                                "name": msg.member.voice.channel.name, 
                             });
 
-//                             const c = msg.member.voice.channel;
-//                             await c.setName(`${c.name} | ${code} - ${server}`);
-        //                     await c.edit({ name: `${c.name} | ${code} - ${server}` });
                             if (taal === "nl") {
                                 msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**!`));
                             } else {
@@ -1125,16 +1122,10 @@ bot.on("message", async msg => {
                                        "server": server,
                                        "name": msg.member.voice.channel.name, 
                                     });
-//                                     const c = msg.member.voice.channel;
-//                                     await c.setName(`${c.name} | ${code} - ${server}`);
                                     aantalcodes += 1;
-        //                             await c.edit({ name: `${c.name} | ${code} - ${server}` });
                                 } else {
                                     codes[i].code = code;
                                     codes[i].server = server;
-//                                     const c = msg.member.voice.channel;
-//                                     await c.setName(`${codes[i].name} | ${code} - ${server}`);
-        //                             await c.edit({ name: `${codes[i].name} | ${code} - ${server}` });
                                     aantalcodes += 1;
                                 }
                             }
@@ -1192,12 +1183,10 @@ bot.on("message", async msg => {
                             return;
                         }
 
-//                         const c = codes[i].channel;
-//                         await c.setName(`${codes[i].name}`);
-        //                 await c.edit({ name: codes[i].name });
                         codes.splice(codes.indexOf({
                             "channel": msg.member.voice.channel,
                         }), 1);
+
                         if (taal === "nl") {
                             msg.channel.send(createEmbed(`${msg.author.username}`,`Code succesvol verwijderd van **${msg.member.voice.channel.name}**!`));
                         } else {
@@ -1225,7 +1214,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "skeld") {
-                 var embed = new Discord.MessageEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`${msg.author.username}`)
                     .setDescription(`Map: **The Skeld**`)
@@ -1237,7 +1226,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "polus") {
-                 var embed = new Discord.MessageEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`${msg.author.username}`)
                     .setDescription(`Map: **Polus**`)
@@ -1249,7 +1238,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "mira") {
-                 var embed = new Discord.MessageEmbed()
+                var embed = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`${msg.author.username}`)
                     .setDescription(`Map: **MIRA HQ**`)
@@ -1261,10 +1250,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "uptime") {
-                const servers = await bot.guilds.cache.size;
-                const users = await bot.users.cache.size;
                 let totalSeconds = (bot.uptime / 1000);
-                let botSeconds = Math.floor(totalSeconds);
                 let days = Math.floor(totalSeconds / 86400);
                 totalSeconds %= 86400;
                 let hours = Math.floor(totalSeconds / 3600);
@@ -1343,7 +1329,7 @@ bot.on("message", async msg => {
 
             if (command === "ping") {
                 const m = await msg.channel.send("Ping?");
-                var ping = m.createdTimestamp - msg.createdTimestamp;
+                var ping = Date.now() - m.createdTimestamp;
                 m.edit(createEmbed(`Pong!`, `Latency is: **${ping}ms**.`));
             }
 
@@ -1410,7 +1396,7 @@ bot.on("message", async msg => {
                     var embed = new Discord.MessageEmbed()
                         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                         .setTitle(`${msg.author.username}`)
-                        .setDescription(`React with :white_check_mark: when there is a meeting, react with :x: if the meeting is finished.\nDo **${prefix}amongusstop** if you are stoppign.`)
+                        .setDescription(`React with :white_check_mark: when there is a meeting, react with :x: if the meeting is finished.\nDo **${prefix}amongusstop** if you are stopping.`)
                         .setColor(16426522)
                         .setTimestamp()
                         .setFooter(`The host is: ${msg.author.username}\nThe channel where the game is playing: ${msg.member.voice.channel.name}`)
@@ -1500,7 +1486,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             resetMessage.react(reaction._emoji.name);
             //hardreset
             for (let i = 0; i < amongus.length; i++) {
-               amongus[i].channel.edit({
+                amongus[i].channel.edit({
                     userLimit: amongus[i].userlimit,
                 });
 
@@ -1529,7 +1515,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             resetMessage.react(reaction._emoji.name);
             //game reset
             for (let i = 0; i < amongus.length; i++) {
-               amongus[i].channel.edit({
+                amongus[i].channel.edit({
                     userLimit: amongus[i].userlimit,
                 });
 
@@ -1544,7 +1530,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             reaction.remove();
             resetMessage.react(reaction._emoji.name);
             for (let i = 0; i < amongus.length; i++) {
-               amongus[i].channel.edit({
+                amongus[i].channel.edit({
                     userLimit: amongus[i].userlimit,
                 });
 
