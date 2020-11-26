@@ -34,7 +34,6 @@ var taalGebruiker = "";
 var taalServer = "";
 var adminMessage = "";
 var laatstecommand = "-";
-var laatstebericht = "-";
 var resetMessage = "";
 
 function helpEmbed(prefixs, lang) { 
@@ -139,17 +138,6 @@ function createEmbed(title, description) {
 }
 
 async function resetBot() {
-    var status = "";
-    if (bot.user.presence.status === "online") {
-        status = "🟢";
-    } else if (bot.user.presence.status === "offline") {
-        status = "🔴";
-    } else if (bot.user.presence.status === "idle") {
-        status = "🟠";
-    } else if (bot.user.presence.status === "invisible" || bot.user.presence.status === "dnd") {
-        status = "⚫️";
-    }
-    
     if (slot) {
         slotnaam = "aan";
     } else {
@@ -176,11 +164,6 @@ async function resetBot() {
 }
 
 async function updateAdmin(botbio) {
-    const vandaag = new Date();
-    const uura = vandaag.getHours();
-    const minuta = vandaag.getMinutes();
-    const seconda = vandaag.getSeconds();
-
     const servers = await bot.guilds.cache.size;
     const users = await bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
 
@@ -439,14 +422,11 @@ bot.on("guildCreate", async guild => {
             }
         });
     }
-//     guild.owner.send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan **${guild.name}**.\nJe kan al mijn commands zien als je **${prefix}help** typt!\nDe Discord Server waar je je vragen kan stellen: ${discordserver}\n\nHierop kan je ook het kanaal **#bot-status** of **#botinformatie** volgen voor de updates en de informatie over de Discord Bot!`));
+
     if (guild.systemChannel) {
         guild.systemChannel.send(createEmbed(`${bot.user.username}`,`Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help**\nYou can set your own prefix by typing **${prefix}setprefix**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!\n\nI have a Patreon Page where you can donate money: https://www.patreon.com/bePatron?u=45897916`));
         guild.systemChannel.send(createEmbed(`Language`,`If you want to set the bot in another language, do ***${prefix}setlang***!`));
     }
-
-    //     console.log(guild.ownerID, guild.owner);
-//     bot.users.cache.get(guild.ownerID).send(createEmbed(`${bot.user.username}`,`Bedankt voor het toevoegen van mij aan deze server!\nAl mijn commands kan je zien via **${prefix}help**\nAls je vragen hebt kan je mijn help-server joinen: ${discordserver}\n\nVoor de mensen die mij willen inviten doe **${prefix}link** om de invite-link te krijgen!`));
 });
 
 bot.on("guildDelete", async guild => {
@@ -485,15 +465,7 @@ bot.on("guildDelete", async guild => {
     } else {
         console.log(`${guild.name} is niet verwijderd uit de database "Server" aangezien hij niet in de database stond!`);
     }
-//     console.log(guild.ownerID, guild.owner);
-//     bot.users.cache.get(guild.ownerID).send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: ${discordserver}\n\nMet vriendelijke groet,\nAmong Us`));
-//     u.send(createEmbed(`${bot.user.username}`,`Jammer dat je mij niet meer gebruikt op **${guild.name}**.\nWij vinden het spijtig om te horen! Ik hoop in ieder geval dat je hebt genoten van de tijd waarneer je mij hebt gebruikt!\nDe Discord Server van mij: ${discordserver}\n\nMet vriendelijke groet,\nAmong Us`))
 });
-
-function checkTime(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-  return i;
-}
 
 bot.on("ready", async () => {
     var servers = await bot.guilds.cache.size;
@@ -527,13 +499,6 @@ bot.on("ready", async () => {
         servers = bot.guilds.cache.size;
         users = bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
         
-        var vandaag = new Date();
-        var dag = vandaag.getDate();
-        var maand = vandaag.getMonth();
-        var uur = vandaag.getHours();
-        var jaar = vandaag.getFullYear();
-        var minuten = vandaag.getMinutes();
-
         var status = [
             `On ${servers} servers!`,
             `${prefix}setprefix | <prefix>`,
@@ -561,8 +526,7 @@ bot.on("ready", async () => {
         });
         
         updateAdmin(status[statusIndex]);
-        // sets bot's activities to one of the phrases in the arraylist.
-    }, 10000); // Runs this every 10 seconds.
+    }, 10000);
 });
 
 bot.on("message", async msg => {
@@ -667,8 +631,6 @@ bot.on("message", async msg => {
     const command = args.shift().toLowerCase();
     
     laatstecommand = `${msg.content} (@${msg.author.tag})`;
-
-
 
     if (slot === false) {
         aantalcommands++;
@@ -805,21 +767,7 @@ bot.on("message", async msg => {
                 let aantals = await client.query(`SELECT * FROM prefixes;`);
                 let aantals2 = await client.query(`SELECT * FROM servers;`);
 
-                var embedNL = new Discord.MessageEmbed()
-                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-                    .setTitle(`Database Values`)
-                    .setDescription(`Aantal servers in de Database: **${aantals.rows.length}**`)
-                    .setColor(16426522)
-                    .setTimestamp()
-                    .setFooter(`Among Us`)
-                
-                var embedEN = new Discord.MessageEmbed()
-                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-                    .setTitle(`Database Values`)
-                    .setDescription(`Total servers in Database: **${aantals.rows.length}**`)
-                    .setColor(16426522)
-                    .setTimestamp()
-                    .setFooter(`Among Us`)
+                msg.member.send(`Aantal servers in de Database: **${aantals.rows.length}**`);
 
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
@@ -835,19 +783,12 @@ bot.on("message", async msg => {
                             } else {
                                 taaltekst = "🇬🇧";
                             }
-                            embedNL.addField(`${guildname}`, `Prefix: ${prefixtekst}\nTaal: ${taaltekst}`, true);
-                            embedEN.addField(`${guildname}`, `Prefix: ${prefixtekst}\nLanguage: ${taaltekst}`, true);
+
+                            msg.member.send(`${guildname}\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}`);
                         }
                     }
                 }
-
-                if (taal === "nl") {
-                    msg.delete();
-                    msg.member.send(embedNL);
-                } else {
-                    msg.delete();
-                    msg.member.send(embedEN);
-                }
+                msg.delete();
             }
 
             
@@ -1626,12 +1567,9 @@ bot.on('messageReactionAdd', (reaction, user) => {
             taalServer = "";
             taalMessage = "";
             taalGebruiker = "";
-            
             return;
         }
-
         reaction.remove();
-
     } else {
         for (let i = 0; i < amongus.length; i++) {
             if (amongus[i].user != user) {
@@ -1653,7 +1591,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     amongus[i].meetingbezig = true;
                     let channel = amongus[i].channel;
                     for (let member of channel.members) {
-    //                     member[1].voice.setSelfMute(false);
                         member[1].edit({ mute: false });
                     }
                 } else if (reaction._emoji.name === "❌") {
@@ -1663,7 +1600,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     amongus[i].meetingbezig = false;
                     let channel = amongus[i].channel;
                     for (let member of channel.members) {
-    //                     member[1].voice.setSelfMute(true);
                         member[1].edit({ mute: true });
                     }
                 }
