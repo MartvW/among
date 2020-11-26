@@ -770,7 +770,7 @@ bot.on("message", async msg => {
                 let aantalpunt = 0;
                 let anders = 0;
 
-                bericht = "";
+                bericht = [];
 
                 msg.member.send(`Aantal servers in de Database: **${aantals.rows.length}**`);
 
@@ -790,13 +790,14 @@ bot.on("message", async msg => {
                             } else {
                                 taaltekst = "🇬🇧";
                             }
-                            bericht += createEmbed(`**${guildname}**`,`Prefix: ${prefixtekst}\nTaal: ${taaltekst}`);
-                        }
+                            bericht.push(`**${guildname}**\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}`);                        }
                     }
                 }
                 msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!`));
                 msg.delete();
-                msg.member.send(bericht);
+                for (let i = 0; i < bericht.length; i++) {
+                    msg.member.send(bericht[i]);
+                }
                 msg.member.send(`**--DONE--**`);
             }
 
