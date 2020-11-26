@@ -784,11 +784,12 @@ bot.on("message", async msg => {
                                 taaltekst = "🇬🇧";
                             }
 
-                            msg.member.send(`${guildname}\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}`);
+                            msg.member.send(`**${guildname}**\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}\n\n`);
                         }
                     }
                 }
                 msg.delete();
+                msg.member.send(`___________________________________`);
             }
 
             
