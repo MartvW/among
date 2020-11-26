@@ -797,7 +797,7 @@ bot.on("message", async msg => {
                                 taaltekst = "🇬🇧";
                                 taalen += 1;
                             }
-                            bericht.push(`**${guildname}**\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}`);                        }
+                            bericht.push(`**${guildname}**\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}\n`);                        }
                     }
                 }
                 msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
