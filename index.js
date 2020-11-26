@@ -539,7 +539,7 @@ bot.on("message", async msg => {
     let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
     let taal = await client.query(`SELECT lang FROM servers WHERE guildId='${msg.guild.id}';`);
     if (taal.rowCount === 0) {
-        client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'nl');`, (err, res) => {
+        client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'en');`, (err, res) => {
             if (!err) {
                 if (res) {
                     console.log(`${msg.guild.name} (${msg.guild.id}) is succesvol in de database "Servers" gezet!`);
