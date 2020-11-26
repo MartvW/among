@@ -1328,7 +1328,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "ping") {
-                const m = await msg.channel.send("Ping?");
+                const m = await msg.channel.send(createEmbed(`Ping!`, `Pinging....`));
                 var ping = Date.now() - m.createdTimestamp;
                 m.edit(createEmbed(`Pong!`, `Latency is: **${ping}ms**.`));
             }
