@@ -802,11 +802,11 @@ bot.on("message", async msg => {
                     berichts1 += bericht[i];
                 }
 
-                for (let i = 0; i < bericht.length/3+berichts.length/3; i++) {
+                for (let i = 0; i < bericht.length/3+bericht.length/3; i++) {
                     berichts2 += bericht[i];
                 }
 
-                for (let i = 0; i < bericht.length/3+berichts.length/3+berichts.length/3; i++) {
+                for (let i = 0; i < bericht.length/3+bericht.length/3+bericht.length/3; i++) {
                     berichts3 += bericht[i];
                 }
                 msg.member.send(berichts1);
