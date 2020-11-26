@@ -769,6 +769,8 @@ bot.on("message", async msg => {
 
                 let aantalpunt = 0;
                 let anders = 0;
+                let taalnl = 0;
+                let taalen = 0;
 
                 bericht = [];
                 berichts1 = "";
@@ -790,13 +792,15 @@ bot.on("message", async msg => {
                         if (aantals.rows[i].guildid === aantals2.rows[j].guildid) {
                             if (aantals2.rows[j].lang === "nl") {
                                 taaltekst = "🇳🇱";
+                                taalnl += 1;
                             } else {
                                 taaltekst = "🇬🇧";
+                                taalen += 1;
                             }
                             bericht.push(`**${guildname}**\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}`);                        }
                     }
                 }
-                msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!`));
+                msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
                 msg.delete();
                 for (let i = 0; i < bericht.length/3; i++) {
                     berichts1 += bericht[i];
