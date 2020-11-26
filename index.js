@@ -767,13 +767,20 @@ bot.on("message", async msg => {
                 let aantals = await client.query(`SELECT * FROM prefixes;`);
                 let aantals2 = await client.query(`SELECT * FROM servers;`);
 
+                let aantalpunt = 0;
+                let anders = 0;
+
+                bericht = "";
+
                 msg.member.send(`Aantal servers in de Database: **${aantals.rows.length}**`);
 
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
                     if (aantals.rows[i].prefix === ".") {
+                        aantalpunt += 1;
                         prefixtekst = "**.**";
                     } else {
+                        anders += 1;
                         prefixtekst = `**${aantals.rows[i].prefix}**`;
                     }
                     for (let j = 0; j < aantals2.rows.length; j++) {
@@ -783,11 +790,11 @@ bot.on("message", async msg => {
                             } else {
                                 taaltekst = "🇬🇧";
                             }
-
-                            msg.member.send(createEmbed(`**${guildname}**`,`Prefix: ${prefixtekst}\nTaal: ${taaltekst}`));
+                            bericht += createEmbed(`**${guildname}**`,`Prefix: ${prefixtekst}\nTaal: ${taaltekst}`);
                         }
                     }
                 }
+                msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt} servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!`));
                 msg.delete();
                 msg.member.send(`___________________________________`);
             }
