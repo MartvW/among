@@ -812,6 +812,8 @@ bot.on("message", async msg => {
                     } else {
                         console.log(`${guild.name} is niet verwijderd uit de database "Prefixes" aangezien hij niet in de database stond!`);
                     }
+
+                    msg.member.send(createEmbed('Database', `**${guild.name}** succesvol verwijderd uit beide databases`));
                 } else {
                     msg.member.send(createEmbed('Database', `Server niet gevonden, probeer opnieuw.`));
                 }
