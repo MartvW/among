@@ -561,7 +561,6 @@ bot.on("message", async msg => {
                 console.log(err);
             }
         });
-        return;
     };
 
     if (prefix.rowCount === 0) {
@@ -574,7 +573,6 @@ bot.on("message", async msg => {
                 console.log(err);
             }
         });
-        return;
     };
 
     taal = taal.rows[0].lang;
@@ -841,7 +839,7 @@ bot.on("message", async msg => {
                     }
                 });
                 msg.delete();
-                msg.member.send(createEmbed('Database', `"Server" en "Prefixes" zijn succesvol geleegd.`))
+                msg.member.send(createEmbed('Database', `**"Server"** en **"Prefixes"** zijn succesvol geleegd.`))
             }
  
             if (command === "db" && msg.author.id === owner) {
@@ -876,8 +874,6 @@ bot.on("message", async msg => {
                 berichts2 = "";
                 berichts3 = "";
 
-                msg.member.send(`Aantal servers in de Database: **${aantals.rows.length}**`);
-
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
                     if (aantals.rows[i].prefix === ".") {
@@ -901,17 +897,16 @@ bot.on("message", async msg => {
                         }
                     }
                 }
-                msg.member.send(createEmbed(`Prefixes`, `Er zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
-                msg.delete();
                 for (let i = 0; i < bericht.length/2; i++) {
                     embed1.addField(`**${i}**. ${bericht[i].naam}`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                 }
                 for (let i = bericht.length/2; i < bericht.length; i++) {
                     embed2.addField(`**${i}**. ${bericht[i].naam}`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                 }
+                msg.delete();
+                msg.member.send(createEmbed(`Database`, `Aantal servers in de Database: **${aantals.rows.length}**\nEr zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
                 msg.member.send(embed1);
                 msg.member.send(embed2);
-                msg.member.send(`**--DONE--**`);
             }
 
             
