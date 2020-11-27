@@ -176,8 +176,8 @@ async function resetBot() {
 }
 
 async function updateAdmin(botbio) {
-    const servers = await bot.guilds.cache.size;
-    const users = await bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
+    const servers = bot.guilds.cache.size;
+    const users = bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
 
     var totalSeconds = (bot.uptime / 1000);
     var botSeconds = Math.floor(totalSeconds);
@@ -397,7 +397,7 @@ bot.on("warn", async msg => {
 });
 
 bot.on("guildCreate", async guild => {
-    const servers = await bot.guilds.cache.size;
+    const servers = bot.guilds.cache.size;
     if (!guild.me.hasPermission("ADMINISTRATOR")) {
         if (guild.systemChannel) {
             guild.systemChannel.send(createEmbed(`${bot.user.username}`, `The bot doesn't have the appropriate permissions.\nTo resolve this problem, go to **Server Settings** and then navigate to the **Roles** option. Next, click on **Bots**, and then click on the slider next to **Administrator** to activate it.`));
@@ -442,7 +442,7 @@ bot.on("guildCreate", async guild => {
 });
 
 bot.on("guildDelete", async guild => {
-    const servers = await bot.guilds.cache.size;
+    const servers = bot.guilds.cache.size;
     console.log(`Ik ben verwijderd bij: ${guild.name} (id: ${guild.id})!`);
     bot.user.setPresence({
         status: 'online',
@@ -480,8 +480,8 @@ bot.on("guildDelete", async guild => {
 });
 
 bot.on("ready", async () => {
-    var servers = await bot.guilds.cache.size;
-    var users = await bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
+    var servers = bot.guilds.cache.size;
+    var users = bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
 
     let aantals = await client.query(`SELECT * FROM prefixes;`);
     let aantals2 = await client.query(`SELECT * FROM servers;`);
@@ -490,12 +490,12 @@ bot.on("ready", async () => {
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en op ${users} gebruikers. In database "Prefix" zitten ${aantals.rows.length} servers! In database "Servers" zitten ${aantals2.rows.length} servers!`);
     console.log("");
 
-    const channel = await bot.channels.cache.find(channel => channel.id === botInfokanaal);
+    const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
 
     updateAdmin(`Starting up...`);
 
-    const channel2 = await bot.channels.cache.find(channel => channel.id === resetID);
+    const channel2 = bot.channels.cache.find(channel => channel.id === resetID);
     channel2.bulkDelete(1);
 
     resetBot();
@@ -777,7 +777,7 @@ bot.on("message", async msg => {
                     return;
                 }
 
-                const guild = await bot.guilds.cache.find(guild => guild.id === args[0]);
+                const guild = bot.guilds.cache.find(guild => guild.id === args[0]);
 
                 if (guild) {
                     if (client.query(`SELECT * FROM servers WHERE guildId='${args[0]}';`)) {
@@ -900,8 +900,6 @@ bot.on("message", async msg => {
                 msg.member.send(embed2);
             }
 
-
-
             if (command === "setprefix") {
                 if (!msg.member.hasPermission("MANAGE_GUILD")) {
                     if (taal === "nl") {
@@ -1000,7 +998,7 @@ bot.on("message", async msg => {
                     msg.member.voice.channel.edit({
                         userLimit: 1,
                     });
-                    aantallocks++
+                    aantallocks++;
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** is gelocked!\nDoe **${prefix}unlock** om de kanaal weer te unlocken!`));
                     } else {
@@ -1385,7 +1383,7 @@ bot.on("message", async msg => {
             if (command === "ping") {
                 const m = await msg.channel.send("Ping?");
                 var ping = Date.now() - m.createdTimestamp;
-                m.delete()
+                m.delete();
                 msg.channel.send > (createEmbed(`Pong!`, `Latency is: **${ping}ms**.`));
             }
 
