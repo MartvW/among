@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const { create } = require('domain');
 const bot = new Discord.Client();
 const { Client } = require('pg');
 
@@ -775,6 +776,72 @@ bot.on("message", async msg => {
                 }
             }
 
+            if (command === "dbdelete" && msg.author.id === owner) {
+                if (!args[0]) {
+                    msg.channel.send(createEmbed(`${msg.author.username}`,`Voer de guildId in!`));
+                    return;
+                }
+
+                const guild = await bot.guilds.cache.find(guild => guild.id === args[0]);
+
+                if (guild) {
+                    if (client.query(`SELECT * FROM servers WHERE guildId='${args[0]}';`)) {
+                        client.query(`DELETE FROM servers WHERE guildId='${args[0]}';`, (err, res) => {
+                            if (!err) {
+                                if (res) {
+                                    console.log(`${guild.name} is succesvol verwijderd uit de database "Server"!`);
+                                }
+                            } else {
+                                console.log(err);
+                            }
+                        });
+                    } else {
+                        console.log(`${guild.name} is niet verwijderd uit de database "Server" aangezien hij niet in de database stond!`);
+                    }
+
+                    if (client.query(`SELECT * FROM prefixes WHERE guildId='${args[0]}';`)) {
+                        client.query(`DELETE FROM prefixes WHERE guildId='${args[0]}';`, (err, res) => {
+                            if (!err) {
+                                if (res) {
+                                    console.log(`${guild.name} is succesvol verwijderd uit de database "Prefixes"!`);
+                                }
+                            } else {
+                                console.log(err);
+                            }
+                        });
+                    } else {
+                        console.log(`${guild.name} is niet verwijderd uit de database "Prefixes" aangezien hij niet in de database stond!`);
+                    }
+                } else {
+                    msg.member.send(createEmbed('Database', `Server niet gevonden, probeer opnieuw.`));
+                }
+                msg.delete();
+            }
+
+            if (command === "dbdeleteall" && msg.author.id === owner) {
+                client.query(`TRUNCATE TABLE servers;`, (err, res) => {
+                    if (!err) {
+                        if (res) {
+                            console.log(`"Server" is succesvol geleegd!`);
+                        }
+                    } else {
+                        console.log(err);
+                    }
+                });
+
+                client.query(`TRUNCATE TABLE prefixes;`, (err, res) => {
+                    if (!err) {
+                        if (res) {
+                            console.log(`"Prefixes" is succesvol geleegd!`);
+                        }
+                    } else {
+                        console.log(err);
+                    }
+                });
+                msg.delete();
+                msg.member.send(createEmbed('Database', `"Server" en "Prefixes" zijn succesvol geleegd.`))
+            }
+ 
             if (command === "db" && msg.author.id === owner) {
                 let aantals = await client.query(`SELECT * FROM prefixes;`);
                 let aantals2 = await client.query(`SELECT * FROM servers;`);
@@ -1331,7 +1398,7 @@ bot.on("message", async msg => {
                 const m = await msg.channel.send("Ping?");
                 var ping = Date.now() - m.createdTimestamp;
                 m.delete()
-                msg.channel.send(createEmbed(`Pong!`, `Latency is: **${ping}ms**.`));
+                msg.channel.send>(createEmbed(`Pong!`, `Latency is: **${ping}ms**.`));
             }
 
             if (command === "link") {
