@@ -346,12 +346,12 @@ bot.on("disconnect", async msg => {
     }
     locks = [];
 
-    updateAdmin(`Afsluiten...`);
+    updateAdmin(`Shutting down...`);
 
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `Afsluiten...`,
+            name: `Shutting down...`,
         }
     });
 });
@@ -376,12 +376,12 @@ bot.on("reconnecting", async msg => {
     }
     locks = [];
 
-    updateAdmin(`Opnieuw opstarten...`);
+    updateAdmin(`Shutting down...`);
 
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `Opnieuw opstarten...`,
+            name: `Shutting down...`,
         }
     });
 });
