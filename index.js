@@ -836,7 +836,7 @@ bot.on("message", async msg => {
                     }
                 });
                 msg.delete();
-                msg.member.send(createEmbed('Database', `**"Server"** en **"Prefixes"** zijn succesvol geleegd.`))
+                msg.member.send(createEmbed('Database', `**"Server"** en **"Prefixes"** zijn succesvol geleegd.`));
             }
 
             if (command === "db" && msg.author.id === owner) {
@@ -884,7 +884,6 @@ bot.on("message", async msg => {
                                 taalen += 1;
                             }
                             bericht.push({ "id": bericht.length, "naam": guildname, "prefix": prefixtekst, "taal": taaltekst });
-                            // bericht.push(`${bericht.length}\n**${guildname}**\nPrefix: ${prefixtekst}\nTaal: ${taaltekst}\n`); 
                         }
                     }
                 }
@@ -975,7 +974,7 @@ bot.on("message", async msg => {
                     }
                 }
 
-                msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`))
+                msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`));
                 amongus = [];
             }
 
@@ -1455,7 +1454,7 @@ bot.on("message", async msg => {
                         .setDescription(`React with :white_check_mark: when there is a meeting, react with :x: if the meeting is finished.\nDo **${prefix}amongusstop** if you are stopping.`)
                         .setColor(16426522)
                         .setTimestamp()
-                        .setFooter(`The host is: ${msg.author.username}\nThe channel where the game is playing: ${msg.member.voice.channel.name}`)
+                        .setFooter(`The host is: ${msg.author.username}\nThe channel where the game is currently playing: ${msg.member.voice.channel.name}`)
                 }
 
                 msg.channel.send({ embed: embed }).then(embedMesage => {
