@@ -541,10 +541,8 @@ bot.on("ready", async () => {
 
         updateAdmin(status[statusIndex]);
     }, 10000);
+    console.log(bot);
 });
-
-console.log(bot);
-
 
 bot.on("message", async msg => {
     if (msg.author.bot) return;
