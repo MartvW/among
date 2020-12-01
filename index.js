@@ -542,7 +542,8 @@ bot.on("ready", async () => {
         updateAdmin(status[statusIndex]);
     }, 10000);
     for (let i = 0; i < bot.guilds.cache.size; i++) {
-        console.log(bot.guilds.cache.find(i).name);
+        const guild = await bot.guilds.fetch(i);
+        console.log(guild.name);
     }
 });
 
