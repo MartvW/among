@@ -751,24 +751,26 @@ bot.on("message", async msg => {
                 }
 
                 if (taal === "nl") {
-                    msg.channel.send(createEmbed(`Taalinstellingen`, `Bekijk je privéberichten!`));
+                    msg.channel.send(createEmbed(`Taalinstellingen`, `Bekijk je privéberichten!`)).then(m => {
+                        taalChannel = m;
+                    });
                     console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
                     msg.member.send(createEmbed(`Taalinstellingen voor ${msg.guild.name}`, `Reageer met 🇳🇱 om de taal in het Nederlands te zetten.\nReageer met 🇬🇧 om de taal in het Engels te zetten.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
                         taalServer = msg.guild;
-                        taalChannel = msg.channel;
                         embedMessage.react('🇳🇱');
                         embedMessage.react('🇬🇧');
                     });
                 } else {
-                    msg.channel.send(createEmbed(`Language Settings`, `Check your private messages!`));
+                    msg.channel.send(createEmbed(`Language Settings`, `Check your private messages!`)).then(m => {
+                        taalChannel = m;
+                    });
                     console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
                     msg.member.send(createEmbed(`Language Settings for ${msg.guild.name}`, `React with 🇳🇱 to change the language to Dutch.\nReact with 🇬🇧 to change the language to English.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
                         taalServer = msg.guild;
-                        taalChannel = msg.channel;
                         embedMessage.react('🇳🇱');
                         embedMessage.react('🇬🇧');
                     });
@@ -1640,7 +1642,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 }
             });
             taalMessage.delete();
-            taalChannel.send(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
+            taalChannel.edit(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
             taalGebruiker.send(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
             taalServer = "";
             taalMessage = "";
@@ -1656,7 +1658,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 }
             });
             taalMessage.delete();
-            taalChannel.send(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
+            taalChannel.edit(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
             taalGebruiker.send(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
             taalServer = "";
             taalChannel = "";
