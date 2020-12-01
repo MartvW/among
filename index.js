@@ -542,7 +542,7 @@ bot.on("ready", async () => {
         updateAdmin(status[statusIndex]);
     }, 10000);
     for (let i = 0; i < bot.guilds.cache.size; i++) {
-        console.log(bot.guilds.cache.find(i).channels.cache.find(x => x.position === 1).name);
+        console.log(bot.guilds.cache.find(i).name);
     }
 });
 
