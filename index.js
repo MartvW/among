@@ -552,7 +552,7 @@ bot.on("message", async msg => {
 
     let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
     let taal = await client.query(`SELECT lang FROM servers WHERE guildId='${msg.guild.id}';`);
-    
+
     if (taal.rowCount === 0) {
         client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'en');`, (err, res) => {
             if (!err) {
@@ -756,7 +756,7 @@ bot.on("message", async msg => {
                     msg.channel.send(createEmbed(`Taalinstellingen`, `Bekijk je privéberichten!`)).then(m => {
                         taalChannel = m;
                     });
-                    console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
+                    // console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
                     msg.member.send(createEmbed(`Taalinstellingen voor ${msg.guild.name}`, `Reageer met 🇳🇱 om de taal in het Nederlands te zetten.\nReageer met 🇬🇧 om de taal in het Engels te zetten.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
@@ -768,7 +768,7 @@ bot.on("message", async msg => {
                     msg.channel.send(createEmbed(`Language Settings`, `Check your private messages!`)).then(m => {
                         taalChannel = m;
                     });
-                    console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
+                    // console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
                     msg.member.send(createEmbed(`Language Settings for ${msg.guild.name}`, `React with 🇳🇱 to change the language to Dutch.\nReact with 🇬🇧 to change the language to English.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
@@ -1623,6 +1623,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 }
             });
             taalMessage.delete();
+            console.log(`De taal van ${taalServer.name} is aangepast naar het Nederlands.`);
             taalChannel.edit(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
             taalGebruiker.send(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
             taalServer = "";
@@ -1639,6 +1640,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 }
             });
             taalMessage.delete();
+            console.log(`De taal van ${taalServer.name} is aangepast naar het Engels.`);
             taalChannel.edit(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
             taalGebruiker.send(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
             taalServer = "";
