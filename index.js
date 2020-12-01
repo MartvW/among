@@ -30,6 +30,7 @@ var aantalcommands = 0;
 var slot = false;
 var slotnaam = "";
 var taalMessage = "";
+var taalChannel = "";
 var taalGebruiker = "";
 var taalServer = "";
 var adminMessage = "";
@@ -756,6 +757,7 @@ bot.on("message", async msg => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
                         taalServer = msg.guild;
+                        taalChannel = msg.channel;
                         embedMessage.react('🇳🇱');
                         embedMessage.react('🇬🇧');
                     });
@@ -766,6 +768,7 @@ bot.on("message", async msg => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
                         taalServer = msg.guild;
+                        taalChannel = msg.channel;
                         embedMessage.react('🇳🇱');
                         embedMessage.react('🇬🇧');
                     });
@@ -1637,9 +1640,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 }
             });
             taalMessage.delete();
+            taalChannel.send(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
             taalGebruiker.send(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
             taalServer = "";
             taalMessage = "";
+            taalChannel = "";
             taalGebruiker = "";
             return;
         }
@@ -1651,8 +1656,10 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 }
             });
             taalMessage.delete();
+            taalChannel.send(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
             taalGebruiker.send(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
             taalServer = "";
+            taalChannel = "";
             taalMessage = "";
             taalGebruiker = "";
             return;
