@@ -492,8 +492,6 @@ bot.on("ready", async () => {
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en op ${users} gebruikers. In database "Prefix" zitten ${aantals.rows.length} servers! In database "Servers" zitten ${aantals2.rows.length} servers!`);
     console.log("");
 
-    console.log(bot.user.toJSON());
-
     const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
 
@@ -554,6 +552,7 @@ bot.on("message", async msg => {
 
     let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
     let taal = await client.query(`SELECT lang FROM servers WHERE guildId='${msg.guild.id}';`);
+    
     if (taal.rowCount === 0) {
         client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'en');`, (err, res) => {
             if (!err) {
