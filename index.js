@@ -357,7 +357,6 @@ bot.on("shardDisconnect", async msg => {
     });
 });
 
-console.log(bot);
 
 bot.on("shardReconnecting", async msg => {
     for (let i = 0; i < amongus.length; i++) {
@@ -543,6 +542,9 @@ bot.on("ready", async () => {
         updateAdmin(status[statusIndex]);
     }, 10000);
 });
+
+console.log(bot);
+
 
 bot.on("message", async msg => {
     if (msg.author.bot) return;
