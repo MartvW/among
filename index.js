@@ -544,7 +544,6 @@ bot.on("ready", async () => {
     for (let i = 0; i < bot.guilds.cache.size; i++) {
         console.log(bot.guilds.cache.find(i).channels.cache.find(x => x.position === 1).name);
     }
-    console.log(bot);
 });
 
 bot.on("message", async msg => {
