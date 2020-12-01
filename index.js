@@ -492,8 +492,8 @@ bot.on("ready", async () => {
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en op ${users} gebruikers. In database "Prefix" zitten ${aantals.rows.length} servers! In database "Servers" zitten ${aantals2.rows.length} servers!`);
     console.log("");
 
-    console.log(bot.user);
-    
+    console.log(bot.user.dmChannel);
+
     const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
 
