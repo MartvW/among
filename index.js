@@ -881,7 +881,7 @@ bot.on("message", async msg => {
                                 taaltekst = "🇬🇧";
                                 taalen += 1;
                             }
-                            bericht.push({ "id": bericht.length, "naam": guildname, "prefix": prefixtekst, "taal": taaltekst });
+                            bericht.push({ "id": bericht.length, "naam": guildname, "guildid": guildname.id, "prefix": prefixtekst, "taal": taaltekst });
                         }
                     }
                 }
@@ -890,10 +890,10 @@ bot.on("message", async msg => {
 
                 if (bericht.length % 2 === 0) {
                     for (let i = 0; i < bericht.length / 2; i++) {
-                        embed1.addField(`**${i}**. ${bericht[i].naam}\n(${bericht[i].id})`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
+                        embed1.addField(`**${i}**. ${bericht[i].naam}\n(${bericht[i].guildid})`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                     }
                     for (let i = bericht.length / 2; i < bericht.length; i++) {
-                        embed2.addField(`**${i}**. ${bericht[i].naam}\n(${bericht[i].id})`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
+                        embed2.addField(`**${i}**. ${bericht[i].naam}\n(${bericht[i].guildid})`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                     }
                     
                     msg.member.send(createEmbed(`Database`, `Aantal servers in de Database: **${aantals.rows.length}**\nEr zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
