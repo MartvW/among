@@ -357,8 +357,8 @@ bot.on("shardDisconnect", async msg => {
     });
 });
 
-bot.on("rateLimit", async msg => {
-    console.log(msg);
+bot.on('rateLimit', (info) => {
+  console.log(`Rate limit hit ${info.timeDifference ? info.timeDifference : info.timeout ? info.timeout: 'Unknown timeout '}`);
 });
 
 bot.on("shardReconnecting", async msg => {
