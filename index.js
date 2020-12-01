@@ -327,7 +327,7 @@ bot.on("error", async msg => {
     bot.login(token);
 });
 
-bot.on("disconnect", async msg => {
+bot.on("shardDisconnect", async msg => {
     for (let i = 0; i < amongus.length; i++) {
         amongus[i].channel.edit({
             userLimit: amongus[i].userlimit,
@@ -357,7 +357,7 @@ bot.on("disconnect", async msg => {
     });
 });
 
-bot.on("reconnecting", async msg => {
+bot.on("shardReconnecting", async msg => {
     for (let i = 0; i < amongus.length; i++) {
         amongus[i].channel.edit({
             userLimit: amongus[i].userlimit,
@@ -494,7 +494,7 @@ bot.on("ready", async () => {
     const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
 
-    updateAdmin(`Starting up...`);
+    updateAdmin(`Starting...`);
 
     const channel2 = bot.channels.cache.find(channel => channel.id === resetID);
     channel2.bulkDelete(1);
@@ -504,7 +504,7 @@ bot.on("ready", async () => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `Starting up...`,
+            name: `Starting...`,
         }
     });
 
@@ -966,28 +966,7 @@ bot.on("message", async msg => {
                     channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
                 });
             }
-
-            if (command === "resetcount" && msg.author.id === owner) {
-                aantalgames = 0;
-                aantalcodes = 0;
-            }
-
-            if (command === "reset" && msg.author.id === owner) {
-                for (let i = 0; i < amongus.length; i++) {
-                    amongus[i].channel.edit({
-                        userLimit: amongus[i].userlimit,
-                    });
-
-                    let channel = amongus[i].channel;
-                    for (let member of channel.members) {
-                        member[1].edit({ mute: false });
-                    }
-                }
-
-                msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`));
-                amongus = [];
-            }
-
+            
             if (command === "lock") {
                 if (!msg.member.voice.channel) {
                     if (taal === "nl") {
@@ -1099,7 +1078,7 @@ bot.on("message", async msg => {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));
                     } else {
-                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
                     }
                     return;
                 }
@@ -1109,7 +1088,7 @@ bot.on("message", async msg => {
                         if (taal === "nl") {
                             msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));
                         } else {
-                            msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
+                            msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
                         }
                         return;
                     }
@@ -1229,7 +1208,7 @@ bot.on("message", async msg => {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));
                     } else {
-                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
                     }
                     return;
                 }
@@ -1240,7 +1219,7 @@ bot.on("message", async msg => {
                             if (taal === "nl") {
                                 msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));
                             } else {
-                                msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
+                                msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
                             }
                             return;
                         }
@@ -1269,9 +1248,9 @@ bot.on("message", async msg => {
 
             if (command === "map") {
                 if (taal === "nl") {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld**\n-**Polus**\n-**MIRA HQ**\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
                 } else {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `All maps from **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n\nDo ***${prefix}<mapname>*** to show the map!`));
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `All maps from **Among Us**:\n-**The Skeld**\n-**Polus**\n-**MIRA HQ**\n\nDo ***${prefix}<mapname>*** to show the map!`));
                 }
             }
 
