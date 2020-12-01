@@ -888,6 +888,8 @@ bot.on("message", async msg => {
                         }
                     }
                 }
+                
+                msg.delete();
 
                 if (bericht.length % 2 === 0) {
                     for (let i = 0; i < bericht.length / 2; i++) {
@@ -896,12 +898,11 @@ bot.on("message", async msg => {
                     for (let i = bericht.length / 2; i < bericht.length; i++) {
                         embed2.addField(`**${i}**. ${bericht[i].naam}`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                     }
+                    
+                    msg.member.send(createEmbed(`Database`, `Aantal servers in de Database: **${aantals.rows.length}**\nEr zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
+                    msg.member.send(embed1);
+                    msg.member.send(embed2);
                 }
-                
-                msg.delete();
-                msg.member.send(createEmbed(`Database`, `Aantal servers in de Database: **${aantals.rows.length}**\nEr zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
-                msg.member.send(embed1);
-                msg.member.send(embed2);
             }
 
             if (command === "setprefix") {
