@@ -888,7 +888,7 @@ bot.on("message", async msg => {
                         }
                     }
                 }
-                
+
                 msg.delete();
 
                 if (bericht.length % 2 === 0) {
@@ -902,6 +902,8 @@ bot.on("message", async msg => {
                     msg.member.send(createEmbed(`Database`, `Aantal servers in de Database: **${aantals.rows.length}**\nEr zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
                     msg.member.send(embed1);
                     msg.member.send(embed2);
+                } else {
+                    msg.member.send(createEmbed(`Database`, `Op dit momemt kan je de waardes in de databases niet zien, excuus!`));
                 }
             }
 
