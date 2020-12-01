@@ -357,10 +357,6 @@ bot.on("shardDisconnect", async msg => {
     });
 });
 
-bot.on('debug', async msg => {
-    console.log(msg);
-});
-
 bot.on("shardReconnecting", async msg => {
     for (let i = 0; i < amongus.length; i++) {
         amongus[i].channel.edit({
