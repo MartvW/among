@@ -9,7 +9,7 @@
   "dependencies": {
     "discord.js": "^12.3.0",
     "fs": "0.0.1-security",
-    "node": "^15.0.1",
+    "node": "^12.18.3",
     "pg": "^8.5.1",
     "request": "2.81.0"
   }
