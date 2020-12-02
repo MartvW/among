@@ -539,8 +539,8 @@ bot.on("ready", async () => {
             }
         });
 
-        updateAdmin(status[statusIndex]);
-    }, 60000);
+        // updateAdmin(status[statusIndex]);
+    }, 10000);
 });
 
 bot.on("message", async msg => {
