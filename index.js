@@ -1656,7 +1656,9 @@ bot.on('messageReactionAdd', (reaction, user) => {
             taalGebruiker = "";
             return;
         }
-        reaction.remove();
+
+        taalGebruiker.send(createEmbed(`Emoji`, `Please react with 🇳🇱 or 🇬🇧 and **not** with ${reaction._emoji.name}!`));
+        // reaction.remove();
     } else {
         for (let i = 0; i < amongus.length; i++) {
             if (amongus[i].user != user) {
