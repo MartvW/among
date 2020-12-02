@@ -274,7 +274,7 @@ async function updateAdmin() {
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
 
-    if (adminMessage === "") {
+    if (resetMessage === "") {
         // const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
         // channel.send(adminEmbed).then(m => {
         //     adminMessage = m;
