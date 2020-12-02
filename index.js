@@ -176,82 +176,82 @@ async function resetBot() {
     });
 }
 
-async function updateAdmin(botbio) {
-    const servers = bot.guilds.cache.size;
-    const users = bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
+async function updateAdmin() {
+    // const servers = bot.guilds.cache.size;
+    // const users = bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
 
-    var totalSeconds = (bot.uptime / 1000);
-    var botSeconds = Math.floor(totalSeconds);
-    var days = Math.floor(totalSeconds / 86400);
-    totalSeconds %= 86400;
-    var hours = Math.floor(totalSeconds / 3600);
-    totalSeconds %= 3600;
-    var minutes = Math.floor(totalSeconds / 60);
-    var seconds = Math.floor(totalSeconds % 60);
+    // var totalSeconds = (bot.uptime / 1000);
+    // var botSeconds = Math.floor(totalSeconds);
+    // var days = Math.floor(totalSeconds / 86400);
+    // totalSeconds %= 86400;
+    // var hours = Math.floor(totalSeconds / 3600);
+    // totalSeconds %= 3600;
+    // var minutes = Math.floor(totalSeconds / 60);
+    // var seconds = Math.floor(totalSeconds % 60);
 
-    var dag = "";
-    if (days === 0) {
-        dag = `${days} dagen`;
-    } else if (days === 1) {
-        dag = `${days} dag`;
-        for (let i = 0; i < amongus.length; i++) {
-            amongus[i].channel.edit({
-                userLimit: amongus[i].userlimit,
-            });
+    // var dag = "";
+    // if (days === 0) {
+    //     dag = `${days} dagen`;
+    // } else if (days === 1) {
+    //     dag = `${days} dag`;
+    //     for (let i = 0; i < amongus.length; i++) {
+    //         amongus[i].channel.edit({
+    //             userLimit: amongus[i].userlimit,
+    //         });
 
-            let channel = amongus[i].channel;
-            for (let member of channel.members) {
-                member[1].edit({ mute: false });
-            }
-        }
-        amongus = [];
-        codes = [];
-        for (let i = 0; i < locks.length; i++) {
-            locks[i].channel.edit({
-                userLimit: locks[i].userLimit,
-            });
-        }
-        locks = [];
-        slot = !slot;
-    } else {
-        dag = `${days} dagen`;
-    }
-    var uur = `${hours} uur`;
-    var minuut = "";
-    if (minutes === 0) {
-        minuut = `${minutes} minuten`;
-    } else if (minutes === 1) {
-        minuut = `${minutes} minuut`;
-    } else {
-        minuut = `${minutes} minuten`;
-    }
-    var seconden = "";
-    if (seconds === 0) {
-        seconden = `${seconds} seconden`;
-    } else if (seconds === 1) {
-        seconden = `${seconds} seconde`;
-    } else {
-        seconden = `${seconds} seconden`;
-    }
+    //         let channel = amongus[i].channel;
+    //         for (let member of channel.members) {
+    //             member[1].edit({ mute: false });
+    //         }
+    //     }
+    //     amongus = [];
+    //     codes = [];
+    //     for (let i = 0; i < locks.length; i++) {
+    //         locks[i].channel.edit({
+    //             userLimit: locks[i].userLimit,
+    //         });
+    //     }
+    //     locks = [];
+    //     slot = !slot;
+    // } else {
+    //     dag = `${days} dagen`;
+    // }
+    // var uur = `${hours} uur`;
+    // var minuut = "";
+    // if (minutes === 0) {
+    //     minuut = `${minutes} minuten`;
+    // } else if (minutes === 1) {
+    //     minuut = `${minutes} minuut`;
+    // } else {
+    //     minuut = `${minutes} minuten`;
+    // }
+    // var seconden = "";
+    // if (seconds === 0) {
+    //     seconden = `${seconds} seconden`;
+    // } else if (seconds === 1) {
+    //     seconden = `${seconds} seconde`;
+    // } else {
+    //     seconden = `${seconds} seconden`;
+    // }
 
-    var uptimestring = `${dag}, ${uur}, ${minuut} en ${seconden}.`;
+    // var uptimestring = `${dag}, ${uur}, ${minuut} en ${seconden}.`;
 
-    var verificatie = "";
-    if (bot.user.verified) {
-        verificatie = "✅";
-    } else {
-        verificatie = "❌";
-    }
-    var status = "";
-    if (bot.user.presence.status === "online") {
-        status = "🟢";
-    } else if (bot.user.presence.status === "offline") {
-        status = "🔴";
-    } else if (bot.user.presence.status === "idle") {
-        status = "🟠";
-    } else if (bot.user.presence.status === "invisible" || bot.user.presence.status === "dnd") {
-        status = "⚫️";
-    }
+    // var verificatie = "";
+    // if (bot.user.verified) {
+    //     verificatie = "✅";
+    // } else {
+    //     verificatie = "❌";
+    // }
+    // var status = "";
+    // if (bot.user.presence.status === "online") {
+    //     status = "🟢";
+    // } else if (bot.user.presence.status === "offline") {
+    //     status = "🔴";
+    // } else if (bot.user.presence.status === "idle") {
+    //     status = "🟠";
+    // } else if (bot.user.presence.status === "invisible" || bot.user.presence.status === "dnd") {
+    //     status = "⚫️";
+    // }
 
     if (slot) {
         slotnaam = "aan";
@@ -259,13 +259,13 @@ async function updateAdmin(botbio) {
         slotnaam = "uit";
     }
 
-    var adminEmbed = new Discord.MessageEmbed()
-        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-        .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nLaatste command: **${laatstecommand}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal locks: **${locks.length}**\nAantal games: **${amongus.length}**\nAantal servers: **${servers} servers**\nAantal gebruikers: **${users} gebruikers**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nTotaal aantal locks: **${aantallocks}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
-        .setColor(16426522)
-        .setTimestamp()
-        .setFooter(`${bot.user.tag}`)
+    // var adminEmbed = new Discord.MessageEmbed()
+    //     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+    //     .setTitle("Botinformatie")
+    //     .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nLaatste command: **${laatstecommand}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal locks: **${locks.length}**\nAantal games: **${amongus.length}**\nAantal servers: **${servers} servers**\nAantal gebruikers: **${users} gebruikers**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nTotaal aantal locks: **${aantallocks}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
+    //     .setColor(16426522)
+    //     .setTimestamp()
+    //     .setFooter(`${bot.user.tag}`)
     var resetEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Reset Panel")
@@ -275,12 +275,12 @@ async function updateAdmin(botbio) {
         .setFooter(`${bot.user.tag}`)
 
     if (adminMessage === "") {
-        const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
-        channel.send(adminEmbed).then(m => {
-            adminMessage = m;
-        });
+        // const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
+        // channel.send(adminEmbed).then(m => {
+        //     adminMessage = m;
+        // });
     } else {
-        adminMessage.edit(adminEmbed);
+        // adminMessage.edit(adminEmbed);
         resetMessage.edit(resetEmbed);
     }
 }
@@ -347,8 +347,6 @@ bot.on("shardDisconnect", async msg => {
     }
     locks = [];
 
-    updateAdmin(`Shutting down...`);
-
     bot.user.setPresence({
         status: 'online',
         activity: {
@@ -377,8 +375,6 @@ bot.on("shardReconnecting", async msg => {
         });
     }
     locks = [];
-
-    updateAdmin(`Shutting down...`);
 
     bot.user.setPresence({
         status: 'online',
@@ -492,10 +488,10 @@ bot.on("ready", async () => {
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en op ${users} gebruikers. In database "Prefix" zitten ${aantals.rows.length} servers! In database "Servers" zitten ${aantals2.rows.length} servers!`);
     console.log("");
 
-    const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
-    channel.bulkDelete(1);
+    // const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
+    // channel.bulkDelete(1);
 
-    updateAdmin(`Starting...`);
+    // updateAdmin(`Starting...`);
 
     const channel2 = bot.channels.cache.find(channel => channel.id === resetID);
     channel2.bulkDelete(1);
@@ -539,7 +535,7 @@ bot.on("ready", async () => {
             }
         });
 
-        // updateAdmin(status[statusIndex]);
+        updateAdmin();
     }, 10000);
 });
 
