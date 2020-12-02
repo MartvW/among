@@ -1658,9 +1658,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
         }
 
         taalGebruiker.send(createEmbed(`Emoji`, `Please react with 🇳🇱 or 🇬🇧 and **not** with ${reaction._emoji.name}!`));
-        taalMessage.reactions.removeAll();
-        taalMessage.react('🇬🇧');
-        taalMessage.react('🇳🇱');
         // reaction.remove();
     } else {
         for (let i = 0; i < amongus.length; i++) {
