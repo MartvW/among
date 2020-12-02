@@ -30,7 +30,6 @@ var aantalcommands = 0;
 var slot = false;
 var slotnaam = "";
 var taalMessage = "";
-var taalChannel = "";
 var taalGebruiker = "";
 var taalServer = "";
 var adminMessage = "";
@@ -176,82 +175,82 @@ async function resetBot() {
     });
 }
 
-async function updateAdmin() {
-    // const servers = bot.guilds.cache.size;
-    // const users = bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
+async function updateAdmin(botbio) {
+    const servers = bot.guilds.cache.size;
+    const users = bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
 
-    // var totalSeconds = (bot.uptime / 1000);
-    // var botSeconds = Math.floor(totalSeconds);
-    // var days = Math.floor(totalSeconds / 86400);
-    // totalSeconds %= 86400;
-    // var hours = Math.floor(totalSeconds / 3600);
-    // totalSeconds %= 3600;
-    // var minutes = Math.floor(totalSeconds / 60);
-    // var seconds = Math.floor(totalSeconds % 60);
+    var totalSeconds = (bot.uptime / 1000);
+    var botSeconds = Math.floor(totalSeconds);
+    var days = Math.floor(totalSeconds / 86400);
+    totalSeconds %= 86400;
+    var hours = Math.floor(totalSeconds / 3600);
+    totalSeconds %= 3600;
+    var minutes = Math.floor(totalSeconds / 60);
+    var seconds = Math.floor(totalSeconds % 60);
 
-    // var dag = "";
-    // if (days === 0) {
-    //     dag = `${days} dagen`;
-    // } else if (days === 1) {
-    //     dag = `${days} dag`;
-    //     for (let i = 0; i < amongus.length; i++) {
-    //         amongus[i].channel.edit({
-    //             userLimit: amongus[i].userlimit,
-    //         });
+    var dag = "";
+    if (days === 0) {
+        dag = `${days} dagen`;
+    } else if (days === 1) {
+        dag = `${days} dag`;
+        for (let i = 0; i < amongus.length; i++) {
+            amongus[i].channel.edit({
+                userLimit: amongus[i].userlimit,
+            });
 
-    //         let channel = amongus[i].channel;
-    //         for (let member of channel.members) {
-    //             member[1].edit({ mute: false });
-    //         }
-    //     }
-    //     amongus = [];
-    //     codes = [];
-    //     for (let i = 0; i < locks.length; i++) {
-    //         locks[i].channel.edit({
-    //             userLimit: locks[i].userLimit,
-    //         });
-    //     }
-    //     locks = [];
-    //     slot = !slot;
-    // } else {
-    //     dag = `${days} dagen`;
-    // }
-    // var uur = `${hours} uur`;
-    // var minuut = "";
-    // if (minutes === 0) {
-    //     minuut = `${minutes} minuten`;
-    // } else if (minutes === 1) {
-    //     minuut = `${minutes} minuut`;
-    // } else {
-    //     minuut = `${minutes} minuten`;
-    // }
-    // var seconden = "";
-    // if (seconds === 0) {
-    //     seconden = `${seconds} seconden`;
-    // } else if (seconds === 1) {
-    //     seconden = `${seconds} seconde`;
-    // } else {
-    //     seconden = `${seconds} seconden`;
-    // }
+            let channel = amongus[i].channel;
+            for (let member of channel.members) {
+                member[1].edit({ mute: false });
+            }
+        }
+        amongus = [];
+        codes = [];
+        for (let i = 0; i < locks.length; i++) {
+            locks[i].channel.edit({
+                userLimit: locks[i].userLimit,
+            });
+        }
+        locks = [];
+        slot = !slot;
+    } else {
+        dag = `${days} dagen`;
+    }
+    var uur = `${hours} uur`;
+    var minuut = "";
+    if (minutes === 0) {
+        minuut = `${minutes} minuten`;
+    } else if (minutes === 1) {
+        minuut = `${minutes} minuut`;
+    } else {
+        minuut = `${minutes} minuten`;
+    }
+    var seconden = "";
+    if (seconds === 0) {
+        seconden = `${seconds} seconden`;
+    } else if (seconds === 1) {
+        seconden = `${seconds} seconde`;
+    } else {
+        seconden = `${seconds} seconden`;
+    }
 
-    // var uptimestring = `${dag}, ${uur}, ${minuut} en ${seconden}.`;
+    var uptimestring = `${dag}, ${uur}, ${minuut} en ${seconden}.`;
 
-    // var verificatie = "";
-    // if (bot.user.verified) {
-    //     verificatie = "✅";
-    // } else {
-    //     verificatie = "❌";
-    // }
-    // var status = "";
-    // if (bot.user.presence.status === "online") {
-    //     status = "🟢";
-    // } else if (bot.user.presence.status === "offline") {
-    //     status = "🔴";
-    // } else if (bot.user.presence.status === "idle") {
-    //     status = "🟠";
-    // } else if (bot.user.presence.status === "invisible" || bot.user.presence.status === "dnd") {
-    //     status = "⚫️";
-    // }
+    var verificatie = "";
+    if (bot.user.verified) {
+        verificatie = "✅";
+    } else {
+        verificatie = "❌";
+    }
+    var status = "";
+    if (bot.user.presence.status === "online") {
+        status = "🟢";
+    } else if (bot.user.presence.status === "offline") {
+        status = "🔴";
+    } else if (bot.user.presence.status === "idle") {
+        status = "🟠";
+    } else if (bot.user.presence.status === "invisible" || bot.user.presence.status === "dnd") {
+        status = "⚫️";
+    }
 
     if (slot) {
         slotnaam = "aan";
@@ -259,13 +258,13 @@ async function updateAdmin() {
         slotnaam = "uit";
     }
 
-    // var adminEmbed = new Discord.MessageEmbed()
-    //     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-    //     .setTitle("Botinformatie")
-    //     .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nLaatste command: **${laatstecommand}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal locks: **${locks.length}**\nAantal games: **${amongus.length}**\nAantal servers: **${servers} servers**\nAantal gebruikers: **${users} gebruikers**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nTotaal aantal locks: **${aantallocks}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
-    //     .setColor(16426522)
-    //     .setTimestamp()
-    //     .setFooter(`${bot.user.tag}`)
+    var adminEmbed = new Discord.MessageEmbed()
+        .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+        .setTitle("Botinformatie")
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nLaatste command: **${laatstecommand}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal locks: **${locks.length}**\nAantal games: **${amongus.length}**\nAantal servers: **${servers} servers**\nAantal gebruikers: **${users} gebruikers**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nTotaal aantal locks: **${aantallocks}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
+        .setColor(16426522)
+        .setTimestamp()
+        .setFooter(`${bot.user.tag}`)
     var resetEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Reset Panel")
@@ -274,13 +273,13 @@ async function updateAdmin() {
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
 
-    if (resetMessage === "") {
-        // const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
-        // channel.send(adminEmbed).then(m => {
-        //     adminMessage = m;
-        // });
+    if (adminMessage === "") {
+        const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
+        channel.send(adminEmbed).then(m => {
+            adminMessage = m;
+        });
     } else {
-        // adminMessage.edit(adminEmbed);
+        adminMessage.edit(adminEmbed);
         resetMessage.edit(resetEmbed);
     }
 }
@@ -327,7 +326,7 @@ bot.on("error", async msg => {
     bot.login(token);
 });
 
-bot.on("shardDisconnect", async msg => {
+bot.on("disconnect", async msg => {
     for (let i = 0; i < amongus.length; i++) {
         amongus[i].channel.edit({
             userLimit: amongus[i].userlimit,
@@ -347,16 +346,17 @@ bot.on("shardDisconnect", async msg => {
     }
     locks = [];
 
+    updateAdmin(`Afsluiten...`);
+
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `Shutting down...`,
+            name: `Afsluiten...`,
         }
     });
 });
 
-
-bot.on("shardReconnecting", async msg => {
+bot.on("reconnecting", async msg => {
     for (let i = 0; i < amongus.length; i++) {
         amongus[i].channel.edit({
             userLimit: amongus[i].userlimit,
@@ -376,10 +376,12 @@ bot.on("shardReconnecting", async msg => {
     }
     locks = [];
 
+    updateAdmin(`Opnieuw opstarten...`);
+
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `Shutting down...`,
+            name: `Opnieuw opstarten...`,
         }
     });
 });
@@ -488,10 +490,10 @@ bot.on("ready", async () => {
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en op ${users} gebruikers. In database "Prefix" zitten ${aantals.rows.length} servers! In database "Servers" zitten ${aantals2.rows.length} servers!`);
     console.log("");
 
-    // const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
-    // channel.bulkDelete(1);
+    const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
+    channel.bulkDelete(1);
 
-    // updateAdmin(`Starting...`);
+    updateAdmin(`Starting up...`);
 
     const channel2 = bot.channels.cache.find(channel => channel.id === resetID);
     channel2.bulkDelete(1);
@@ -501,7 +503,7 @@ bot.on("ready", async () => {
     bot.user.setPresence({
         status: 'online',
         activity: {
-            name: `Starting...`,
+            name: `Starting up...`,
         }
     });
 
@@ -535,7 +537,7 @@ bot.on("ready", async () => {
             }
         });
 
-        updateAdmin();
+        updateAdmin(status[statusIndex]);
     }, 10000);
 });
 
@@ -548,7 +550,6 @@ bot.on("message", async msg => {
 
     let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
     let taal = await client.query(`SELECT lang FROM servers WHERE guildId='${msg.guild.id}';`);
-
     if (taal.rowCount === 0) {
         client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'en');`, (err, res) => {
             if (!err) {
@@ -571,7 +572,6 @@ bot.on("message", async msg => {
                 console.log(err);
             }
         });
-        return;
     };
 
     taal = taal.rows[0].lang;
@@ -749,10 +749,8 @@ bot.on("message", async msg => {
                 }
 
                 if (taal === "nl") {
-                    msg.channel.send(createEmbed(`Taalinstellingen`, `Bekijk je privéberichten!`)).then(m => {
-                        taalChannel = m;
-                    });
-                    // console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
+                    msg.channel.send(createEmbed(`Taalinstellingen`, `Bekijk je privéberichten!`));
+                    console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
                     msg.member.send(createEmbed(`Taalinstellingen voor ${msg.guild.name}`, `Reageer met 🇳🇱 om de taal in het Nederlands te zetten.\nReageer met 🇬🇧 om de taal in het Engels te zetten.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
@@ -761,10 +759,8 @@ bot.on("message", async msg => {
                         embedMessage.react('🇬🇧');
                     });
                 } else {
-                    msg.channel.send(createEmbed(`Language Settings`, `Check your private messages!`)).then(m => {
-                        taalChannel = m;
-                    });
-                    // console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
+                    msg.channel.send(createEmbed(`Language Settings`, `Check your private messages!`));
+                    console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
                     msg.member.send(createEmbed(`Language Settings for ${msg.guild.name}`, `React with 🇳🇱 to change the language to Dutch.\nReact with 🇬🇧 to change the language to English.`)).then(embedMessage => {
                         taalMessage = embedMessage;
                         taalGebruiker = msg.member;
@@ -865,6 +861,9 @@ bot.on("message", async msg => {
                     .setColor(16426522)
                     .setTimestamp()
                     .setFooter(`Among Us`)
+                berichts1 = "";
+                berichts2 = "";
+                berichts3 = "";
 
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
@@ -884,27 +883,20 @@ bot.on("message", async msg => {
                                 taaltekst = "🇬🇧";
                                 taalen += 1;
                             }
-                            bericht.push({ "id": bericht.length, "naam": guildname, "guildid": guildname.id, "prefix": prefixtekst, "taal": taaltekst });
+                            bericht.push({ "id": bericht.length, "naam": guildname, "prefix": prefixtekst, "taal": taaltekst });
                         }
                     }
                 }
-
-                msg.delete();
-
-                if (bericht.length % 2 === 0) {
-                    for (let i = 0; i < bericht.length / 2; i++) {
-                        embed1.addField(`**${i+1}**. ${bericht[i].naam}\n(${bericht[i].guildid})`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
-                    }
-                    for (let i = bericht.length / 2; i < bericht.length; i++) {
-                        embed2.addField(`**${i+1}**. ${bericht[i].naam}\n(${bericht[i].guildid})`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
-                    }
-                    
-                    msg.member.send(createEmbed(`Database`, `Aantal servers in de Database: **${aantals.rows.length}**\nEr zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
-                    msg.member.send(embed1);
-                    msg.member.send(embed2);
-                } else {
-                    msg.member.send(createEmbed(`Database`, `Op dit momemt kan je de waardes in de databases niet zien, excuus!`));
+                for (let i = 0; i < bericht.length / 2; i++) {
+                    embed1.addField(`**${i}**. ${bericht[i].naam}`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                 }
+                for (let i = bericht.length / 2; i < bericht.length; i++) {
+                    embed2.addField(`**${i}**. ${bericht[i].naam}`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
+                }
+                msg.delete();
+                msg.member.send(createEmbed(`Database`, `Aantal servers in de Database: **${aantals.rows.length}**\nEr zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
+                msg.member.send(embed1);
+                msg.member.send(embed2);
             }
 
             if (command === "setprefix") {
@@ -961,10 +953,31 @@ bot.on("message", async msg => {
                 const channel = bot.channels.cache.find(channel => channel.id === updateID);
                 channel.send(`@here`).then(m => {
                     m.delete();
-                    channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`));
+                    channel.send(createEmbed('UPDATE', `Er is een update geweest van de bot!\n**${args.join(' ')}**\n\n@here`))
                 });
             }
-            
+
+            if (command === "resetcount" && msg.author.id === owner) {
+                aantalgames = 0;
+                aantalcodes = 0;
+            }
+
+            if (command === "reset" && msg.author.id === owner) {
+                for (let i = 0; i < amongus.length; i++) {
+                    amongus[i].channel.edit({
+                        userLimit: amongus[i].userlimit,
+                    });
+
+                    let channel = amongus[i].channel;
+                    for (let member of channel.members) {
+                        member[1].edit({ mute: false });
+                    }
+                }
+
+                msg.reply(createEmbed("Reset", `Resetcommand uitgevoerd! Bezig met resetten...`));
+                amongus = [];
+            }
+
             if (command === "lock") {
                 if (!msg.member.voice.channel) {
                     if (taal === "nl") {
@@ -1076,7 +1089,7 @@ bot.on("message", async msg => {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));
                     } else {
-                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
                     }
                     return;
                 }
@@ -1086,7 +1099,7 @@ bot.on("message", async msg => {
                         if (taal === "nl") {
                             msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));
                         } else {
-                            msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
+                            msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
                         }
                         return;
                     }
@@ -1206,7 +1219,7 @@ bot.on("message", async msg => {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));
                     } else {
-                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
                     }
                     return;
                 }
@@ -1217,7 +1230,7 @@ bot.on("message", async msg => {
                             if (taal === "nl") {
                                 msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`));
                             } else {
-                                msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
+                                msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`));
                             }
                             return;
                         }
@@ -1246,9 +1259,9 @@ bot.on("message", async msg => {
 
             if (command === "map") {
                 if (taal === "nl") {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld**\n-**Polus**\n-**MIRA HQ**\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`));
                 } else {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `All maps from **Among Us**:\n-**The Skeld**\n-**Polus**\n-**MIRA HQ**\n\nDo ***${prefix}<mapname>*** to show the map!`));
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `All maps from **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n\nDo ***${prefix}<mapname>*** to show the map!`));
                 }
             }
 
@@ -1619,12 +1632,9 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 }
             });
             taalMessage.delete();
-            console.log(`De taal van ${taalServer.name} is aangepast naar het Nederlands.`);
-            taalChannel.edit(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
             taalGebruiker.send(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
             taalServer = "";
             taalMessage = "";
-            taalChannel = "";
             taalGebruiker = "";
             return;
         }
@@ -1636,11 +1646,8 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 }
             });
             taalMessage.delete();
-            console.log(`De taal van ${taalServer.name} is aangepast naar het Engels.`);
-            taalChannel.edit(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
             taalGebruiker.send(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
             taalServer = "";
-            taalChannel = "";
             taalMessage = "";
             taalGebruiker = "";
             return;
