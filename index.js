@@ -540,7 +540,7 @@ bot.on("ready", async () => {
         });
 
         updateAdmin(status[statusIndex]);
-    }, 10000);
+    }, 60000);
 });
 
 bot.on("message", async msg => {
