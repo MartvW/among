@@ -261,7 +261,7 @@ async function updateAdmin(botbio) {
     const aantal = await client.query(`SELECT * FROM prefixes`);
     let prefixesArray = [];
     for (let i = 0; i < aantal.rowCount; i++) {
-        if (!prefixesArray.includes(aantal.rows[i].prefix)) {
+        if (!prefixesArray.includes(`**${aantal.rows[i].prefix}**`)) {
             prefixesArray.push(`**${aantal.rows[i].prefix}**`);
         }
     }   
