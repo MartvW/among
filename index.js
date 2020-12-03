@@ -582,6 +582,7 @@ bot.on("message", async msg => {
                 console.log(err);
             }
         });
+        return;
     };
 
     taal = taal.rows[0].lang;
