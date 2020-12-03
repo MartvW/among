@@ -883,17 +883,17 @@ bot.on("message", async msg => {
                                 taaltekst = "🇬🇧";
                                 taalen += 1;
                             }
-                            bericht.push({ "id": bericht.length, "naam": guildname, "prefix": prefixtekst, "taal": taaltekst });
+                            bericht.push({ "id": bericht.length, "guildid": aantals2.rows[j].guildid, "naam": guildname, "prefix": prefixtekst, "taal": taaltekst });
                         }
                     }
                 }
                 msg.delete();
                 if (bericht.length % 2 === 0) {
                     for (let i = 0; i < bericht.length / 2; i++) {
-                        embed1.addField(`**${i+1}**. ${bericht[i].naam}`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
+                        embed1.addField(`**${i+1}**. ${bericht[i].naam}`, `GuildId: ${bericht[i].guildid}\nPrefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                     }
                     for (let i = bericht.length / 2; i < bericht.length; i++) {
-                        embed2.addField(`**${i+1}**. ${bericht[i].naam}`, `Prefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
+                        embed2.addField(`**${i+1}**. ${bericht[i].naam}`, `GuildId: ${bericht[i].guildid}\nPrefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                     }
                     msg.member.send(createEmbed(`Database`, `Aantal servers in de Database: **${aantals.rows.length}**\nEr zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`));
                     msg.member.send(embed1);
