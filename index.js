@@ -258,10 +258,20 @@ async function updateAdmin(botbio) {
         slotnaam = "uit";
     }
 
+    const aantal = await client.query(`SELECT * FROM prefixes`);
+    let prefixesArray = [];
+    for (let i = 0; i < aantal.rowCount; i++) {
+        if (!prefixexArray.includes(aantal.rows[i].prefix)) {
+            prefixesArray.push(aantal.rows[i].prefix);
+        }
+    }   
+
+    console.log(prefixesArray);
+
     var adminEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefix}**\nLaatste command: **${laatstecommand}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal locks: **${locks.length}**\nAantal games: **${amongus.length}**\nAantal servers: **${servers} servers**\nAantal gebruikers: **${users} gebruikers**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nTotaal aantal locks: **${aantallocks}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nBotbiografie: **${botbio}**\nBotprefix: **${prefixes}**\nLaatste command: **${laatstecommand}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal locks: **${locks.length}**\nAantal games: **${amongus.length}**\nAantal servers: **${servers} servers**\nAantal gebruikers: **${users} gebruikers**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nTotaal aantal locks: **${aantallocks}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
