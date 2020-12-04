@@ -679,9 +679,9 @@ bot.on("message", async msg => {
                 const channel = bot.channels.cache.find(channel => channel.id === botSuggestie);
                 channel.send(createEmbed(`Suggestie van **${msg.author.username}**`, `${args.join(' ')}`));
                 if (taal === "nl") {
-                    msg.channel.send(`Suggestie`, `De suggestie is gestuurd naar de eigenaar!`);
+                    msg.channel.send(createEmbed(`Suggestie`, `De suggestie is gestuurd naar de eigenaar!`));
                 } else {
-                    msg.channel.send(`Suggestion`, `Suggestion is sended to the owner!`);
+                    msg.channel.send(createEmbed(`Suggestion`, `Suggestion is sended to the owner!`));
                 }
             }
 
