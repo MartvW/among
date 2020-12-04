@@ -18,6 +18,7 @@ var updateID = "766310034871025744";
 var resetID = "772715139563782154";
 var logID = "774302388903084042";
 var botInfokanaal = "767432509980934154";
+var botSuggestie = "784497628926312499";
 var discordserver = "https://discord.gg/sjw7ZAb";
 var amongus = [];
 var codes = [];
@@ -70,6 +71,8 @@ function helpEmbed(prefixs, lang) {
                 { name: `${prefixs}code`, value: 'Om de code te zien van het kanaal.', inline: true },
                 { name: `${prefixs}lock`, value: 'Het kanaal te locken waar je inzit.', inline: true },
                 { name: `${prefixs}unlock`, value: 'Het kanaal te unlocken waar je inzit.', inline: true },
+
+                { name: `${prefix}suggestion`, value: `Om een suggestie naar de owner te sturen voor de bot.`, inline: true },
             )
             .setColor(16426522)
             .setTimestamp()
@@ -108,6 +111,9 @@ function helpEmbed(prefixs, lang) {
                 { name: `${prefixs}code`, value: 'Show the code of the channel.', inline: true },
                 { name: `${prefixs}lock`, value: 'To lock the channel.', inline: true },
                 { name: `${prefixs}unlock`, value: 'To unlock the channel.', inline: true },
+
+                { name: `${prefix}suggestion`, value: `To send a suggestion to the owner of the bot about the bot.`, inline: true },
+
             )
             .setColor(16426522)
             .setTimestamp()
@@ -657,6 +663,21 @@ bot.on("message", async msg => {
             if (command === "help") {
                 msg.channel.send(helpEmbed(prefix, taal));
                 msg.channel.send(embedLetOp(prefix, taal));
+            }
+
+            if (command === "suggestion") {
+                if (args.length < 1) {
+                    if (taal === "nl") {
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel de suggestie invoeren!`));
+                        return;
+                    } else {
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `You have to suggest something!`));
+                        return;
+                    }
+                }
+                
+                const channel = bot.channels.cache.find(channel => channel.id === botSuggestie);
+                channel.send(createEmbed(`Suggestie van **${msg.author.username}**`, `${args.join(' ')}`));
             }
 
             if (command === "patreon") {
