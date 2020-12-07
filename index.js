@@ -1723,7 +1723,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     }
                 });
                 taalVar[i].bericht.delete();
-                taalVar[i].gebruiker.send(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
+                taalVar[i].gebruiker.send(createEmbed(`Taalinstellingen`, `De taal van **${taalVar[i].server.name}** is veranderd naar het **Nederlands**!`));
                 taalVar.splice(taalVar.indexOf({
                     "gebruiker": user,
                 }), 1);
