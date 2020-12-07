@@ -554,18 +554,13 @@ bot.on("ready", async () => {
                 name: `${status[statusIndex]}`,
             }
         });
-
+        
         updateAdmin(status[statusIndex]);
     }, 10000);
 });
 
 bot.on("message", async msg => {
     const serversGuild = bot.guilds.cache.size;
-    if (msg.author.bot) return;
-    if (msg.guild === null) {
-        msg.reply(createEmbed(`${msg.author.username}`, `You can't send me private messages...`, 16426522));
-        return;
-    }
     let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
     let taal = await client.query(`SELECT lang FROM servers WHERE guildId='${msg.guild.id}';`);
     let kleur = await client.query(`SELECT kleur FROM servers WHERE guildId='${msg.guild.id}';`);
@@ -580,7 +575,7 @@ bot.on("message", async msg => {
             }
         });
     };
-
+    
     if (prefix.rowCount === 0) {
         client.query(`INSERT INTO prefixes VALUES (${msg.guild.id}, '.');`, (err, res) => {
             if (!err) {
@@ -593,11 +588,16 @@ bot.on("message", async msg => {
         });
         return;
     };
-
+    
+    if (msg.author.bot) return;
+    if (msg.guild === null) {
+        msg.reply(createEmbed(`${msg.author.username}`, `You can't send me private messages...`, 16426522));
+        return;
+    }
     taal = taal.rows[0].lang;
     prefix = prefix.rows[0].prefix;
     kleur = kleur.rows[0].kleur;
-
+    
     if (msg.content === "resetprefix") {
         if (!msg.member.hasPermission("MANAGE_GUILD")) {
             if (taal === "nl") {
