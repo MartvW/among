@@ -1717,7 +1717,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             }
     
             if (reaction._emoji.name === "🇳🇱") {
-                client.query(`UPDATE servers SET lang='nl' WHERE guildId='${taalServer.id}';`, (err, res) => {
+                client.query(`UPDATE servers SET lang='nl' WHERE guildId='${taalVar[i].server.id}';`, (err, res) => {
                     if (err) {
                         console.log(err);
                     }
