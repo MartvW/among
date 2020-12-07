@@ -791,8 +791,9 @@ bot.on("message", async msg => {
                     if (taalVar.length > 0) {
                         for (let i = 0; i < taalVar.length; i++) {
                             if (taalVar[i].gebruiker === msg.member) {
-                                msg.channel.send(createEmbed(`Taalinstellingen`, `Bekijk je privéberichten!`));
-                                return;
+                                taalVar.splice(taalVar.indexOf({
+                                    "gebruiker": msg.member,
+                                }), 1);
                             }
                         }
                     }
@@ -810,8 +811,9 @@ bot.on("message", async msg => {
                     if (taalVar.length > 0) {
                         for (let i = 0; i < taalVar.length; i++) {
                             if (taalVar[i].gebruiker === msg.member) {
-                                msg.channel.send(createEmbed(`Language Settings`, `Check your private messages!`));
-                                return;
+                                taalVar.splice(taalVar.indexOf({
+                                    "gebruiker": msg.member,
+                                }), 1);
                             }
                         }
                     }
