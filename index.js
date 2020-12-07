@@ -598,11 +598,9 @@ bot.on("message", async msg => {
     prefix = prefix.rows[0].prefix;
     kleur = kleur.rows[0].kleur;
 
-    for (let i = 0; i < serversGuild; i++) {
-        bot.guilds.forEach( g => {
-            console.log(g.name);
-        });
-    }
+    bot.guilds.cache.forEach(g => {
+        console.log(g.name);
+    });
 
     if (msg.content === "resetprefix") {
         if (!msg.member.hasPermission("MANAGE_GUILD")) {
