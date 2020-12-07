@@ -601,6 +601,7 @@ bot.on("message", async msg => {
     let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
     let taal = await client.query(`SELECT lang FROM servers WHERE guildId='${msg.guild.id}';`);
     let kleur = await client.query(`SELECT kleur FROM servers WHERE guildId='${msg.guild.id}';`);
+    let kleuremoji = "";
     if (taal.rowCount === 0 || kleur.rowCount === 0) {
         client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'en', '#FFAC33');`, (err, res) => {
             if (!err) {
@@ -629,6 +630,20 @@ bot.on("message", async msg => {
     taal = taal.rows[0].lang;
     prefix = prefix.rows[0].prefix;
     kleur = kleur.rows[0].kleur;
+
+    if (kleur === '#F13030') {
+        kleuremoji = "🔴";
+    } else if (kleur === '#FFAC33') {
+        kleuremoji = "🟠";
+    } else if (kleur === '#F4E30D') {
+        kleuremoji = "🟡"; 
+    } else if (kleur === '#A3F40D') {
+        kleuremoji = "🟢"; 
+    } else if (kleur === '#0DA0F4') {
+        kleuremoji = "🔵"; 
+    } else if (kleur === '#C60DF4') {
+        kleuremoji = "🟣"; 
+    }
     
     if (msg.content === "resetprefix") {
         if (!msg.member.hasPermission("MANAGE_GUILD")) {
@@ -760,6 +775,7 @@ bot.on("message", async msg => {
                             .addFields(
                                 { name: `Prefix:`, value: `${prefix}`, inline: true },
                                 { name: `Taal:`, value: `Nederlands`, inline: true },
+                                { name: `Kleur:`, value: `${kleuremoji}`, inline: true },
                             )
                             .setColor(kleur)
                             .setTimestamp()
@@ -773,6 +789,7 @@ bot.on("message", async msg => {
                             .addFields(
                                 { name: `Prefix:`, value: `${prefix}`, inline: true },
                                 { name: `Taal:`, value: `Nederlands`, inline: true },
+                                { name: `Kleur:`, value: `${kleuremoji}`, inline: true },
                             )
                             .setColor(kleur)
                             .setTimestamp()
@@ -789,6 +806,7 @@ bot.on("message", async msg => {
                             .addFields(
                                 { name: `Prefix:`, value: `${prefix}`, inline: true },
                                 { name: `Language:`, value: `English`, inline: true },
+                                { name: `Color:`, value: `${kleuremoji}`, inline: true },
                             )
                             .setColor(kleur)
                             .setTimestamp()
@@ -802,6 +820,7 @@ bot.on("message", async msg => {
                             .addFields(
                                 { name: `Prefix:`, value: `${prefix}`, inline: true },
                                 { name: `Language:`, value: `English`, inline: true },
+                                { name: `Color:`, value: `${kleuremoji}`, inline: true },
                             )
                             .setColor(kleur)
                             .setTimestamp()
