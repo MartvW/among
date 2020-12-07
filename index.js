@@ -560,6 +560,7 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async msg => {
+    const serversGuild = bot.guilds.cache.size;
     if (msg.author.bot) return;
     if (msg.guild === null) {
         msg.reply(createEmbed(`${msg.author.username}`, `You can't send me private messages...`, 16426522));
@@ -596,6 +597,10 @@ bot.on("message", async msg => {
     taal = taal.rows[0].lang;
     prefix = prefix.rows[0].prefix;
     kleur = kleur.rows[0].kleur;
+
+    for (let i = 0; i < serversGuild; i++) {
+        console.log(bot.guilds[i]);
+    }
 
     if (msg.content === "resetprefix") {
         if (!msg.member.hasPermission("MANAGE_GUILD")) {
