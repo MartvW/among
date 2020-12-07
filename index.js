@@ -46,7 +46,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
             .addFields(
                 { name: `${prefixs}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: true },
                 { name: `${prefixs}setlang`, value: 'Hiermee kan je je eigen taal instellen.', inline: true },
-                { name: `${prefixs}setcolor`, value: 'Hiermee kan je je eigen kleur instellen.', inline: true },
+                { name: `NIEUW!!! ${prefixs}setcolor`, value: 'Hiermee kan je je eigen kleur instellen.', inline: true },
 
                 { name: `resetprefix`, value: 'Om de prefix van de server te resetten.', inline: true },
                 { name: `${prefixs}info`, value: 'Hiermee kan je informatie zien over de server.', inline: true },
@@ -87,7 +87,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
             .addFields(
                 { name: `${prefixs}setprefix`, value: 'To set your own prefix.', inline: true },
                 { name: `${prefixs}setlang`, value: 'To set your own language.', inline: true },
-                { name: `${prefixs}setcolor`, value: 'To set your own color.', inline: true },
+                { name: `NEW!!! ${prefixs}setcolor`, value: 'To set your own color.', inline: true },
 
                 { name: `resetprefix`, value: 'To reset your own prefix.', inline: true },
                 { name: `${prefixs}info`, value: 'You can get information about the server.', inline: true },
