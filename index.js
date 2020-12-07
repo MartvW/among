@@ -566,11 +566,11 @@ bot.on("message", async msg => {
         msg.reply(createEmbed(`${msg.author.username}`, `You can't send me private messages...`));
         return;
     }
-
     let prefix = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${msg.guild.id}';`);
     let taal = await client.query(`SELECT lang FROM servers WHERE guildId='${msg.guild.id}';`);
+    let kleur = await client.query(`SELECT kleur FROM servers WHERE guildId='${msg.guild.id}';`);
     if (taal.rowCount === 0) {
-        client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'en');`, (err, res) => {
+        client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'en', '16426522');`, (err, res) => {
             if (!err) {
                 if (res) {
                     console.log(`${msg.guild.name} (${msg.guild.id}) is succesvol in de database "Servers" gezet!`);
@@ -595,7 +595,10 @@ bot.on("message", async msg => {
     };
 
     taal = taal.rows[0].lang;
+    kleur = kleur.rows[0].kleur;
     prefix = prefix.rows[0].prefix;
+
+    console.log(kleur);
 
     if (msg.content === "resetprefix") {
         if (!msg.member.hasPermission("MANAGE_GUILD")) {
