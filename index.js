@@ -595,9 +595,7 @@ bot.on("message", async msg => {
     taal = taal.rows[0].lang;
     prefix = prefix.rows[0].prefix;
     kleur = kleur.rows[0].kleur;
-
-    console.log(kleur);
-
+    
     if (msg.content === "resetprefix") {
         if (!msg.member.hasPermission("MANAGE_GUILD")) {
             if (taal === "nl") {
