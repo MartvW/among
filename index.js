@@ -417,7 +417,7 @@ bot.on("guildCreate", async guild => {
     const servers = bot.guilds.cache.size;
     if (!guild.me.hasPermission("ADMINISTRATOR")) {
         if (guild.systemChannel) {
-            guild.systemChannel.send(createEmbed(`${bot.user.username}`, `The bot doesn't have the appropriate permissions.\nTo resolve this problem, go to **Server Settings** and then navigate to the **Roles** option. Next, click on **Bots**, and then click on the slider next to **Administrator** to activate it.`, 16426522));
+            guild.systemChannel.send(createEmbed(`${bot.user.username}`, `The bot doesn't have the appropriate permissions.\nTo resolve this problem, go to **Server Settings** and then navigate to the **Roles** option. Next, click on **Bots**, and then click on the slider next to **Administrator** to activate it.`, '#FFAC33'));
         }
     }
     console.log(`Een nieuwe server gebruikt de bot: ${guild.name} (id: ${guild.id}). Deze server heeft ${guild.memberCount} gebruikers!`);
@@ -441,7 +441,7 @@ bot.on("guildCreate", async guild => {
         });
     }
     if (serversDB.rowCount === 0) {
-        client.query(`INSERT INTO servers VALUES (${guild.id}, 'en', '16426522');`, (err, res) => {
+        client.query(`INSERT INTO servers VALUES (${guild.id}, 'en', '#FFAC33');`, (err, res) => {
             if (!err) {
                 if (res) {
                     console.log(`${guild.name} is succesvol in de database "Servers" gezet!`);
@@ -453,8 +453,8 @@ bot.on("guildCreate", async guild => {
     }
 
     if (guild.systemChannel) {
-        guild.systemChannel.send(createEmbed(`${bot.user.username}`, `Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help**\nYou can set your own prefix by typing **${prefix}setprefix**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!\n\nI have a Patreon Page where you can donate money: https://www.patreon.com/bePatron?u=45897916`, 16426522));
-        guild.systemChannel.send(createEmbed(`Language`, `If you want to set the bot in another language, do ***${prefix}setlang***!`, 16426522));
+        guild.systemChannel.send(createEmbed(`${bot.user.username}`, `Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help**\nYou can set your own prefix by typing **${prefix}setprefix**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!\n\nI have a Patreon Page where you can donate money: https://www.patreon.com/bePatron?u=45897916`, '#FFAC33'));
+        guild.systemChannel.send(createEmbed(`Language`, `If you want to set the bot in another language, do ***${prefix}setlang***!`, '#FFAC33'));
     }
 });
 
@@ -1788,6 +1788,27 @@ bot.on('messageReactionAdd', (reaction, user) => {
             }
         }
     }
+
+    if (colorVar.length != 0) {
+        for (let i = 0; i < colorVar.length; i++) {
+            if (reaction.message.id === colorVar[i].bericht.id) {
+                if (reaction._emoji.name === "🔴") {
+                    client.query(`UPDATE servers SET kleur='#FF0000' WHERE guildId='${colorVar[i].server.id}';`, (err, res) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    colorVar[i].bericht.delete();
+                    console.log(`De kleur van ${colorVar[i].server.name} is aangepast.`);
+                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Rood`, '#FF0000'));
+                    colorVar.splice(colorVar.indexOf({
+                        "gebruiker": user,
+                    }), 1);
+                    return;
+                }
+            }
+        }
+    } 
 
     if (taalVar.length != 0) {
         for (let i = 0; i < taalVar.length; i++) {
