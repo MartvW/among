@@ -30,6 +30,7 @@ var statusIndex = 0;
 var aantalcommands = 0;
 var slot = false;
 var slotnaam = "";
+var taalVar = [];
 var taalMessage = "";
 var taalGebruiker = "";
 var taalServer = "";
@@ -790,9 +791,14 @@ bot.on("message", async msg => {
                     msg.channel.send(createEmbed(`Taalinstellingen`, `Bekijk je privéberichten!`));
                     console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
                     msg.member.send(createEmbed(`Taalinstellingen voor ${msg.guild.name}`, `Reageer met 🇳🇱 om de taal in het Nederlands te zetten.\nReageer met 🇬🇧 om de taal in het Engels te zetten.`)).then(embedMessage => {
-                        taalMessage = embedMessage;
-                        taalGebruiker = msg.member;
-                        taalServer = msg.guild;
+                        taalVar.push({
+                            "bericht": embedMessage,
+                            "gebruiker": msg.member,
+                            "server": msg.guild,
+                        });
+                        // taalMessage = embedMessage;
+                        // taalGebruiker = msg.member;
+                        // taalServer = msg.guild;
                         embedMessage.react('🇳🇱');
                         embedMessage.react('🇬🇧');
                     });
@@ -800,9 +806,14 @@ bot.on("message", async msg => {
                     msg.channel.send(createEmbed(`Language Settings`, `Check your private messages!`));
                     console.log(`De taal van ${msg.guild.name} is aangepast door ${msg.author.username}!`);
                     msg.member.send(createEmbed(`Language Settings for ${msg.guild.name}`, `React with 🇳🇱 to change the language to Dutch.\nReact with 🇬🇧 to change the language to English.`)).then(embedMessage => {
-                        taalMessage = embedMessage;
-                        taalGebruiker = msg.member;
-                        taalServer = msg.guild;
+                        taalVar.push({
+                            "bericht": embedMessage,
+                            "gebruiker": msg.member,
+                            "server": msg.guild,
+                        });
+                        // taalMessage = embedMessage;
+                        // taalGebruiker = msg.member;
+                        // taalServer = msg.guild;
                         embedMessage.react('🇳🇱');
                         embedMessage.react('🇬🇧');
                     });
@@ -1660,42 +1671,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
             reaction.remove();
             return;
         }
-    } else if (reaction.message.id === taalMessage.id) {
-        if (taalGebruiker.id != user.id) {
-            reaction.remove();
-            taalMessage.react(reaction._emoji.name);
-            return;
-        }
-
-        if (reaction._emoji.name === "🇳🇱") {
-            client.query(`UPDATE servers SET lang='nl' WHERE guildId='${taalServer.id}';`, (err, res) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
-            taalMessage.delete();
-            taalGebruiker.send(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
-            taalServer = "";
-            taalMessage = "";
-            taalGebruiker = "";
-            return;
-        }
-
-        if (reaction._emoji.name === "🇬🇧") {
-            client.query(`UPDATE servers SET lang='en' WHERE guildId='${taalServer.id}';`, (err, res) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
-            taalMessage.delete();
-            taalGebruiker.send(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
-            taalServer = "";
-            taalMessage = "";
-            taalGebruiker = "";
-            return;
-        }
-        taalGebruiker.send(createEmbed(`Emoji`, `Please react with 🇳🇱 or 🇬🇧 and **not** with ${reaction._emoji.name}!`));
-        // reaction.remove();
     } else {
         for (let i = 0; i < amongus.length; i++) {
             if (amongus[i].user != user) {
@@ -1730,6 +1705,46 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     }
                 }
             }
+        }
+    }
+
+    for (let i = 0; i < taalVar.length; i++) {
+        if (reaction.message.id === taalVar[i].bericht.id) {
+            if (taalVar[i].gebruiker.id != user.id) {
+                reaction.remove();
+                taalVar[i].bericht.react(reaction._emoji.name);
+                return;
+            }
+    
+            if (reaction._emoji.name === "🇳🇱") {
+                client.query(`UPDATE servers SET lang='nl' WHERE guildId='${taalServer.id}';`, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                taalVar[i].bericht.delete();
+                taalVar[i].gebruiker.send(createEmbed(`Taalinstellingen`, `De taal van **${taalServer.name}** is veranderd naar het **Nederlands**!`));
+                taalVar.splice(taalVar.indexOf({
+                    "gebruiker": user,
+                }), 1);
+                return;
+            }
+    
+            if (reaction._emoji.name === "🇬🇧") {
+                client.query(`UPDATE servers SET lang='en' WHERE guildId='${taalServer.id}';`, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                taalMessage.delete();
+                taalGebruiker.send(createEmbed(`Language Settings`, `The language for **${taalServer.name}** has changed to **English**!`));
+                taalServer = "";
+                taalMessage = "";
+                taalGebruiker = "";
+                return;
+            }
+            taalGebruiker.send(createEmbed(`Emoji`, `Please react with 🇳🇱 or 🇬🇧 and **not** with ${reaction._emoji.name}!`));
+            // reaction.remove();
         }
     }
 });
