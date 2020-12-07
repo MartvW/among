@@ -1790,6 +1790,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
     if (colorVar.length != 0) {
         for (let i = 0; i < colorVar.length; i++) {
             if (reaction.message.id === colorVar[i].bericht.id) {
+                //FFAC33 = oranje
                 if (reaction._emoji.name === "🔴") {
                     client.query(`UPDATE servers SET kleur='#F13030' WHERE guildId='${colorVar[i].server.id}';`, (err, res) => {
                         if (err) {
@@ -1799,6 +1800,81 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     colorVar[i].bericht.delete();
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast.`);
                     colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Rood`, '#F13030'));
+                    colorVar.splice(colorVar.indexOf({
+                        "gebruiker": user,
+                    }), 1);
+                    return;
+                }
+
+                if (reaction._emoji.name === "🟠") {
+                    client.query(`UPDATE servers SET kleur='#FFAC33' WHERE guildId='${colorVar[i].server.id}';`, (err, res) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    colorVar[i].bericht.delete();
+                    console.log(`De kleur van ${colorVar[i].server.name} is aangepast.`);
+                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Oranje`, '#FFAC33'));
+                    colorVar.splice(colorVar.indexOf({
+                        "gebruiker": user,
+                    }), 1);
+                    return;
+                }
+
+                if (reaction._emoji.name === "🟡") {
+                    client.query(`UPDATE servers SET kleur='#F4E30D' WHERE guildId='${colorVar[i].server.id}';`, (err, res) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    colorVar[i].bericht.delete();
+                    console.log(`De kleur van ${colorVar[i].server.name} is aangepast.`);
+                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Geel`, '#F4E30D'));
+                    colorVar.splice(colorVar.indexOf({
+                        "gebruiker": user,
+                    }), 1);
+                    return;
+                }
+
+                if (reaction._emoji.name === "🟢") {
+                    client.query(`UPDATE servers SET kleur='#A3F40D' WHERE guildId='${colorVar[i].server.id}';`, (err, res) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    colorVar[i].bericht.delete();
+                    console.log(`De kleur van ${colorVar[i].server.name} is aangepast.`);
+                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Groen`, '#A3F40D'));
+                    colorVar.splice(colorVar.indexOf({
+                        "gebruiker": user,
+                    }), 1);
+                    return;
+                }
+
+                if (reaction._emoji.name === "🔵") {
+                    client.query(`UPDATE servers SET kleur='#0DA0F4' WHERE guildId='${colorVar[i].server.id}';`, (err, res) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    colorVar[i].bericht.delete();
+                    console.log(`De kleur van ${colorVar[i].server.name} is aangepast.`);
+                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Blauw`, '#0DA0F4'));
+                    colorVar.splice(colorVar.indexOf({
+                        "gebruiker": user,
+                    }), 1);
+                    return;
+                }
+
+                if (reaction._emoji.name === "🟣") {
+                    client.query(`UPDATE servers SET kleur='#C60DF4' WHERE guildId='${colorVar[i].server.id}';`, (err, res) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    colorVar[i].bericht.delete();
+                    console.log(`De kleur van ${colorVar[i].server.name} is aangepast.`);
+                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Paars`, '#C60DF4'));
                     colorVar.splice(colorVar.indexOf({
                         "gebruiker": user,
                     }), 1);
