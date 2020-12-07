@@ -568,7 +568,7 @@ bot.on("message", async msg => {
     let taal = await client.query(`SELECT lang FROM servers WHERE guildId='${msg.guild.id}';`);
     let kleur = await client.query(`SELECT kleur FROM servers WHERE guildId='${msg.guild.id}';`);
     if (taal.rowCount === 0 || kleur.rowCount === 0) {
-        client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'en', '16426522');`, (err, res) => {
+        client.query(`INSERT INTO servers VALUES (${msg.guild.id}, 'en', '#FFAC33');`, (err, res) => {
             if (!err) {
                 if (res) {
                     console.log(`${msg.guild.name} (${msg.guild.id}) is succesvol in de database "Servers" gezet!`);
@@ -594,7 +594,7 @@ bot.on("message", async msg => {
 
     taal = taal.rows[0].lang;
     prefix = prefix.rows[0].prefix;
-    kleur = '#FFAC33';
+    kleur = kleur.rows[0].kleur;
 
     console.log(kleur);
 
