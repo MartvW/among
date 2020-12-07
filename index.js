@@ -1576,7 +1576,7 @@ bot.on("message", async msg => {
                 const m = await msg.channel.send("Ping?");
                 var ping = Date.now() - m.createdTimestamp;
                 m.delete();
-                msg.channel.send > (createEmbed(`Pong!`, `Latency is: **${ping}ms**.`, kleur));
+                msg.channel.send(createEmbed(`Pong!`, `Latency is: **${ping}ms**.`, kleur));
             }
 
             if (command === "link") {
