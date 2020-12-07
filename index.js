@@ -1880,6 +1880,12 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     }), 1);
                     return;
                 }
+
+                if (colorVar[i].taal === "nl") {
+                    colorVar[i].gebruiker.send(createEmbed(`Emoji`, `Reageer alleen met de emoji's die er al staan en **niet** met ${reaction._emoji.name}!`, colorVar[i].kleur));
+                } else {
+                    colorVar[i].gebruiker.send(createEmbed(`Emoji`, `Please react only with the pre-selected reactions and **not** with ${reaction._emoji.name}!`, colorVar[i].kleur));
+                }
             }
         }
     } 
