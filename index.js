@@ -599,7 +599,9 @@ bot.on("message", async msg => {
     kleur = kleur.rows[0].kleur;
 
     for (let i = 0; i < serversGuild; i++) {
-        console.log(bot.guilds[i]);
+        bot.guilds.forEach( g => {
+            console.log(g.name);
+        });
     }
 
     if (msg.content === "resetprefix") {
