@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const { userInfo } = require('os');
 const bot = new Discord.Client();
 const { Client } = require('pg');
 
@@ -1761,7 +1762,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
 
                 if (taalVar[i].taal === "nl") {
                     taalVar[i].gebruiker.send(createEmbed(`Emoji`, `Reageer alleen met 🇳🇱 of 🇬🇧 en **niet** met ${reaction._emoji.name}!`));
-                    reaction.remove();
                 } else {
                     taalVar[i].gebruiker.send(createEmbed(`Emoji`, `Please react with 🇳🇱 or 🇬🇧 and **not** with ${reaction._emoji.name}!`));
                 }
