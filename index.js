@@ -803,6 +803,7 @@ bot.on("message", async msg => {
                             "bericht": embedMessage,
                             "gebruiker": msg.member,
                             "server": msg.guild,
+                            "taal": taal,
                         });
                         embedMessage.react('🇳🇱');
                         embedMessage.react('🇬🇧');
@@ -823,6 +824,7 @@ bot.on("message", async msg => {
                             "bericht": embedMessage,
                             "gebruiker": msg.member,
                             "server": msg.guild,
+                            "taal": taal,
                         });
                         embedMessage.react('🇳🇱');
                         embedMessage.react('🇬🇧');
@@ -1756,7 +1758,12 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     }), 1);
                     return;
                 }
-                taalVar[i].gebruiker.send(createEmbed(`Emoji`, `Please react with 🇳🇱 or 🇬🇧 and **not** with ${reaction._emoji.name}!`));
+                
+                if (taalVar[i].taal === "nl") {
+                    taalVar[i].gebruiker.send(createEmbed(`Emoji`, `Reageer alleen met 🇳🇱 of 🇬🇧 en **niet** met ${reaction._emoji.name}!`));
+                } else {
+                    taalVar[i].gebruiker.send(createEmbed(`Emoji`, `Please react with 🇳🇱 or 🇬🇧 and **not** with ${reaction._emoji.name}!`));
+                }
             }
         }
     }
