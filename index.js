@@ -905,11 +905,13 @@ bot.on("message", async msg => {
                 bot.guilds.cache.forEach(async g => {
                     let taald = await client.query(`SELECT lang FROM servers WHERE guildId='${g.id}';`);
                     let prefixd = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${g.id}';`);
+                    taald = taald.rows[0].lang;
+                    prefixd = prefixd.rows[0].prefix;
                     if (g.systemChannel) {
-                        if (taald.rows[0].lang === "nl") {
-                            g.systemChannel.send(createEmbed('Update', `Er is een nieuwe update! Doe **${prefixd.rows[0].prefix}help** om de nieuwe commands te zien!`, '#FFAC33'))
+                        if (taald === "nl") {
+                            g.systemChannel.send(createEmbed('Update', `Er is een nieuwe update! Doe **${prefixd}help** om de nieuwe commands te zien!`, '#FFAC33'))
                         } else {
-                            g.systemChannel.send(createEmbed('Update', `There is a new update! Do **${prefixd.rows[0].prefix}help** to see the new commands!`, '#FFAC33'));
+                            g.systemChannel.send(createEmbed('Update', `There is a new update! Do **${prefixd}help** to see the new commands!`, '#FFAC33'));
                         }
                     }
                 });
