@@ -594,7 +594,7 @@ bot.on("message", async msg => {
 
     taal = taal.rows[0].lang;
     prefix = prefix.rows[0].prefix;
-    kleur = '15105570';
+    kleur = '0x15105570';
 
     console.log(kleur);
 
