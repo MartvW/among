@@ -1840,7 +1840,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar rood.`);
-                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🔴`, '#F13030'));
+                    if (colorVar[i].taal === "nl") {
+                        colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🔴`, '#F13030'));
+                    } else {
+                        colorVar[i].gebruiker.send(createEmbed(`Colorsettings`, `The color for **${colorVar[i].server.name}** has changed to 🔴`, '#F13030'));
+                    }
                     colorVar.splice(colorVar.indexOf({
                         "gebruiker": user,
                     }), 1);
@@ -1854,7 +1858,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar oranje.`);
-                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🟠`, '#FFAC33'));
+                    if (colorVar[i].taal === "nl") {
+                        colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🟠`, '#FFAC33'));
+                    } else {
+                        colorVar[i].gebruiker.send(createEmbed(`Colorsettings`, `The color for **${colorVar[i].server.name}** has changed to 🟠`, '#FFAC33'));
+                    }
                     colorVar.splice(colorVar.indexOf({
                         "gebruiker": user,
                     }), 1);
@@ -1868,7 +1876,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar geel.`);
-                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🟡`, '#F4E30D'));
+                    if (colorVar[i].taal === "nl") {
+                        colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🟡`, '#F4E30D'));
+                    } else {
+                        colorVar[i].gebruiker.send(createEmbed(`Colorsettings`, `The color for **${colorVar[i].server.name}** has changed to 🟡`, '#F4E30D'));
+                    }
                     colorVar.splice(colorVar.indexOf({
                         "gebruiker": user,
                     }), 1);
@@ -1882,7 +1894,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar groen.`);
-                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🟢`, '#A3F40D'));
+                    if (colorVar[i].taal === "nl") {
+                        colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🟢`, '#A3F40D'));
+                    } else {
+                        colorVar[i].gebruiker.send(createEmbed(`Colorsettings`, `The color for **${colorVar[i].server.name}** has changed to 🟢`, '#A3F40D'));
+                    }
                     colorVar.splice(colorVar.indexOf({
                         "gebruiker": user,
                     }), 1);
@@ -1896,7 +1912,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar blauw.`);
-                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🔵`, '#0DA0F4'));
+                    if (colorVar[i].taal === "nl") {
+                        colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🔵`, '#0DA0F4'));
+                    } else {
+                        colorVar[i].gebruiker.send(createEmbed(`Colorsettings`, `The color for **${colorVar[i].server.name}** has changed to 🔵`, '#0DA0F4'));
+                    }
                     colorVar.splice(colorVar.indexOf({
                         "gebruiker": user,
                     }), 1);
@@ -1910,7 +1930,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar paars.`);
-                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🟣`, '#C60DF4'));
+                    if (colorVar[i].taal === "nl") {
+                        colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar 🟣`, '#C60DF4'));
+                    } else {
+                        colorVar[i].gebruiker.send(createEmbed(`Colorsettings`, `The color for **${colorVar[i].server.name}** has changed to 🟣`, '#C60DF4'));
+                    }
                     colorVar.splice(colorVar.indexOf({
                         "gebruiker": user,
                     }), 1);
