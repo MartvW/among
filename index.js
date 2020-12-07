@@ -271,15 +271,47 @@ async function updateAdmin(botbio) {
         if (!prefixesArray.includes(`**${aantal.rows[i].prefix}**`)) {
             prefixesArray.push(`**${aantal.rows[i].prefix}**`);
         }
-    }   
+    } 
+    
+    const aantal2 = await client.query(`SELECT * FROM servers`);
+    let colorArray = [];
+    for (let i = 0; i < aantal2.rowCount; i++) {
+        if (aantal2.rows[i].kleur === '#F13030') {
+            if (!colorArray.includes(`🔴`)) {
+                colorArray.push(`🔴`);
+            }
+        } else if (aantal2.rows[i].kleur === '#FFAC33') {
+            if (!colorArray.includes(`🟠`)) {
+                colorArray.push(`🟠`);
+            }
+        } else if (aantal2.rows[i].kleur === '#F4E30D') {
+            if (!colorArray.includes(`🟡`)) {
+                colorArray.push(`🟡`);
+            }
+        } else if (aantal2.rows[i].kleur === '#A3F40D') {
+            if (!colorArray.includes(`🟢`)) {
+                colorArray.push(`🟢`);
+            }
+        } else if (aantal2.rows[i].kleur === '#0DA0F4') {
+            if (!colorArray.includes(`🔵`)) {
+                colorArray.push(`🔵`);
+            }
+        } else if (aantal2.rows[i].kleur === '#C60DF4') {
+            if (!colorArray.includes(`🟣`)) {
+                colorArray.push(`🟣`);
+            }
+        }
+        
+    }
 
     let prefixes = prefixesArray.join(" | ");
+    let kleuren = colorArray.join(" | ");
 
     var adminEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
         .setTitle("Botinformatie")
         .setThumbnail(`${bot.user.avatarURL()}`)
-        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nSlot: **${slotnaam}**\nBotbiografie: **${botbio}**\nBotprefixes: ${prefixes}\nLaatste command: **${laatstecommand}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal locks: **${locks.length}**\nAantal games: **${amongus.length}**\nAantal servers: **${servers} servers**\nAantal gebruikers: **${users} gebruikers**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nTotaal aantal locks: **${aantallocks}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
+        .setDescription(`Botnaam: **${bot.user.tag}**\nBotverificatie: ${verificatie}\nBotstatus: ${status}\nSlot: **${slotnaam}**\nBotbiografie: **${botbio}**\nBotprefixes: ${prefixes}\nBotkleuren: ${kleuren}\nLaatste command: **${laatstecommand}**\nAantal commands: **${aantalcommands}**\nAantal codes: **${codes.length}**\nAantal locks: **${locks.length}**\nAantal games: **${amongus.length}**\nAantal servers: **${servers} servers**\nAantal gebruikers: **${users} gebruikers**\nTotaal aantal games: **${aantalgames}**\nTotaal aantal codes: **${aantalcodes}**\nTotaal aantal locks: **${aantallocks}**\nUptime: **${uptimestring}**\nUptime in seconden: **${botSeconds} sec.**`)
         .setColor(16426522)
         .setTimestamp()
         .setFooter(`${bot.user.tag}`)
