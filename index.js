@@ -902,7 +902,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "sendall" && msg.author.id === owner) {
-                bot.guilds.cache.forEach(g => {
+                bot.guilds.cache.forEach(async g => {
                     let taald = await client.query(`SELECT lang FROM servers WHERE guildId='${g.id}';`);
                     let prefixd = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${g.id}';`);
                     if (g.systemChannel) {
