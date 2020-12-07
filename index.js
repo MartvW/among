@@ -1840,6 +1840,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     colorVar[i].bericht.delete();
+                    colorVar[i].bericht = "";
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar rood.`);
                     colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Rood`, '#F13030'));
                     colorVar.splice(colorVar.indexOf({
@@ -1855,6 +1856,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     colorVar[i].bericht.delete();
+                    colorVar[i].bericht = "";
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar oranje.`);
                     colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Oranje`, '#FFAC33'));
                     colorVar.splice(colorVar.indexOf({
@@ -1870,6 +1872,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     colorVar[i].bericht.delete();
+                    colorVar[i].bericht = "";
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar geel.`);
                     colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Geel`, '#F4E30D'));
                     colorVar.splice(colorVar.indexOf({
@@ -1885,6 +1888,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     colorVar[i].bericht.delete();
+                    colorVar[i].bericht = "";
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar groen.`);
                     colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Groen`, '#A3F40D'));
                     colorVar.splice(colorVar.indexOf({
@@ -1900,6 +1904,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     colorVar[i].bericht.delete();
+                    colorVar[i].bericht = "";
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar blauw.`);
                     colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Blauw`, '#0DA0F4'));
                     colorVar.splice(colorVar.indexOf({
@@ -1915,6 +1920,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     colorVar[i].bericht.delete();
+                    colorVar[i].bericht = "";
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast naar paars.`);
                     colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Paars`, '#C60DF4'));
                     colorVar.splice(colorVar.indexOf({
