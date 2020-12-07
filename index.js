@@ -595,7 +595,7 @@ bot.on("message", async msg => {
     taal = taal.rows[0].lang;
     prefix = prefix.rows[0].prefix;
     kleur = kleur.rows[0].kleur;
-    
+
     if (msg.content === "resetprefix") {
         if (!msg.member.hasPermission("MANAGE_GUILD")) {
             if (taal === "nl") {
@@ -1791,14 +1791,14 @@ bot.on('messageReactionAdd', (reaction, user) => {
         for (let i = 0; i < colorVar.length; i++) {
             if (reaction.message.id === colorVar[i].bericht.id) {
                 if (reaction._emoji.name === "🔴") {
-                    client.query(`UPDATE servers SET kleur='#FF0000' WHERE guildId='${colorVar[i].server.id}';`, (err, res) => {
+                    client.query(`UPDATE servers SET kleur='#F13030' WHERE guildId='${colorVar[i].server.id}';`, (err, res) => {
                         if (err) {
                             console.log(err);
                         }
                     });
                     colorVar[i].bericht.delete();
                     console.log(`De kleur van ${colorVar[i].server.name} is aangepast.`);
-                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Rood`, '#FF0000'));
+                    colorVar[i].gebruiker.send(createEmbed(`Kleurinstellingen`, `De kleur van **${colorVar[i].server.name}** is veranderd naar Rood`, '#F13030'));
                     colorVar.splice(colorVar.indexOf({
                         "gebruiker": user,
                     }), 1);
