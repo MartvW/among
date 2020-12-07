@@ -598,10 +598,6 @@ bot.on("message", async msg => {
     prefix = prefix.rows[0].prefix;
     kleur = kleur.rows[0].kleur;
 
-    bot.guilds.cache.forEach(g => {
-        console.log(g.name);
-    });
-
     if (msg.content === "resetprefix") {
         if (!msg.member.hasPermission("MANAGE_GUILD")) {
             if (taal === "nl") {
@@ -903,6 +899,20 @@ bot.on("message", async msg => {
                         embedMessage.react('🇬🇧');
                     });
                 }
+            }
+
+            if (command === "sendall" && msg.author.id === owner) {
+                bot.guilds.cache.forEach(g => {
+                    let taald = await client.query(`SELECT lang FROM servers WHERE guildId='${g.id}';`);
+                    let prefixd = await client.query(`SELECT prefix FROM prefixes WHERE guildId='${g.id}';`);
+                    if (g.systemChannel) {
+                        if (taald.rows[0].lang === "nl") {
+                            g.systemChannel.send(createEmbed('Update', `Er is een nieuwe update! Doe **${prefixd.rows[0].prefix}help** om de nieuwe commands te zien!`, '#FFAC33'))
+                        } else {
+                            g.systemChannel.send(createEmbed('Update', `There is a new update! Do **${prefixd.rows[0].prefix}help** to see the new commands!`, '#FFAC33'));
+                        }
+                    }
+                });
             }
 
             if (command === "dbdelete" && msg.author.id === owner) {
