@@ -1734,7 +1734,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     taalVar[i].bericht.delete();
-                    console.log(`De taal van ${taalVar[i].server.name} is aangepast naar Nederlands door ${taalVar[i].gebruiker.username}`);
+                    console.log(`De taal van ${taalVar[i].server.name} is aangepast naar Nederlands door ${taalVar[i].gebruiker.user.username}`);
                     taalVar[i].gebruiker.send(createEmbed(`Taalinstellingen`, `De taal van **${taalVar[i].server.name}** is veranderd naar het **Nederlands**!`));
                     taalVar.splice(taalVar.indexOf({
                         "gebruiker": user,
@@ -1749,7 +1749,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                         }
                     });
                     taalVar[i].bericht.delete();
-                    console.log(`De taal van ${taalVar[i].server.name} is aangepast naar Engels door ${taalVar[i].gebruiker.username}`);
+                    console.log(`De taal van ${taalVar[i].server.name} is aangepast naar Engels door ${taalVar[i].gebruiker.user.username}`);
                     taalVar[i].gebruiker.send(createEmbed(`Language Settings`, `The language for **${taalVar[i].server.name}** has changed to **English**!`));
                     taalVar.splice(taalVar.indexOf({
                         "gebruiker": user,
