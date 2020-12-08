@@ -39,7 +39,7 @@ var resetMessage = "";
 function helpEmbed(prefixs, lang, kleurVar) {
     if (lang === "nl") {
         var embedHelp = new Discord.MessageEmbed()
-            .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
+            .setAuthor(`AmongBot`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
             .setTitle("Help")
             .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
             .addFields(
@@ -76,11 +76,11 @@ function helpEmbed(prefixs, lang, kleurVar) {
             )
             .setColor(kleurVar)
             .setTimestamp()
-            .setFooter(`Among Us`)
+            .setFooter(`AmongBot`)
         return embedHelp;
     } else if (lang === "en") {
         var embedHelp = new Discord.MessageEmbed()
-            .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
+            .setAuthor(`AmongBot`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
             .setTitle("Help")
             .setDescription(`A list of all the commands I know.`)
             .addFields(
@@ -117,7 +117,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
             )
             .setColor(kleurVar)
             .setTimestamp()
-            .setFooter(`Among Us`)
+            .setFooter(`AmongBot`)
         return embedHelp;
     }
 }
@@ -125,21 +125,21 @@ function helpEmbed(prefixs, lang, kleurVar) {
 function embedLetOp(prefixs, lang) {
     if (lang === "nl") {
         var embedHelp = new Discord.MessageEmbed()
-            .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
+            .setAuthor(`AmongBot`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
             .setTitle("Help")
             .setDescription(`Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
             .setColor(15746887)
             .setTimestamp()
-            .setFooter(`Among Us`)
+            .setFooter(`AmongBot`)
         return embedHelp;
     } else if (lang === "en") {
         var embedHelp = new Discord.MessageEmbed()
-            .setAuthor(`Among Us`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
+            .setAuthor(`AmongBot`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
             .setTitle("Help")
             .setDescription(`To run some commands you have to be in a voice-channel. These following commands you must have to be in a voice-channel to run it:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
             .setColor(15746887)
             .setTimestamp()
-            .setFooter(`Among Us`)
+            .setFooter(`AmongBot`)
         return embedHelp;
     }
 }
@@ -745,7 +745,7 @@ bot.on("message", async msg => {
                     )
                     .setColor(kleur)
                     .setTimestamp()
-                    .setFooter(`Among Us`)
+                    .setFooter(`AmongBot`)
                 var embedEN = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`Patreon`)
@@ -755,7 +755,7 @@ bot.on("message", async msg => {
                     )
                     .setColor(kleur)
                     .setTimestamp()
-                    .setFooter(`Among Us`)
+                    .setFooter(`AmongBot`)
                 if (taal === "nl") {
                     msg.channel.send(embedNL);
                 } else {
@@ -778,7 +778,7 @@ bot.on("message", async msg => {
                             )
                             .setColor(kleur)
                             .setTimestamp()
-                            .setFooter(`Among Us`)
+                            .setFooter(`AmongBot`)
                     } else {
                         var embed = new Discord.MessageEmbed()
                             .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
@@ -792,7 +792,7 @@ bot.on("message", async msg => {
                             )
                             .setColor(kleur)
                             .setTimestamp()
-                            .setFooter(`Among Us`)
+                            .setFooter(`AmongBot`)
                     }
                     msg.channel.send(embed);
                 } else {
@@ -809,7 +809,7 @@ bot.on("message", async msg => {
                             )
                             .setColor(kleur)
                             .setTimestamp()
-                            .setFooter(`Among Us`)
+                            .setFooter(`AmongBot`)
                     } else {
                         var embed = new Discord.MessageEmbed()
                             .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
@@ -823,7 +823,7 @@ bot.on("message", async msg => {
                             )
                             .setColor(kleur)
                             .setTimestamp()
-                            .setFooter(`Among Us`)
+                            .setFooter(`AmongBot`)
                     }
                     msg.channel.send(embed);
                 }
@@ -1042,13 +1042,13 @@ bot.on("message", async msg => {
                     .setTitle(`Database`)
                     .setColor(kleur)
                     .setTimestamp()
-                    .setFooter(`Among Us`)
+                    .setFooter(`AmongBot`)
                 var embed2 = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`Database`)
                     .setColor(kleur)
                     .setTimestamp()
-                    .setFooter(`Among Us`)
+                    .setFooter(`AmongBot`)
                 berichts1 = "";
                 berichts2 = "";
                 berichts3 = "";
