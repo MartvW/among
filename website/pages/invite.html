@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" type="image/png" href="../Logo.png">
+    <link rel="icon" type="image/png" href="/Logo.png">
     <title>Among Us Bot</title>
 </head>
 
@@ -26,7 +26,7 @@
     </nav>
     <!-- <img src="/loading.gif" class="loadinggif"> -->
     <!-- <h1 class="text-center"><img src="../Logo.png" class="mainimage"></h1> -->
-    <a href="https://top.gg/bot/469857906385354764">
+    <a target="_blank" href="https://top.gg/bot/469857906385354764">
         <img class="mainimage" src="https://top.gg/api/widget/469857906385354764.svg" alt="Among Us" />
         <a target="_blank"
             href="https://discord.com/oauth2/authorize?client_id=469857906385354764&scope=bot&permissions=8"
@@ -45,7 +45,7 @@
         opacity: '1'
     }, 3000);
 
-    $(document).on('click', "a", function (event) {
+    $(document).on('click', "nav > a", function (event) {
         event.preventDefault();
         $.when($("#loader").fadeIn(1560).promise(), $.ajax({
             url: this.href,
