@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const { userInfo } = require('os');
 const bot = new Discord.Client();
 const { Client } = require('pg');
 
@@ -73,7 +72,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
                 { name: `${prefixs}lock`, value: 'Het kanaal te locken waar je inzit.', inline: true },
 
                 { name: `${prefixs}unlock`, value: 'Het kanaal te unlocken waar je inzit.', inline: true },
-                { name: `${prefix}suggestion`, value: `Om een suggestie naar de owner te sturen voor de bot.`, inline: true },
+                { name: `${prefixs}suggestion`, value: `Om een suggestie naar de owner te sturen voor de bot.`, inline: true },
             )
             .setColor(kleurVar)
             .setTimestamp()
@@ -114,7 +113,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
                 { name: `${prefixs}lock`, value: 'To lock the channel.', inline: true },
 
                 { name: `${prefixs}unlock`, value: 'To unlock the channel.', inline: true },
-                { name: `${prefix}suggestion`, value: `To send a suggestion to the owner of the bot about the bot.`, inline: true },
+                { name: `${prefixs}suggestion`, value: `To send a suggestion to the owner of the bot about the bot.`, inline: true },
             )
             .setColor(kleurVar)
             .setTimestamp()
