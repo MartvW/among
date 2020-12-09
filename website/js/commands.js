@@ -37,7 +37,7 @@ function getCommands() {
 }
 
 new Vue({
-    el: "#app",
+    el: ".app",
     data: {
         filter: "",
         commands: [{
@@ -61,4 +61,4 @@ new Vue({
             });
         }
     }
-})
+});

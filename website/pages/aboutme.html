@@ -10,21 +10,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="/Logo.png">
-    <title>Among Us Bot</title>
+    <title>SusBot</title>
 </head>
 
 <body>
     <div id="loader"></div>
 
     <nav class="navbar">
-        <a>
-            <h1>Among Us Bot</h1>
-        </a>
+        <a class="title" href="index.html">SusBot</a>
         <a href="invite.html">Invite</a>
         <a href="command.html">Commands</a>
         <a class="selected" href="aboutme.html">About Me</a>
+        <a href="login.html">Log in</a>
     </nav>
     <!-- <h1 class="text-center"><img src="../Logo.png" class="mainimage"></h1> -->
+
+    <h4>
+        <br>The <b>SusBot</b> is a Discord bot that will help you to play the game "Among Us" easily with your friends. It will help you to mute or unmute the <br>users while playing. Also the bot sets the maximum members on the voice-channel to 10.
+        <br>
+        <br>The bot runs <u>24/7</u> on a host. Now you can have <u>24/7</u> fun with the bot and your friends!
+        <br>
+        <br>The commands this bot use:
+        <br>
+        <br>.help
+        <br>.amongus
+        <br>.setprefix
+        <br>.lock
+        <br>.setlang
+        <br>.link
+        <br>.donate
+        <br>...and more!
+        <br>
+        <br>This bot was created by Mart!
+    </h4>
 </body>
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -38,7 +56,7 @@
         opacity: '1'
     }, 3000);
 
-    $(document).on('click', "a", function (event) {
+    $(document).on('click', "nav > a", function (event) {
         event.preventDefault();
         $.when($("#loader").fadeIn(1560).promise(), $.ajax({
             url: this.href,

@@ -69,6 +69,22 @@ body {
     opacity: 0;
 }
 
+.spancommand {
+    border-radius: 15px;
+    background-color: white;
+    padding: 15px;
+}
+
+.commandimage {
+    display: block;
+    border-radius: 15px;
+    box-shadow: 5px 5px 20px dimgray;
+}
+
+.title {
+    font-size: 40px
+}
+
 .invitelink {
     text-align: center;
 }
