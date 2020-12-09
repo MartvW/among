@@ -85,6 +85,10 @@
         $("#loader").fadeOut(500);
     });
 
+    $(window).unload(function () {
+        localStorage.removeItem('input');
+    });
+
     $('.ghostly').animate({
         opacity: '1'
     }, 3000);
