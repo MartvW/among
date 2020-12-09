@@ -1,9 +1,7 @@
 * {
-    /* background: linear-gradient(white,lightgray); */
     background-image: url(/Logo.png);
     background-repeat: no-repeat;
     background-position: center;
-    /* background-size: 75vh; */
     background-attachment: fixed;
     font-family: 'Lato', sans-serif;
     -moz-user-select: none;
