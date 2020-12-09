@@ -31,10 +31,19 @@
 
     <script>
         var inputValue = localStorage.getItem('input') || "";
-        console.log(inputValue);
     </script>
 
     <table class="table app">
+        <script>
+            var array = [];
+            var abc = "ACDEFGHIKLMNOPRSTUX";
+            for (let i = 0; i < abc.length; i++) {
+                if (!array.includes(abc.charAt(i))) {
+                    array.push(abc.charAt(i));
+                }
+            }
+            var letters = array.join(" - ");
+        </script>
         <form>
             <label>
                 <h5>Search: </h5>
@@ -43,6 +52,19 @@
                 onchange="inputValue = this.value; localStorage.setItem('input', this.value); location.reload()">
             <button type="submit" onclick="localStorage.removeItem('input'); location.reload()">Clear</button>
         </form>
+        <br>
+        <p>
+            <script>
+                for (let i = 0; i < letters.length; i++) {
+                    if (letters.charAt(i) === "-" || letters.charAt(i) === " ") {
+                        document.write(letters.charAt(i));
+                    } else {
+                        document.write(`<a onclick="localStorage.setItem('input', letters.charAt(${i}).toLowerCase()); location.reload();">${letters.charAt(i)}</a>`);
+                    }
+                }
+            </script>
+        </p>
+
         <!-- <script>
             var inputValue = "";
             function valueThing() {
@@ -59,7 +81,8 @@
         <tbody>
             <tr class="commands" v-for="command in filteredCommands" v-show="command.command.includes(inputValue)">
                 <td>
-                    <h4>#</h4>
+                    <h4 v-show="command.new === '1'">#NEW!</h4>
+                    <h4 v-show="command.new === '0'">#</h4>
                 </td>
                 <td>
                     <h4><a class="name" v-bind:href="'commands.html?id='+ command.id">{{command.command}}</a></h4>
@@ -83,10 +106,6 @@
 <script type="text/javascript">
     $(window).load(function () {
         $("#loader").fadeOut(500);
-    });
-
-    $(window).unload(function () {
-        localStorage.removeItem('input');
     });
 
     $('.ghostly').animate({
