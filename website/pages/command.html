@@ -29,8 +29,26 @@
     <br>
     <br>
 
+    <script>
+        var inputValue = localStorage.getItem('input') || "";
+        console.log(inputValue);
+    </script>
 
-    <table class="table tablehome app">
+    <table class="table app">
+        <form>
+            <label>
+                <h5>Search: </h5>
+            </label><br>
+            <input v-model="filter" id="input"
+                onchange="inputValue = this.value; localStorage.setItem('input', this.value); location.reload()">
+            <button type="submit" onclick="localStorage.removeItem('input'); location.reload()">Clear</button>
+        </form>
+        <!-- <script>
+            var inputValue = "";
+            function valueThing() {
+                inputValue = document.getElementById('input').value;
+            }
+        </script> -->
         <thead>
             <tr>
                 <th>#</th>
@@ -39,13 +57,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="command in filteredCommands">
-                <td><h4>#</h4></td>
+            <tr class="commands" v-for="command in filteredCommands" v-show="command.command.includes(inputValue)">
                 <td>
-                    <h4><a v-bind:href="'commands.html?id='+ command.id">{{command.command}}</a></h4>
+                    <h4>#</h4>
                 </td>
                 <td>
-                    <h4><a v-bind:href="'commands.html?id='+ command.id">{{command.response}}</a></h4>
+                    <h4><a class="name" v-bind:href="'commands.html?id='+ command.id">{{command.command}}</a></h4>
+                </td>
+                <td>
+                    <h4><a class="response" v-bind:href="'commands.html?id='+ command.id">{{command.response}}</a>
+                    </h4>
                 </td>
             </tr>
         </tbody>

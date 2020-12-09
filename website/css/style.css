@@ -1,8 +1,9 @@
-* {
+body {
     background-image: url(/Logo.png);
+    background: url(/Logo.png);
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed;
     font-family: 'Lato', sans-serif;
     -moz-user-select: none;
    -khtml-user-select: none;
@@ -71,7 +72,7 @@ body {
 
 .spancommand {
     border-radius: 15px;
-    background-color: white;
+    /* background-color: white; */
     padding: 15px;
 }
 
@@ -83,6 +84,12 @@ body {
 
 .title {
     font-size: 40px
+}
+
+.commands {
+    background-color: rgba(255, 255, 255, .7);
+    padding: 5px;
+    border-radius: 64px;
 }
 
 .invitelink {
