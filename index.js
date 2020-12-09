@@ -705,17 +705,17 @@ bot.on("message", async msg => {
     const args = msg.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
 
-    laatstecommand = `${msg.content} (@${msg.author.tag})`;
-
     if (slot === false) {
         aantalcommands++;
         try {
             if (command === "help") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 msg.channel.send(helpEmbed(prefix, taal, kleur));
                 msg.channel.send(embedLetOp(prefix, taal));
             }
 
             if (command === "suggestion") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (args.length < 1) {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel de suggestie invoeren!`, kleur));
@@ -736,6 +736,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "patreon") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 var embedNL = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`Patreon`)
@@ -764,6 +765,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "info") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (taal === "nl") {
                     if (msg.guild.iconURL()) {
                         var embed = new Discord.MessageEmbed()
@@ -830,6 +832,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "setcolor") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (!msg.member.hasPermission("MANAGE_GUILD")) {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, "Je hebt geen bevoegdheden om de kleur van deze server aan te passen!", kleur));
@@ -895,6 +898,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "setlang") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (!msg.member.hasPermission("MANAGE_GUILD")) {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, "Je hebt geen bevoegdheden om de taal van deze server aan te passen!", kleur));
@@ -1092,6 +1096,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "setprefix") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (!msg.member.hasPermission("MANAGE_GUILD")) {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, "Je hebt geen bevoegdheden om de prefix van deze server aan te passen!", kleur));
@@ -1171,6 +1176,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "lock") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (!msg.member.voice.channel) {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`, kleur));
@@ -1225,6 +1231,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "unlock") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (!msg.member.voice.channel) {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`, kleur));
@@ -1268,6 +1275,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "code") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (!msg.member.voice.channel) {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`, kleur));
@@ -1301,6 +1309,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "setcode") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (!msg.member.voice.channel) {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`, kleur));
@@ -1399,6 +1408,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "resetcode") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (!msg.member.voice.channel) {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`, kleur));
@@ -1450,6 +1460,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "map") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (taal === "nl") {
                     msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`, kleur));
                 } else {
@@ -1458,6 +1469,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "skeld") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 var embed = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`${msg.author.username}`)
@@ -1470,6 +1482,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "polus") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 var embed = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`${msg.author.username}`)
@@ -1482,6 +1495,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "mira") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 var embed = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`${msg.author.username}`)
@@ -1494,6 +1508,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "uptime") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 let totalSeconds = (bot.uptime / 1000);
                 let days = Math.floor(totalSeconds / 86400);
                 totalSeconds %= 86400;
@@ -1564,6 +1579,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "donate") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (taal === "nl") {
                     msg.channel.send(createEmbed(`Donatie-link`, `https://www.patreon.com/bePatron?u=45897916`, kleur));
                 } else {
@@ -1572,6 +1588,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "ping") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 const m = await msg.channel.send("Ping?");
                 var ping = Date.now() - m.createdTimestamp;
                 m.delete();
@@ -1579,6 +1596,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "link") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (taal === "nl") {
                     var embedHelp = new Discord.MessageEmbed()
                         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
@@ -1611,6 +1629,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "amongus") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 if (!msg.member.voice.channel) {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `Je moet wel in een voice-channel zitten!`, kleur));
@@ -1671,6 +1690,7 @@ bot.on("message", async msg => {
             }
 
             if (command === "amongusstop") {
+                laatstecommand = `${msg.content} (@${msg.author.tag})`;
                 for (let i = 0; i < amongus.length; i++) {
                     if (amongus[i].user.id === msg.author.id) {
                         if (taal === "nl") {
