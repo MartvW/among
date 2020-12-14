@@ -58,7 +58,7 @@
                     // var all = getParameterByName('?');
                     var unhashid = CryptoJS.AES.decrypt(id, "Secret Passphrase");
                     var goodId = unhashid.toString(CryptoJS.enc.Utf8);
-                    console.log(goodId);
+                    // console.log(goodId);
                 </script>
                 <div v-show="command.id == goodId" class="spancommand" name="commandcommand">
                     <h1>{{command.command}}</h1>

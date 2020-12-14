@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"
+        integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="/Logo.png">
     <title>SusBot</title>
 </head>
@@ -32,17 +33,37 @@
 
     <script>
         var inputValue = localStorage.getItem('input') || "";
+        function selectedValue(value) {
+            localStorage.setItem('selected', value);
+            if (value === "1") {
+                localStorage.setItem('input', 'among');
+            } else if (value === "2") {
+                localStorage.setItem('input', 'set');
+            } else {
+                localStorage.setItem('input', "");
+            }
+            location.reload();
+        }
     </script>
 
-    <table class="table app">
+    <table class="table app" id="table">
         <script>
             var array = [];
-            var abc = "ACDEFGHIKLMNOPRSTUX";
+            var arraynot = [];
+            var abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var abcnot = "B J Q V Y Z W"
             for (let i = 0; i < abc.length; i++) {
                 if (!array.includes(abc.charAt(i))) {
                     array.push(abc.charAt(i));
                 }
             }
+
+            for (let i = 0; i < abcnot.length; i++) {
+                if (!arraynot.includes(abcnot.charAt(i))) {
+                    arraynot.push(abcnot.charAt(i));
+                }
+            }
+
             var letters = array.join(" - ");
         </script>
         <form>
@@ -60,11 +81,43 @@
                     if (letters.charAt(i) === "-" || letters.charAt(i) === " ") {
                         document.write(letters.charAt(i));
                     } else {
-                        document.write(`<a onclick="localStorage.setItem('input', letters.charAt(${i}).toLowerCase()); location.reload();">${letters.charAt(i)}</a>`);
+                        // location.reload();
+                        if (arraynot.includes(letters.charAt(i))) {
+                            document.write(`<a style="color: grey; cursor: default; opacity: 0.5;">${letters.charAt(i)}</a>`);
+                        } else {
+                            document.write(`<a onclick="let a = localStorage.setItem('input', letters.charAt(${i}).toLowerCase()); location.reload();">${letters.charAt(i)}</a>`);
+                        }
                     }
                 }
             </script>
         </p>
+        <select id="d" onchange="selectedValue(this.value)">
+            <script>
+                let selected = localStorage.getItem('selected');
+                console.log(selected);
+                if (selected === "1") {
+                    document.write('<option value="" disabled hidden>Choose a theme</option>');
+                    document.write('<option value="1" selected>Among Us commands</option>');
+                    document.write('<option value="2">Set commands</option>');
+                    document.write('<option value="3">Other commands...</option>');
+                } else if (selected === "2") {
+                    document.write('<option value="" disabled hidden>Choose a theme</option>');
+                    document.write('<option value="1">Among Us commands</option>');
+                    document.write('<option value="2" selected>Set commands</option>');
+                    document.write('<option value="3">Other commands...</option>');
+                } else if (selected === "3") {
+                    document.write('<option value="" disabled hidden>Choose a theme</option>');
+                    document.write('<option value="1">Among Us commands</option>');
+                    document.write('<option value="2">Set commands</option>');
+                    document.write('<option value="3" selected>Other commands...</option>');
+                } else {
+                    document.write('<option value="" selected disabled hidden>Choose a theme</option>');
+                    document.write('<option value="1">Among Us commands</option>');
+                    document.write('<option value="2">Set commands</option>');
+                    document.write('<option value="3">Other commands...</option>');
+                }
+            </script>
+        </select>
 
         <!-- <script>
             var inputValue = "";
@@ -80,11 +133,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="commands" v-for="command in filteredCommands" v-show="command.command.includes(inputValue)">
+            <tr name="tr" class="commands" v-for="command in filteredCommands"
+                v-show="command.command.includes(inputValue)">
                 <td>
                     <h4 v-show="command.new === '1'">#NEW!</h4>
                     <h4 v-show="command.new === '0'">#</h4>
-                    <!-- <p id="d" v-bind:value="command.id"></p> -->
                     <!-- <p id="k"></p> -->
                 </td>
                 <td>
@@ -93,7 +146,7 @@
                             var encrypted = CryptoJS.AES.encrypt(g, "Secret Passphrase");
                             return encrypted;
                         }
-                    </script>  
+                    </script>
                     <h4><a class="name" v-bind:href="'commands.html?id='+ hash(command.id)">{{command.command}}</a></h4>
                 </td>
                 <td>
@@ -103,6 +156,7 @@
             </tr>
         </tbody>
     </table>
+
 
     <!-- <h1 class="text-center"><img src="../Logo.png" class="mainimage"></h1> -->
 </body>
