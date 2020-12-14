@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" href="/Logo.png">
     <title>SusBot</title>
 </head>
@@ -83,12 +84,20 @@
                 <td>
                     <h4 v-show="command.new === '1'">#NEW!</h4>
                     <h4 v-show="command.new === '0'">#</h4>
+                    <!-- <p id="d" v-bind:value="command.id"></p> -->
+                    <!-- <p id="k"></p> -->
                 </td>
                 <td>
-                    <h4><a class="name" v-bind:href="'commands.html?id='+ command.id">{{command.command}}</a></h4>
+                    <script>
+                        function hash(g) {
+                            var encrypted = CryptoJS.AES.encrypt(g, "Secret Passphrase");
+                            return encrypted;
+                        }
+                    </script>  
+                    <h4><a class="name" v-bind:href="'commands.html?id='+ hash(command.id)">{{command.command}}</a></h4>
                 </td>
                 <td>
-                    <h4><a class="response" v-bind:href="'commands.html?id='+ command.id">{{command.response}}</a>
+                    <h4><a class="response" v-bind:href="'commands.html?id='+ hash(command.id)">{{command.response}}</a>
                     </h4>
                 </td>
             </tr>

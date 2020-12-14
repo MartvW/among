@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"
+        integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="/Logo.png">
@@ -41,19 +43,36 @@
     <br>
     <br>
 
+    <div id="loadingthing" style="display: none;">
+        <h1 class="loadingdots">Loading</h1>
+        <p>If it does take to long, go back</p>
+        <!-- <h1>{{command.image}}</h1> -->
+        <img src="/loading.gif" width="500px" class="loadingimage"></img>
+    </div>
 
     <div class="app">
-        <div class="commands">
+        <div>
             <div v-for="command in filteredCommands" class="command">
                 <script type="text/javascript">
                     var id = getParameterByName('id');
+                    // var all = getParameterByName('?');
+                    var unhashid = CryptoJS.AES.decrypt(id, "Secret Passphrase");
+                    var goodId = unhashid.toString(CryptoJS.enc.Utf8);
+                    console.log(goodId);
                 </script>
-                <div v-show="command.id == id" class="spancommand">
+                <div v-show="command.id == goodId" class="spancommand" name="commandcommand">
                     <h1>{{command.command}}</h1>
                     <h4>{{command.response}}</h4>
-                    <!-- <h1>{{command.image}}</h1> -->
                     <img v-bind:src="command.image" class="commandimage"></img>
                 </div>
+                <script>
+                    if (goodId === "") {
+                        document.getElementById('loadingthing').style.display = "inherit";
+                    } else {
+                        document.getElementById('loadingthing').style.display = "none";
+
+                    }
+                </script>
             </div>
         </div>
     </div>
@@ -62,7 +81,9 @@
     <br>
     <br>
 
-    <a href="command.html"><h4>Back</h4></a>
+    <a href="command.html">
+        <h4>Back</h4>
+    </a>
 
     <!-- <h1 class="text-center"><img src="../Logo.png" class="mainimage"></h1> -->
 </body>

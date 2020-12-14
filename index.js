@@ -745,7 +745,7 @@ bot.on("message", async msg => {
                     )
                     .setColor(kleur)
                     .setTimestamp()
-                    .setFooter(`AmongBot`)
+                    .setFooter(`SusBot`)
                 var embedEN = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`Patreon`)
@@ -755,7 +755,7 @@ bot.on("message", async msg => {
                     )
                     .setColor(kleur)
                     .setTimestamp()
-                    .setFooter(`AmongBot`)
+                    .setFooter(`SusBot`)
                 if (taal === "nl") {
                     msg.channel.send(embedNL);
                 } else {
