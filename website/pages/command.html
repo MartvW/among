@@ -72,7 +72,7 @@
             </label><br>
             <input v-model="filter" id="input"
                 onchange="inputValue = this.value; localStorage.setItem('input', this.value); location.reload()">
-            <button type="submit" onclick="localStorage.removeItem('input'); location.reload()">Clear</button>
+            <button type="submit" onclick="localStorage.removeItem('input'); localStorage.removeItem('selected'); location.reload()">Clear</button>
         </form>
         <br>
         <p>
