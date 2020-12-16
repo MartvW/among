@@ -1049,9 +1049,6 @@ bot.on("message", async msg => {
                     .setColor(kleur)
                     .setTimestamp()
                     .setFooter(`SusBot`)
-                berichts1 = "";
-                berichts2 = "";
-                berichts3 = "";
 
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
