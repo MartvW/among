@@ -76,7 +76,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
             )
             .setColor(kleurVar)
             .setTimestamp()
-            .setFooter(`SusBot`)
+            .setFooter(`SusBot#9893`)
         return embedHelp;
     } else if (lang === "en") {
         var embedHelp = new Discord.MessageEmbed()
@@ -117,7 +117,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
             )
             .setColor(kleurVar)
             .setTimestamp()
-            .setFooter(`SusBot`)
+            .setFooter(`SusBot#9893`)
         return embedHelp;
     }
 }
@@ -130,7 +130,7 @@ function embedLetOp(prefixs, lang) {
             .setDescription(`Bij sommige commands moet je in een voice-channel zitten. Bij de volgende commands moet je in een voice-channel zitten om het te gebruiken:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
             .setColor(15746887)
             .setTimestamp()
-            .setFooter(`SusBot`)
+            .setFooter(`SusBot#9893`)
         return embedHelp;
     } else if (lang === "en") {
         var embedHelp = new Discord.MessageEmbed()
@@ -139,7 +139,7 @@ function embedLetOp(prefixs, lang) {
             .setDescription(`To run some commands you have to be in a voice-channel. These following commands you must have to be in a voice-channel to run it:\n\n- **${prefixs}amongus**\n- **${prefixs}lock**\n- **${prefixs}unlock**`)
             .setColor(15746887)
             .setTimestamp()
-            .setFooter(`SusBot`)
+            .setFooter(`SusBot#9893`)
         return embedHelp;
     }
 }
@@ -485,7 +485,7 @@ bot.on("guildCreate", async guild => {
     }
 
     if (guild.systemChannel) {
-        guild.systemChannel.send(createEmbed(`${bot.user.username}`, `Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help**\nYou can set your own prefix by typing **${prefix}setprefix**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!\n\nI have a Patreon Page where you can donate money: https://www.patreon.com/bePatron?u=45897916`, '#FFAC33'));
+        guild.systemChannel.send(createEmbed(`${bot.user.username}`, `Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help**\nYou can set your own prefix by typing **${prefix}setprefix**\nSet your own color by typing **${prefix}setcolor**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!\n\nI have a Patreon Page where you can donate money: https://www.patreon.com/bePatron?u=45897916`, '#FFAC33'));
         guild.systemChannel.send(createEmbed(`Language`, `If you want to set the bot in another language, do ***${prefix}setlang***!`, '#FFAC33'));
     }
 });
@@ -563,7 +563,8 @@ bot.on("ready", async () => {
         var status = [
             `On ${servers} servers!`,
             `${prefix}setprefix | <prefix>`,
-            `${prefix}setlang`,
+            `${prefix}setlang | Custom Language!`,
+            `${prefix}setcolor | Your own color!`,
             `${users} are using this bot!`,
             `https://www.patreon.com/bePatron?u=45897916`,
             `${prefix}help | ${bot.user.tag}`,
@@ -591,7 +592,6 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async msg => {
-    const serversGuild = bot.guilds.cache.size;
     if (msg.author.bot) return;
     if (msg.guild === null) {
         msg.reply(createEmbed(`${msg.author.username}`, `You can't send me private messages...`, 16426522));
@@ -745,7 +745,7 @@ bot.on("message", async msg => {
                     )
                     .setColor(kleur)
                     .setTimestamp()
-                    .setFooter(`SusBot`)
+                    .setFooter(`${bot.user.tag}`)
                 var embedEN = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`Patreon`)
@@ -755,7 +755,7 @@ bot.on("message", async msg => {
                     )
                     .setColor(kleur)
                     .setTimestamp()
-                    .setFooter(`SusBot`)
+                    .setFooter(`${bot.user.tag}`)
                 if (taal === "nl") {
                     msg.channel.send(embedNL);
                 } else {
@@ -778,7 +778,7 @@ bot.on("message", async msg => {
                             )
                             .setColor(kleur)
                             .setTimestamp()
-                            .setFooter(`SusBot`)
+                            .setFooter(`${bot.user.tag}`)
                     } else {
                         var embed = new Discord.MessageEmbed()
                             .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
@@ -792,7 +792,7 @@ bot.on("message", async msg => {
                             )
                             .setColor(kleur)
                             .setTimestamp()
-                            .setFooter(`SusBot`)
+                            .setFooter(`${bot.user.tag}`)
                     }
                     msg.channel.send(embed);
                 } else {
@@ -809,7 +809,7 @@ bot.on("message", async msg => {
                             )
                             .setColor(kleur)
                             .setTimestamp()
-                            .setFooter(`SusBot`)
+                            .setFooter(`${bot.user.tag}`)
                     } else {
                         var embed = new Discord.MessageEmbed()
                             .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
@@ -823,7 +823,7 @@ bot.on("message", async msg => {
                             )
                             .setColor(kleur)
                             .setTimestamp()
-                            .setFooter(`SusBot`)
+                            .setFooter(`${bot.user.tag}`)
                     }
                     msg.channel.send(embed);
                 }
@@ -1042,13 +1042,13 @@ bot.on("message", async msg => {
                     .setTitle(`Database`)
                     .setColor(kleur)
                     .setTimestamp()
-                    .setFooter(`SusBot`)
+                    .setFooter(`${bot.user.tag}`)
                 var embed2 = new Discord.MessageEmbed()
                     .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
                     .setTitle(`Database`)
                     .setColor(kleur)
                     .setTimestamp()
-                    .setFooter(`SusBot`)
+                    .setFooter(`${bot.user.tag}`)
 
                 for (let i = 0; i < aantals.rows.length; i++) {
                     const guildname = bot.guilds.cache.find(guild => guild.id === aantals.rows[i].guildid);
