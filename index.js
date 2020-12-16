@@ -1370,6 +1370,7 @@ bot.on("message", async msg => {
                                     aantalcodes += 1;
                                 }
                             }
+                            
                             if (taal === "nl") {
                                 msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**!`, kleur));
                             } else {
