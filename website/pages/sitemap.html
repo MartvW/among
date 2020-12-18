@@ -17,42 +17,49 @@
     <div id="loader"></div>
 
     <nav class="navbar">
-        <a class="selected title" href="index.html"><img src="/Logo.png"
-                style="width: 64px; margin: 5px; border-radius: 64px;"> SusBot</a>
+        <a class="title" href="index.html"><img src="/Logo.png" style="width: 64px; margin: 5px; border-radius: 64px;">
+            SusBot</a>
         <a href="invite.html">Invite</a>
         <a href="command.html">Commands</a>
         <a href="aboutme.html">About Me</a>
     </nav>
 
     <br>
+
     <br>
     <br>
 
-    <table class="table commands" style="text-align: center;">
-        <thead>
-            <tr>
-                <th>
-                    <img class="servericon"
-                        src="https://cdn.discordapp.com/icons/638046563704504350/ce23243a9a37817e0fe125fbab1bc2dd.png">
-                </th>
-                <th>
-                    <img class="boticon" src="/Logo.png">
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <iframe class="homeimage" src="https://discord.com/widget?id=638046563704504350&theme=dark"
-                        width="350" height="500" allowtransparency="true" frameborder="0"
-                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-                </td>
-                <td>
-                    <img class="botimage" src="https://top.gg/api/widget/469857906385354764.svg" alt="Among Us" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <h1>Sitemap</h1>
+    <ul>
+        <script>
+            let pages = [
+                {
+                    "name": "Homepage",
+                    "href": "index.html"
+                },
+                {
+                    "name": "About Me",
+                    "href": "aboutme.html"
+                },
+                {
+                    "name": "Commands",
+                    "href": "command.html"
+                },
+                {
+                    "name": "Invite",
+                    "href": "invite.html"
+                },
+                {
+                    "name": "Sitemap",
+                    "href": "sitemap.html"
+                }
+            ]
+
+            for (let i = 0; i < pages.length; i++) {
+                document.write(`<li><a style="font-size: 15px"href=${pages[i].href}>${pages[i].name}</a></li>`);
+            }
+        </script>
+    </ul>
 
     <br>
     <br>

@@ -954,7 +954,7 @@ bot.on("message", async msg => {
             if (command === "sendall" && msg.author.id === owner) {
                 bot.guilds.cache.forEach(async g => {
                     if (g.systemChannel) {
-                        g.systemChannel.send(createEmbed('Update', `There is a new update! Do **.help** to see the new commands!`, '#FFAC33'));
+                        g.systemChannel.send(createEmbed('Update', `There is a new update! Do **${prefix}help** to see the new commands!`, '#FFAC33'));
                     }
                 });
             }
@@ -996,7 +996,7 @@ bot.on("message", async msg => {
                         console.log(`${guild.name} is niet verwijderd uit de database "Prefixes" aangezien hij niet in de database stond!`);
                     }
 
-                    msg.member.send(createEmbed('Database', `**${guild.name}** succesvol verwijderd uit beide databases`, kleur));
+                    msg.member.send(createEmbed('Database', `**${guild.name}** succesvol verwijderd uit beide databases.`, kleur));
                 } else {
                     msg.member.send(createEmbed('Database', `Server niet gevonden, probeer opnieuw.`, kleur));
                 }

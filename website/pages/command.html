@@ -115,7 +115,6 @@
                             document.write(`<a style="color: grey; cursor: default; opacity: 0.5;">${letters.charAt(i)}</a>`);
                         } else {
                             let b = localStorage.getItem('input');
-                            console.log(b);
                             if (b === letters.charAt(i).toLowerCase()) {
                                 document.write(`<a style="font-size: 35px" onclick="let a = localStorage.setItem('input', letters.charAt(${i}).toLowerCase()); location.reload();">${letters.charAt(i)}</a>`);
                             } else {
@@ -129,7 +128,6 @@
         <select id="d" onchange="selectedValue(this.value)">
             <script>
                 let selected = localStorage.getItem('selected');
-                console.log(selected);
                 if (selected === "1") {
                     document.write('<option value="" disabled hidden>Choose a theme</option>');
                     document.write('<option value="1" selected>Among Us commands</option>');
@@ -167,7 +165,7 @@
                 <th>Description</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody name="tr">
             <tr name="tr" class="commands" v-for="command in filteredCommands"
                 v-show="command.command.includes(inputValue)">
                 <td>
@@ -192,7 +190,14 @@
         </tbody>
     </table>
 
+    <br>
+    <br>
+    <br>
 
+    <footer class="text-center text-sm-start" style="width: 100%;">
+        <a><img src="/Logo.png" width="32px" style="margin: 5px; border-radius: 64px;">Susbot</a><br>
+        <li><a style="font-size: 15px;" href="sitemap.html">- Sitemap</a></li>
+    </footer>
     <!-- <h1 class="text-center"><img src="../Logo.png" class="mainimage"></h1> -->
 </body>
 
