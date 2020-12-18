@@ -217,7 +217,7 @@ async function updateAdmin(botbio) {
             });
         }
         locks = [];
-        slot = !slot;
+        slot = true;
     } else {
         dag = `${days} dagen`;
     }
