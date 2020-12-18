@@ -13,15 +13,14 @@
     <title>SusBot</title>
 </head>
 
-<body>
+<body id="body">
     <div id="loader"></div>
 
     <nav class="navbar">
-        <a class="selected title" href="index.html">SusBot</a>
+        <a class="selected title" href="index.html"><img src="/Logo.png" style="width: 64px; margin: 5px; border-radius: 64px;"> SusBot</a>
         <a href="invite.html">Invite</a>
         <a href="command.html">Commands</a>
         <a href="aboutme.html">About Me</a>
-        <a href="login.html">Log in</a>
     </nav>
 
     <br>
@@ -74,6 +73,7 @@
 
     $(document).on('click', "nav > a", function (event) {
         event.preventDefault();
+        document.getElementById('body').style.cursor = "wait";
         $.when($("#loader").fadeIn(1560).promise(), $.ajax({
             url: this.href,
             type: 'get',

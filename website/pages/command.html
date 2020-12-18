@@ -15,14 +15,13 @@
     <title>SusBot</title>
 </head>
 
-<body>
+<body id="body">
 
     <nav class="navbar">
-        <a class="title" href="index.html">SusBot</a>
+        <a class="title" href="index.html"><img src="/Logo.png" style="width: 64px; margin: 5px; border-radius: 64px;"> SusBot</a>
         <a href="invite.html">Invite</a>
         <a class="selected" href="command.html">Commands</a>
         <a href="aboutme.html">About Me</a>
-        <a href="login.html">Log in</a>
     </nav>
 
     <div id="loader"></div>
@@ -50,11 +49,41 @@
         <script>
             var array = [];
             var arraynot = [];
-            var abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            var abcnot = "B J Q V Y Z W"
+            var commands = ["setprefix\
+            setlang\
+            setcolor\
+            info\
+            donate\
+            patreon\
+            help\
+            link\
+            amongus\
+            amongusstop\
+            ping\
+            uptime\
+            map\
+            polus\
+            skeld\
+            mira\
+            setcode\
+            resetcode\
+            code\
+            lock\
+            unlock\
+            suggestion"];
+            var abc = "abcdefghijklmnopqrstuvwxyz";
+            var abcnot = "";
+
             for (let i = 0; i < abc.length; i++) {
                 if (!array.includes(abc.charAt(i))) {
-                    array.push(abc.charAt(i));
+                    array.push(abc.charAt(i).toUpperCase());
+                }
+                for (let j = 0; j < commands.length; j++) {
+                    if (!commands[j].includes(abc.charAt(i).toLowerCase())) {
+                        if (!abcnot.includes(abc.charAt(i).toUpperCase())) {
+                            abcnot += `${abc.charAt(i).toUpperCase()} `;
+                        }
+                    }
                 }
             }
 
@@ -72,7 +101,8 @@
             </label><br>
             <input v-model="filter" id="input"
                 onchange="inputValue = this.value; localStorage.setItem('input', this.value); location.reload()">
-            <button type="submit" onclick="localStorage.removeItem('input'); localStorage.removeItem('selected'); location.reload()">Clear</button>
+            <button type="submit"
+                onclick="localStorage.removeItem('input'); localStorage.removeItem('selected'); location.reload()">Clear</button>
         </form>
         <br>
         <p>
@@ -81,11 +111,16 @@
                     if (letters.charAt(i) === "-" || letters.charAt(i) === " ") {
                         document.write(letters.charAt(i));
                     } else {
-                        // location.reload();
                         if (arraynot.includes(letters.charAt(i))) {
                             document.write(`<a style="color: grey; cursor: default; opacity: 0.5;">${letters.charAt(i)}</a>`);
                         } else {
-                            document.write(`<a onclick="let a = localStorage.setItem('input', letters.charAt(${i}).toLowerCase()); location.reload();">${letters.charAt(i)}</a>`);
+                            let b = localStorage.getItem('input');
+                            console.log(b);
+                            if (b === letters.charAt(i).toLowerCase()) {
+                                document.write(`<a style="font-size: 35px" onclick="let a = localStorage.setItem('input', letters.charAt(${i}).toLowerCase()); location.reload();">${letters.charAt(i)}</a>`);
+                            } else {
+                                document.write(`<a onclick="let a = localStorage.setItem('input', letters.charAt(${i}).toLowerCase()); location.reload();">${letters.charAt(i)}</a>`);
+                            }
                         }
                     }
                 }
@@ -177,6 +212,7 @@
 
     $(document).on('click', "nav > a", function (event) {
         event.preventDefault();
+        document.getElementById('body').style.cursor = "wait";
         $.when($("#loader").fadeIn(1560).promise(), $.ajax({
             url: this.href,
             type: 'get',
