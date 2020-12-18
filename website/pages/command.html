@@ -49,28 +49,7 @@
         <script>
             var array = [];
             var arraynot = [];
-            var commands = ["setprefix\
-            setlang\
-            setcolor\
-            info\
-            donate\
-            patreon\
-            help\
-            link\
-            amongus\
-            amongusstop\
-            ping\
-            uptime\
-            map\
-            polus\
-            skeld\
-            mira\
-            setcode\
-            resetcode\
-            code\
-            lock\
-            unlock\
-            suggestion"];
+            var commands = ["setprefix-setlang-setcolor-info-donate-patreon-help-link-amongus-amongusstop-ping-uptime-map-polus-skeld-mira-setcode-resetcode-code-lock-unlock-suggestion"];
             var abc = "abcdefghijklmnopqrstuvwxyz";
             var abcnot = "";
 
@@ -169,8 +148,8 @@
             <tr name="tr" class="commands" v-for="command in filteredCommands"
                 v-show="command.command.includes(inputValue)">
                 <td>
-                    <h4 v-show="command.new === '1'">#NEW!</h4>
                     <h4 v-show="command.new === '0'">#</h4>
+                    <h4 v-show="command.new === '1'">#NEW!</h4>
                     <!-- <p id="k"></p> -->
                 </td>
                 <td>

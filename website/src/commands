@@ -1,5 +1,5 @@
 [
-        {"id":"1","new":"0","command":".setprefix","response":"To set your own prefix.","image": "../src/1.png","cost":{"base":0,"sub":0,"mod":0,"reg":0},"permission":{"level":1}},
+        {"id":"1","new":"1","command":".setprefix","response":"To set your own prefix.","image": "../src/1.png","cost":{"base":0,"sub":0,"mod":0,"reg":0},"permission":{"level":1}},
         {"id":"2","new":"0","command":".setlang","response":"To set your own language.","image": "../src/2.png","cost":{"base":0,"sub":0,"mod":0,"reg":0},"permission":{"level":1}},
         {"id":"3","new":"0","command":".setcolor","response":"To set your own color.","image": "../src/3.png","cost":{"base":0,"sub":0,"mod":0,"reg":0},"permission":{"level":1}},
         {"id":"4","new":"0","command":".info","response":"You can get information about the server.","image": "../src/4.png","cost":{"base":0,"sub":0,"mod":0,"reg":0},"permission":{"level":1}},
