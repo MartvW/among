@@ -954,7 +954,7 @@ bot.on("message", async msg => {
             if (command === "sendall" && msg.author.id === owner) {
                 bot.guilds.cache.forEach(async g => {
                     if (g.systemChannel) {
-                        g.systemChannel.send(createEmbed('Update', `There is a new update! Do **${prefix}help** to see the new commands!`, '#FFAC33'));
+                        g.systemChannel.send(createEmbed('Update', `There is a new update! Do **${prefix}help** or go to: http://susbot.epizy.com/command to see the new commands!`, '#FFAC33'));
                     }
                 });
             }
