@@ -41,7 +41,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
         var embedHelp = new Discord.MessageEmbed()
             .setAuthor(`SusBot`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
             .setTitle("Help")
-            .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.`)
+            .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.\nOm alle commands op een rij te zien ga naar: http://susbot.epizy.com/command`)
             .addFields(
                 { name: `${prefixs}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: true },
                 { name: `${prefixs}setlang`, value: 'Hiermee kan je je eigen taal instellen.', inline: true },
@@ -82,7 +82,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
         var embedHelp = new Discord.MessageEmbed()
             .setAuthor(`SusBot`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
             .setTitle("Help")
-            .setDescription(`A list of all the commands I know.`)
+            .setDescription(`A list of all the commands I know.\nTo see all the commands on a list, go to: http://susbot.epizy.com/command`)
             .addFields(
                 { name: `${prefixs}setprefix`, value: 'To set your own prefix.', inline: true },
                 { name: `${prefixs}setlang`, value: 'To set your own language.', inline: true },
@@ -1586,6 +1586,7 @@ bot.on("message", async msg => {
                             { name: `Top.gg link`, value: `https://top.gg/bot/469857906385354764`, inline: false },
                             { name: `Patreon link`, value: `https://www.patreon.com/bePatron?u=45897916`, inline: false },
                             { name: `Discord link`, value: `${discordserver}`, inline: false },
+                            { name: `Website link`, value: `http://susbot.epizy.com/`, inline: false },
                         )
                         .setColor(kleur)
                         .setTimestamp()
@@ -1600,6 +1601,7 @@ bot.on("message", async msg => {
                             { name: `Top.gg link`, value: `https://top.gg/bot/469857906385354764`, inline: false },
                             { name: `Patreon link`, value: `https://www.patreon.com/bePatron?u=45897916`, inline: false },
                             { name: `Discord link`, value: `${discordserver}`, inline: false },
+                            { name: `Website link`, value: `http://susbot.epizy.com/`, inline: false },
                         )
                         .setColor(kleur)
                         .setTimestamp()
