@@ -584,7 +584,7 @@ bot.on("ready", async () => {
             status: 'online',
             activity: {
                 name: `${status[statusIndex]}`,
-                type: "LISTENING"
+                type: "WATCHING"
             }
         });
         
