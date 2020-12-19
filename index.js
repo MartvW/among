@@ -53,7 +53,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
 
                 { name: `${prefixs}patreon`, value: 'Mensen die gedoneerd hebben.', inline: true },
                 { name: `${prefixs}help`, value: 'Om dit bericht te laten zien.', inline: true },
-                { name: `${prefixs}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: true },
+                { name: `NIEUW!!! ${prefixs}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: true },
 
                 { name: `${prefixs}amongus`, value: 'Wanneer je een game wilt starten.', inline: true },
                 { name: `${prefixs}amongusstop`, value: 'Wanneer je de game wilt eindigen.', inline: true },
@@ -94,7 +94,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
 
                 { name: `${prefixs}patreon`, value: 'Peoples who has donate.', inline: true },
                 { name: `${prefixs}help`, value: 'To show this message.', inline: true },
-                { name: `${prefixs}link`, value: 'You can get usefull links with this command.', inline: true },
+                { name: `NEW!!! ${prefixs}link`, value: 'You can get usefull links with this command.', inline: true },
 
                 { name: `${prefixs}amongus`, value: 'When you want to start a game.', inline: true },
                 { name: `${prefixs}amongusstop`, value: 'To finish the game.', inline: true },
@@ -485,7 +485,7 @@ bot.on("guildCreate", async guild => {
     }
 
     if (guild.systemChannel) {
-        guild.systemChannel.send(createEmbed(`${bot.user.username}`, `Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help**\nYou can set your own prefix by typing **${prefix}setprefix**\nSet your own color by typing **${prefix}setcolor**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!\n\nI have a Patreon Page where you can donate money: https://www.patreon.com/bePatron?u=45897916`, '#FFAC33'));
+        guild.systemChannel.send(createEmbed(`${bot.user.username}`, `Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help** or go to: http://susbot.epizy.com/command\nYou can set your own prefix by typing **${prefix}setprefix**\nSet your own color by typing **${prefix}setcolor**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!\n\nI have a Patreon Page where you can donate money: https://www.patreon.com/bePatron?u=45897916`, '#FFAC33'));
         guild.systemChannel.send(createEmbed(`Language`, `If you want to set the bot in another language, do ***${prefix}setlang***!`, '#FFAC33'));
     }
 });
