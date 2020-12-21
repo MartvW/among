@@ -1703,7 +1703,13 @@ bot.on("message", async msg => {
                                 "user": msg.author,
                             }), 1);
                         });
-                    }
+                    } else {
+                        if (taal === "nl") {
+                            msg.channel.send(createEmbed(`${msg.author.username}`, 'Je bent op dit moment geen game aan het hosten, doe **${prefix}amongus** om een game te hosten!'));
+                        } else {
+                            msg.channel.send(createEmbed(`${msg.author.username}`, 'You are not hosting a game at the moment, do **${prefix}amongus** to start hosting a game!'));
+                        }
+                     }
                 }
             }
         }
