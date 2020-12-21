@@ -1621,7 +1621,7 @@ bot.on("message", async msg => {
                 }
 
                 for (let i = 0; i < amongus.length; i++) {
-                    if (amongus[i].user === msg.author || amongus[i].kanaal === msg.member.voice.channel) {
+                    if (amongus[i].user === msg.author || amongus[i].channel === msg.member.voice.channel) {
                         if (taal === "nl") {
                             msg.channel.send(createEmbed(`${msg.author.username}`, "Je bent al een game aan het hosten. Je kan niet meer dan één game hosten!", kleur));
                         } else {
