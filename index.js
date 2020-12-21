@@ -41,7 +41,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
         var embedHelp = new Discord.MessageEmbed()
             .setAuthor(`SusBot`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
             .setTitle("Help")
-            .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.\nOm alle commands op een rij te zien ga naar http://susbot.epizy.com/command`)
+            .setDescription(`Hier is een lijstje met de commands die je kan gebruiken.\nOm alle commands op een rij te zien ga naar http://susbot.epizy.com/command.html`)
             .addFields(
                 { name: `${prefixs}setprefix`, value: 'Hiermee kan je je eigen prefix instellen.', inline: true },
                 { name: `${prefixs}setlang`, value: 'Hiermee kan je je eigen taal instellen.', inline: true },
@@ -82,7 +82,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
         var embedHelp = new Discord.MessageEmbed()
             .setAuthor(`SusBot`, `https://raw.githubusercontent.com/MartvW/among/master/Logo.png`)
             .setTitle("Help")
-            .setDescription(`A list of all the commands I know.\nTo see all the commands on a list, go to http://susbot.epizy.com/command`)
+            .setDescription(`A list of all the commands I know.\nTo see all the commands on a list, go to http://susbot.epizy.com/command.html`)
             .addFields(
                 { name: `${prefixs}setprefix`, value: 'To set your own prefix.', inline: true },
                 { name: `${prefixs}setlang`, value: 'To set your own language.', inline: true },
@@ -485,7 +485,7 @@ bot.on("guildCreate", async guild => {
     }
 
     if (guild.systemChannel) {
-        guild.systemChannel.send(createEmbed(`${bot.user.username}`, `Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help** or go to http://susbot.epizy.com/command\nYou can set your own prefix by typing **${prefix}setprefix**\nSet your own color by typing **${prefix}setcolor**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!\n\nI have a Patreon Page where you can donate money: https://www.patreon.com/bePatron?u=45897916`, '#FFAC33'));
+        guild.systemChannel.send(createEmbed(`${bot.user.username}`, `Thanks for adding me to this server!\nYou can find all my commands by typing **${prefix}help** or go to http://susbot.epizy.com/command.html\nYou can set your own prefix by typing **${prefix}setprefix**\nSet your own color by typing **${prefix}setcolor**\n\nFor people who wants to invite me, type **${prefix}link** to get the invite-link!\n\nI have a Patreon Page where you can donate money: https://www.patreon.com/bePatron?u=45897916`, '#FFAC33'));
         guild.systemChannel.send(createEmbed(`Language`, `If you want to set the bot in another language, do ***${prefix}setlang***!`, '#FFAC33'));
     }
 });
@@ -954,7 +954,7 @@ bot.on("message", async msg => {
             if (command === "sendall" && msg.author.id === owner) {
                 bot.guilds.cache.forEach(async g => {
                     if (g.systemChannel) {
-                        g.systemChannel.send(createEmbed('Update', `There is a new update! Do **${prefix}help** or go to: http://susbot.epizy.com/command to see the new commands!`, '#FFAC33'));
+                        g.systemChannel.send(createEmbed('Update', `There is a new update! Do **${prefix}help** or go to: http://susbot.epizy.com/command.html to see the new commands!`, '#FFAC33'));
                     }
                 });
             }
