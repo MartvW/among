@@ -10,7 +10,13 @@ const connection = mysql.createConnection({
     database: process.env.DBNAME
 });
 
-connection.connect();
+connection.connect(function (err) {
+    if (!err) {
+        console.log('Connectie gemaakt met de database!');
+    } else {
+        console.error('Error bij het verbinding maken met de database!' + err);
+    }
+});
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
@@ -280,8 +286,8 @@ async function updateAdmin(botbio) {
         if (!prefixesArray.includes(`**${aantal.rows[i].prefix}**`)) {
             prefixesArray.push(`**${aantal.rows[i].prefix}**`);
         }
-    } 
-    
+    }
+
     const aantal2 = await client.query(`SELECT * FROM servers`);
     let colorArray = [];
     for (let i = 0; i < aantal2.rowCount; i++) {
@@ -310,7 +316,7 @@ async function updateAdmin(botbio) {
                 colorArray.push(`🟣`);
             }
         }
-        
+
     }
 
     let prefixes = prefixesArray.join(" | ");
@@ -544,12 +550,10 @@ bot.on("ready", async () => {
 
     let aantals = await client.query(`SELECT * FROM prefixes;`);
     let aantals2 = await client.query(`SELECT * FROM servers;`);
-    let aantalMysql = await connection.query(`SELECT * FROM servers`);
 
-    console.log(`${aantalMysql}`);
+    console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en op ${users} gebruikers. In database "Prefix" zitten ${aantals.rows.length} servers! In database "Servers" zitten ${aantals2.rows.length} servers!`);
     console.log("");
-    connection.destroy();
 
     const channel = bot.channels.cache.find(channel => channel.id === botInfokanaal);
     channel.bulkDelete(1);
@@ -598,7 +602,7 @@ bot.on("ready", async () => {
                 name: `${status[statusIndex]}`,
             }
         });
-        
+
         updateAdmin(status[statusIndex]);
     }, 10000);
 });
@@ -624,7 +628,7 @@ bot.on("message", async msg => {
             }
         });
     };
-    
+
     if (prefix.rowCount === 0) {
         client.query(`INSERT INTO prefixes VALUES (${msg.guild.id}, '.');`, (err, res) => {
             if (!err) {
@@ -637,7 +641,7 @@ bot.on("message", async msg => {
         });
         return;
     };
-    
+
     taal = taal.rows[0].lang;
     prefix = prefix.rows[0].prefix;
     kleur = kleur.rows[0].kleur;
@@ -647,15 +651,15 @@ bot.on("message", async msg => {
     } else if (kleur === '#FFAC33') {
         kleuremoji = "🟠";
     } else if (kleur === '#F4E30D') {
-        kleuremoji = "🟡"; 
+        kleuremoji = "🟡";
     } else if (kleur === '#A3F40D') {
-        kleuremoji = "🟢"; 
+        kleuremoji = "🟢";
     } else if (kleur === '#0DA0F4') {
-        kleuremoji = "🔵"; 
+        kleuremoji = "🔵";
     } else if (kleur === '#C60DF4') {
-        kleuremoji = "🟣"; 
+        kleuremoji = "🟣";
     }
-    
+
     if (msg.content === "resetprefix") {
         if (!msg.member.hasPermission("MANAGE_GUILD")) {
             if (taal === "nl") {
@@ -1087,10 +1091,10 @@ bot.on("message", async msg => {
                 msg.delete();
                 if (bericht.length % 2 === 0) {
                     for (let i = 0; i < bericht.length / 2; i++) {
-                        embed1.addField(`**${i+1}**. ${bericht[i].naam}`, `GuildId: **${bericht[i].guildid}**\nPrefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
+                        embed1.addField(`**${i + 1}**. ${bericht[i].naam}`, `GuildId: **${bericht[i].guildid}**\nPrefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                     }
                     for (let i = bericht.length / 2; i < bericht.length; i++) {
-                        embed2.addField(`**${i+1}**. ${bericht[i].naam}`, `GuildId: **${bericht[i].guildid}**\nPrefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
+                        embed2.addField(`**${i + 1}**. ${bericht[i].naam}`, `GuildId: **${bericht[i].guildid}**\nPrefix: ${bericht[i].prefix}\nTaal: ${bericht[i].taal}`, true);
                     }
                     msg.member.send(createEmbed(`Database`, `Aantal servers in de Database: **${aantals.rows.length}**\nEr zijn **${aantalpunt}** servers met de **.** prefix, en **${anders}** servers met zijn eigen prefix!\nEr zijn **${taalnl}** servers die in het Nederlands staan, er zijn **${taalen}** servers die in het Engels staan!`, kleur));
                     msg.member.send(embed1);
@@ -1382,7 +1386,7 @@ bot.on("message", async msg => {
                                     aantalcodes += 1;
                                 }
                             }
-                            
+
                             if (taal === "nl") {
                                 msg.channel.send(createEmbed(`${msg.author.username}`, `De code van ${msg.member.voice.channel.name} is gezet naar **${code}** en de server is **${server}**!`, kleur));
                             } else {
@@ -1721,7 +1725,7 @@ bot.on("message", async msg => {
                         } else {
                             msg.channel.send(createEmbed(`${msg.author.username}`, 'You are not hosting a game at the moment, do **${prefix}amongus** to start hosting a game!'));
                         }
-                     }
+                    }
                 }
             }
         }
@@ -1984,7 +1988,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 }
             }
         }
-    } 
+    }
 
     if (taalVar.length != 0) {
         for (let i = 0; i < taalVar.length; i++) {
@@ -1994,7 +1998,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     taalVar[i].bericht.react(reaction._emoji.name);
                     return;
                 }
-        
+
                 if (reaction._emoji.name === "🇳🇱") {
                     client.query(`UPDATE servers SET lang='nl' WHERE guildId='${taalVar[i].server.id}';`, (err, res) => {
                         if (err) {
@@ -2009,7 +2013,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     }), 1);
                     return;
                 }
-        
+
                 if (reaction._emoji.name === "🇬🇧") {
                     client.query(`UPDATE servers SET lang='en' WHERE guildId='${taalVar[i].server.id}';`, (err, res) => {
                         if (err) {
