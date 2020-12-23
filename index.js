@@ -8,14 +8,17 @@ const connection = mysql.createConnection({
     user: process.env.DBUSERNAME,
     password: process.env.DBPASSWORD,
     database: process.env.DBNAME,
-    port: process.env.DBPORT
+    port: process.env.DBPORT,
+    connectTimeout: 60000,
+    multipleStatements: true,
+    queryTimeout: 6000
 });
 
 connection.connect(function (err) {
     if (!err) {
         console.log('Connectie gemaakt met de database!');
     } else {
-        console.error('Error bij het verbinding maken met de database!' + err);
+        console.error('Error bij het verbinding maken met de database!\n' + err);
     }
     connection.end();
 });
