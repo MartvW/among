@@ -12,8 +12,8 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query('SELECT * FROM servers', function (err, res) {
-    console.log(res);
+connection.query('SELECT * FROM servers', function (err, res, fields) {
+    console.log(fields);
 });
 
 const client = new Client({
