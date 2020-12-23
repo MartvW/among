@@ -20,7 +20,6 @@ connection.connect(function (err) {
     } else {
         console.error('Error bij het verbinding maken met de database!\n' + err);
     }
-    connection.end();
 });
 
 const client = new Client({
@@ -2071,3 +2070,4 @@ bot.on('voiceStateUpdate', (oldMember, newMember) => {
 });
 
 bot.login(token);
+connection.end();
