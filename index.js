@@ -7,7 +7,8 @@ const connection = mysql.createConnection({
     host: process.env.DBHOSTNAME,
     user: process.env.DBUSERNAME,
     password: process.env.DBPASSWORD,
-    database: process.env.DBNAME
+    database: process.env.DBNAME,
+    port: process.env.DBPORT
 });
 
 connection.connect(function (err) {
@@ -16,6 +17,7 @@ connection.connect(function (err) {
     } else {
         console.error('Error bij het verbinding maken met de database!' + err);
     }
+    connection.end();
 });
 
 const client = new Client({
