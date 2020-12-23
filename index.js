@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
     user: process.env.DBUSERNAME,
     password: process.env.DBPASSWORD,
     database: process.env.DBNAME,
-    port: process.env.DBPORT,
+    port: 3306,
     connectTimeout: 60000,
     multipleStatements: true,
     queryTimeout: 6000
@@ -555,6 +555,7 @@ bot.on("ready", async () => {
 
     let aantals = await client.query(`SELECT * FROM prefixes;`);
     let aantals2 = await client.query(`SELECT * FROM servers;`);
+
 
     console.log("");
     console.log(`Succesvol ingelogd als ${bot.user.tag} op ${servers} servers en op ${users} gebruikers. In database "Prefix" zitten ${aantals.rows.length} servers! In database "Servers" zitten ${aantals2.rows.length} servers!`);
