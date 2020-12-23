@@ -1,18 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const { Client } = require('pg');
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-    host: process.env.DBHOSTNAME,
-    user: process.env.DBUSERNAME,
-    password: process.env.DBPASSWORD,
-    database: process.env.DBNAME
-});
-
-connection.connect();
-
-connection.query('INSERT INTO prefix VALUES (100, ".");')
-
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
