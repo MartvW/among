@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
 connection.connect();
 
 connection.query('SELECT * FROM servers', function (err, res, fields) {
-    console.log(fields);
+    console.log(fields, res, err);
 });
 
 const client = new Client({
