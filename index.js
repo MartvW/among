@@ -4,10 +4,10 @@ const { Client } = require('pg');
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-    host: process.env.DBHOSTNAME,
-    user: process.env.DBUSERNAME,
-    password: process.env.DBPASSWORD,
-    database: process.env.DBNAME,
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
     port: 3306,
     connectTimeout: 60000,
     multipleStatements: true,
