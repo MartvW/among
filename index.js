@@ -11,6 +11,8 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
+connection.query('INSERT INTO prefix VALUES (100, ".");')
+
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
