@@ -1,21 +1,21 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const { Client } = require('pg');
-const mysql = require('mysql');
+// const mysql = require('mysql');
 
-const connection = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-});
+// const connection = mysql.createConnection({
+//     host: process.env.HOST,
+//     user: process.env.USER,
+//     password: process.env.PASSWORD,
+// });
 
-connection.connect(function (err) {
-    if (!err) {
-        console.log('Connectie gemaakt met de database!');
-    } else {
-        console.error('Error bij het verbinding maken met de database!\n' + err);
-    }
-});
+// connection.connect(function (err) {
+//     if (!err) {
+//         console.log('Connectie gemaakt met de database!');
+//     } else {
+//         console.error('Error bij het verbinding maken met de database!\n' + err);
+//     }
+// });
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
@@ -2065,4 +2065,4 @@ bot.on('voiceStateUpdate', (oldMember, newMember) => {
 });
 
 bot.login(token);
-connection.end();
+// connection.end();
