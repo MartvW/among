@@ -2049,4 +2049,9 @@ bot.on('voiceStateUpdate', (oldMember, newMember) => {
     }
 });
 
+<<<<<<< HEAD
 bot.login(token);
+=======
+bot.login(token);
+connection.end();
+>>>>>>> 3dc2b927f1c1787c7019625b4916e1b8526bb6de
