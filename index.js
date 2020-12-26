@@ -1,6 +1,19 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const { Client } = require('pg');
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD
+});
+
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log("Succesvol verbonden met de MySQL database!");
+})
+
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
