@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const { Client } = require('pg');
+const { Client } = require('pg') 
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
@@ -267,8 +267,8 @@ async function updateAdmin(botbio) {
     const aantal = await client.query(`SELECT * FROM prefixes`);
     let prefixesArray = [];
     for (let i = 0; i < aantal.rowCount; i++) {
-        if (!prefixesArray.includes(`**${aantal.rows[i].prefix}**`)) {
-            prefixesArray.push(`**${aantal.rows[i].prefix}**`);
+        if (!prefixesArray.includes(`${aantal.rows[i].prefix}`)) {
+            prefixesArray.push(`${aantal.rows[i].prefix}`);
         }
     }
 
@@ -304,7 +304,7 @@ async function updateAdmin(botbio) {
     }
 
     let prefixes = prefixesArray.join(" | ");
-    let kleuren = colorArray.join(" **|** ");
+    let kleuren = colorArray.join(" | ");
 
     var adminEmbed = new Discord.MessageEmbed()
         .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
