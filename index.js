@@ -1500,7 +1500,7 @@ bot.on("message", async msg => {
                     .setDescription(`Map: **The Airship**`)
                     .setColor(kleur)
                     .setTimestamp()
-                    .setImage(`https://github.com/MartvW/among/blob/master/The_Airship_map.png`)
+                    .setImage(`https://raw.githubusercontent.com/MartvW/among/master/The_Airship_map.png`)
                     .setFooter(`${bot.user.tag}`)
                 msg.channel.send(embed);
             }
