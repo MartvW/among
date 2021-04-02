@@ -63,6 +63,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
                 { name: `${prefixs}map`, value: 'Om het lijstje van alle mappen te zien.', inline: true },
                 { name: `${prefixs}polus`, value: 'Om de kaart te zien van Polus.', inline: true },
 
+                { name: `${prefixs}airship`, value: 'Om de kaart te zien van The Airship.', inline: true },
                 { name: `${prefixs}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: true },
                 { name: `${prefixs}mira`, value: 'Om de kaart te zien van MIRA HQ.', inline: true },
                 { name: `${prefixs}setcode`, value: 'Om de code in te stellen.', inline: true },
@@ -104,6 +105,7 @@ function helpEmbed(prefixs, lang, kleurVar) {
                 { name: `${prefixs}map`, value: 'A list of all the maps.', inline: true },
                 { name: `${prefixs}polus`, value: 'To show the map of Polus.', inline: true },
 
+                { name: `${prefixs}airship`, value: 'To show the map of The Airship.', inline: true },
                 { name: `${prefixs}skeld`, value: 'To show the map of The Skeld.', inline: true },
                 { name: `${prefixs}mira`, value: 'To show the map of MIRA HQ.', inline: true },
                 { name: `${prefixs}setcode`, value: 'To set the game code.', inline: true },
@@ -1449,9 +1451,9 @@ bot.on("message", async msg => {
 
             if (command === "map") {
                 if (taal === "nl") {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`, kleur));
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n-**The Airship** (${prefix}airship})\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`, kleur));
                 } else {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `All maps from **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n\nDo ***${prefix}<mapname>*** to show the map!`, kleur));
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `All maps from **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n-**The Airship** (${prefix}airship})\n\nDo ***${prefix}<mapname>*** to show the map!`, kleur));
                 }
             }
 
@@ -1487,6 +1489,18 @@ bot.on("message", async msg => {
                     .setColor(kleur)
                     .setTimestamp()
                     .setImage(`https://raw.githubusercontent.com/MartvW/among/master/Mirahq.png`)
+                    .setFooter(`${bot.user.tag}`)
+                msg.channel.send(embed);
+            }
+            
+            if (command === "airship") {
+                var embed = new Discord.MessageEmbed()
+                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
+                    .setTitle(`${msg.author.username}`)
+                    .setDescription(`Map: **The Airship**`)
+                    .setColor(kleur)
+                    .setTimestamp()
+                    .setImage(`https://github.com/MartvW/among/blob/master/The_Airship_map.png`)
                     .setFooter(`${bot.user.tag}`)
                 msg.channel.send(embed);
             }
