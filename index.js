@@ -1280,7 +1280,7 @@ bot.on("message", async msg => {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`, kleur));
                     } else {
-                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`, kleur));
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`, kleur));
                     }
                     return;
                 }
@@ -1290,7 +1290,7 @@ bot.on("message", async msg => {
                         if (taal === "nl") {
                             msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`, kleur));
                         } else {
-                            msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`, kleur));
+                            msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`, kleur));
                         }
                         return;
                     }
@@ -1411,7 +1411,7 @@ bot.on("message", async msg => {
                     if (taal === "nl") {
                         msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`, kleur));
                     } else {
-                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`, kleur));
+                        msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`, kleur));
                     }
                     return;
                 }
@@ -1422,7 +1422,7 @@ bot.on("message", async msg => {
                             if (taal === "nl") {
                                 msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** heeft geen code. Doe ***${prefix}setcode <code> <server>*** om een code te zetten!`, kleur));
                             } else {
-                                msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** does'nt have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`, kleur));
+                                msg.channel.send(createEmbed(`${msg.author.username}`, `**${msg.member.voice.channel.name}** doesn't have a code. Do ***${prefix}setcode <code> <server>*** to set a code!`, kleur));
                             }
                             return;
                         }
