@@ -66,12 +66,12 @@ function helpEmbed(prefixs, lang, kleurVar) {
                 { name: `${prefixs}airship`, value: 'Om de kaart te zien van The Airship.', inline: true },
                 { name: `${prefixs}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: true },
                 { name: `${prefixs}mira`, value: 'Om de kaart te zien van MIRA HQ.', inline: true },
+                
                 { name: `${prefixs}setcode`, value: 'Om de code in te stellen.', inline: true },
-
                 { name: `${prefixs}resetcode`, value: 'Om de code te resetten.', inline: true },
                 { name: `${prefixs}code`, value: 'Om de code te zien van het kanaal.', inline: true },
+                
                 { name: `${prefixs}lock`, value: 'Het kanaal te locken waar je inzit.', inline: true },
-
                 { name: `${prefixs}unlock`, value: 'Het kanaal te unlocken waar je inzit.', inline: true },
                 { name: `${prefixs}suggestion`, value: `Om een suggestie naar de owner te sturen voor de bot.`, inline: true },
             )
@@ -108,12 +108,12 @@ function helpEmbed(prefixs, lang, kleurVar) {
                 { name: `${prefixs}airship`, value: 'To show the map of The Airship.', inline: true },
                 { name: `${prefixs}skeld`, value: 'To show the map of The Skeld.', inline: true },
                 { name: `${prefixs}mira`, value: 'To show the map of MIRA HQ.', inline: true },
+                
                 { name: `${prefixs}setcode`, value: 'To set the game code.', inline: true },
-
                 { name: `${prefixs}resetcode`, value: 'To reset the game code.', inline: true },
                 { name: `${prefixs}code`, value: 'Show the code of the channel.', inline: true },
+                
                 { name: `${prefixs}lock`, value: 'To lock the channel.', inline: true },
-
                 { name: `${prefixs}unlock`, value: 'To unlock the channel.', inline: true },
                 { name: `${prefixs}suggestion`, value: `To send a suggestion to the owner of the bot about the bot.`, inline: true },
             )
@@ -1451,9 +1451,9 @@ bot.on("message", async msg => {
 
             if (command === "map") {
                 if (taal === "nl") {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n-**The Airship** (${prefix}airship})\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`, kleur));
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `Alle mappen van **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n-**The Airship** (${prefix}airship)\n\nDoe ***${prefix}<mapnaam>*** om de kaart te zien van die map!`, kleur));
                 } else {
-                    msg.channel.send(createEmbed(`${msg.author.username}`, `All maps from **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n-**The Airship** (${prefix}airship})\n\nDo ***${prefix}<mapname>*** to show the map!`, kleur));
+                    msg.channel.send(createEmbed(`${msg.author.username}`, `All maps from **Among Us**:\n-**The Skeld** (${prefix}skeld)\n-**Polus** (${prefix}polus)\n-**MIRA HQ** (${prefix}mira)\n-**The Airship** (${prefix}airship)\n\nDo ***${prefix}<mapname>*** to show the map!`, kleur));
                 }
             }
 
