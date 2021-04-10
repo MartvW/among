@@ -49,32 +49,30 @@ function helpEmbed(prefixs, lang, kleurVar) {
 
                 { name: `resetprefix`, value: 'Om de prefix van de server te resetten.', inline: true },
                 { name: `${prefixs}info`, value: 'Hiermee kan je informatie zien over de server.', inline: true },
-                { name: `${prefixs}donate`, value: 'Link van de Patreon Pagina.', inline: true },
-
-                { name: `${prefixs}patreon`, value: 'Mensen die gedoneerd hebben.', inline: true },
                 { name: `${prefixs}help`, value: 'Om dit bericht te laten zien.', inline: true },
+                
                 { name: `NIEUW!!! ${prefixs}link`, value: 'Je kan de invite-link krijgen via deze command.', inline: true },
-
                 { name: `${prefixs}amongus`, value: 'Wanneer je een game wilt starten.', inline: true },
                 { name: `${prefixs}amongusstop`, value: 'Wanneer je de game wilt eindigen.', inline: true },
+                
                 { name: `${prefixs}ping`, value: 'Hiermee kan je je ping zien.', inline: true },
-
                 { name: `${prefixs}uptime`, value: 'Hoelang de bot online is.', inline: true },
                 { name: `${prefixs}map`, value: 'Om het lijstje van alle mappen te zien.', inline: true },
+                
                 { name: `${prefixs}polus`, value: 'Om de kaart te zien van Polus.', inline: true },
-
                 { name: `${prefixs}airship`, value: 'Om de kaart te zien van The Airship.', inline: true },
                 { name: `${prefixs}skeld`, value: 'Om de kaart te zien van The Skeld.', inline: true },
-                { name: `${prefixs}mira`, value: 'Om de kaart te zien van MIRA HQ.', inline: true },
                 
+                { name: `${prefixs}mira`, value: 'Om de kaart te zien van MIRA HQ.', inline: true },
                 { name: `${prefixs}setcode`, value: 'Om de code in te stellen.', inline: true },
                 { name: `${prefixs}resetcode`, value: 'Om de code te resetten.', inline: true },
-                { name: `${prefixs}code`, value: 'Om de code te zien van het kanaal.', inline: true },
                 
+                { name: `${prefixs}code`, value: 'Om de code te zien van het kanaal.', inline: true },
                 { name: `${prefixs}lock`, value: 'Het kanaal te locken waar je inzit.', inline: true },
                 { name: `${prefixs}unlock`, value: 'Het kanaal te unlocken waar je inzit.', inline: true },
+
                 { name: `${prefixs}suggestion`, value: `Om een suggestie naar de owner te sturen voor de bot.`, inline: true },
-            )
+                )
             .setColor(kleurVar)
             .setTimestamp()
             .setFooter(`SusBot#9893`)
@@ -91,30 +89,28 @@ function helpEmbed(prefixs, lang, kleurVar) {
 
                 { name: `resetprefix`, value: 'To reset your own prefix.', inline: true },
                 { name: `${prefixs}info`, value: 'You can get information about the server.', inline: true },
-                { name: `${prefixs}donate`, value: 'Link for the Patreon Page.', inline: true },
-
-                { name: `${prefixs}patreon`, value: 'Peoples who has donate.', inline: true },
                 { name: `${prefixs}help`, value: 'To show this message.', inline: true },
-                { name: `NEW!!! ${prefixs}link`, value: 'You can get usefull links with this command.', inline: true },
 
+                { name: `NEW!!! ${prefixs}link`, value: 'You can get usefull links with this command.', inline: true },
                 { name: `${prefixs}amongus`, value: 'When you want to start a game.', inline: true },
                 { name: `${prefixs}amongusstop`, value: 'To finish the game.', inline: true },
-                { name: `${prefixs}ping`, value: 'Get your ping.', inline: true },
 
+                { name: `${prefixs}ping`, value: 'Get your ping.', inline: true },
                 { name: `${prefixs}uptime`, value: 'See the uptime from the bot.', inline: true },
                 { name: `${prefixs}map`, value: 'A list of all the maps.', inline: true },
-                { name: `${prefixs}polus`, value: 'To show the map of Polus.', inline: true },
 
+                { name: `${prefixs}polus`, value: 'To show the map of Polus.', inline: true },
                 { name: `${prefixs}airship`, value: 'To show the map of The Airship.', inline: true },
                 { name: `${prefixs}skeld`, value: 'To show the map of The Skeld.', inline: true },
+
                 { name: `${prefixs}mira`, value: 'To show the map of MIRA HQ.', inline: true },
-                
                 { name: `${prefixs}setcode`, value: 'To set the game code.', inline: true },
                 { name: `${prefixs}resetcode`, value: 'To reset the game code.', inline: true },
-                { name: `${prefixs}code`, value: 'Show the code of the channel.', inline: true },
                 
+                { name: `${prefixs}code`, value: 'Show the code of the channel.', inline: true },
                 { name: `${prefixs}lock`, value: 'To lock the channel.', inline: true },
                 { name: `${prefixs}unlock`, value: 'To unlock the channel.', inline: true },
+                
                 { name: `${prefixs}suggestion`, value: `To send a suggestion to the owner of the bot about the bot.`, inline: true },
             )
             .setColor(kleurVar)
@@ -734,34 +730,6 @@ bot.on("message", async msg => {
                     msg.channel.send(createEmbed(`Suggestie`, `De suggestie is gestuurd naar de eigenaar!`, kleur));
                 } else {
                     msg.channel.send(createEmbed(`Suggestion`, `Suggestion is sended to the owner!`, kleur));
-                }
-            }
-
-            if (command === "patreon") {
-                var embedNL = new Discord.MessageEmbed()
-                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-                    .setTitle(`Patreon`)
-                    .setDescription(`Dit zijn de mensen die hebben gedoneerd op de Patreon pagina!`)
-                    .addFields(
-                        { name: `-`, value: `-`, inline: true },
-                    )
-                    .setColor(kleur)
-                    .setTimestamp()
-                    .setFooter(`${bot.user.tag}`)
-                var embedEN = new Discord.MessageEmbed()
-                    .setAuthor(`${bot.user.username}`, `https://cdn.discordapp.com/app-icons/469857906385354764/ea4f5a8c39e1b183777117bdd40a7449.png`)
-                    .setTitle(`Patreon`)
-                    .setDescription(`These are the people who has donate on the Patreon Page!`)
-                    .addFields(
-                        { name: `-`, value: `-`, inline: true },
-                    )
-                    .setColor(kleur)
-                    .setTimestamp()
-                    .setFooter(`${bot.user.tag}`)
-                if (taal === "nl") {
-                    msg.channel.send(embedNL);
-                } else {
-                    msg.channel.send(embedEN);
                 }
             }
 
@@ -1572,14 +1540,6 @@ bot.on("message", async msg => {
 
                     let uptimestring = `${dag}, ${uur}, ${minuut} and ${seconden}.`;
                     msg.channel.send(createEmbed(`${msg.author.username}`, `Uptime: **${uptimestring}**`, kleur));
-                }
-            }
-
-            if (command === "donate") {
-                if (taal === "nl") {
-                    msg.channel.send(createEmbed(`Donatie-link`, `https://www.patreon.com/bePatron?u=45897916`, kleur));
-                } else {
-                    msg.channel.send(createEmbed(`Donation-link`, `https://www.patreon.com/bePatron?u=45897916`, kleur));
                 }
             }
 
